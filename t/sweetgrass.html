@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sweetgrass Garden Co. · Charleston, SC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,500;0,700;0,800;1,500;1,600&family=Karla:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --moss:#1c3426; --leaf:#2e5c39; --sage:#e3eadc; --paper:#f6f8f2; --coral:#e2704f; --sun:#f2b84b; --muted:#5a6a5e; --line:#cfd9c9;
+  --display:"Petrona",Georgia,serif; --body:"Karla",system-ui,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+body{background:var(--paper);color:var(--moss);font:17px/1.6 var(--body)}
+a{color:inherit}
+.wrap{max-width:1260px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;font:700 16px var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .35s cubic-bezier(.34,1.56,.64,1),background .3s}
+.btn:hover{transform:translateY(-3px) rotate(-1deg)}
+.btn-l{background:var(--leaf);color:#fff}
+.btn-c{background:var(--coral);color:#fff}
+.btn-w{background:rgba(255,255,255,.9);color:var(--moss)}
+.tag{display:inline-flex;align-items:center;gap:8px;font:700 13px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--leaf)}
+.tag::before{content:"";width:18px;height:18px;background:var(--leaf);-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 22V9M12 13c-4 0-7-3-7-7 4 0 7 3 7 7Zm0-2c0-4 3-7 7-7 0 4-3 7-7 7Z' fill='none' stroke='black' stroke-width='2.4'/></svg>") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 22V9M12 13c-4 0-7-3-7-7 4 0 7 3 7 7Zm0-2c0-4 3-7 7-7 0 4-3 7-7 7Z' fill='none' stroke='black' stroke-width='2.4'/></svg>") center/contain no-repeat}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .4s,box-shadow .4s}
+.nav.solid{background:rgba(246,248,242,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;min-height:78px;gap:16px}
+.logo{font:800 22px var(--display);text-decoration:none;letter-spacing:-.01em}
+.logo i{font-weight:500;color:var(--leaf)}
+.nav .r{display:flex;gap:10px;align-items:center}
+.nav .btn{min-height:46px;padding:0 20px;font-size:15px}
+.burger{width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.9);cursor:pointer;display:grid;place-items:center}
+.burger i{display:grid;gap:5px;width:18px}.burger i::before,.burger i::after{content:"";height:2px;background:var(--moss);border-radius:2px}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);z-index:70;background:var(--leaf);color:#fff;transform:translateX(100%);transition:transform .7s cubic-bezier(.76,0,.24,1);padding:calc(28px + env(safe-area-inset-top,0px)) max(28px,env(safe-area-inset-right,0px)) 32px 32px;display:grid;grid-template-rows:auto 1fr auto}
+.drawer:not(.open){visibility:hidden;transition:transform .7s cubic-bezier(.76,0,.24,1),visibility 0s .7s}
+.drawer.open{transform:none}
+.drawer nav{display:grid;align-content:center;gap:6px}
+.drawer nav a{font:600 46px/1.1 var(--display);text-decoration:none;font-style:italic}
+.drawer nav a:hover{color:var(--sun)}
+.drawer button{justify-self:end;background:none;border:0;color:#fff;font:700 15px var(--body);cursor:pointer}
+.scrim{position:fixed;inset:0;z-index:65;background:rgba(28,52,38,.4);opacity:0;pointer-events:none;transition:opacity .5s}
+.scrim.on{opacity:1;pointer-events:auto}
+
+/* Landscape hero */
+.hero{position:relative;height:min(100vh,940px);min-height:640px;overflow:hidden;background:linear-gradient(#bfe0e8 0%,#e6efe0 55%,#f6efdc 75%)}
+.layer{position:absolute;inset:0;will-change:transform}
+.layer svg{position:absolute;left:-5%;width:110%;bottom:0;height:auto}
+.hero .copy{position:relative;z-index:6;padding-top:calc(130px + env(safe-area-inset-top,0px));text-align:center}
+.hero h1{font:800 clamp(52px,8.6vw,132px)/.9 var(--display);letter-spacing:-.035em;max-width:13ch;margin:18px auto 0}
+.hero h1 i{font-weight:500;color:var(--leaf);display:block}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
+.grass{transform-box:fill-box;transform-origin:bottom center;animation:sway var(--d,3.5s) ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-4deg)}to{transform:rotate(5deg)}}
+.moss{transform-box:fill-box;transform-origin:top center;animation:moss 5s ease-in-out infinite alternate}
+@keyframes moss{to{transform:rotate(3deg) translateX(2px)}}
+.bird{animation:fly 22s linear infinite}
+@keyframes fly{from{transform:translate(-80px,0)}to{transform:translate(1500px,-60px)}}
+
+.stats{background:var(--moss);color:#eaf1e6}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stats div{padding:30px 20px}
+.stats div+div{border-left:1px solid #2e4a38}
+.stats b{display:block;font:800 clamp(40px,4.6vw,64px)/1 var(--display);color:var(--sun)}
+.stats span{font-size:15px;color:#b8c9bc}
+
+.sec{padding-block:clamp(88px,11vw,150px)}
+h2.h{font:800 clamp(40px,5.8vw,84px)/.95 var(--display);letter-spacing:-.03em}
+h2.h i{font-weight:500;color:var(--leaf)}
+
+/* Season morph */
+.seasons{height:420vh;position:relative}
+.seasons .pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;align-items:center;background:var(--sbg,#e3eadc);transition:background 1s}
+.seasons .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center;width:100%}
+.sname{font:800 clamp(80px,13vw,200px)/.85 var(--display);letter-spacing:-.04em;color:var(--sfg,#2e5c39);transition:color 1s}
+.months{font:700 15px var(--body);letter-spacing:.12em;text-transform:uppercase;margin-top:14px;color:var(--muted)}
+.tasks{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:10px}
+.tasks li{display:flex;gap:12px;align-items:center;font:600 19px var(--body)}
+.tasks li::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--sfg,#2e5c39);transition:background 1s}
+.sdots{display:flex;gap:8px;margin-top:36px}
+.sdots i{width:10px;height:10px;border-radius:50%;background:rgba(28,52,38,.2);transition:.4s}
+.sdots i.on{width:34px;border-radius:999px;background:var(--moss)}
+.plant{position:relative;aspect-ratio:1;max-width:520px;width:100%;justify-self:center}
+.plant svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity .9s,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.plant svg:not(.on){opacity:0;transform:scale(.92) translateY(20px)}
+.swap{transition:opacity .45s,transform .5s}
+.swap.out{opacity:0;transform:translateY(16px)}
+
+/* Plans */
+.plans-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px}
+.switch{display:flex;background:var(--sage);border-radius:999px;padding:5px;position:relative}
+.switch button{position:relative;z-index:1;border:0;background:none;padding:10px 18px;border-radius:999px;font:700 15px var(--body);cursor:pointer;color:var(--muted);transition:color .3s}
+.switch button[aria-pressed=true]{color:#fff}
+.switch .knob{position:absolute;top:5px;bottom:5px;left:5px;border-radius:999px;background:var(--leaf);transition:transform .45s cubic-bezier(.34,1.56,.64,1),width .45s}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.plan{border-radius:32px;padding:30px;background:#fff;border:2px solid var(--line);display:grid;gap:14px;align-content:start;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.plan:hover{transform:translateY(-8px)}
+.plan h3{font:800 28px var(--display)}
+.plan .price{font:800 56px/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.plan .price small{font:600 16px var(--body);color:var(--muted);letter-spacing:0}
+.plan ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:15px}
+.plan li::before{content:"✿ ";color:var(--coral)}
+.plan.feat{background:var(--leaf);border-color:var(--leaf);color:#f0f6ee}
+.plan.feat .price small{color:#bfd4c2}
+.plan.feat .btn{background:#fff;color:var(--leaf)}
+
+.ba{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,64px);align-items:center}
+.cmp{aspect-ratio:4/3;border-radius:32px;--cmp-line:#fff;--cmp-knob:var(--leaf)}
+.cmp svg{width:100%;height:100%}
+
+/* Review deck */
+.deck{position:relative;height:340px;max-width:min(620px,calc(100% - 48px));margin-top:40px}
+.rcard{position:absolute;inset:0;border-radius:32px;padding:clamp(24px,3vw,40px);display:grid;align-content:space-between;cursor:pointer;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s;box-shadow:0 30px 60px -36px rgba(28,52,38,.6)}
+.rcard blockquote{margin:0;font:600 clamp(22px,2.4vw,30px)/1.25 var(--display)}
+.rcard cite{font-style:normal;font-weight:700}
+.deckbar{display:flex;gap:12px;align-items:center;margin-top:20px}
+
+/* Quote wizard */
+.quote{background:var(--moss);color:#eef4ea;border-radius:44px;margin-inline:max(10px,env(safe-area-inset-left,0px));padding-block:clamp(64px,8vw,110px)}
+.quote .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.quote h2 i{color:var(--sun)}
+.wiz{background:#fff;color:var(--moss);border-radius:32px;padding:clamp(22px,3vw,36px)}
+.steps-bar{display:flex;gap:6px;margin-bottom:24px}
+.steps-bar i{flex:1;height:6px;border-radius:3px;background:var(--sage);transition:background .4s}
+.steps-bar i.on{background:var(--coral)}
+.pane{display:none}.pane.on{display:grid;gap:16px;animation:pin .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes pin{from{opacity:0;transform:translateX(24px)}}
+.pane h3{font:800 28px var(--display)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative}
+.opts input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0}
+.opts label{border:2px solid var(--line);border-radius:20px;padding:16px;cursor:pointer;font-weight:700;transition:.25s;display:grid;gap:2px}
+.opts label small{font-weight:500;color:var(--muted)}
+.opts input:checked+label{border-color:var(--leaf);background:#eef5ea}
+.opts input:focus-visible+label{outline:2px solid var(--leaf);outline-offset:2px}
+.nav-row{display:flex;justify-content:space-between;gap:10px;margin-top:8px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font:700 14px var(--body)}
+[data-field] input{width:100%;min-height:54px;border-radius:16px;border:2px solid var(--line);font:inherit;padding:0 16px;color:var(--moss)}
+[data-field] input:focus{outline:none;border-color:var(--leaf)}
+.err{font-size:13px;color:#c0392b}
+.form-done h3{font:800 34px var(--display);color:var(--leaf)}
+.form-done p{color:var(--muted)}
+
+footer{padding-block:64px calc(100px + env(safe-area-inset-bottom,0px))}
+footer .big{font:800 clamp(56px,11vw,170px)/.9 var(--display);letter-spacing:-.04em}
+footer .big i{font-weight:500;color:var(--leaf)}
+footer .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+footer .row span{background:var(--sage);border-radius:999px;padding:7px 14px;font-weight:600;font-size:14px}
+@media (max-width:980px){.seasons .wrap,.ba,.quote .wrap{grid-template-columns:1fr}.plans{grid-template-columns:1fr}.stats .wrap{grid-template-columns:1fr 1fr}.stats div:nth-child(3){border-left:0}.plant{max-width:300px}.sname{font-size:84px}.seasons{height:360vh}}
+@media (max-width:560px){.opts{grid-template-columns:1fr}.nav .btn{display:none}.tasks li{font-size:16px}.deck{height:380px}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="#top">Sweetgrass <i>Garden Co.</i></a>
+  <div class="r"><a class="btn btn-c" href="#quote">Free quote</a><button class="burger" id="bopen" aria-label="Open menu" aria-expanded="false"><i></i></button></div>
+</div></header>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true"><button id="bclose">Close ✕</button><nav><a href="#seasons">Through the year</a><a href="#plans">Plans</a><a href="#results">Results</a><a href="#quote">Free quote</a></nav><p style="color:#cfe0d2">(843) 555-0176<br>grow@sweetgrassgarden.example</p></aside>
+
+<header class="hero" id="top">
+  <div class="layer" data-depth="4"><svg viewBox="0 0 1400 600" aria-hidden="true"><circle cx="1250" cy="120" r="56" fill="#f8d27a"/><g class="bird" fill="none" stroke="#1c3426" stroke-width="2.4" stroke-linecap="round"><path d="M100 140q10-10 20 0q10-10 20 0"/><path d="M150 120q7-7 14 0q7-7 14 0"/></g></svg></div>
+  <div class="layer" data-depth="10"><svg viewBox="0 0 1400 600" aria-hidden="true"><path d="M0 470 Q200 430 420 455 T860 440 T1400 450 V600 H0Z" fill="#a8c4a0"/><path d="M0 500 H1400 V600 H0Z" fill="#8fb5b8" opacity=".7"/></svg></div>
+  <div class="layer" data-depth="18"><svg viewBox="0 0 1400 600" aria-hidden="true"><g transform="translate(90 150)">
+    <path d="M1010 600 C1000 520 1020 470 1060 430 C1090 400 1130 390 1150 360" stroke="#4a3b2c" stroke-width="30" fill="none" stroke-linecap="round"/>
+    <path d="M1050 450 C980 420 920 420 860 380" stroke="#4a3b2c" stroke-width="18" fill="none" stroke-linecap="round"/><path d="M1080 420 C1160 400 1240 400 1300 370" stroke="#4a3b2c" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <g fill="#3f6b46"><ellipse cx="880" cy="350" rx="110" ry="55"/><ellipse cx="1000" cy="320" rx="130" ry="70"/><ellipse cx="1150" cy="310" rx="140" ry="70"/><ellipse cx="1290" cy="340" rx="110" ry="55"/><ellipse cx="1080" cy="280" rx="120" ry="60" fill="#4c7d53"/></g>
+    <g fill="#9fb59a" opacity=".85"><path class="moss" d="M900 380 q4 40 -2 70 q-3 14 6 22"/><path class="moss" d="M960 370c-4 30 6 60 -4 90" style="animation-delay:-1s"/><path class="moss" d="M1120 360c4 36 -6 66 4 96" style="animation-delay:-2s"/><path class="moss" d="M1240 370c-3 30 5 50 -2 76" style="animation-delay:-3s"/><path class="moss" d="M1040 350c3 24 -5 44 2 64" style="animation-delay:-.5s"/></g>
+    <g stroke="#9fb59a" stroke-width="5" fill="none" stroke-linecap="round"><path class="moss" d="M900 380 q4 40 -2 70 q-3 14 6 22"/><path class="moss" d="M960 370c-4 30 6 60 -4 90" style="animation-delay:-1s"/><path class="moss" d="M1120 360c4 36 -6 66 4 96" style="animation-delay:-2s"/><path class="moss" d="M1240 370c-3 30 5 50 -2 76" style="animation-delay:-3s"/><path class="moss" d="M1040 350c3 24 -5 44 2 64" style="animation-delay:-.5s"/></g>
+    </g><path d="M0 530 Q300 500 600 520 T1400 515 V600 H0Z" fill="#6f9a6a"/>
+  </svg></div>
+  <div class="layer" data-depth="30"><svg viewBox="0 0 1400 600" aria-hidden="true" id="grass"></svg></div>
+  <div class="copy wrap">
+    <span class="tag" data-reveal="fade">Lawn &amp; garden care · Charleston, SC</span>
+    <h1 data-split>Gardens that look after themselves. <i>(Because we do.)</i></h1>
+    <div class="ctas" data-reveal style="--rd:700"><a class="btn btn-l" href="#quote" data-magnetic>Get a free quote →</a><a class="btn btn-w" href="#plans">See plans</a></div>
+  </div>
+</header>
+
+<section class="stats"><div class="wrap">
+  <div><b data-count="640" data-suf="+">640+</b><span>Lowcountry yards in our care</span></div>
+  <div><b>1 crew</b><span>The same team every visit</span></div>
+  <div><b data-count="4.9" data-suf="★">4.9★</b><span>From 290 neighbors</span></div>
+  <div><b>Since 2012</b><span>Family-run in James Island</span></div>
+</div></section>
+
+<section class="seasons" id="seasons"><div class="pin"><div class="wrap">
+  <div>
+    <span class="tag">Through the Lowcountry year</span>
+    <div class="swap" id="sw"><div class="sname" id="sn">Spring</div><div class="months" id="sm">March – May</div><ul class="tasks" id="st"></ul></div>
+    <div class="sdots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="plant" aria-hidden="true">
+    <svg viewBox="0 0 400 400" class="on"><circle cx="200" cy="200" r="170" fill="#fff" opacity=".5"/><path d="M200 340V180" stroke="#2e5c39" stroke-width="8" stroke-linecap="round"/><path d="M200 260c-50 0-80-30-80-70 50 0 80 30 80 70ZM200 230c40-4 66-34 66-70-40 4-66 34-66 70Z" fill="#6fae64"/><g fill="#f49ac1"><circle cx="200" cy="160" r="22"/><circle cx="176" cy="150" r="16"/><circle cx="224" cy="150" r="16"/></g><circle cx="200" cy="156" r="9" fill="#f2b84b"/><rect x="110" y="330" width="180" height="22" rx="11" fill="#7a5a3c"/></svg>
+    <svg viewBox="0 0 400 400"><circle cx="200" cy="200" r="170" fill="#fff" opacity=".5"/><g fill="#3f8f4a"><circle cx="200" cy="170" r="90"/><circle cx="140" cy="210" r="60"/><circle cx="260" cy="210" r="60"/></g><g fill="#f2b84b"><circle cx="160" cy="150" r="10"/><circle cx="230" cy="130" r="10"/><circle cx="250" cy="200" r="10"/><circle cx="180" cy="220" r="10"/></g><path d="M200 340V250" stroke="#4a3b2c" stroke-width="14" stroke-linecap="round"/><rect x="110" y="330" width="180" height="22" rx="11" fill="#7a5a3c"/></svg>
+    <svg viewBox="0 0 400 400"><circle cx="200" cy="200" r="170" fill="#fff" opacity=".5"/><g fill="#e2704f"><circle cx="200" cy="170" r="80"/><circle cx="145" cy="210" r="52" fill="#f2a24b"/><circle cx="258" cy="208" r="56" fill="#c9502e"/></g><path d="M200 340V250" stroke="#4a3b2c" stroke-width="14" stroke-linecap="round"/><g fill="#e2704f"><ellipse cx="120" cy="320" rx="12" ry="6" transform="rotate(-20 120 320)"/><ellipse cx="290" cy="315" rx="12" ry="6" transform="rotate(30 290 315)" fill="#f2a24b"/><ellipse cx="260" cy="290" rx="10" ry="5"/></g><rect x="110" y="330" width="180" height="22" rx="11" fill="#7a5a3c"/></svg>
+    <svg viewBox="0 0 400 400"><circle cx="200" cy="200" r="170" fill="#fff" opacity=".5"/><g stroke="#4a3b2c" stroke-width="10" stroke-linecap="round" fill="none"><path d="M200 340V170"/><path d="M200 240l-60-50M200 210l56-46M200 180l-30-40M140 190l-20-36M256 164l20-30"/></g><g fill="#fff"><circle cx="120" cy="150" r="7"/><circle cx="280" cy="130" r="6"/><circle cx="170" cy="136" r="5"/></g><rect x="110" y="330" width="180" height="22" rx="11" fill="#7a5a3c"/></svg>
+  </div>
+</div></div></section>
+
+<section class="sec" id="plans"><div class="wrap">
+  <div class="plans-head"><div><span class="tag">Plans</span><h2 class="h" data-split style="margin-top:14px">Pick how much <i>we handle.</i></h2></div>
+    <div class="switch" role="group" aria-label="Visit frequency"><span class="knob" id="knob"></span><button aria-pressed="true" data-fq="w">Weekly</button><button aria-pressed="false" data-fq="b">Every 2 weeks</button></div></div>
+  <div class="plans">
+    <div class="plan" data-reveal><h3>Lawn care</h3><div class="price"><span data-w="55" data-b="65">$55</span><small> /visit</small></div><ul><li>Mowing, edging &amp; blowing</li><li>Quick weed pass</li><li>Text when we're on the way</li></ul><a class="btn btn-l" href="#quote">Choose</a></div>
+    <div class="plan feat" data-reveal style="--rd:100"><h3>Full garden care</h3><div class="price"><span data-w="240" data-b="180">$240</span><small> /month</small></div><ul><li>Everything in lawn care</li><li>Bed weeding &amp; pruning</li><li>Seasonal color, monthly fertilizer</li></ul><a class="btn" href="#quote">Choose</a></div>
+    <div class="plan" data-reveal style="--rd:200"><h3>Seasonal refresh</h3><div class="price"><span data-w="650" data-b="650">$650</span><small> one time</small></div><ul><li>Fresh pine straw</li><li>New annuals</li><li>Pruning &amp; full cleanup</li></ul><a class="btn btn-l" href="#quote">Book</a></div>
+  </div>
+  <p style="color:var(--muted);margin-top:18px">Prices for a typical quarter-acre lot. We confirm yours after a free walk-through.</p>
+</div></section>
+
+<section class="sec" id="results" style="padding-top:0"><div class="wrap ba">
+  <div><span class="tag">Results</span><h2 class="h" data-split style="margin-top:14px">Six weeks <i>apart.</i></h2><p style="color:var(--muted);margin-top:18px;max-width:40ch" data-reveal>A Mount Pleasant front bed when we started, and after one season of full garden care. Drag to compare.</p></div>
+  <div class="cmp" data-reveal="scale">
+    <svg viewBox="0 0 800 600" aria-label="Overgrown garden bed"><rect width="800" height="600" fill="#cfe3e8"/><rect y="300" width="800" height="300" fill="#8a9a5b"/><rect x="0" y="380" width="800" height="220" fill="#7b6a45"/>
+      
+      <g fill="#6f8a3a"><circle cx="120" cy="380" r="70"/><circle cx="260" cy="400" r="60"/><circle cx="420" cy="370" r="80"/><circle cx="600" cy="400" r="70"/><circle cx="720" cy="380" r="60"/></g>
+      <g stroke="#98a85a" stroke-width="5" fill="none" stroke-linecap="round"><path d="M80 520l20-60M150 540l-10-70M330 530l14-80M500 540l-6-70M660 520l12-66M380 560l-20-50"/></g>
+      <g fill="#b08a4a"><circle cx="200" cy="480" r="10"/><circle cx="560" cy="500" r="12"/></g></svg>
+    <div class="after"><svg viewBox="0 0 800 600" aria-label="Same bed after garden care"><rect width="800" height="600" fill="#cfe3e8"/><rect y="300" width="800" height="300" fill="#7fae74"/><rect x="40" y="400" width="720" height="160" rx="80" fill="#6b4b33"/>
+      <g fill="#2e5c39"><circle cx="160" cy="420" r="50"/><circle cx="400" cy="400" r="62"/><circle cx="640" cy="420" r="50"/></g>
+      <g fill="#f49ac1"><circle cx="270" cy="470" r="18"/><circle cx="300" cy="490" r="14"/><circle cx="510" cy="470" r="18"/><circle cx="540" cy="492" r="14"/></g><g fill="#f2b84b"><circle cx="230" cy="500" r="12"/><circle cx="575" cy="505" r="12"/><circle cx="400" cy="510" r="14"/></g>
+      <path d="M40 560H760" stroke="#fff" stroke-width="6"/></svg></div>
+    <span class="tag l" style="color:#fff">Before</span><span class="tag r" style="color:#fff">After</span>
+    <input type="range" min="0" max="100" value="50" aria-label="Compare before and after"><span class="handle"></span>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="tag">Neighbors</span><h2 class="h" data-split style="margin-top:14px">Tap through <i>the reviews.</i></h2>
+  <div class="deck" id="deck"></div>
+  <div class="deckbar"><button class="btn btn-l" id="nextr">Next review →</button><span id="rc" style="font-weight:700;color:var(--muted)">1 / 4</span></div>
+</div></section>
+
+<section class="quote" id="quote"><div class="wrap">
+  <div><span class="tag" style="color:var(--sun)">Free quote</span><h2 class="h" data-split style="margin-top:14px;color:#fff">Three quick <i>questions.</i></h2><p style="color:#b8c9bc;margin-top:18px;max-width:40ch">We'll stop by for a 15-minute walk-through and text you a price the same day. (843) 555-0176</p></div>
+  <div class="wiz">
+    <div class="steps-bar" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    <div class="pane on" data-p="0"><h3>What do you need?</h3><div class="opts"><input type="radio" name="svc" id="o1" checked><label for="o1">Lawn care<small>From $55/visit</small></label><input type="radio" name="svc" id="o2"><label for="o2">Full garden care<small>From $180/mo</small></label><input type="radio" name="svc" id="o3"><label for="o3">Seasonal refresh<small>$650 once</small></label><input type="radio" name="svc" id="o4"><label for="o4">Not sure yet<small>We'll help</small></label></div><div class="nav-row"><span></span><button class="btn btn-l" data-go="1">Next →</button></div></div>
+    <div class="pane" data-p="1"><h3>How big is your yard?</h3><div class="opts"><input type="radio" name="yd" id="y1"><label for="y1">Townhouse<small>Small beds</small></label><input type="radio" name="yd" id="y2" checked><label for="y2">Quarter acre<small>Most homes</small></label><input type="radio" name="yd" id="y3"><label for="y3">Half acre<small>Bigger lot</small></label><input type="radio" name="yd" id="y4"><label for="y4">Acre or more<small>Estate</small></label></div><div class="nav-row"><button class="btn btn-w" data-go="0" style="box-shadow:inset 0 0 0 2px var(--line)">← Back</button><button class="btn btn-l" data-go="2">Next →</button></div></div>
+    <div class="pane" data-p="2"><h3>Where should we text you?</h3>
+      <form class="form" data-kit novalidate style="display:grid;gap:14px" data-done-title="Thanks{n}!" data-done-text="We'll text you this week to set up your walk-through.">
+        <div data-field><label for="s-name">Name</label><input id="s-name" name="name" autocomplete="name" required><span class="err"></span></div>
+        <div data-field><label for="s-phone">Mobile</label><input id="s-phone" name="phone" type="tel" autocomplete="tel" required><span class="err"></span></div>
+        <div data-field><label for="s-addr">Neighborhood</label><input id="s-addr" name="address" placeholder="e.g. James Island" required><span class="err"></span></div>
+        <div class="nav-row"><button type="button" class="btn btn-w" data-go="1" style="box-shadow:inset 0 0 0 2px var(--line)">← Back</button><button class="btn btn-c" type="submit">Send my quote request</button></div>
+      </form></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><div class="big">Sweetgrass <i>Garden Co.</i></div><div class="row"><span>Charleston</span><span>Mount Pleasant</span><span>James Island</span><span>Daniel Island</span><span>West Ashley</span><span>Johns Island</span><span>Summerville</span></div><p style="margin-top:24px;color:var(--muted)">(843) 555-0176 · © 2026 · Sample site</p></div></footer>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  // Sweetgrass blades
+  const g=$("grass");let s="";for(let i=0;i<70;i++){const x=i*20+Math.random()*14,hgt=60+Math.random()*90,c=["#5f8f55","#7aa86a","#c9b46a","#4f7f4a"][i%4];s+=`<path class="grass" style="--d:${2.6+Math.random()*2}s;animation-delay:-${Math.random()*3}s" d="M${x} 600 Q${x+6} ${600-hgt/2} ${x+(Math.random()*30-15)} ${600-hgt}" stroke="${c}" stroke-width="${4+Math.random()*4}" fill="none" stroke-linecap="round"/>`;}g.innerHTML=s;
+  // Pointer + scroll parallax on layers
+  const L=[...document.querySelectorAll(".layer")];let mx=0,my=0,tx=0,ty=0;
+  if(FX.fine&&!FX.reduce){addEventListener("pointermove",e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;},{passive:true});}
+  (function loop(){tx+=(mx-tx)*.06;ty+=(my-ty)*.06;const sy=Math.min(scrollY,1000);L.forEach(l=>{const d=+l.dataset.depth;l.style.transform=`translate3d(${-tx*d*2}px,${-ty*d+sy*d*.012}px,0)`;});if(!FX.reduce)requestAnimationFrame(loop);})();
+  FX.onScroll.push(y=>$("nav").classList.toggle("solid",y>80));
+
+  // Seasons
+  const S=[["Spring","March – May",["New beds & planting","Pine straw & mulch","Irrigation start-up"],"#e3eadc","#2e5c39"],
+           ["Summer","June – August",["Weekly mowing & edging","Hand-watering in heat waves","Fungus & pest checks"],"#f6e7b8","#8a6a12"],
+           ["Fall","September – November",["Core aeration","Leaf removal","Fall color plantings"],"#f4d3c2","#b4442a"],
+           ["Winter","December – February",["Pruning & shaping","Storm cleanup","Bed prep for spring"],"#dbe6ea","#2f4f5f"]];
+  const sec=$("seasons"),pin=sec.querySelector(".pin"),svgs=[...sec.querySelectorAll(".plant svg")],dots=[...sec.querySelectorAll(".sdots i")],sw=$("sw");let cur=-1;
+  function setS(i){if(i===cur)return;const first=cur<0;cur=i;const d=S[i];const fill=()=>{$("sn").textContent=d[0];$("sm").textContent=d[1];$("st").innerHTML=d[2].map(t=>`<li>${t.replace("&","&amp;")}</li>`).join("");sw.classList.remove("out");};
+    pin.style.setProperty("--sbg",d[3]);pin.style.setProperty("--sfg",d[4]);svgs.forEach((s,k)=>s.classList.toggle("on",k===i));dots.forEach((s,k)=>s.classList.toggle("on",k===i));
+    if(first)fill();else{sw.classList.add("out");setTimeout(fill,300);}}
+  FX.onScroll.push(()=>{const r=sec.getBoundingClientRect();const p=FX.clamp(-r.top/(r.height-innerHeight),0,.999);setS(Math.floor(p*4));});setS(0);
+
+  // Plan switch
+  const sbs=[...document.querySelectorAll(".switch button")],knob=$("knob");
+  function setF(b){sbs.forEach(x=>x.setAttribute("aria-pressed",x===b));knob.style.width=b.offsetWidth+"px";knob.style.transform=`translateX(${b.offsetLeft-5}px)`;
+    document.querySelectorAll("[data-w]").forEach(el=>{const v=el.dataset[b.dataset.fq];el.textContent="$"+v;if(!FX.reduce)el.animate([{transform:"translateY(-10px)",opacity:0},{transform:"none",opacity:1}],{duration:400,easing:"cubic-bezier(.2,.8,.2,1)"});});}
+  sbs.forEach(b=>b.addEventListener("click",()=>setF(b)));requestAnimationFrame(()=>setF(sbs[0]));addEventListener("load",()=>setF(sbs.find(b=>b.getAttribute("aria-pressed")==="true")));
+
+  // Review deck
+  const R=[["They noticed our irrigation head was broken before we did. Yard has never looked this good.","Caroline B. · Mount Pleasant","#e3eadc"],["Replanted our beds with natives that actually survive August.","James & Ali R. · James Island","#f6e7b8"],["Same two guys every Tuesday. They know our dog's name.","Teresa M. · West Ashley","#f4d3c2"],["Hurricane cleanup done two days after the storm. Others took weeks.","Dev P. · Daniel Island","#dbe6ea"]];
+  const deck=$("deck");let order=R.map((_,i)=>i);
+  function renderDeck(){deck.innerHTML=order.map((ri,pos)=>{const r=R[ri];return `<figure class="rcard" style="margin:0;background:${r[2]};z-index:${10-pos};transform:translate(${pos*14}px,${pos*14}px) rotate(${pos*2.2}deg);opacity:${pos>2?0:1}"><blockquote>"${r[0]}"</blockquote><cite>★★★★★ · ${r[1]}</cite></figure>`;}).join("");$("rc").textContent=(order[0]+1)+" / "+R.length;}
+  function next(){const top=deck.firstElementChild;if(top&&!FX.reduce){top.style.transform="translate(-120%,-30px) rotate(-14deg)";top.style.opacity="0";setTimeout(()=>{order.push(order.shift());renderDeck();},450);}else{order.push(order.shift());renderDeck();}}
+  renderDeck();$("nextr").onclick=next;deck.onclick=next;
+
+  // Quote wizard
+  const panes=[...document.querySelectorAll(".pane")],bars=[...document.querySelectorAll(".steps-bar i")];
+  document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",e=>{e.preventDefault();const n=+b.dataset.go;panes.forEach((p,k)=>p.classList.toggle("on",k===n));bars.forEach((x,k)=>x.classList.toggle("on",k<=n));}));
+
+  // Drawer
+  const dr=$("drawer"),sc=$("scrim");const setD=o=>{dr.classList.toggle("open",o);sc.classList.toggle("on",o);dr.setAttribute("aria-hidden",!o);$("bopen").setAttribute("aria-expanded",o);};
+  $("bopen").onclick=()=>setD(true);$("bclose").onclick=()=>setD(false);sc.onclick=()=>setD(false);document.addEventListener("fx:navigate",()=>setD(false));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fog City Coffee · Outer Sunset, SF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Familjen+Grotesk:wght@400;500;600;700&family=Gochi+Hand&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --fog:#dde4e7; --fog2:#cfd8dc; --ink:#141414; --per:#ff5a2c; --mint:#b9f0d6; --butter:#ffe56e; --lilac:#cdbbff; --muted:#4f5a5f;
+  --display:"Syne",system-ui,sans-serif; --body:"Familjen Grotesk",system-ui,sans-serif; --hand:"Gochi Hand",cursive;
+  --gl:max(18px,env(safe-area-inset-left,0px)); --gr:max(18px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+body{background:var(--fog);color:var(--ink);font:17px/1.55 var(--body)}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font:700 16px var(--body);text-decoration:none;border:2px solid var(--ink);cursor:pointer;background:var(--ink);color:var(--fog);box-shadow:4px 4px 0 var(--per);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--per)}
+.btn:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--per)}
+.btn.lt{background:#fff;color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+
+.top{position:absolute;inset:0 0 auto 0;z-index:20;padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;min-height:72px;gap:16px}
+.logo{font:800 18px var(--display);text-transform:uppercase;text-decoration:none;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.status{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:6px 12px;font:700 13px var(--body)}
+.status::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c,#25c46a)}
+
+/* Dock */
+.dock{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;display:flex;gap:4px;background:var(--ink);padding:6px;border-radius:999px;box-shadow:0 18px 40px -16px rgba(0,0,0,.5)}
+.dock a{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--fog);text-decoration:none;font:700 11px var(--body);padding:8px 14px;border-radius:999px;transition:background .25s,transform .25s cubic-bezier(.34,1.56,.64,1)}
+.dock a span{font-size:18px;line-height:1}
+.dock a:hover{transform:translateY(-4px);background:#2a2a2a}
+.dock a.order{background:var(--per);color:var(--ink)}
+
+/* Hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;display:grid;align-items:center}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-block:150px 170px}
+.hero h1{font:800 clamp(72px,16.5vw,270px)/.8 var(--display);letter-spacing:-.055em;text-transform:uppercase;pointer-events:none}
+.hero h1 .o{color:var(--per)}
+.hero .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-top:28px}
+.hero p{max-width:38ch;font-size:clamp(18px,1.8vw,22px);font-weight:500}
+.hint{font:400 20px var(--hand);color:var(--muted);transform:rotate(-4deg);display:inline-block}
+.stk{position:absolute;z-index:5;cursor:grab;touch-action:none;user-select:none;filter:drop-shadow(3px 5px 0 rgba(20,20,20,.9));transition:filter .2s}
+.stk:active{cursor:grabbing;filter:drop-shadow(8px 12px 0 rgba(20,20,20,.9))}
+.stk.drag{transition:none}
+.s1{width:150px;height:150px;border-radius:50%;background:var(--butter);border:3px solid var(--ink);display:grid;place-items:center;text-align:center;font:800 15px/1.1 var(--display);text-transform:uppercase}
+.s2{background:var(--mint);border:3px solid var(--ink);border-radius:22px;padding:14px 18px;font:400 26px/1 var(--hand);max-width:220px}
+.s3{width:130px;height:130px;background:var(--per);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);display:grid;place-items:center;font:800 14px var(--display);text-align:center;padding-top:10px}
+.s4{background:var(--lilac);border:3px solid var(--ink);border-radius:999px;padding:12px 20px;font:800 16px var(--display);text-transform:uppercase}
+
+/* Crossing bands */
+.bands{position:relative;height:200px;overflow:hidden;margin-block:-40px}
+.band{position:absolute;left:-5%;right:-5%;top:50%;padding-block:16px;border-block:3px solid var(--ink);--mqs:28s}
+.band span{font:800 clamp(24px,3vw,40px) var(--display);text-transform:uppercase;padding-right:40px;white-space:nowrap}
+.band span::after{content:"☁";margin-left:40px}
+.band.a{background:var(--per);transform:translateY(-50%) rotate(-4deg)}
+.band.b{background:var(--mint);transform:translateY(-50%) rotate(3deg)}
+
+.sec{padding-block:clamp(88px,11vw,150px)}
+h2.h{font:800 clamp(52px,8vw,128px)/.85 var(--display);letter-spacing:-.05em;text-transform:uppercase}
+h2.h .o{color:var(--per)}
+.note{font:400 24px var(--hand);color:var(--muted)}
+
+/* Menu filter */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:36px}
+.filters button{border:2px solid var(--ink);background:#fff;border-radius:999px;padding:10px 18px;font:700 15px var(--body);cursor:pointer;transition:.2s}
+.filters button[aria-pressed=true]{background:var(--ink);color:var(--fog)}
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:16px;margin-top:28px}
+.drink{border:3px solid var(--ink);border-radius:26px;padding:22px;background:var(--bg,#fff);display:grid;gap:8px;align-content:space-between;min-height:200px;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s}
+.drink:hover{transform:rotate(var(--rot,-2deg)) translateY(-6px)}
+.drink.hide{display:none}
+.drink .tg{justify-self:start;font:700 12px var(--body);text-transform:uppercase;letter-spacing:.08em;border:2px solid var(--ink);border-radius:999px;padding:3px 9px;background:#fff}
+.drink h3{font:800 28px/1 var(--display);letter-spacing:-.03em;margin-top:10px}
+.drink p{font-size:15px;color:#333}
+.drink .p{font:800 30px var(--display);letter-spacing:-.03em}
+.drink .bot{display:flex;justify-content:space-between;align-items:end;gap:10px}
+.drink .add{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:#fff;font:800 22px var(--body);cursor:pointer;display:grid;place-items:center;transition:transform .3s}
+.drink .add:hover{transform:rotate(90deg)}
+
+/* Bean club */
+.club{background:var(--ink);color:var(--fog);border-radius:44px;margin-inline:max(10px,env(safe-area-inset-left,0px));padding-block:clamp(64px,8vw,110px)}
+.club .note{color:#9aa7ad}
+.bags{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);margin-top:44px;perspective:900px}
+.bag{position:relative;cursor:pointer;border:0;background:none;color:inherit;text-align:left;padding:0}
+.bag .b{aspect-ratio:3/4;border-radius:18px 18px 26px 26px;background:var(--bc);position:relative;transition:transform .5s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d;display:grid;place-items:center;overflow:hidden;border:3px solid var(--fog)}
+.bag .b::before{content:"";position:absolute;inset:0 0 auto 0;height:16%;background:repeating-linear-gradient(90deg,rgba(0,0,0,.15) 0 6px,transparent 6px 12px)}
+.bag .lbl{background:var(--fog);color:var(--ink);border-radius:50%;width:66%;aspect-ratio:1;display:grid;place-items:center;text-align:center;font:800 clamp(16px,1.8vw,22px)/1 var(--display);text-transform:uppercase;padding:10px;border:3px solid var(--ink)}
+.bag .lbl small{display:block;font:400 18px var(--hand);text-transform:none;margin-top:4px}
+.bag:hover .b{transform:rotateY(-10deg) rotateX(6deg) translateY(-8px)}
+.bag[aria-pressed=true] .b{border-color:var(--per);box-shadow:0 0 0 4px var(--per)}
+.bag .meta{display:flex;justify-content:space-between;gap:10px;margin-top:14px;font-weight:700}
+.bag .notes{color:#9aa7ad;font-size:14px;font-weight:500}
+.sub{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;margin-top:40px;background:#232323;border-radius:28px;padding:20px 24px}
+.freq{display:flex;gap:6px;flex-wrap:wrap;position:relative}
+.freq input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0}
+.freq label{border:2px solid #444;border-radius:999px;padding:8px 14px;font-weight:700;cursor:pointer}
+.freq input:checked+label{background:var(--mint);color:var(--ink);border-color:var(--mint)}
+.freq input:focus-visible+label{outline:2px solid var(--mint);outline-offset:2px}
+.total{font:800 34px var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+
+/* Visit + map */
+.visit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
+.hours{display:grid;gap:0;margin-top:28px;border:3px solid var(--ink);border-radius:24px;overflow:hidden;background:#fff}
+.hours div{display:flex;justify-content:space-between;padding:16px 20px;font-weight:700;font-size:18px}
+.hours div+div{border-top:2px dashed var(--fog2)}
+.hours div.today{background:var(--butter)}
+.map{border:3px solid var(--ink);border-radius:32px;overflow:hidden;background:#f3f1ea;aspect-ratio:1}
+.map svg{width:100%;height:100%}
+.train{animation:ride 9s ease-in-out infinite}
+@keyframes ride{0%{transform:translateX(560px)}50%,60%{transform:translateX(70px)}100%{transform:translateX(560px)}}
+.wave{animation:wv 3s ease-in-out infinite}
+@keyframes wv{50%{transform:translateY(6px)}}
+
+.form{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+[data-field]{display:grid;gap:4px;flex:1 1 200px;min-width:0}
+[data-field] label{font:700 13px var(--body);color:#9aa7ad}
+[data-field] input{min-height:52px;border-radius:999px;border:2px solid #444;background:#1c1c1c;color:var(--fog);font:inherit;padding:0 18px}
+[data-field] input:focus{outline:none;border-color:var(--mint)}
+.err{font-size:13px;color:#ff9b80;padding-left:12px}
+.form-done h3{font:800 36px var(--display);color:var(--mint)}
+.form-done p{color:#9aa7ad}
+
+footer{padding-block:72px calc(130px + env(safe-area-inset-bottom,0px));text-align:center}
+footer .big{font:800 clamp(64px,15vw,240px)/.8 var(--display);letter-spacing:-.06em;text-transform:uppercase}
+footer p{margin-top:20px;color:var(--muted);font-weight:600}
+.wb-back{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+@media (max-width:900px){.bags{grid-template-columns:1fr 1fr 1fr;gap:12px}.visit{grid-template-columns:1fr}.sub{grid-template-columns:1fr}.s1{width:110px;height:110px;font-size:12px}.s3{width:100px;height:100px;font-size:11px}.s2{font-size:20px;max-width:160px}}
+@media (max-width:600px){.s1,.s3{display:none}.s4{left:auto;right:4%;top:9%}.bags{grid-template-columns:1fr 1fr}.bags .bag:nth-child(3){display:none}.dock a{padding:8px 10px}.status{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="#top">☁ Fog City Coffee</a><span class="status" id="status">Open now</span></div></header>
+
+<section class="hero" id="top">
+  <canvas id="fog" aria-hidden="true"></canvas>
+  <div class="stk s1" style="right:20%;bottom:31%;--r:-12deg" data-drag>Est.<br>2016<br>Outer<br>Sunset</div>
+  <div class="stk s2" style="right:5%;top:11%;--r:6deg" data-drag>best cortado west of 19th Ave*</div>
+  <div class="stk s3" style="right:30%;bottom:8%;--r:10deg" data-drag>KARL<br>APPROVED</div>
+  <div class="stk s4" style="left:38%;top:12%;--r:-6deg" data-drag>☕ oat milk free</div>
+  <div class="wrap">
+    <h1 data-split>Fog City C<span class="o">o</span>ffee</h1>
+    <div class="row">
+      <p data-reveal style="--rd:500">Small-batch coffee roasted four blocks from Ocean Beach. Open at 6:30 every morning, fog or no fog.</p>
+      <div data-reveal style="--rd:650;display:grid;gap:12px;justify-items:end"><span class="hint">psst, drag the stickers ↗</span><a class="btn" href="#menu">See what's pouring</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="bands" aria-hidden="true">
+  <div class="band b mq rev"><div><span>Morning buns at 7</span><span>Dogs welcome</span><span>Ube lattes on weekends</span><span>Karl Blend back</span></div><div><span>Morning buns at 7</span><span>Dogs welcome</span><span>Ube lattes on weekends</span><span>Karl Blend back</span></div></div>
+  <div class="band a mq"><div><span>Roasted Tuesdays</span><span>Free refills if you stay</span><span>N Judah, last stop</span><span>Fog or no fog</span></div><div><span>Roasted Tuesdays</span><span>Free refills if you stay</span><span>N Judah, last stop</span><span>Fog or no fog</span></div></div>
+</div>
+
+<section class="sec" id="menu"><div class="wrap">
+  <h2 class="h" data-split>What's <span class="o">pouring</span></h2>
+  <p class="note" data-reveal>oat, almond &amp; whole milk, no upcharge. we mean it.</p>
+  <div class="filters" role="group" aria-label="Filter menu"><button aria-pressed="true" data-f="all">Everything</button><button aria-pressed="false" data-f="esp">Espresso</button><button aria-pressed="false" data-f="nc">Not coffee</button><button aria-pressed="false" data-f="bake">Bakery</button><button aria-pressed="false" data-f="brunch">Brunch</button></div>
+  <div class="board" id="board">
+    <div class="drink" data-c="esp" style="--bg:#fff"><span class="tg">Espresso</span><div><h3>Cortado</h3><p>Equal parts espresso and steamed milk.</p></div><div class="bot"><span class="p">$4.50</span><button class="add" aria-label="Add cortado">+</button></div></div>
+    <div class="drink" data-c="esp" style="--bg:var(--per);--rot:2deg"><span class="tg">House favorite</span><div><h3>Fog Latte</h3><p>Earl Grey, vanilla, oat milk. The drink we're known for.</p></div><div class="bot"><span class="p">$6.25</span><button class="add" aria-label="Add fog latte">+</button></div></div>
+    <div class="drink" data-c="esp" style="--bg:var(--mint)"><span class="tg">Espresso</span><div><h3>Oat latte</h3><p>Double shot, steamed oat.</p></div><div class="bot"><span class="p">$5.75</span><button class="add" aria-label="Add oat latte">+</button></div></div>
+    <div class="drink" data-c="esp" style="--bg:#fff;--rot:2deg"><span class="tg">Drip</span><div><h3>Karl Blend drip</h3><p>Refilled free if you stay.</p></div><div class="bot"><span class="p">$3.75</span><button class="add" aria-label="Add drip">+</button></div></div>
+    <div class="drink" data-c="nc" style="--bg:var(--lilac)"><span class="tg">Weekends</span><div><h3>Ube latte</h3><p>Until it runs out. It runs out.</p></div><div class="bot"><span class="p">$6.50</span><button class="add" aria-label="Add ube latte">+</button></div></div>
+    <div class="drink" data-c="nc" style="--bg:#fff;--rot:2deg"><span class="tg">Not coffee</span><div><h3>Hojicha</h3><p>Roasted green tea, honey.</p></div><div class="bot"><span class="p">$5.50</span><button class="add" aria-label="Add hojicha">+</button></div></div>
+    <div class="drink" data-c="bake" style="--bg:var(--butter)"><span class="tg">Out at 7</span><div><h3>Morning bun</h3><p>Orange, cinnamon, sugar crust.</p></div><div class="bot"><span class="p">$4.75</span><button class="add" aria-label="Add morning bun">+</button></div></div>
+    <div class="drink" data-c="bake" style="--bg:#fff;--rot:2deg"><span class="tg">Bakery</span><div><h3>Miso cookie</h3><p>Brown butter, white miso.</p></div><div class="bot"><span class="p">$3.50</span><button class="add" aria-label="Add miso cookie">+</button></div></div>
+    <div class="drink" data-c="brunch" style="--bg:var(--mint);--rot:2deg"><span class="tg">Brunch</span><div><h3>Avocado toast</h3><p>Neighborhood sourdough, chili crisp.</p></div><div class="bot"><span class="p">$12</span><button class="add" aria-label="Add avocado toast">+</button></div></div>
+    <div class="drink" data-c="brunch" style="--bg:#fff"><span class="tg">Brunch</span><div><h3>Breakfast burrito</h3><p>Eggs, potato, cheddar, salsa verde.</p></div><div class="bot"><span class="p">$13</span><button class="add" aria-label="Add breakfast burrito">+</button></div></div>
+  </div>
+</div></section>
+
+<section class="club" id="beans"><div class="wrap">
+  <h2 class="h" data-split style="color:var(--fog)">Bean <span class="o">club</span></h2>
+  <p class="note" data-reveal>roasted tuesday, on your doorstep by friday. skip anytime.</p>
+  <div class="bags" id="bags">
+    <button class="bag" aria-pressed="true" data-p="19" data-n="Karl Blend"><div class="b" style="--bc:#ff5a2c"><div class="lbl">Karl Blend<small>chocolate · plum</small></div></div><div class="meta"><span>Karl Blend</span><span>$19</span></div><div class="notes">Brazil + Ethiopia · 12 oz</div></button>
+    <button class="bag" aria-pressed="false" data-p="18" data-n="Ocean Beach Decaf"><div class="b" style="--bc:#b9f0d6"><div class="lbl">Ocean Beach<small>decaf, swear</small></div></div><div class="meta"><span>Ocean Beach Decaf</span><span>$18</span></div><div class="notes">Colombia, Swiss Water · 12 oz</div></button>
+    <button class="bag" aria-pressed="false" data-p="22" data-n="Huehuetenango"><div class="b" style="--bc:#cdbbff"><div class="lbl">Huehue&shy;tenango<small>peach · honey</small></div></div><div class="meta"><span>Huehuetenango</span><span>$22</span></div><div class="notes">Guatemala single origin · 12 oz</div></button>
+  </div>
+  <div class="sub">
+    <div><div class="freq" role="radiogroup" aria-label="Delivery frequency"><input type="radio" name="fq" id="f1" value="1"><label for="f1">Every week</label><input type="radio" name="fq" id="f2" value="2" checked><label for="f2">Every 2 weeks</label><input type="radio" name="fq" id="f4" value="4"><label for="f4">Monthly</label></div>
+      <div id="sumline" style="margin-top:12px;color:#9aa7ad;font-weight:600"></div></div>
+    <div class="total" id="tot">$0</div>
+  </div>
+  <form class="form" data-kit novalidate data-done-title="You're in the club{n}!" data-done-text="Check your inbox to confirm your first bag.">
+    <div data-field><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required><span class="err"></span></div>
+    <div data-field><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required><span class="err"></span></div>
+    <button class="btn" type="submit" style="background:var(--per);color:var(--ink);border-color:var(--per);box-shadow:4px 4px 0 var(--mint);align-self:end">Join the club</button>
+  </form>
+</div></section>
+
+<section class="sec" id="visit"><div class="wrap visit">
+  <div><h2 class="h" data-split>Come <span class="o">by</span></h2><p style="font-size:20px;font-weight:600;margin-top:18px">4120 Judah St, San Francisco, CA 94122</p><p class="note">two blocks from the N Judah's last stop ↓</p>
+    <div class="hours" id="hours"><div data-d="1,2,3,4,5"><span>Mon – Fri</span><span>6:30 AM – 4 PM</span></div><div data-d="0,6"><span>Sat – Sun</span><span>7 AM – 5 PM</span></div><div><span>Call</span><span>(415) 555-0134</span></div></div></div>
+  <div class="map" data-reveal="scale"><svg viewBox="0 0 600 600" aria-label="Map: Fog City Coffee near the end of the N Judah line by Ocean Beach">
+    <rect width="600" height="600" fill="#f3f1ea"/>
+    <rect width="90" height="600" fill="#f2dfb2"/><g class="wave"><path d="M0 0H50C30 60 60 120 40 180S60 300 40 360 60 480 40 600H0Z" fill="#7cc6dd"/></g>
+    <g stroke="#e0dccf" stroke-width="16"><path d="M90 120H600M90 220H600M90 400H600M90 500H600M160 0V600M260 0V600M360 0V600M460 0V600M560 0V600"/></g>
+    <path d="M90 310H600" stroke="#141414" stroke-width="22"/><path d="M90 310H600" stroke="#fff" stroke-width="3" stroke-dasharray="12 12"/>
+    <text x="510" y="296" font-family="Familjen Grotesk" font-weight="700" font-size="16" fill="#141414">Judah St</text>
+    <g class="train"><rect x="0" y="292" width="74" height="36" rx="10" fill="#ff5a2c" stroke="#141414" stroke-width="3"/><rect x="10" y="300" width="14" height="12" rx="2" fill="#fff"/><rect x="30" y="300" width="14" height="12" rx="2" fill="#fff"/><rect x="50" y="300" width="14" height="12" rx="2" fill="#fff"/><text x="36" y="340" text-anchor="middle" font-family="Syne" font-weight="800" font-size="14" fill="#141414">N</text></g>
+    <g transform="translate(212 252)"><circle r="34" fill="#141414"/><circle r="28" fill="#ffe56e"/><text y="8" text-anchor="middle" font-size="26">☕</text></g>
+    <text x="212" y="214" text-anchor="middle" font-family="Gochi Hand" font-size="28" fill="#141414">we're here!</text>
+    <text x="22" y="580" font-family="Familjen Grotesk" font-weight="700" font-size="14" fill="#141414" transform="rotate(-90 22 580)">OCEAN BEACH</text>
+  </svg></div>
+</div></section>
+
+<footer><div class="big">Fog ☁ City</div><p>Fog City Coffee · Outer Sunset, SF · © 2026 · Sample site</p></footer>
+
+<nav class="dock" aria-label="Sections"><a href="#menu"><span>☕</span>Menu</a><a href="#beans"><span>🫘</span>Beans</a><a href="#visit"><span>📍</span>Visit</a><a class="order" href="#menu"><span>→</span>Order</a></nav>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  // Fog canvas: soft drifting blobs
+  const c=$("fog"),x=c.getContext("2d");let w,h,B=[];
+  function size(){const d=Math.min(devicePixelRatio||1,1.5);w=c.clientWidth;h=c.clientHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
+    B=Array.from({length:14},(_,i)=>({x:Math.random()*w,y:Math.random()*h,r:(.25+Math.random()*.35)*Math.max(w,h),v:.15+Math.random()*.35,a:.35+Math.random()*.35}));}
+  function draw(){x.clearRect(0,0,w,h);B.forEach(b=>{const g=x.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);g.addColorStop(0,`rgba(255,255,255,${b.a})`);g.addColorStop(1,"rgba(255,255,255,0)");x.fillStyle=g;x.fillRect(b.x-b.r,b.y-b.r,b.r*2,b.r*2);
+    if(!FX.reduce){b.x+=b.v;if(b.x-b.r>w)b.x=-b.r;}});if(!FX.reduce)requestAnimationFrame(draw);}
+  size();addEventListener("resize",size);draw();
+
+  // Draggable stickers with tilt + settle
+  document.querySelectorAll("[data-drag]").forEach(s=>{
+    let sx,sy,ox=0,oy=0,dx=0,dy=0,lastX=0,vx=0;s.style.transform=`rotate(${getComputedStyle(s).getPropertyValue("--r")})`;
+    const base=parseFloat(getComputedStyle(s).getPropertyValue("--r"))||0;
+    s.addEventListener("pointerdown",e=>{s.setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY;lastX=e.clientX;s.classList.add("drag");s.style.zIndex=10;});
+    s.addEventListener("pointermove",e=>{if(!s.hasPointerCapture(e.pointerId))return;dx=ox+e.clientX-sx;dy=oy+e.clientY-sy;vx=e.clientX-lastX;lastX=e.clientX;s.style.transform=`translate(${dx}px,${dy}px) rotate(${base+FX.clamp(vx*1.5,-25,25)}deg) scale(1.08)`;});
+    const end=e=>{if(!s.classList.contains("drag"))return;ox=dx;oy=dy;s.classList.remove("drag");s.animate([{transform:s.style.transform},{transform:`translate(${dx}px,${dy}px) rotate(${base}deg) scale(1)`}],{duration:500,easing:"cubic-bezier(.34,1.56,.64,1)"});s.style.transform=`translate(${dx}px,${dy}px) rotate(${base}deg)`;};
+    s.addEventListener("pointerup",end);s.addEventListener("pointercancel",end);
+  });
+
+  // Open status in SF time
+  try{const p=new Intl.DateTimeFormat("en-US",{timeZone:"America/Los_Angeles",weekday:"short",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date());
+    const wd=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(p.find(q=>q.type==="weekday").value),hr=+p.find(q=>q.type==="hour").value%24+(+p.find(q=>q.type==="minute").value)/60;
+    const we=wd===0||wd===6,[o,cl]=we?[7,17]:[6.5,16],st=$("status");
+    if(hr>=o&&hr<cl)st.textContent="Open now · till "+(cl-12)+" PM";else{st.textContent="Closed · opens "+(we?"7":"6:30")+" AM";st.style.setProperty("--c","#ff5a2c");}
+    document.querySelectorAll("#hours [data-d]").forEach(r=>{if(r.dataset.d.split(",").map(Number).includes(wd))r.classList.add("today");});
+  }catch(e){}
+
+  // Menu filter
+  const fb=[...document.querySelectorAll(".filters button")],cards=[...document.querySelectorAll(".drink")];
+  fb.forEach(b=>b.addEventListener("click",()=>{fb.forEach(x=>x.setAttribute("aria-pressed",x===b));const f=b.dataset.f;
+    cards.forEach((cd,i)=>{const show=f==="all"||cd.dataset.c===f;cd.classList.toggle("hide",!show);if(show&&!FX.reduce)cd.animate([{opacity:0,transform:"translateY(20px) scale(.96)"},{opacity:1,transform:"none"}],{duration:450,delay:i*30,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"});});}));
+  document.querySelectorAll(".add").forEach(a=>a.addEventListener("click",()=>{a.textContent="✓";a.style.background="#b9f0d6";setTimeout(()=>{a.textContent="+";a.style.background="";},1200);}));
+
+  // Bean club picker
+  const bags=[...document.querySelectorAll(".bag")];
+  function sum(){const b=bags.find(x=>x.getAttribute("aria-pressed")==="true"),f=+document.querySelector("[name=fq]:checked").value;const perMonth=+b.dataset.p*(4/f);
+    $("tot").textContent="$"+perMonth.toFixed(0)+"/mo";$("sumline").textContent=b.dataset.n+" · "+(f===1?"every week":f===2?"every 2 weeks":"monthly")+" · free shipping in SF";}
+  bags.forEach(b=>b.addEventListener("click",()=>{bags.forEach(x=>x.setAttribute("aria-pressed",x===b));sum();}));
+  document.querySelector(".freq").addEventListener("change",sum);sum();
+})();
+</script>
+</body>
+</html>

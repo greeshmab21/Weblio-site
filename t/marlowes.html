@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Marlowe's Chophouse · Chicago</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --bg:#0e0907; --bg2:#17100c; --ox:#4a1515; --brass:#c9a35a; --cream:#f1e6d4; --muted:#a39280; --line:#33251c; --ember:#ff8a3d;
+  --display:"Bodoni Moda",Didot,Georgia,serif; --body:"Jost",system-ui,sans-serif;
+  --gl:max(24px,env(safe-area-inset-left,0px)); --gr:max(24px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+body{background:var(--bg);color:var(--cream);font:300 17px/1.7 var(--body)}
+a{color:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.cap{font:400 12px var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--brass)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:0 30px;font:400 13px var(--body);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;border:1px solid var(--brass);cursor:pointer;transition:background .4s,color .4s;background:transparent;color:var(--cream)}
+.btn:hover,.btn.solid{background:var(--brass);color:var(--bg)}
+.btn.solid:hover{background:var(--cream);border-color:var(--cream)}
+.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.07;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .5s}
+.nav.solid{background:rgba(14,9,7,.92);border-bottom:1px solid var(--line)}
+.nav .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:84px;gap:20px}
+.nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font:400 12px var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+.nav ul a:hover{color:var(--brass)}
+.nav .logo{font:italic 500 30px var(--display);text-decoration:none}
+.nav .r{display:flex;justify-content:flex-end;align-items:center;gap:30px}
+.nav .btn{min-height:44px;padding:0 20px}
+
+.hero{position:relative;min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:120px var(--gr) 160px var(--gl)}
+.glow{position:absolute;width:120vmax;height:120vmax;left:50%;top:62%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,138,61,.28),rgba(201,163,90,.08) 25%,transparent 55%);animation:flick 4s ease-in-out infinite}
+.glow.b{width:70vmax;height:70vmax;background:radial-gradient(circle,rgba(255,170,90,.16),transparent 50%);animation-duration:2.7s;animation-direction:alternate-reverse}
+@keyframes flick{0%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}30%{opacity:.82}50%{opacity:.95;transform:translate(-50%,-51%) scale(1.03)}70%{opacity:.78}}
+.hero .in{position:relative;z-index:2}
+.hero h1{font:italic 400 clamp(84px,17vw,280px)/.82 var(--display);letter-spacing:-.03em;margin-top:22px}
+.hero h1 .ch{display:inline-block;opacity:0;transform:translateY(40px) rotate(4deg);filter:blur(8px);animation:chin 1.2s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(var(--i)*70ms + 200ms)}
+@keyframes chin{to{opacity:1;transform:none;filter:blur(0)}}
+.hero p{max-width:50ch;margin:26px auto 0;color:#d8cbb6;font-size:18px}
+.hero .ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:36px}
+.info{position:absolute;left:0;right:0;bottom:0;z-index:2;border-top:1px solid var(--line)}
+.info .wrap{display:grid;grid-template-columns:repeat(3,1fr)}
+.info div{padding:20px 12px;text-align:center;font-size:15px}
+.info div+div{border-left:1px solid var(--line)}
+.info b{display:block;font:400 11px var(--body);letter-spacing:.28em;text-transform:uppercase;color:var(--brass);margin-bottom:2px}
+.open{display:inline-flex;align-items:center;gap:8px}
+.open::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,#7bd88f);box-shadow:0 0 10px var(--c,#7bd88f)}
+
+.ticker{background:var(--brass);color:var(--bg);padding-block:14px;--mqs:36s}
+.ticker span{font:italic 500 22px var(--display);padding-right:60px;white-space:nowrap}
+.ticker span::before{content:"✦";font-style:normal;font-size:13px;margin-right:60px;vertical-align:middle}
+
+.sec{padding-block:clamp(96px,12vw,180px)}
+h2.h{font:400 clamp(48px,7vw,112px)/.95 var(--display);letter-spacing:-.02em}
+h2.h em{color:var(--brass)}
+
+/* Butcher chart menu */
+.menu-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,80px);align-items:start;margin-top:56px}
+.chart{position:sticky;top:110px}
+.chart svg{width:100%;height:auto;overflow:visible}
+.cut{fill:rgba(201,163,90,.04);stroke:var(--brass);stroke-width:1.2;transition:fill .5s}
+.cut.on{fill:rgba(255,138,61,.45)}
+.lbl{font:400 11px var(--body);letter-spacing:.18em;text-transform:uppercase;fill:var(--muted);transition:fill .4s}
+.lbl.on{fill:var(--cream)}
+.cutinfo{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
+.cutinfo b{font:italic 400 36px/1 var(--display);color:var(--brass)}
+.cutinfo span{color:var(--muted);font-size:14px;text-align:right}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);font:400 12px var(--body);letter-spacing:.24em;text-transform:uppercase;padding:14px 14px;cursor:pointer;margin-bottom:-1px}
+.tabs button[aria-selected=true]{color:var(--cream);border-color:var(--brass)}
+.item{display:grid;gap:4px;padding:18px 12px;border-bottom:1px solid var(--line);cursor:default;transition:background .3s,padding .4s}
+.item:hover,.item:focus-visible{background:rgba(201,163,90,.06);padding-left:22px;outline:none}
+.item .t{display:flex;align-items:baseline;gap:14px}
+.item h3{font:400 26px/1.15 var(--display)}
+.item .d{flex:1;border-bottom:1px dotted #5b4636;transform:translateY(-7px)}
+.item .p{font:400 19px var(--body);color:var(--brass);font-variant-numeric:tabular-nums}
+.item p{color:var(--muted);font-size:15px}
+
+/* Aging room */
+.aging{background:var(--ox);position:relative;overflow:hidden}
+.aging .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center}
+.gauges{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(241,230,212,.2)}
+.gauges div{padding:30px 16px;text-align:center}
+.gauges div+div{border-left:1px solid rgba(241,230,212,.2)}
+.gauges b{display:block;font:400 clamp(48px,5.4vw,80px)/1 var(--display);font-variant-numeric:tabular-nums}
+.gauges span{font:400 11px var(--body);letter-spacing:.24em;text-transform:uppercase;color:#e2c7a8}
+.age{margin-top:48px;grid-column:1/-1}
+.age .track{position:relative;height:2px;background:rgba(241,230,212,.2);margin-block:48px 16px}
+.age .fill{position:absolute;inset:0 auto 0 0;background:var(--brass);width:calc(var(--ag,0) * 100%)}
+.age .mk{position:absolute;top:-6px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--ox);border:2px solid var(--brass)}
+.age .mk span{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);white-space:nowrap;font:italic 400 20px var(--display)}
+.age .mk small{position:absolute;top:22px;left:50%;transform:translateX(-50%);white-space:nowrap;font:400 11px var(--body);letter-spacing:.2em;color:#e2c7a8}
+
+/* Rooms */
+.rooms{display:flex;gap:16px;margin-top:56px;min-height:440px}
+.room{flex:1;position:relative;overflow:hidden;border:1px solid var(--line);padding:32px;display:flex;flex-direction:column;justify-content:flex-end;transition:flex 1s cubic-bezier(.16,1,.3,1);background:var(--bg2)}
+.room:hover,.room:focus-within{flex:1.8}
+.room .lamp{position:absolute;left:50%;top:-30%;width:140%;aspect-ratio:1;transform:translateX(-50%);background:radial-gradient(circle,var(--rc),transparent 55%);opacity:.5;transition:opacity .6s}
+.room:hover .lamp{opacity:.9}
+.room *{position:relative}
+.room h3{font:italic 400 clamp(40px,4.4vw,64px)/1 var(--display)}
+.room p{color:var(--muted);max-width:40ch;margin-top:10px}
+
+/* Reserve */
+.res{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,80px);align-items:start}
+.form{border:1px solid var(--line);padding:clamp(22px,3vw,40px);display:grid;gap:26px;background:var(--bg2)}
+.lab{font:400 11px var(--body);letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px;position:relative}
+.chips input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0}
+.chips label{border:1px solid var(--line);padding:10px 14px;font:400 14px var(--body);cursor:pointer;transition:.25s;text-align:center;line-height:1.2}
+.chips label small{display:block;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.chips input:checked+label{background:var(--brass);color:var(--bg);border-color:var(--brass)}
+.chips input:checked+label small{color:#4a3a1e}
+.chips input:focus-visible+label{outline:2px solid var(--brass);outline-offset:2px}
+.step{display:flex;align-items:center;gap:0;border:1px solid var(--line);width:max-content}
+.step button{width:52px;height:52px;background:none;border:0;color:var(--cream);font-size:22px;cursor:pointer}
+.step button:hover{background:rgba(201,163,90,.12)}
+.step output{min-width:110px;text-align:center;font:italic 400 24px var(--display)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font:400 11px var(--body);letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+[data-field] input{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--cream);font:300 19px var(--body);padding:10px 0;border-radius:0}
+[data-field] input:focus{outline:none;border-color:var(--brass)}
+.err{font-size:13px;color:#f29a7a}
+.form-done{border:1px solid var(--brass);padding:40px;background:var(--bg2)}
+.form-done h3{font:italic 400 44px/1 var(--display);color:var(--brass)}
+.form-done p{color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding-block:72px calc(100px + env(safe-area-inset-bottom,0px));text-align:center}
+footer .big{font:italic 400 clamp(72px,14vw,220px)/.85 var(--display);color:var(--brass)}
+footer .row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 40px;margin-top:28px;color:var(--muted);font-size:15px}
+
+@media (max-width:980px){.nav ul{display:none}.nav .wrap{grid-template-columns:auto 1fr}.nav .logo{order:-1}.menu-grid,.aging .wrap,.res{grid-template-columns:1fr}.chart{position:relative;top:0}.rooms{flex-direction:column;min-height:0}.room{min-height:260px}}
+@media (max-width:640px){.info .wrap{grid-template-columns:1fr}.info div+div{border-left:0;border-top:1px solid var(--line)}.info div{padding:10px}.hero{padding-bottom:240px}.two{grid-template-columns:1fr}.gauges b{font-size:42px}.age .mk span{font-size:15px}.nav .r .btn{padding:0 14px}}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<header class="nav" id="nav"><div class="wrap">
+  <ul><li><a href="#menu">Menu</a></li><li><a href="#aging">Aging room</a></li></ul>
+  <a class="logo" href="#top">Marlowe's</a>
+  <div class="r"><ul><li><a href="#rooms">Private dining</a></li></ul><a class="btn solid" href="#reserve">Reserve</a></div>
+</div></header>
+
+<section class="hero" id="top">
+  <div class="glow" aria-hidden="true"></div><div class="glow b" aria-hidden="true"></div>
+  <div class="in">
+    <span class="cap" data-reveal="fade">Est. 1998 · West Loop, Chicago</span>
+    <h1 id="title" aria-label="Marlowe's">Marlowe's</h1>
+    <p data-reveal style="--rd:900">Dry-aged on Randolph Street since 1998. Prime steaks, a serious raw bar and a martini made the way your grandfather ordered it.</p>
+    <div class="ctas" data-reveal style="--rd:1050"><a class="btn solid" href="#reserve">Reserve a table</a><a class="btn" href="#menu">See tonight's menu</a></div>
+  </div>
+  <div class="info"><div class="wrap">
+    <div><b>Tonight</b><span class="open" id="open">Open 5–10 PM</span></div>
+    <div><b>Address</b>900 W Randolph St, Chicago</div>
+    <div><b>Reservations</b>(312) 555-0190</div>
+  </div></div>
+</section>
+
+<div class="ticker mq" aria-label="Tonight's specials"><div><span>Porterhouse for two · 6 left tonight</span><span>Duxbury oysters, half dozen $24</span><span>Martini hour 5–6 PM</span><span>Wagyu tomahawk, Fridays only</span></div><div aria-hidden="true"><span>Porterhouse for two · 6 left tonight</span><span>Duxbury oysters, half dozen $24</span><span>Martini hour 5–6 PM</span><span>Wagyu tomahawk, Fridays only</span></div></div>
+
+<section class="sec" id="menu"><div class="wrap">
+  <span class="cap">The menu</span>
+  <h2 class="h" data-split style="margin-top:18px">Know your <em>cut.</em></h2>
+  <p style="color:var(--muted);max-width:52ch;margin-top:20px" data-reveal>Hover any steak to see where it comes from and how long it ages in our salt room.</p>
+  <div class="menu-grid">
+    <div class="chart" data-reveal="fade">
+      <svg viewBox="0 0 600 330" role="img" aria-label="Butcher's chart of beef primal cuts">
+        <defs><clipPath id="body"><path d="M122 92C175 70 420 70 502 86C545 94 563 122 558 162L552 232L534 300H512L506 238L472 242L466 300H444L440 242C380 250 262 250 212 242L206 300H184L180 240L160 238L150 300H128L126 222C110 202 101 175 96 152L62 152C42 152 31 137 36 121L56 96C67 86 92 80 122 92Z"/></clipPath></defs>
+        <g clip-path="url(#body)">
+          <rect class="cut" data-cut="chuck" x="90" y="60" width="125" height="118"/>
+          <rect class="cut" data-cut="rib" x="215" y="60" width="85" height="118"/>
+          <rect class="cut" data-cut="loin" x="300" y="60" width="80" height="118"/>
+          <rect class="cut" data-cut="sirloin" x="380" y="60" width="72" height="118"/>
+          <rect class="cut" data-cut="round" x="452" y="60" width="120" height="250"/>
+          <rect class="cut" data-cut="brisket" x="90" y="178" width="125" height="130"/>
+          <rect class="cut" data-cut="plate" x="215" y="178" width="118" height="130"/>
+          <rect class="cut" data-cut="flank" x="333" y="178" width="119" height="130"/>
+          <rect x="20" y="60" width="70" height="120" fill="rgba(201,163,90,.04)" stroke="#c9a35a" stroke-width="1.2"/>
+        </g>
+        <path d="M122 92C175 70 420 70 502 86C545 94 563 122 558 162L552 232L534 300H512L506 238L472 242L466 300H444L440 242C380 250 262 250 212 242L206 300H184L180 240L160 238L150 300H128L126 222C110 202 101 175 96 152L62 152C42 152 31 137 36 121L56 96C67 86 92 80 122 92Z" fill="none" stroke="#c9a35a" stroke-width="2"/>
+        <path d="M70 92 C60 70 74 58 86 62 M100 86 C104 64 120 58 128 66" fill="none" stroke="#c9a35a" stroke-width="2"/>
+        <circle cx="62" cy="114" r="3" fill="#c9a35a"/>
+        <g class="lbls"><text class="lbl" data-cut="chuck" x="152" y="128" text-anchor="middle">Chuck</text><text class="lbl" data-cut="rib" x="257" y="128" text-anchor="middle">Rib</text><text class="lbl" data-cut="loin" x="340" y="128" text-anchor="middle">Short loin</text><text class="lbl" data-cut="sirloin" x="416" y="128" text-anchor="middle">Sirloin</text><text class="lbl" data-cut="round" x="505" y="170" text-anchor="middle">Round</text><text class="lbl" data-cut="brisket" x="152" y="216" text-anchor="middle">Brisket</text><text class="lbl" data-cut="plate" x="274" y="222" text-anchor="middle">Plate</text><text class="lbl" data-cut="flank" x="392" y="222" text-anchor="middle">Flank</text></g>
+      </svg>
+      <div class="cutinfo" aria-live="polite"><b id="cn">Rib</b><span id="cd">Dry-aged 45 days · our most-ordered cut</span></div>
+    </div>
+    <div data-reveal>
+      <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-tab="steaks">Steaks</button><button role="tab" aria-selected="false" data-tab="raw">Raw bar</button><button role="tab" aria-selected="false" data-tab="sides">Sides</button></div>
+      <div data-panel="steaks">
+        <div class="item" tabindex="0" data-cut="rib" data-d="Dry-aged 45 days · our most-ordered cut"><div class="t"><h3>Bone-in ribeye, 22 oz</h3><span class="d"></span><span class="p">$72</span></div><p>Rich marbling, charred over white oak.</p></div>
+        <div class="item" tabindex="0" data-cut="loin" data-d="Dry-aged 30 days · lean and beefy"><div class="t"><h3>New York strip, 16 oz</h3><span class="d"></span><span class="p">$58</span></div><p>The steakhouse classic, with a firm bite.</p></div>
+        <div class="item" tabindex="0" data-cut="loin" data-d="Wet-aged 21 days · the tenderloin"><div class="t"><h3>Filet mignon, 8 oz</h3><span class="d"></span><span class="p">$54</span></div><p>Center cut, bone marrow butter.</p></div>
+        <div class="item" tabindex="0" data-cut="loin" data-d="Dry-aged 40 days · strip and filet on one bone"><div class="t"><h3>Porterhouse for two, 36 oz</h3><span class="d"></span><span class="p">$138</span></div><p>Carved tableside. Ask how many are left.</p></div>
+        <div class="item" tabindex="0" data-cut="sirloin" data-d="Dry-aged 28 days · the sirloin cap"><div class="t"><h3>Picanha, 14 oz</h3><span class="d"></span><span class="p">$49</span></div><p>Fat cap rendered crisp, chimichurri.</p></div>
+        <div class="item" tabindex="0" data-cut="plate" data-d="Braised 8 hours"><div class="t"><h3>Braised short rib</h3><span class="d"></span><span class="p">$46</span></div><p>Red wine, horseradish gremolata.</p></div>
+        <div class="item" tabindex="0" data-cut="flank" data-d="The butcher's cut"><div class="t"><h3>Hanger steak, 10 oz</h3><span class="d"></span><span class="p">$42</span></div><p>Shallot butter, frites.</p></div>
+      </div>
+      <div data-panel="raw" hidden>
+        <div class="item"><div class="t"><h3>Duxbury oysters, half dozen</h3><span class="d"></span><span class="p">$24</span></div><p>Mignonette, horseradish, lemon.</p></div>
+        <div class="item"><div class="t"><h3>Jumbo shrimp cocktail</h3><span class="d"></span><span class="p">$26</span></div><p>Four U-8 shrimp.</p></div>
+        <div class="item"><div class="t"><h3>The tower</h3><span class="d"></span><span class="p">$145</span></div><p>Lobster, crab, oysters, shrimp. Serves four.</p></div>
+      </div>
+      <div data-panel="sides" hidden>
+        <div class="item"><div class="t"><h3>Creamed spinach</h3><span class="d"></span><span class="p">$14</span></div><p>Nutmeg, gruyère crust.</p></div>
+        <div class="item"><div class="t"><h3>Duck-fat potatoes</h3><span class="d"></span><span class="p">$13</span></div><p>Rosemary, flaky salt.</p></div>
+        <div class="item"><div class="t"><h3>Chocolate layer cake</h3><span class="d"></span><span class="p">$16</span></div><p>Six layers. Nobody shares it.</p></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec aging" id="aging"><div class="wrap">
+  <div><span class="cap" style="color:#e2c7a8">The aging room</span><h2 class="h" data-split style="margin-top:18px">Forty-five days <em>behind glass.</em></h2><p style="color:#e8d6c2;margin-top:20px;max-width:48ch" data-reveal>Every ribeye spends weeks in our salt-lined room, losing a fifth of its weight in water and gaining the deep, nutty flavor dry-aged beef is known for. You can see it from table 12.</p></div>
+  <div class="gauges" data-reveal><div><b data-count="34" data-suf="°">34°</b><span>Fahrenheit</span></div><div><b data-count="85" data-suf="%">85%</b><span>Humidity</span></div><div><b data-count="45">45</b><span>Days</span></div></div>
+  <div class="age" id="age"><span class="cap" style="color:#e2c7a8">What time does</span>
+    <div class="track"><div class="fill"></div>
+      <i class="mk" style="left:0%"><span>Fresh</span><small>Day 0</small></i><i class="mk" style="left:31%"><span>Tender</span><small>Day 14</small></i><i class="mk" style="left:62%"><span>Nutty</span><small>Day 28</small></i><i class="mk" style="left:100%"><span>Marlowe's</span><small>Day 45</small></i>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="rooms"><div class="wrap">
+  <span class="cap">Private dining</span>
+  <h2 class="h" data-split style="margin-top:18px">Two rooms <em>for your occasion.</em></h2>
+  <div class="rooms" data-reveal>
+    <div class="room" tabindex="0" style="--rc:rgba(255,138,61,.5)"><div class="lamp"></div><span class="cap">Seats 14</span><h3>The Library</h3><p>Walnut shelves, a fireplace and its own bartender. Rehearsal dinners and client nights.</p></div>
+    <div class="room" tabindex="0" style="--rc:rgba(201,163,90,.5)"><div class="lamp"></div><span class="cap">Seats 32</span><h3>The Vault</h3><p>Our old bank vault downstairs, fixed menu and AV for toasts and presentations.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="reserve" style="padding-top:0"><div class="wrap res">
+  <div><span class="cap">Reservations</span><h2 class="h" data-split style="margin-top:18px">Your table <em>awaits.</em></h2><p style="color:var(--muted);margin-top:20px;max-width:40ch">For parties over eight or private rooms, call (312) 555-0190. Jackets aren't required, but they're appreciated.</p></div>
+  <form class="form" data-kit novalidate data-done-title="Request received{n}." data-done-text="We'll text you to confirm your table within the hour.">
+    <div><span class="lab">Date</span><div class="chips" id="days"></div></div>
+    <div><span class="lab">Time</span><div class="chips" id="times"></div></div>
+    <div><span class="lab">Party size</span><div class="step"><button type="button" id="minus" aria-label="Fewer guests">−</button><output id="ps">2 guests</output><button type="button" id="plus" aria-label="More guests">+</button></div></div>
+    <div class="two">
+      <div data-field><label for="m-name">Name</label><input id="m-name" name="name" autocomplete="name" required><span class="err"></span></div>
+      <div data-field><label for="m-phone">Mobile</label><input id="m-phone" name="phone" type="tel" autocomplete="tel" required><span class="err"></span></div>
+    </div>
+    <button class="btn solid" type="submit">Request reservation</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap"><div class="big">Marlowe's</div><div class="row"><span>900 W Randolph St, Chicago, IL 60607</span><span>(312) 555-0190</span><span>Mon–Thu 5–10 · Fri–Sat 5–11 · Sun 4–9</span><span>© 2026 · Sample site</span></div></div></footer>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  // Title letters
+  const t=$("title");t.innerHTML=[...t.textContent].map((c,i)=>`<span class="ch" aria-hidden="true" style="--i:${i}">${c}</span>`).join("");
+  // Nav
+  FX.onScroll.push(y=>$("nav").classList.toggle("solid",y>60));
+  // Open now, in Chicago time
+  const H={0:[16,21],1:[17,22],2:[17,22],3:[17,22],4:[17,22],5:[17,23],6:[17,23]};
+  try{const parts=new Intl.DateTimeFormat("en-US",{timeZone:"America/Chicago",weekday:"short",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date());
+    const wd=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(parts.find(p=>p.type==="weekday").value),hr=+parts.find(p=>p.type==="hour").value%24,mn=+parts.find(p=>p.type==="minute").value;
+    const [o,c]=H[wd],now=hr+mn/60,fmt=h=>(h>12?h-12:h)+" PM",el=$("open");
+    if(now>=o&&now<c){el.textContent="Open now · until "+fmt(c);}else if(now<o){el.textContent="Opens today at "+fmt(o);el.style.setProperty("--c","#c9a35a");}else{el.textContent="Closed · opens tomorrow at "+fmt(H[(wd+1)%7][0]);el.style.setProperty("--c","#a39280");}
+  }catch(e){}
+  // Butcher chart
+  const N={chuck:"Chuck",rib:"Rib",loin:"Short loin",sirloin:"Sirloin",round:"Round",brisket:"Brisket",plate:"Plate",flank:"Flank"};
+  function hl(cut,d){document.querySelectorAll("[data-cut].cut,[data-cut].lbl").forEach(e=>e.classList.toggle("on",e.dataset.cut===cut));$("cn").textContent=N[cut];$("cd").textContent=d;}
+  document.querySelectorAll(".item[data-cut]").forEach(it=>{const f=()=>hl(it.dataset.cut,it.dataset.d);it.addEventListener("pointerenter",f);it.addEventListener("focus",f);});
+  hl("rib","Dry-aged 45 days · our most-ordered cut");
+  document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-tab]").forEach(x=>x.setAttribute("aria-selected",x===b));document.querySelectorAll("[data-panel]").forEach(p=>p.hidden=p.dataset.panel!==b.dataset.tab);}));
+  // Aging bar fills on scroll
+  const age=$("age");FX.onScroll.push(()=>{const r=age.getBoundingClientRect();age.style.setProperty("--ag",FX.clamp((innerHeight*.9-r.top)/(innerHeight*.6),0,1));});
+  // Reservation chips
+  const days=$("days"),dn=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],mo=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  for(let i=0;i<7;i++){const d=new Date();d.setDate(d.getDate()+i);days.insertAdjacentHTML("beforeend",`<input type="radio" name="day" id="d${i}" ${i===0?"checked":""}><label for="d${i}"><small>${i===0?"Today":dn[d.getDay()]}</small>${mo[d.getMonth()]} ${d.getDate()}</label>`);}
+  ["5:30","6:00","6:30","7:00","7:30","8:00","8:30","9:00"].forEach((tm,i)=>$("times").insertAdjacentHTML("beforeend",`<input type="radio" name="time" id="tm${i}" ${tm==="7:00"?"checked":""}><label for="tm${i}">${tm} PM</label>`));
+  let ps=2;const setP=()=>$("ps").textContent=ps+(ps===1?" guest":" guests");$("minus").onclick=()=>{ps=Math.max(1,ps-1);setP();};$("plus").onclick=()=>{ps=Math.min(8,ps+1);setP();};
+})();
+</script>
+</body>
+</html>

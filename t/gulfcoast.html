@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gulf Coast Roofing Pros · Houston, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Sora:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --navy:#06172a; --deep:#0a2340; --panel:#0f2d4d; --line:#1d4166; --ice:#e8f1fb; --muted:#8fa7c0; --red:#ff3b2f; --cyan:#5ad1ff; --ok:#3ee59a;
+  --display:"Big Shoulders Display","Arial Narrow",sans-serif; --body:"Sora",system-ui,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+body{background:var(--navy);color:var(--ice);font:16px/1.6 var(--body)}
+a{color:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:12px;font:600 15px/1 var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .3s,box-shadow .3s,background .3s}
+.btn-r{background:var(--red);color:#fff;box-shadow:0 12px 30px -12px rgba(255,59,47,.9)}
+.btn-r:hover{transform:translateY(-2px);box-shadow:0 18px 40px -12px rgba(255,59,47,.9)}
+.btn-g{background:rgba(255,255,255,.06);color:var(--ice);box-shadow:inset 0 0 0 1px var(--line)}
+.btn-g:hover{background:rgba(255,255,255,.12)}
+.eyebrow{font:600 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+
+.nav{position:sticky;top:0;z-index:40;background:rgba(6,23,42,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:70px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:900 22px/1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.logo b{color:var(--red)}
+.season{display:inline-flex;align-items:center;gap:10px;font:500 12px var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 12px}
+.season b{color:var(--ice);font-variant-numeric:tabular-nums}
+.season::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(255,59,47,.2)}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-size:14px;color:var(--muted)}
+.nav ul a:hover{color:var(--ice)}
+.nav .btn{min-height:42px;padding:0 16px;font-size:14px}
+
+.hero{position:relative;min-height:min(92vh,880px);display:grid;align-items:center;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 18%,rgba(6,23,42,.4) 55%,transparent);pointer-events:none}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-block:80px}
+.hero h1{font:900 clamp(64px,11vw,176px)/.82 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin-top:18px;max-width:9ch}
+.hero h1 .r{color:var(--red)}
+.hero p{max-width:46ch;color:#c4d3e3;margin-top:24px;font-size:18px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+.chips span{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:7px 12px;color:#c4d3e3;background:rgba(6,23,42,.5)}
+
+/* Category story */
+.story{height:400vh;position:relative;background:linear-gradient(var(--navy),var(--deep))}
+.story .pin{position:sticky;top:0;height:100vh;height:100svh;display:grid;align-items:center;overflow:hidden}
+.story .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center;width:100%}
+.cat{font:900 clamp(120px,20vw,300px)/.8 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums;transition:color .4s}
+.cat small{font-size:.24em;color:var(--muted);letter-spacing:.02em;display:block;margin-bottom:8px}
+.mph{font:800 clamp(30px,3.4vw,48px)/1 var(--display);margin-top:16px;font-variant-numeric:tabular-nums}
+.story .note{color:var(--muted);margin-top:18px;max-width:40ch;min-height:5em}
+.prog{display:flex;gap:6px;margin-top:28px}
+.prog i{flex:1;height:5px;border-radius:3px;background:var(--line);transition:background .3s}
+.prog i.on{background:var(--red)}
+.viz{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:24px;display:grid;gap:18px}
+.viz svg{width:100%;height:auto}
+.status{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.status div{border-radius:14px;padding:14px;background:rgba(0,0,0,.2);border:1px solid var(--line)}
+.status span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.status b{display:block;font:800 24px var(--display);text-transform:uppercase;margin-top:4px;transition:color .3s}
+.needle{transform-origin:150px 150px;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+
+.sec{padding-block:clamp(88px,11vw,150px)}
+h2.h{font:900 clamp(48px,7vw,108px)/.86 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin-top:14px}
+h2.h .r{color:var(--red)}
+
+/* Estimator */
+.est{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border-radius:28px;overflow:hidden;border:1px solid var(--line);margin-top:48px}
+.est .q{background:var(--panel);padding:clamp(22px,3vw,40px);display:grid;gap:24px}
+.est .a{background:linear-gradient(160deg,#ff3b2f,#c0182b);padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:24px;position:relative;overflow:hidden}
+.est .a::before{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;border:60px solid rgba(255,255,255,.08)}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:10px}
+legend,.ql{font:600 13px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding:0}
+.seg{display:grid;grid-template-columns:repeat(var(--n,2),1fr);gap:8px;position:relative}
+.seg input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0}
+.seg label{border:1px solid var(--line);border-radius:12px;padding:12px 10px;text-align:center;font-size:14px;font-weight:600;cursor:pointer;transition:.2s;background:rgba(0,0,0,.15)}
+.seg input:checked+label{background:var(--ice);color:var(--navy);border-color:var(--ice)}
+.seg input:focus-visible+label{outline:2px solid var(--cyan);outline-offset:2px}
+input[type=range]{width:100%;accent-color:var(--red);height:24px}
+.rv{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.rv b{color:var(--ice);font-variant-numeric:tabular-nums;font-size:15px}
+.price{font:900 clamp(56px,7vw,104px)/.9 var(--display);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.a .lab{font:600 13px var(--body);letter-spacing:.1em;text-transform:uppercase;color:#ffd2ce}
+.a .meta{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.a .meta div{background:rgba(0,0,0,.18);border-radius:14px;padding:14px}
+.a .meta b{font:800 28px var(--display);display:block;font-variant-numeric:tabular-nums}
+.a .meta span{font-size:12px;color:#ffd2ce}
+.a .btn{background:#fff;color:#c0182b;justify-content:center}
+
+/* Table */
+.tbl{overflow-x:auto;margin-top:44px;border:1px solid var(--line);border-radius:22px}
+table{width:100%;border-collapse:collapse;min-width:680px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:18px 20px;border-bottom:1px solid var(--line)}
+th{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--deep)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+.bars{display:flex;gap:3px}
+.bars i{width:14px;height:8px;border-radius:2px;background:var(--line)}
+.bars i.f{background:var(--cyan)}
+tr.pick{background:rgba(255,59,47,.08)}
+tr.pick td:first-child::after{content:"Our pick";margin-left:10px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--red);border-radius:6px;padding:3px 7px}
+
+/* Financing */
+.fin{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:clamp(24px,4vw,56px)}
+.pay{font:900 clamp(64px,8vw,120px)/.9 var(--display);font-variant-numeric:tabular-nums}
+.pay small{font-size:.3em;color:var(--muted)}
+
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.rv-c{background:var(--deep);border:1px solid var(--line);border-radius:22px;padding:26px;display:grid;gap:14px;align-content:start}
+.rv-c .tag{justify-self:start;font-size:12px;font-weight:600;color:var(--cyan);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.rv-c p{font-size:17px}
+.rv-c cite{font-style:normal;color:var(--muted);font-size:14px}
+.rv-c cite b{color:var(--ice)}
+
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(28px,5vw,80px);align-items:start}
+.form{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:clamp(22px,3vw,32px);display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font:600 13px var(--body);color:var(--muted)}
+[data-field] input{width:100%;min-height:52px;border-radius:12px;border:1px solid var(--line);background:var(--navy);color:var(--ice);font:inherit;padding:0 14px}
+[data-field] input:focus{outline:none;border-color:var(--cyan)}
+.err{font-size:13px;color:#ff8b83}
+.form-done{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:32px}
+.form-done h3{font:900 44px var(--display);text-transform:uppercase}
+.form-done p{color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding-block:44px calc(100px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+
+@media (max-width:1000px){.nav ul{display:none}.story .wrap,.est,.fin,.contact{grid-template-columns:1fr}.revs{grid-template-columns:1fr}.story{height:300vh}.viz{max-width:520px}}
+@media (max-width:640px){.season{display:none}.two{grid-template-columns:1fr}.story .cat{font-size:120px}.viz{padding:16px}.status b{font-size:18px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap">
+  <a class="logo" href="#top"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="none" stroke="#ff3b2f" stroke-width="3" stroke-dasharray="50 26"/><circle cx="14" cy="14" r="4" fill="#e8f1fb"/></svg>Gulf Coast <b>Roofing Pros</b></a>
+  <span class="season" id="season">Hurricane season · <b>— days left</b></span>
+  <ul><li><a href="#story">Wind rating</a></li><li><a href="#estimate">Estimate</a></li><li><a href="#materials">Materials</a></li><li><a href="#financing">Financing</a></li></ul>
+  <a class="btn btn-r" href="#estimate">Instant estimate</a>
+</div></nav>
+
+<header class="hero" id="top">
+  <canvas id="wind" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="fade">Houston &amp; the Texas Gulf Coast</span>
+    <h1 data-split>Built for <span class="r">hurricane</span> season.</h1>
+    <p data-reveal style="--rd:500">Metal and impact-rated roofs installed to Texas windstorm (TDI) standards, so your roof holds and qualifies for the insurance discounts you're owed.</p>
+    <div class="ctas" data-reveal style="--rd:650"><a class="btn btn-r" href="#estimate" data-magnetic>Get my price in 20 seconds →</a><a class="btn btn-g" href="#story">How much wind can it take?</a></div>
+    <div class="chips" data-reveal style="--rd:800"><span>TDI windstorm certified</span><span>Class 4 impact options</span><span>$0 down financing</span><span>4.9★ · 610 reviews</span></div>
+  </div>
+</header>
+
+<section class="story" id="story"><div class="pin"><div class="wrap">
+  <div>
+    <span class="eyebrow">Scroll to raise the wind</span>
+    <div class="cat" id="cat"><small>Category</small><span id="catn">1</span></div>
+    <div class="mph"><span id="mph">74–95</span> mph sustained</div>
+    <p class="note" id="note">Loose shingles start to lift. Our metal panels haven't noticed.</p>
+    <div class="prog" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="viz">
+    <svg viewBox="0 0 300 180" aria-label="Wind gauge">
+      <path d="M30 150 A120 120 0 0 1 270 150" fill="none" stroke="#1d4166" stroke-width="18" stroke-linecap="round"/>
+      <path id="arc" d="M30 150 A120 120 0 0 1 270 150" fill="none" stroke="url(#gg)" stroke-width="18" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset=".8"/>
+      <defs><linearGradient id="gg"><stop offset="0" stop-color="#5ad1ff"/><stop offset=".6" stop-color="#ffb02e"/><stop offset="1" stop-color="#ff3b2f"/></linearGradient></defs>
+      <g class="needle" id="needle" style="transform:rotate(-60deg)"><path d="M150 150 L150 48" stroke="#e8f1fb" stroke-width="4" stroke-linecap="round"/></g>
+      <circle cx="150" cy="150" r="10" fill="#e8f1fb"/>
+      <text x="30" y="176" fill="#8fa7c0" font-size="11" font-family="Sora">74</text><text x="252" y="176" fill="#8fa7c0" font-size="11" font-family="Sora">157+</text>
+    </svg>
+    <div class="status"><div><span>Builder-grade shingles</span><b id="s1" style="color:#ffb02e">Lifting</b></div><div><span>Our standing seam</span><b id="s2" style="color:#3ee59a">Holding</b></div></div>
+  </div>
+</div></div></section>
+
+<section class="sec" id="estimate"><div class="wrap">
+  <span class="eyebrow">Instant estimate</span>
+  <h2 class="h" data-split>Your price, <span class="r">right now.</span></h2>
+  <div class="est" data-reveal>
+    <div class="q">
+      <div><div class="ql">Home size (living area)</div><input id="area" type="range" min="1000" max="5000" step="100" value="2400" aria-label="Home size in square feet"><div class="rv"><span>1,000</span><b id="area-o">2,400 sq ft</b><span>5,000</span></div></div>
+      <fieldset><legend>Stories</legend><div class="seg"><input type="radio" name="st" id="st1" value="1" checked><label for="st1">One</label><input type="radio" name="st" id="st2" value="2"><label for="st2">Two</label></div></fieldset>
+      <fieldset><legend>Roof pitch</legend><div class="seg" style="--n:3"><input type="radio" name="pt" id="p1" value="1.12"><label for="p1">Low</label><input type="radio" name="pt" id="p2" value="1.22" checked><label for="p2">Standard</label><input type="radio" name="pt" id="p3" value="1.4"><label for="p3">Steep</label></div></fieldset>
+      <fieldset><legend>Material</legend><div class="seg">
+        <input type="radio" name="mt" id="m1" value="arch"><label for="m1">Architectural</label>
+        <input type="radio" name="mt" id="m2" value="c4"><label for="m2">Impact-rated</label>
+        <input type="radio" name="mt" id="m3" value="metal" checked><label for="m3">Standing seam</label>
+        <input type="radio" name="mt" id="m4" value="stone"><label for="m4">Stone-coated</label>
+      </div></fieldset>
+    </div>
+    <div class="a" aria-live="polite">
+      <div><span class="lab">Estimated installed price</span><div class="price" id="lo">$0</div><div class="price" id="hi" style="opacity:.6;font-size:.55em">to $0</div></div>
+      <div class="meta"><div><b id="sq">0</b><span>squares of roof</span></div><div><b id="wr">0 mph</b><span>wind rating</span></div></div>
+      <div><a class="btn" href="#contact" style="width:100%">Lock in my exact price, free</a><p style="font-size:13px;color:#ffd2ce;margin-top:10px">Ballpark only. Exact price after a free satellite + on-site measurement.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="materials" style="padding-top:0"><div class="wrap">
+  <span class="eyebrow">Materials</span>
+  <h2 class="h" data-split>What holds up <span class="r">on the coast.</span></h2>
+  <div class="tbl" data-reveal><table>
+    <thead><tr><th>Material</th><th>Lifespan</th><th>Wind rating</th><th>Hail resistance</th><th>Price / square</th></tr></thead>
+    <tbody>
+      <tr><td>Architectural shingle</td><td>20–25 yrs</td><td>Up to 130 mph</td><td><span class="bars"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></span></td><td>$450–$600</td></tr>
+      <tr><td>Impact-rated (Class 4)</td><td>25–30 yrs</td><td>Up to 130 mph</td><td><span class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></span></td><td>$550–$750</td></tr>
+      <tr class="pick"><td>Standing-seam metal</td><td>40–60 yrs</td><td>Up to 160 mph</td><td><span class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></td><td>$950–$1,400</td></tr>
+      <tr><td>Stone-coated steel</td><td>40–50 yrs</td><td>Up to 120 mph</td><td><span class="bars"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></span></td><td>$800–$1,150</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section class="sec" id="financing" style="padding-top:0"><div class="wrap">
+  <div class="fin" data-reveal>
+    <div><span class="eyebrow">Financing</span><h2 class="h" style="font-size:clamp(44px,5.4vw,84px)">New roof now. <span class="r">Pay monthly.</span></h2><p style="color:var(--muted);margin-top:16px;max-width:44ch">$0 down for qualified homeowners. Checking your rate won't affect your credit score.</p></div>
+    <div style="display:grid;gap:22px">
+      <div><div class="ql">Project amount</div><input id="amt" type="range" min="8000" max="40000" step="500" value="22000" aria-label="Project amount"><div class="rv"><span>$8k</span><b id="amt-o">$22,000</b><span>$40k</span></div></div>
+      <fieldset><legend>Term</legend><div class="seg" style="--n:3"><input type="radio" name="tm" id="t5" value="60"><label for="t5">5 yrs</label><input type="radio" name="tm" id="t10" value="120" checked><label for="t10">10 yrs</label><input type="radio" name="tm" id="t15" value="180"><label for="t15">15 yrs</label></div></fieldset>
+      <div class="pay"><span id="pay">$0</span><small>/mo</small></div>
+      <p style="font-size:12px;color:var(--muted)">Example at 8.99% APR. Your rate depends on credit approval.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="eyebrow">After the storms</span>
+  <h2 class="h" data-split>Proven <span class="r">in the wind.</span></h2>
+  <div class="revs">
+    <figure class="rv-c" data-reveal style="margin:0"><span class="tag">Hurricane Beryl · 2024</span><p>"Our metal roof went on in March. Beryl came through in July and we didn't lose a single panel."</p><cite><b>Luis G.</b> · Pasadena</cite></figure>
+    <figure class="rv-c" data-reveal style="margin:0;--rd:120"><span class="tag">Insurance savings</span><p>"They handled the windstorm certificate and our premium dropped at the next renewal."</p><cite><b>Erin W.</b> · League City</cite></figure>
+    <figure class="rv-c" data-reveal style="margin:0;--rd:240"><span class="tag">Online estimate</span><p>"The website estimate was within a few hundred dollars of the final quote. No games."</p><cite><b>Tom K.</b> · Katy</cite></figure>
+  </div>
+</div></section>
+
+<section class="sec" id="contact" style="padding-top:0"><div class="wrap contact">
+  <div><span class="eyebrow">Free measurement</span><h2 class="h" data-split>Get your <span class="r">exact price.</span></h2><p style="color:var(--muted);margin-top:18px;max-width:42ch">We measure with satellite imagery, then confirm on site. Houston · Katy · Pearland · League City · Galveston · The Woodlands.</p><p style="margin-top:20px;font:800 30px var(--display)">(713) 555-0162</p></div>
+  <form class="form" data-kit novalidate data-done-title="Got it{n}." data-done-text="We'll call within one business hour to schedule your free measurement.">
+    <div class="two">
+      <div data-field><label for="g-name">Name</label><input id="g-name" name="name" autocomplete="name" required><span class="err"></span></div>
+      <div data-field><label for="g-phone">Phone</label><input id="g-phone" name="phone" type="tel" autocomplete="tel" required><span class="err"></span></div>
+    </div>
+    <div data-field><label for="g-addr">Property address</label><input id="g-addr" name="address" autocomplete="street-address" required><span class="err"></span></div>
+    <button class="btn btn-r" type="submit" style="justify-content:center">Schedule my free measurement</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap"><span>Gulf Coast Roofing Pros · Houston, TX</span><span>(713) 555-0162</span><span>© 2026 · Sample site</span></div></footer>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  // Season countdown (Atlantic season: Jun 1 – Nov 30)
+  (function(){const now=new Date(),y=now.getFullYear(),end=new Date(y,10,30,23,59),start=new Date(y,5,1);let txt;
+    if(now>=start&&now<=end){txt=Math.ceil((end-now)/864e5)+" days left";}else{const ns=now>end?new Date(y+1,5,1):start;txt="starts in "+Math.ceil((ns-now)/864e5)+" days";}
+    $("season").innerHTML="Hurricane season · <b>"+txt+"</b>";})();
+
+  // Hurricane spiral particles
+  const c=$("wind"),x=c.getContext("2d");let w,h,dpr,P=[],cx,cy;
+  function size(){dpr=Math.min(devicePixelRatio||1,2);w=c.clientWidth;h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;x.setTransform(dpr,0,0,dpr,0,0);cx=w*.72;cy=h*.48;
+    P=Array.from({length:Math.min(900,Math.round(w*h/1400))},()=>spawn());x.fillStyle="#06172a";x.fillRect(0,0,w,h);}
+  function spawn(){const a=Math.random()*Math.PI*2,r=40+Math.random()*Math.max(w,h)*.8;return{a,r,s:.4+Math.random()*.9,life:0};}
+  function draw(){
+    x.fillStyle="rgba(6,23,42,.14)";x.fillRect(0,0,w,h);
+    P.forEach(p=>{const ox=cx+Math.cos(p.a)*p.r,oy=cy+Math.sin(p.a)*p.r*.62;
+      p.a+=(1.6/Math.max(p.r,40))*p.s*2.2;p.r-=.35*p.s;p.life++;
+      const nx=cx+Math.cos(p.a)*p.r,ny=cy+Math.sin(p.a)*p.r*.62;
+      const near=Math.max(0,1-p.r/(Math.max(w,h)*.6));
+      x.strokeStyle=near>.8?`rgba(255,59,47,${.5*near})`:`rgba(90,209,255,${.12+near*.45})`;x.lineWidth=.9+near*1.2;
+      x.beginPath();x.moveTo(ox,oy);x.lineTo(nx,ny);x.stroke();
+      if(p.r<30)Object.assign(p,spawn());});
+    if(!FX.reduce)requestAnimationFrame(draw);
+  }
+  size();addEventListener("resize",size);
+  if(FX.reduce){for(let i=0;i<120;i++)draw();}else requestAnimationFrame(draw);
+
+  // Category story
+  const C=[[1,"74–95","Loose shingles start to lift. Our metal panels haven't noticed.","Lifting","#ffb02e","Holding"],
+           [2,"96–110","Shingle tabs tear off and water finds the decking.","Tearing","#ff7a2e","Holding"],
+           [3,"111–129","Major roof damage across the neighborhood. Ours is rated well past this.","Failing","#ff3b2f","Holding"],
+           [4,"130–156","Entire sections of shingle roofs go. Standing seam is rated to 160 mph.","Gone","#ff3b2f","Rated to 160"],
+           [5,"157+","Nothing is guaranteed at Category 5. Evacuate, then call us.","Gone","#ff3b2f","Beyond rating"]];
+  const st=document.querySelector(".story"),bars=[...document.querySelectorAll(".prog i")];let cur=-1;
+  FX.onScroll.push(()=>{const r=st.getBoundingClientRect();const p=FX.clamp(-r.top/(r.height-innerHeight),0,1);
+    $("needle").style.transform=`rotate(${-60+p*120}deg)`;$("arc").style.strokeDashoffset=String(1-(.15+p*.85));
+    const i=Math.min(4,Math.floor(p*5));if(i!==cur){cur=i;const d=C[i];$("catn").textContent=d[0];$("mph").textContent=d[1];$("note").textContent=d[2];$("s1").textContent=d[3];$("s1").style.color=d[4];$("s2").textContent=d[5];$("s2").style.color=i>=4?"#ffb02e":"#3ee59a";$("cat").style.color=i>=2?"#ff3b2f":"#e8f1fb";bars.forEach((b,k)=>b.classList.toggle("on",k<=i));}});
+
+  // Estimator with smooth number tweening
+  const PR={arch:[450,600,130],c4:[550,750,130],metal:[950,1400,160],stone:[800,1150,120]};
+  const shown={lo:0,hi:0,sq:0,wr:0};let target={...shown},anim;
+  const money=n=>"$"+(Math.round(n/100)*100).toLocaleString("en-US");
+  function tween(){let done=true;for(const k in shown){const d=target[k]-shown[k];if(Math.abs(d)>.5){shown[k]+=d*.18;done=false;}else shown[k]=target[k];}
+    $("lo").textContent=money(shown.lo);$("hi").textContent="to "+money(shown.hi);$("sq").textContent=Math.round(shown.sq);$("wr").textContent=Math.round(shown.wr)+" mph";
+    if(!done)anim=requestAnimationFrame(tween);}
+  function calc(){const a=+$("area").value,s=+document.querySelector("[name=st]:checked").value,pt=+document.querySelector("[name=pt]:checked").value,m=PR[document.querySelector("[name=mt]:checked").value];
+    const sq=Math.ceil((a/s)*pt*1.1/100);$("area-o").textContent=a.toLocaleString("en-US")+" sq ft";target={lo:sq*m[0],hi:sq*m[1],sq,wr:m[2]};cancelAnimationFrame(anim);anim=requestAnimationFrame(tween);}
+  document.querySelector(".est .q").addEventListener("input",calc);calc();
+
+  // Financing
+  function pay(){const P=+$("amt").value,n=+document.querySelector("[name=tm]:checked").value,r=.0899/12;const m=P*r/(1-Math.pow(1+r,-n));$("amt-o").textContent="$"+P.toLocaleString("en-US");$("pay").textContent="$"+Math.round(m).toLocaleString("en-US");}
+  document.querySelector(".fin").addEventListener("input",pay);pay();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bluebonnet Roof &amp; Exteriors · Austin, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;700;800;900&family=Nunito:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --bg:#ffffff; --sky:#eef3ff; --blue:#3446d6; --blue-2:#2533a8; --navy:#101b3d; --sun:#ffc94a; --leaf:#4c8c5a; --peach:#ffe6d6; --muted:#5a6480; --line:#e3e8f4;
+  --display:"Gabarito",system-ui,sans-serif; --body:"Nunito",system-ui,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--navy);font:17px/1.6 var(--body)}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font:700 16px/1 var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,background .3s}
+.btn:hover{transform:translateY(-3px)}
+.btn-b{background:var(--blue);color:#fff;box-shadow:0 10px 24px -10px rgba(52,70,214,.8)}
+.btn-b:hover{background:var(--blue-2)}
+.btn-w{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 2px var(--line)}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--sky);color:var(--blue);font:700 13px var(--body);padding:7px 14px;border-radius:999px}
+
+/* Floating pill nav */
+.nav{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:50;width:min(980px,calc(100% - 28px));background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:999px;box-shadow:0 12px 40px -16px rgba(16,27,61,.3),0 0 0 1px rgba(16,27,61,.06);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 8px 8px 20px}
+.logo{display:flex;align-items:center;gap:9px;font:800 18px var(--display);text-decoration:none;white-space:nowrap}
+.nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.nav ul a{display:block;padding:9px 14px;border-radius:999px;text-decoration:none;font:700 14px var(--body);color:var(--muted);transition:background .2s,color .2s}
+.nav ul a:hover{background:var(--sky);color:var(--blue)}
+.nav .btn{min-height:44px;padding:0 18px;font-size:14px}
+
+/* Hero */
+.hero{padding-top:calc(140px + env(safe-area-inset-top,0px));text-align:center}
+.hero h1{font:900 clamp(46px,7.4vw,108px)/.95 var(--display);letter-spacing:-.035em;max-width:14ch;margin:20px auto 0}
+.hero h1 .hl{color:var(--blue);position:relative;white-space:nowrap}
+.hero h1 .hl svg{position:absolute;left:0;bottom:-.08em;width:100%;height:.28em;overflow:visible}
+.hero h1 .hl path{fill:none;stroke:var(--sun);stroke-width:10;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400;animation:draw 1.2s 1s cubic-bezier(.6,0,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero p.lede{max-width:52ch;margin:24px auto 0;color:var(--muted);font-size:clamp(17px,1.6vw,20px)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+
+/* Bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(180px,auto);gap:16px;margin-top:clamp(48px,6vw,80px);text-align:left;perspective:1200px}
+.cell{border-radius:28px;padding:24px;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;transform-style:preserve-3d;min-width:0}
+.cell:hover{box-shadow:0 30px 60px -30px rgba(16,27,61,.45)}
+.c-scene{grid-column:span 2;grid-row:span 2;background:linear-gradient(#cfe0fb,#eef3ff 75%);padding:0}
+.c-scene svg{width:100%;height:100%;min-height:380px}
+.c-scene .chip{position:absolute;left:20px;bottom:20px;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 10px 30px -14px rgba(16,27,61,.4)}
+.c-scene .chip b{font:900 26px var(--display);display:block;line-height:1}
+.c-scene .chip span{font-size:13px;color:var(--muted)}
+.c-rate{background:var(--peach)}
+.c-rate b{font:900 64px/1 var(--display);letter-spacing:-.04em}
+.av{display:flex;margin-top:14px}
+.av i{width:36px;height:36px;border-radius:50%;border:3px solid var(--peach);margin-left:-10px;display:grid;place-items:center;font:800 13px var(--display);font-style:normal;color:#fff}
+.av i:first-child{margin-left:0}
+.c-time{background:var(--sky)}
+.clock{width:64px;height:64px}
+.clock .hand{transform-origin:32px 32px;animation:tick 6s steps(12) infinite}
+@keyframes tick{to{transform:rotate(360deg)}}
+.c-time b,.c-war b,.c-fin b,.c-fam b{font:800 24px/1.1 var(--display);display:block;margin-top:14px;letter-spacing:-.01em}
+.c-time p,.c-war p,.c-fin p,.c-fam p{font-size:15px;margin-top:6px}
+.c-war{background:var(--navy);color:#fff}
+.c-war p{color:#b4bdd8}
+.c-fam{background:var(--sun);grid-column:span 2;display:flex;justify-content:space-between;align-items:end;gap:20px;text-decoration:none}
+.gens{display:flex;align-items:end;gap:8px}
+.gens i{font-style:normal;border-radius:999px 999px 14px 14px;background:var(--navy);color:var(--sun);display:grid;place-items:center;font:800 16px var(--display);width:46px}
+.c-fin{background:var(--blue);color:#fff}
+.c-fin p{color:#d0d6ff}
+
+.sec{padding-block:clamp(88px,11vw,150px)}
+h2.h{font:900 clamp(38px,5.4vw,76px)/.98 var(--display);letter-spacing:-.035em}
+h2.h em{font-style:normal;color:var(--blue)}
+
+/* Services switcher */
+.sw-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);margin-top:48px;align-items:start}
+.sv-list{display:grid;gap:8px}
+.sv-btn{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;text-align:left;background:transparent;border:2px solid var(--line);border-radius:22px;padding:18px 20px;cursor:pointer;transition:background .3s,border-color .3s,transform .3s}
+.sv-btn:hover{transform:translateX(6px)}
+.sv-btn .ic{width:44px;height:44px;border-radius:14px;background:var(--sky);display:grid;place-items:center;font-size:20px}
+.sv-btn b{font:800 21px var(--display)}
+.sv-btn span{font:700 13px var(--body);color:var(--muted)}
+.sv-btn[aria-selected=true]{background:var(--navy);border-color:var(--navy);color:#fff}
+.sv-btn[aria-selected=true] span{color:var(--sun)}
+.sv-btn[aria-selected=true] .ic{background:var(--blue)}
+.sv-panel{position:sticky;top:110px;border-radius:32px;background:var(--sky);padding:clamp(24px,3vw,40px);min-height:420px;display:grid;align-content:space-between;gap:28px;overflow:hidden}
+.sv-panel h3{font:900 clamp(30px,3.4vw,44px)/1 var(--display);letter-spacing:-.03em}
+.sv-panel p{color:var(--muted);margin-top:12px;max-width:44ch}
+.sv-panel ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.sv-panel li{display:flex;gap:10px;font-weight:700}
+.sv-panel li::before{content:"✓";color:#fff;background:var(--leaf);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;flex:none}
+.sv-panel .price{display:flex;justify-content:space-between;align-items:end;gap:16px;border-top:2px dashed #cfd8ef;padding-top:20px}
+.sv-panel .price b{font:900 34px var(--display)}
+.swap{transition:opacity .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+.swap.out{opacity:0;transform:translateY(12px)}
+
+/* Timeline */
+.fam{background:var(--navy);color:#fff;border-radius:40px;margin-inline:max(12px,env(safe-area-inset-left,0px));padding-block:clamp(72px,9vw,130px);overflow:hidden}
+.fam .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,80px)}
+.fam h2 em{color:var(--sun)}
+.fam .intro{color:#b4bdd8;margin-top:20px;max-width:42ch}
+.tl{position:relative;padding-left:64px}
+.tl svg{position:absolute;left:14px;top:0;height:100%;width:24px;overflow:visible}
+.tl path{fill:none;stroke-width:4;stroke-linecap:round}
+.tl .bg{stroke:#24305a}
+.tl .fg{stroke:var(--sun)}
+.ms{position:relative;padding-bottom:56px}
+.ms:last-child{padding-bottom:0}
+.ms::before{content:"";position:absolute;left:-58px;top:6px;width:24px;height:24px;border-radius:50%;background:var(--navy);border:4px solid var(--sun)}
+.ms b{font:900 clamp(44px,5vw,64px)/1 var(--display);color:var(--sun);letter-spacing:-.03em}
+.ms h3{font:800 24px var(--display);margin-top:8px}
+.ms p{color:#b4bdd8;margin-top:6px;max-width:44ch}
+
+/* Review marquees */
+.revs{display:grid;gap:16px;margin-top:48px;--mqs:46s}
+.revs .mq:hover>div{animation-play-state:paused}
+.rc{width:360px;flex:none;margin-right:16px;background:#fff;border:2px solid var(--line);border-radius:24px;padding:22px;display:grid;gap:12px;align-content:start}
+.rc .st{color:#f5a623;letter-spacing:2px}
+.rc p{font-size:16px}
+.rc cite{font-style:normal;font-weight:700;font-size:14px;display:flex;align-items:center;gap:10px}
+.rc cite i{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#fff;font:800 13px var(--display);font-style:normal}
+
+/* FAQ */
+.faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,80px)}
+details{background:var(--sky);border-radius:22px;padding:6px 22px;margin-bottom:10px;transition:background .3s}
+details[open]{background:#fff;box-shadow:0 0 0 2px var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;font:800 18px var(--display)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:20px;flex:none;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+details[open] summary::after{transform:rotate(135deg)}
+details p{color:var(--muted);padding-bottom:18px}
+
+/* Contact */
+.cta{background:var(--blue);color:#fff;border-radius:40px;margin-inline:max(12px,env(safe-area-inset-left,0px));padding-block:clamp(64px,8vw,110px);position:relative;overflow:hidden}
+.cta .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:clamp(28px,5vw,72px);align-items:center;position:relative}
+.cta h2{font:900 clamp(44px,6vw,88px)/.95 var(--display);letter-spacing:-.04em}
+.cta p{color:#d0d6ff;margin-top:18px;max-width:40ch}
+.cta .flower{position:absolute;right:-40px;top:-60px;width:260px;opacity:.18;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.form{background:#fff;color:var(--navy);border-radius:28px;padding:clamp(22px,3vw,32px);display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font:700 14px var(--body)}
+[data-field] input,[data-field] textarea{width:100%;min-height:52px;border-radius:14px;border:2px solid var(--line);background:#fbfcff;font:inherit;font-size:16px;padding:12px 14px;color:var(--navy);transition:border-color .2s,box-shadow .2s}
+[data-field] input:focus,[data-field] textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(52,70,214,.15)}
+[data-field] textarea{min-height:90px;resize:vertical}
+.err{font-size:13px;color:#d33}
+.form-done{background:#fff;color:var(--navy);border-radius:28px;padding:36px}
+.form-done h3{font:900 34px var(--display)}
+.form-done p{color:var(--muted)}
+
+footer{padding-block:64px calc(100px + env(safe-area-inset-bottom,0px))}
+footer .big{font:900 clamp(56px,13vw,200px)/.85 var(--display);letter-spacing:-.05em;color:var(--blue)}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:28px;color:var(--muted);font-weight:600}
+
+.petal{position:fixed;width:12px;height:16px;border-radius:50% 50% 50% 0;background:var(--blue);pointer-events:none;z-index:80;opacity:.85}
+@media (max-width:980px){
+  .bento{grid-template-columns:1fr 1fr}.c-scene{grid-column:1/-1}.c-fam{grid-column:1/-1}
+  .sw-grid,.fam .wrap,.faq,.cta .wrap{grid-template-columns:1fr}.sv-panel{position:relative;top:0}
+}
+@media (max-width:760px){.nav ul{display:none}}
+@media (max-width:560px){.bento{grid-template-columns:1fr}.two{grid-template-columns:1fr}.rc{width:290px}.nav .btn{padding:0 14px}.logo span{display:none}}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <a class="logo" href="#top"><svg width="24" height="28" viewBox="0 0 24 28" aria-hidden="true"><path d="M12 2c4 5 4 10 0 15-4-5-4-10 0-15Z" fill="#3446d6"/><path d="M12 17v9" stroke="#4c8c5a" stroke-width="3" stroke-linecap="round"/></svg><span>Bluebonnet</span></a>
+  <ul><li><a href="#services">Services</a></li><li><a href="#family">Our family</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li></ul>
+  <a class="btn btn-b" href="#estimate" data-offset="-100">Free estimate</a>
+</nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <span class="pill" data-reveal="fade">🌼 Family-owned in Austin since 1986</span>
+  <h1><span data-split>A roofer you'd invite to</span> <span class="hl" data-reveal="fade" style="--rd:500">Sunday dinner.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C80 4 200 4 296 12"/></svg></span></h1>
+  <p class="lede" data-reveal style="--rd:400">Roof repairs, replacements and gutters across Central Texas. Written estimates in 24 hours, and you'll always talk to an Alvarez, never a call center.</p>
+  <div class="ctas" data-reveal style="--rd:550"><a class="btn btn-b" href="#estimate" data-offset="-100" data-magnetic>Get my free estimate →</a><a class="btn btn-w" href="tel:+15125550188">Call (512) 555-0188</a></div>
+
+  <div class="bento">
+    <div class="cell c-scene" data-reveal="scale" data-tilt>
+      <svg viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="#fff"><g class="cl"><ellipse cx="80" cy="70" rx="52" ry="18"/><ellipse cx="110" cy="58" rx="34" ry="18"/></g><g class="cl" style="animation-delay:-15s"><ellipse cx="60" cy="130" rx="40" ry="13" opacity=".7"/></g></g>
+        <circle cx="500" cy="80" r="38" fill="#ffc94a"><animate attributeName="r" values="38;42;38" dur="5s" repeatCount="indefinite"/></circle>
+        <path d="M0 300 Q160 262 320 290 T600 280 V420 H0Z" fill="#a9c99a"/>
+        <rect x="160" y="200" width="280" height="140" fill="#fffaf2"/>
+        <path d="M136 210 L300 96 L464 210 Z" fill="#33406a"/>
+        <g stroke="#26315a" stroke-width="2.5"><path d="M176 188h248M206 166h188M236 144h128M266 122h68"/></g>
+        <rect x="330" y="112" width="26" height="46" fill="#9c5a3c"/>
+        <rect x="270" y="258" width="56" height="82" rx="6" fill="#3446d6"/><circle cx="315" cy="300" r="4" fill="#ffc94a"/>
+        <rect x="186" y="236" width="52" height="46" rx="6" fill="#cfe0fb" stroke="#33406a" stroke-width="4"/>
+        <rect x="364" y="236" width="52" height="46" rx="6" fill="#cfe0fb" stroke="#33406a" stroke-width="4"/>
+        <path d="M0 350 Q160 322 300 344 T600 336 V420 H0Z" fill="#7fae74"/>
+        <g class="bb"><path d="M50 384v-46" stroke="#4c8c5a" stroke-width="3"/><path d="M50 340c-8-12-8-24 0-36 8 12 8 24 0 36Z" fill="#3446d6"/><circle cx="50" cy="306" r="3.5" fill="#fff"/></g>
+        <g class="bb" style="animation-delay:.5s"><path d="M96 396v-54" stroke="#4c8c5a" stroke-width="3"/><path d="M96 344c-9-14-9-28 0-42 9 14 9 28 0 42Z" fill="#4c5fe0"/><circle cx="96" cy="304" r="3.5" fill="#fff"/></g>
+        <g class="bb" style="animation-delay:1s"><path d="M142 390v-38" stroke="#4c8c5a" stroke-width="3"/><path d="M142 354c-7-10-7-21 0-31 7 10 7 21 0 31Z" fill="#3446d6"/></g>
+        <g class="bb" style="animation-delay:.3s"><path d="M470 392v-48" stroke="#4c8c5a" stroke-width="3"/><path d="M470 346c-8-12-8-25 0-37 8 12 8 25 0 37Z" fill="#4c5fe0"/><circle cx="470" cy="310" r="3.5" fill="#fff"/></g>
+        <g class="bb" style="animation-delay:.8s"><path d="M520 398v-40" stroke="#4c8c5a" stroke-width="3"/><path d="M520 360c-7-11-7-22 0-33 7 11 7 22 0 33Z" fill="#3446d6"/></g>
+        <g class="bb" style="animation-delay:1.3s"><path d="M566 388v-50" stroke="#4c8c5a" stroke-width="3"/><path d="M566 340c-9-14-9-28 0-42 9 14 9 28 0 42Z" fill="#4c5fe0"/><circle cx="566" cy="300" r="3.5" fill="#fff"/></g>
+      </svg>
+      <div class="chip"><b data-count="2400" data-suf="+">2,400+</b><span>Austin roofs since 1986</span></div>
+    </div>
+    <div class="cell c-rate" data-reveal="scale" data-tilt style="--rd:100"><b>4.9</b><p style="font-weight:700">★★★★★ from 380 Austin reviews</p><div class="av"><i style="background:#3446d6">JN</i><i style="background:#4c8c5a">MR</i><i style="background:#e0703f">KT</i><i style="background:#101b3d">+</i></div></div>
+    <div class="cell c-time" data-reveal="scale" data-tilt style="--rd:200"><svg class="clock" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="#fff" stroke="#3446d6" stroke-width="4"/><path class="hand" d="M32 32V12" stroke="#101b3d" stroke-width="4" stroke-linecap="round"/><circle cx="32" cy="32" r="4" fill="#3446d6"/></svg><b>Estimate in 24 hours</b><p class="m" style="color:var(--muted)">Photos of every problem spot included.</p></div>
+    <div class="cell c-war" data-reveal="scale" data-tilt style="--rd:300"><svg width="48" height="54" viewBox="0 0 48 54" aria-hidden="true"><path d="M24 2 44 10v16c0 13-9 22-20 26C13 48 4 39 4 26V10Z" fill="#3446d6"/><path d="m15 27 7 7 12-14" stroke="#ffc94a" stroke-width="4" fill="none" stroke-linecap="round"/></svg><b>Lifetime shingle warranty</b><p>Plus 10 years on our workmanship.</p></div>
+    <a class="cell c-fam" href="#family" data-reveal="scale" data-tilt style="--rd:400"><div><b style="font-size:28px">Meet the Alvarez family →</b><p>Three generations on the same ladder.</p></div><div class="gens" aria-hidden="true"><i style="height:96px">R</i><i style="height:80px">D</i><i style="height:64px">S</i></div></a>
+    <div class="cell c-fin" data-reveal="scale" data-tilt style="--rd:500"><b style="font-size:40px">$99/mo</b><p>Financing for qualified homeowners, 12 months same-as-cash.</p></div>
+  </div>
+</div></header>
+
+<section class="sec" id="services"><div class="wrap">
+  <span class="pill">What we do</span>
+  <h2 class="h" style="margin-top:16px" data-split>Everything your roof needs, <em>from one family.</em></h2>
+  <div class="sw-grid">
+    <div class="sv-list" role="tablist" aria-label="Services">
+      <button class="sv-btn" role="tab" aria-selected="true" data-i="0"><span class="ic">🏠</span><b>Roof replacement</b><span>1 day</span></button>
+      <button class="sv-btn" role="tab" aria-selected="false" data-i="1"><span class="ic">💧</span><b>Leak &amp; storm repair</b><span>Same week</span></button>
+      <button class="sv-btn" role="tab" aria-selected="false" data-i="2"><span class="ic">🍂</span><b>Gutters &amp; guards</b><span>18 colors</span></button>
+      <button class="sv-btn" role="tab" aria-selected="false" data-i="3"><span class="ic">🔍</span><b>Yearly check-ups</b><span>$99</span></button>
+    </div>
+    <div class="sv-panel" role="tabpanel" aria-live="polite">
+      <div class="swap" id="svc"><h3></h3><p></p><ul></ul></div>
+      <div class="price swap" id="svp"><div><span style="color:var(--muted);font-weight:700;font-size:14px">Typical Austin home</span><br><b></b></div><a class="btn btn-b" href="#estimate" data-offset="-100">Get an estimate</a></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="fam" id="family"><div class="wrap">
+  <div>
+    <span class="pill" style="background:#24305a;color:var(--sun)">Our family</span>
+    <h2 class="h" style="margin-top:16px" data-split>Same name on <em>every estimate</em> since 1986.</h2>
+    <p class="intro" data-reveal>Ray Alvarez started fixing roofs in East Austin with one truck and a borrowed ladder. Today his son and granddaughter run the crews, and an Alvarez still walks every roof before we quote it.</p>
+  </div>
+  <div class="tl" id="tl">
+    <svg preserveAspectRatio="none" viewBox="0 0 24 100" aria-hidden="true"><path class="bg" d="M12 0V100" vector-effect="non-scaling-stroke"/><path class="fg" id="tlp" d="M12 0V100" vector-effect="non-scaling-stroke" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+    <div class="ms" data-reveal="left"><b>1986</b><h3>Ray opens shop</h3><p>One truck, a borrowed ladder and a handshake promise: show up when you say you will.</p></div>
+    <div class="ms" data-reveal="left"><b>2008</b><h3>Daniel takes the crews</h3><p>Adds seamless gutters and the one-day replacement schedule Austin still knows us for.</p></div>
+    <div class="ms" data-reveal="left"><b>2021</b><h3>Sofia joins</h3><p>Starts same-day photo estimates, so you see the problem before you pay to fix it.</p></div>
+    <div class="ms" data-reveal="left"><b>Today</b><h3>2,400+ roofs later</h3><p>Still family, still local, still answering the phone ourselves.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="reviews" style="overflow:hidden"><div class="wrap">
+  <span class="pill">Reviews</span>
+  <h2 class="h" style="margin-top:16px" data-split>Austin says it <em>better than we can.</em></h2>
+</div>
+<div class="revs">
+  <div class="mq"><div id="rowA"></div><div id="rowA2" aria-hidden="true"></div></div>
+  <div class="mq rev"><div id="rowB"></div><div id="rowB2" aria-hidden="true"></div></div>
+</div></section>
+
+<section class="sec" id="faq" style="padding-top:0"><div class="wrap faq">
+  <div><span class="pill">FAQ</span><h2 class="h" style="margin-top:16px" data-split>Questions we hear <em>a lot.</em></h2></div>
+  <div data-reveal>
+    <details open><summary>How long does a new roof take?</summary><p>Most Austin homes are done in one day. Steeper or larger roofs can take two.</p></details>
+    <details><summary>Do you work with insurance?</summary><p>Yes. We document storm damage and meet your adjuster. You only pay your deductible on approved claims.</p></details>
+    <details><summary>Do you offer financing?</summary><p>Yes, from $99 a month with 12 months same-as-cash for qualified homeowners.</p></details>
+    <details><summary>Which areas do you serve?</summary><p>Austin, Round Rock, Cedar Park, Pflugerville, Georgetown, Leander, Kyle and Buda.</p></details>
+  </div>
+</div></section>
+
+<section class="cta" id="estimate">
+  <svg class="flower" viewBox="0 0 100 100" aria-hidden="true"><g fill="#fff"><ellipse cx="50" cy="22" rx="12" ry="22"/><ellipse cx="50" cy="78" rx="12" ry="22"/><ellipse cx="22" cy="50" rx="22" ry="12"/><ellipse cx="78" cy="50" rx="22" ry="12"/></g><circle cx="50" cy="50" r="10" fill="#ffc94a"/></svg>
+  <div class="wrap">
+    <div><h2 data-split>Let's look at your roof.</h2><p>Tell us a little about it. Sofia or Daniel will call you back today, usually within the hour.</p><p style="margin-top:24px;color:#fff;font-weight:700">(512) 555-0188 · Mon–Sat</p></div>
+    <form class="form" data-kit novalidate data-done-title="Thank you{n}!" data-done-text="One of us will call you back today to set up a time.">
+      <div class="two">
+        <div data-field><label for="b-name">Name</label><input id="b-name" name="name" autocomplete="name" required><span class="err"></span></div>
+        <div data-field><label for="b-phone">Phone</label><input id="b-phone" name="phone" type="tel" autocomplete="tel" required><span class="err"></span></div>
+      </div>
+      <div data-field><label for="b-zip">ZIP code</label><input id="b-zip" name="zip" inputmode="numeric" autocomplete="postal-code" required><span class="err"></span></div>
+      <div data-field><label for="b-msg">What's going on? (optional)</label><textarea id="b-msg" name="message"></textarea></div>
+      <button class="btn btn-b" type="submit" style="justify-content:center">Request my estimate</button>
+    </form>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div class="big">bluebonnet<span style="color:var(--sun)">.</span></div>
+  <div class="row"><span>Bluebonnet Roof &amp; Exteriors · East Austin, TX</span><span>(512) 555-0188</span><span>© 2026 · Sample site</span></div>
+</div></footer>
+
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<style>.cl{animation:cl 30s linear infinite}@keyframes cl{from{transform:translateX(-140px)}to{transform:translateX(720px)}}.bb{transform-box:fill-box;transform-origin:bottom center;animation:sway 3.6s ease-in-out infinite}@keyframes sway{50%{transform:rotate(5deg)}}</style>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  // Services switcher
+  const S=[
+    ["Roof replacement","Architectural shingles, metal and impact-resistant options, installed in one day for most Austin homes.",["Tear-off and full deck inspection","Synthetic underlayment + ice & water shield","Magnet sweep and final walk-through"],"$11k – $18k"],
+    ["Leak & storm repair","We find where water is actually getting in, fix it, and show you before-and-after photos.",["Same-week appointments","Tarping for active leaks","Insurance documentation included"],"$350 – $1,800"],
+    ["Gutters & guards","Seamless aluminum gutters in 18 colors, with guards made for live oak country.",["5- and 6-inch seamless","Leaf guards that actually fit","Downspout drainage planning"],"$1.8k – $4k"],
+    ["Yearly check-ups","A yearly inspection and tune-up that catches small problems before storm season.",["20-point inspection with photos","Sealant and fastener touch-ups","Written report for your records"],"$99 / year"]];
+  const btns=[...document.querySelectorAll(".sv-btn")],box=document.getElementById("svc"),pr=document.getElementById("svp");
+  function set(i,anim){const d=S[i];const fill=()=>{box.querySelector("h3").textContent=d[0];box.querySelector("p").textContent=d[1];box.querySelector("ul").innerHTML=d[2].map(t=>`<li>${t}</li>`).join("");pr.querySelector("b").textContent=d[3];box.classList.remove("out");pr.classList.remove("out");};
+    btns.forEach((b,k)=>b.setAttribute("aria-selected",k===i));if(anim){box.classList.add("out");pr.classList.add("out");setTimeout(fill,250);}else fill();}
+  btns.forEach(b=>b.addEventListener("click",()=>set(+b.dataset.i,true)));set(0,false);
+
+  // Reviews
+  const R=[["Sofia sent photos of every problem spot before we even asked. Roof went on in a day.","The Nguyens","Round Rock","#3446d6"],["They tarped our roof at 9pm during a hailstorm. Who does that anymore?","Marisol R.","Pflugerville","#4c8c5a"],["Daniel talked us out of a full replacement. Honest people.","Ken T.","Cedar Park","#e0703f"],["The yard was cleaner after they left than before they came.","Ashley P.","Austin","#101b3d"],["Third generation of my family to use Bluebonnet. Says it all.","Jim W.","Georgetown","#3446d6"],["Estimate matched the invoice to the dollar. No surprises.","Priya K.","Leander","#4c8c5a"]];
+  const card=r=>`<figure class="rc" style="margin:0 16px 0 0"><span class="st">★★★★★</span><p>"${r[0]}"</p><cite><i style="background:${r[3]}">${r[1][0]}</i>${r[1]} · ${r[2]}</cite></figure>`;
+  const a=R.slice(0,3).concat(R.slice(3)).map(card).join(""),b=R.slice().reverse().map(card).join("");
+  rowA.innerHTML=rowA2.innerHTML=a;rowB.innerHTML=rowB2.innerHTML=b;
+
+  // Timeline drawn by scroll
+  const tl=document.getElementById("tl"),p=document.getElementById("tlp");
+  FX.onScroll.push(()=>{const r=tl.getBoundingClientRect();const v=FX.clamp((innerHeight*.7-r.top)/r.height,0,1);p.style.strokeDashoffset=1-v;});
+  if(FX.reduce)p.style.strokeDashoffset=0;
+
+  // Tilt
+  if(FX.fine&&!FX.reduce)document.querySelectorAll("[data-tilt]").forEach(el=>{
+    el.addEventListener("pointermove",e=>{const r=el.getBoundingClientRect();const rx=((e.clientY-r.top)/r.height-.5)*-6,ry=((e.clientX-r.left)/r.width-.5)*6;el.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;});
+    el.addEventListener("pointerleave",()=>el.style.transform="");
+  });
+
+  // Petal trail
+  if(FX.fine&&!FX.reduce){let last=0,n=0;addEventListener("pointermove",e=>{const t=performance.now();if(t-last<70||n>24)return;last=t;n++;
+    const el=document.createElement("i");el.className="petal";el.style.left=e.clientX+"px";el.style.top=e.clientY+"px";el.style.background=Math.random()<.7?"#3446d6":"#ffc94a";document.body.append(el);
+    el.animate([{transform:"translate(-50%,-50%) rotate(0) scale(1)",opacity:.9},{transform:`translate(${(Math.random()-.5)*80}px,${60+Math.random()*60}px) rotate(${Math.random()*360}deg) scale(.4)`,opacity:0}],{duration:1400,easing:"cubic-bezier(.2,.6,.3,1)"}).onfinish=()=>{el.remove();n--;};},{passive:true});}
+})();
+</script>
+</body>
+</html>

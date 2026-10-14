@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ridgeline Roofing · Dallas–Fort Worth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --ink:#0d0e10; --char:#16181b; --steel:#23262b; --line:#2c3036; --bone:#f2efe8; --muted:#9a9da3; --hazard:#ffc72c; --alert:#ff4d2e;
+  --display:"Anton","Impact","Arial Narrow",sans-serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+body{background:var(--ink);color:var(--bone);font:17px/1.6 var(--body)}
+a{color:inherit}
+.wrap{max-width:1360px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;font:600 15px/1 var(--body);letter-spacing:.02em;text-transform:uppercase;text-decoration:none;border:2px solid var(--hazard);cursor:pointer;position:relative;overflow:hidden;isolation:isolate;transition:color .35s}
+.btn::before{content:"";position:absolute;inset:0;background:var(--bone);transform:translateY(101%);transition:transform .45s cubic-bezier(.7,0,.2,1);z-index:-1}
+.btn:hover::before{transform:none}
+.btn-y{background:var(--hazard);color:var(--ink)}
+.btn-o{background:transparent;color:var(--bone);border-color:#4a4e55}
+.btn-o:hover{color:var(--ink)}
+
+/* Alert ticker */
+.alert{background:var(--hazard);color:var(--ink);font:600 13px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding-block:11px;--mqs:40s}
+.alert span{padding-right:56px;white-space:nowrap}
+.alert b{color:var(--alert)}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:40;background:rgba(13,14,16,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:72px;gap:20px}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font:500 14px var(--body);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.nav ul a:hover{color:var(--hazard)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font:400 24px/1 var(--display);letter-spacing:.04em;text-transform:uppercase}
+.nav .r{display:flex;justify-content:flex-end;gap:10px}
+.nav .btn{min-height:44px;padding:0 18px;font-size:13px}
+
+/* Hero */
+.hero{position:relative;min-height:min(94vh,900px);display:grid;align-items:end;overflow:hidden;background:radial-gradient(120% 80% at 70% -10%,#3a3f47 0%,#1a1c20 45%,var(--ink) 80%)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.flash{position:absolute;inset:0;background:#e8ecff;opacity:0;pointer-events:none;mix-blend-mode:soft-light}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-block:120px 56px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:40px;align-items:end}
+.coords{color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+.coords b{color:var(--hazard);font-weight:500}
+.hero h1{font:400 clamp(60px,9.2vw,150px)/.86 var(--display);text-transform:uppercase;letter-spacing:-.005em;margin-top:18px}
+.hero h1 .y{color:var(--hazard)}
+.hero .sub{display:flex;flex-wrap:wrap;gap:24px 40px;align-items:end;margin-top:28px}
+.hero .sub p{max-width:44ch;color:#c9c7c1;font-size:18px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.log{background:rgba(22,24,27,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);padding:20px}
+.log header{display:flex;justify-content:space-between;align-items:center;color:var(--muted);margin-bottom:14px}
+.live{display:inline-flex;align-items:center;gap:8px;color:var(--alert)}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--alert);animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.2}}
+.log li{list-style:none;display:grid;grid-template-columns:62px 1fr auto;gap:10px;padding:11px 0;border-top:1px solid var(--line);font-size:14px;align-items:center}
+.log li .mono{color:var(--muted);font-size:11px}
+.log li b{font:500 13px var(--mono);color:var(--hazard)}
+.log ul{margin:0;padding:0}
+
+/* Stats */
+.stats{border-block:1px solid var(--line);background:var(--char)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stats div{padding:34px 24px;border-left:1px solid var(--line)}
+.stats div:first-child{border-left:0;padding-left:0}
+.stats b{display:block;font:400 clamp(48px,5.4vw,84px)/1 var(--display);font-variant-numeric:tabular-nums}
+.stats span{color:var(--muted);font-size:15px}
+
+.sec{padding-block:clamp(88px,11vw,160px)}
+.kicker{display:flex;align-items:center;gap:12px;color:var(--hazard)}
+.kicker::before{content:"";width:28px;height:2px;background:var(--hazard)}
+h2.h{font:400 clamp(52px,8vw,128px)/.88 var(--display);text-transform:uppercase;margin-top:16px}
+h2.h .y{color:var(--hazard)}
+
+/* Before / after */
+.ba{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,4vw,64px);align-items:center}
+.ba p.lede{color:#c9c7c1;margin-top:20px;max-width:40ch}
+.ba ul{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:12px}
+.ba li{display:flex;gap:12px;align-items:baseline;color:var(--muted)}
+.ba li b{color:var(--alert);font:500 13px var(--mono)}
+.cmp{aspect-ratio:16/10;border:1px solid var(--line);--cmp-line:var(--hazard);--cmp-knob:var(--ink)}
+.cmp svg{width:100%;height:100%}
+
+/* Pinned claim steps */
+.claims{background:var(--hazard);color:var(--ink)}
+.claims .h-sticky{flex-direction:column;align-items:stretch;justify-content:center;gap:clamp(24px,4vh,48px)}
+.claims .top{display:flex;justify-content:space-between;align-items:end;gap:24px;padding-left:var(--gl);padding-right:var(--gr)}
+.claims h2{font:400 clamp(48px,7vw,112px)/.86 var(--display);text-transform:uppercase}
+.claims .bar{height:3px;background:rgba(13,14,16,.18);margin-inline:var(--gl) var(--gr)}
+.claims .bar i{display:block;height:100%;background:var(--ink);transform-origin:left;transform:scaleX(var(--hp,0))}
+.claims .h-track{gap:20px;padding-left:var(--gl);padding-right:var(--gr)}
+.step{flex:none;width:min(420px,82vw);min-height:min(52vh,440px);background:var(--ink);color:var(--bone);padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.step .n{font:400 120px/.8 var(--display);color:var(--hazard)}
+.step h3{font:400 40px/.95 var(--display);text-transform:uppercase}
+.step p{color:var(--muted);margin-top:12px}
+.step .t{color:var(--hazard)}
+
+/* Services */
+.svcs{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:56px}
+.svc{position:relative;padding:32px 26px 40px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:340px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;overflow:hidden;isolation:isolate;transition:color .4s}
+.svc::before{content:"";position:absolute;inset:0;background:var(--hazard);transform:translateY(100%);transition:transform .55s cubic-bezier(.7,0,.2,1);z-index:-1}
+.svc:hover{color:var(--ink)}
+.svc:hover::before{transform:none}
+.svc:hover p{color:#2b2b25}
+.svc .ic{width:46px;height:46px}
+.svc h3{font:400 38px/.95 var(--display);text-transform:uppercase}
+.svc p{color:var(--muted);margin-top:12px;font-size:15px;transition:color .4s}
+
+/* Radar */
+.area{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center}
+.radar{position:relative;aspect-ratio:1;max-width:560px;width:100%;justify-self:center;border-radius:50%;background:radial-gradient(circle,#1d2a20 0%,#121813 70%);border:1px solid #2c3a2e;overflow:hidden}
+.radar .rings{position:absolute;inset:0;background:repeating-radial-gradient(circle,transparent 0 59px,rgba(124,255,150,.16) 59px 60px)}
+.radar .cross{position:absolute;inset:0;background:linear-gradient(transparent calc(50% - .5px),rgba(124,255,150,.16) calc(50% - .5px) calc(50% + .5px),transparent 0),linear-gradient(90deg,transparent calc(50% - .5px),rgba(124,255,150,.16) calc(50% - .5px) calc(50% + .5px),transparent 0)}
+.radar .sweep{position:absolute;inset:0;background:conic-gradient(from 0deg,rgba(124,255,150,.35),transparent 60deg);animation:sweep 4s linear infinite;border-radius:50%}
+@keyframes sweep{to{transform:rotate(360deg)}}
+.radar .city{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:6px;font:500 11px var(--mono);color:#b9f7c6;letter-spacing:.04em;white-space:nowrap}
+.radar .city::before{content:"";width:7px;height:7px;border-radius:50%;background:#7cff96;box-shadow:0 0 12px #7cff96}
+.radar .hq::before{background:var(--hazard);box-shadow:0 0 14px var(--hazard);width:10px;height:10px}
+.radar .cell{position:absolute;width:90px;height:60px;border-radius:50%;background:radial-gradient(circle,rgba(255,77,46,.55),rgba(255,199,44,.25) 45%,transparent 70%);filter:blur(4px);animation:drift 12s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(40px,-24px)}}
+.area .list{columns:2;column-gap:24px;margin-top:28px;padding:0;list-style:none}
+.area .list li{padding:8px 0;border-bottom:1px solid var(--line);font-size:15px;break-inside:avoid;display:flex;justify-content:space-between}
+.area .list li span{color:var(--muted);font:400 12px var(--mono)}
+
+/* Reviews */
+.rev{position:relative}
+.quote{font:400 clamp(36px,5vw,76px)/.98 var(--display);text-transform:uppercase;max-width:20ch;min-height:3em}
+.quote .y{color:var(--hazard)}
+.rev .who{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:32px;flex-wrap:wrap}
+.rev .who p{color:var(--muted)}
+.rev .who b{color:var(--bone)}
+.dots{display:flex;gap:8px}
+.dots button{width:44px;height:6px;border:0;background:var(--steel);cursor:pointer;padding:0}
+.dots button[aria-current=true]{background:var(--hazard)}
+.fadeq{transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.fadeq.out{opacity:0;transform:translateY(14px)}
+
+/* Book */
+.book{background:var(--hazard);color:var(--ink)}
+.book .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(32px,5vw,80px);align-items:center;padding-block:clamp(72px,9vw,128px)}
+.book h2{font:400 clamp(80px,13vw,210px)/.82 var(--display);text-transform:uppercase}
+.book .lede{margin-top:20px;max-width:40ch;color:#3a3320;font-size:18px}
+.form{background:var(--ink);color:var(--bone);padding:clamp(22px,3vw,36px);display:grid;gap:18px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+[data-field]{display:grid;gap:8px;min-width:0}
+[data-field] label{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+[data-field] input,[data-field] select{width:100%;min-height:50px;background:var(--char);border:1px solid var(--line);color:var(--bone);font:inherit;font-size:16px;padding:0 14px;border-radius:0}
+[data-field] input:focus,[data-field] select:focus{outline:none;border-color:var(--hazard)}
+.err{font-size:13px;color:var(--alert)}
+.form-done{background:var(--ink);color:var(--bone);padding:36px}
+.form-done h3{font:400 48px/.95 var(--display);text-transform:uppercase;color:var(--hazard)}
+.form-done p{color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding-block:48px calc(110px + env(safe-area-inset-bottom,0px))}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;color:var(--muted);font-size:15px}
+footer h4{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--bone);margin-bottom:12px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+
+.callbar{display:none}
+@media (max-width:1024px){.svcs{grid-template-columns:1fr 1fr}.hero .wrap{grid-template-columns:1fr}.log{max-width:520px}}
+@media (max-width:860px){
+  .nav ul,.nav .r .btn-o{display:none}.nav .wrap{grid-template-columns:1fr auto}
+  .ba,.area,.book .wrap{grid-template-columns:1fr}
+  .stats .wrap{grid-template-columns:1fr 1fr}.stats div:nth-child(3){border-left:0;padding-left:0}.stats div{border-top:1px solid var(--line)}
+  .callbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;inset:auto 0 0 0;z-index:60;padding-bottom:env(safe-area-inset-bottom,0px);background:var(--ink)}
+  .callbar a{min-height:60px;display:grid;place-items:center;font:600 15px var(--body);text-transform:uppercase;text-decoration:none}
+  .callbar a:last-child{background:var(--hazard);color:var(--ink)}
+  .wb-back{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+  .claims .top{flex-direction:column;align-items:start}
+}
+@media (max-width:560px){.svcs{grid-template-columns:1fr}.two{grid-template-columns:1fr}.area .list{columns:1}footer .wrap{grid-template-columns:1fr 1fr}.nav .r .btn{display:none}}
+</style>
+</head>
+<body>
+<div class="alert mq" aria-label="Storm alert"><div><span>⚠ <b>Hail reported</b> in Collin County this week</span><span>Free 20-point inspections through Oct 31</span><span>24/7 emergency tarping · (214) 555-0147</span><span>⚠ <b>Hail reported</b> in Collin County this week</span><span>Free 20-point inspections through Oct 31</span><span>24/7 emergency tarping · (214) 555-0147</span></div><div aria-hidden="true"><span>⚠ <b>Hail reported</b> in Collin County this week</span><span>Free 20-point inspections through Oct 31</span><span>24/7 emergency tarping · (214) 555-0147</span><span>⚠ <b>Hail reported</b> in Collin County this week</span><span>Free 20-point inspections through Oct 31</span><span>24/7 emergency tarping · (214) 555-0147</span></div></div>
+
+<nav class="nav"><div class="wrap">
+  <a class="logo" href="#top"><svg width="34" height="28" viewBox="0 0 34 28" aria-hidden="true"><path d="M2 20 17 6l15 14" fill="none" stroke="#ffc72c" stroke-width="4" stroke-linejoin="miter"/><path d="M8 26h18" stroke="#f2efe8" stroke-width="3"/></svg>Ridgeline</a>
+  <ul><li><a href="#damage">Damage</a></li><li><a href="#claims">Claims</a></li><li><a href="#services">Services</a></li><li><a href="#area">Area</a></li></ul>
+  <div class="r"><a class="btn btn-o" href="tel:+12145550147">(214) 555-0147</a><a class="btn btn-y" href="#book" data-magnetic>Free inspection</a></div>
+</div></nav>
+
+<header class="hero" id="top">
+  <canvas id="storm" aria-hidden="true"></canvas><div class="flash" id="flash"></div>
+  <div class="wrap">
+    <div>
+      <div class="coords mono" data-reveal="fade"><span>DFW Metroplex</span><span><b>32.7767° N</b> · 96.7970° W</span><span>Est. 2009</span></div>
+      <h1 data-split>Hail doesn't knock. <span class="y">We do.</span></h1>
+      <div class="sub">
+        <p data-reveal style="--rd:500">Free 20-point roof inspections across Dallas–Fort Worth, with a photo report you can send straight to your insurance company. No damage? We'll tell you that too.</p>
+        <div class="ctas" data-reveal style="--rd:650"><a class="btn btn-y" href="#book" data-magnetic>Book free inspection →</a><a class="btn btn-o" href="#damage">See what hail does</a></div>
+      </div>
+    </div>
+    <aside class="log" data-reveal style="--rd:800" aria-label="Recent storm calls">
+      <header><span class="mono">Storm calls · last 30 days</span><span class="live mono">Live</span></header>
+      <ul>
+        <li><span class="mono">Oct 09</span><span>Plano · roof inspection</span><b>1.75″ hail</b></li>
+        <li><span class="mono">Oct 06</span><span>Frisco · emergency tarp</span><b>68 mph</b></li>
+        <li><span class="mono">Oct 02</span><span>Allen · full replacement</span><b>1.50″ hail</b></li>
+        <li><span class="mono">Sep 27</span><span>Arlington · vent repair</span><b>1.25″ hail</b></li>
+      </ul>
+    </aside>
+  </div>
+</header>
+
+<section class="stats" aria-label="Ridgeline in numbers"><div class="wrap">
+  <div><b data-count="4812">4,812</b><span>DFW roofs replaced</span></div>
+  <div><b data-count="38" data-suf=" min">38 min</b><span>Average emergency response</span></div>
+  <div><b data-count="4.9" data-suf="★">4.9★</b><span>From 380+ Google reviews</span></div>
+  <div><b data-count="10" data-suf=" yr">10 yr</b><span>Workmanship warranty</span></div>
+</div></section>
+
+<section class="sec" id="damage"><div class="wrap ba">
+  <div>
+    <span class="kicker mono">What hail does</span>
+    <h2 class="h" data-split>Drag it. <span class="y">See it.</span></h2>
+    <p class="lede" data-reveal>Hail damage is easy to miss from the ground and easy to prove from the roof. Drag the handle to compare a storm-hit roof with one we replaced last month.</p>
+    <ul data-reveal>
+      <li><b>01</b>Bruised and cracked shingles</li>
+      <li><b>02</b>Granule loss that shortens roof life</li>
+      <li><b>03</b>Dented vents, flashing and gutters</li>
+      <li><b>04</b>Lifted tabs where wind gets under</li>
+    </ul>
+  </div>
+  <div class="cmp" data-reveal="scale">
+    <svg viewBox="0 0 800 500" aria-label="Roof after a hail storm">
+      <defs>
+        <pattern id="shd" width="60" height="30" patternUnits="userSpaceOnUse"><rect width="60" height="30" fill="#4a4540"/><path d="M0 29h60M30 0v15M0 15h60M15 15v15M45 15v15" stroke="#2f2b28" stroke-width="2"/></pattern>
+        <pattern id="shn" width="60" height="30" patternUnits="userSpaceOnUse"><rect width="60" height="30" fill="#33373d"/><rect width="60" height="15" fill="#3a3f46"/><path d="M0 29h60M30 0v15M0 15h60M15 15v15M45 15v15" stroke="#22252a" stroke-width="2"/></pattern>
+      </defs>
+      <rect width="800" height="500" fill="#7a8ea6"/><rect y="380" width="800" height="120" fill="#5c6b4a"/>
+      <path d="M40 420 L400 90 L760 420Z" fill="url(#shd)"/>
+      <g fill="#2a2522"><circle cx="300" cy="260" r="10"/><circle cx="350" cy="300" r="7"/><circle cx="460" cy="250" r="9"/><circle cx="520" cy="330" r="11"/><circle cx="240" cy="350" r="8"/><circle cx="410" cy="200" r="6"/><circle cx="600" cy="370" r="9"/><circle cx="380" cy="360" r="10"/><circle cx="480" cy="180" r="7"/><circle cx="560" cy="270" r="6"/></g>
+      <path d="M300 300h90v34h-90z" fill="#7a5a3c"/><path d="M455 330l60-6 4 36-62 4z" fill="#8a6a4a"/>
+      <path d="M150 380 L240 330 L270 362 Z" fill="#3a6fd8" opacity=".85"/>
+      <rect x="370" y="150" width="40" height="40" fill="#8b8f95"/><circle cx="380" cy="165" r="5" fill="#5d6166"/><circle cx="398" cy="178" r="4" fill="#5d6166"/>
+    </svg>
+    <div class="after"><svg viewBox="0 0 800 500" aria-label="Same roof after replacement">
+      <rect width="800" height="500" fill="#8fb0d6"/><rect y="380" width="800" height="120" fill="#6f8a52"/>
+      <path d="M40 420 L400 90 L760 420Z" fill="url(#shn)"/>
+      <path d="M40 420 L400 90 L760 420" fill="none" stroke="#ffc72c" stroke-width="5"/>
+      <rect x="370" y="150" width="40" height="40" fill="#c9ccd1"/>
+    </svg></div>
+    <span class="tag l">Before · Plano</span><span class="tag r">After · 1 day later</span>
+    <input type="range" min="0" max="100" value="52" aria-label="Compare before and after">
+    <span class="handle"></span>
+  </div>
+</div></section>
+
+<section class="claims" id="claims" data-hscroll><div class="h-sticky">
+  <div class="top"><h2 data-split>The claim,<br>start to finish</h2><p class="mono" style="max-width:34ch">You open the claim. We handle everything after that. Scroll to walk through it.</p></div>
+  <div class="h-track">
+    <article class="step"><span class="n">01</span><div><h3>Free inspection</h3><p>We photograph every hit and send a written report the same day.</p></div><span class="mono t">Day 1</span></article>
+    <article class="step"><span class="n">02</span><div><h3>You file the claim</h3><p>One phone call to your insurer. We give you the claim-ready photos to reference.</p></div><span class="mono t">Day 1–2</span></article>
+    <article class="step"><span class="n">03</span><div><h3>We meet the adjuster</h3><p>We're on the roof with them, pointing out damage they might otherwise miss.</p></div><span class="mono t">Day 5–10</span></article>
+    <article class="step"><span class="n">04</span><div><h3>Approved scope</h3><p>You pay only your deductible. We never waive or "cover" it; that's insurance fraud in Texas.</p></div><span class="mono t">Day 10–20</span></article>
+    <article class="step"><span class="n">05</span><div><h3>New roof in a day</h3><p>Pick your color, we install, magnet-sweep the yard and register your warranty.</p></div><span class="mono t">Install day</span></article>
+  </div>
+  <div class="bar" aria-hidden="true"><i></i></div>
+</div></section>
+
+<section class="sec" id="services"><div class="wrap">
+  <span class="kicker mono">Services</span>
+  <h2 class="h" data-split>Four things. <span class="y">Done properly.</span></h2>
+  <div class="svcs">
+    <div class="svc" data-reveal style="--rd:0"><svg class="ic" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 30 23 12l19 18M10 36h26"/></svg><div><h3>Roof replacement</h3><p>Tear-off to final nail in one day for most homes, with a full yard magnet sweep.</p></div></div>
+    <div class="svc" data-reveal style="--rd:100"><svg class="ic" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="14" cy="14" r="4"/><circle cx="30" cy="22" r="3"/><circle cx="20" cy="32" r="5"/></svg><div><h3>Hail &amp; wind repair</h3><p>Missing shingles, lifted tabs, dented vents and flashing, usually fixed within 48 hours.</p></div></div>
+    <div class="svc" data-reveal style="--rd:200"><svg class="ic" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="10" y="6" width="26" height="34"/><path d="M16 16h14M16 23h14M16 30h8"/></svg><div><h3>Insurance claims</h3><p>Documentation, adjuster meetings and supplements so nothing gets left off your scope.</p></div></div>
+    <div class="svc" data-reveal style="--rd:300"><svg class="ic" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 12h34v6H6zM12 18v18M34 18v18"/></svg><div><h3>Gutters &amp; vents</h3><p>Seamless 6-inch gutters, guards and attic ventilation that cuts summer cooling bills.</p></div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="area" style="padding-top:0"><div class="wrap area">
+  <div>
+    <span class="kicker mono">Service area</span>
+    <h2 class="h" data-split>All of DFW. <span class="y">No trip fees.</span></h2>
+    <ul class="list" data-reveal>
+      <li>Dallas <span>HQ</span></li><li>Plano <span>12 mi</span></li><li>Frisco <span>18 mi</span></li><li>McKinney <span>26 mi</span></li><li>Fort Worth <span>32 mi</span></li><li>Arlington <span>20 mi</span></li><li>Irving <span>11 mi</span></li><li>Denton <span>38 mi</span></li><li>Garland <span>14 mi</span></li><li>Rockwall <span>24 mi</span></li>
+    </ul>
+  </div>
+  <div class="radar" data-reveal="scale" aria-label="Map of cities served around Dallas">
+    <div class="rings"></div><div class="cross"></div><div class="cell" style="left:52%;top:18%"></div><div class="sweep"></div>
+    <span class="city hq" style="left:58%;top:52%">DALLAS</span>
+    <span class="city" style="left:60%;top:33%">PLANO</span><span class="city" style="left:52%;top:22%">FRISCO</span><span class="city" style="left:66%;top:17%">MCKINNEY</span>
+    <span class="city" style="left:22%;top:56%">FORT WORTH</span><span class="city" style="left:38%;top:64%">ARLINGTON</span><span class="city" style="left:45%;top:46%">IRVING</span>
+    <span class="city" style="left:36%;top:10%">DENTON</span><span class="city" style="left:70%;top:44%">GARLAND</span><span class="city" style="left:80%;top:52%">ROCKWALL</span>
+  </div>
+</div></section>
+
+<section class="sec rev" style="padding-top:0"><div class="wrap">
+  <span class="kicker mono">From the neighborhood</span>
+  <blockquote class="quote fadeq" id="q" style="margin:24px 0 0">"Two roofers said we needed a whole new roof. Ridgeline found it was <span class="y">just the north slope.</span>"</blockquote>
+  <div class="who"><p id="qw"><b>Dana R.</b> · Frisco · Hail repair</p><div class="dots" role="tablist" aria-label="Reviews"><button aria-label="Review 1" aria-current="true"></button><button aria-label="Review 2" aria-current="false"></button><button aria-label="Review 3" aria-current="false"></button></div></div>
+</div></section>
+
+<section class="book" id="book"><div class="wrap">
+  <div><h2 data-split>Book it.</h2><p class="lede">A free 45-minute inspection. You don't need to be home if we can reach the roof from the yard.</p></div>
+  <form class="form" data-kit novalidate data-done-title="You're booked{n}." data-done-text="We'll call within one business day to pick a time.">
+    <div class="two">
+      <div data-field><label for="r-name">Name</label><input id="r-name" name="name" autocomplete="name" required><span class="err"></span></div>
+      <div data-field><label for="r-phone">Phone</label><input id="r-phone" name="phone" type="tel" autocomplete="tel" required><span class="err"></span></div>
+    </div>
+    <div data-field><label for="r-addr">Address or ZIP</label><input id="r-addr" name="address" autocomplete="street-address" required><span class="err"></span></div>
+    <div data-field><label for="r-what">What happened?</label><select id="r-what" name="issue"><option>Hail damage</option><option>Wind damage</option><option>Active leak</option><option>Roof is getting old</option><option>Not sure</option></select></div>
+    <button class="btn btn-y" type="submit" style="width:100%">Book my free inspection</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap">
+  <div><a class="logo" href="#top" style="font-size:28px">Ridgeline Roofing</a><p style="margin-top:10px;max-width:32ch">Residential roofing for Dallas–Fort Worth since 2009. Licensed, insured, locally owned.</p></div>
+  <div><h4>Call</h4><ul><li>(214) 555-0147</li><li>24/7 for leaks</li></ul></div>
+  <div><h4>Office</h4><ul><li>Plano, TX</li><li>Mon–Sat 7–7</li></ul></div>
+  <div><h4>Ridgeline</h4><ul><li>© 2026</li><li>Sample site</li></ul></div>
+</div></footer>
+
+<div class="callbar"><a href="tel:+12145550147">Call now</a><a href="#book">Free inspection</a></div>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  // Storm canvas: wind-driven hail and lightning
+  const c=document.getElementById("storm"),x=c.getContext("2d"),flash=document.getElementById("flash");
+  let w,h,dpr,stones=[],bolt=null,next=performance.now()+2500;
+  function size(){dpr=Math.min(devicePixelRatio||1,2);w=c.clientWidth;h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+    stones=Array.from({length:Math.round(w*h/9000)},()=>({x:Math.random()*w,y:Math.random()*h,v:6+Math.random()*9,r:.8+Math.random()*1.8,l:10+Math.random()*22}));}
+  function mkBolt(){const pts=[];let px=w*(.25+Math.random()*.6),py=0;while(py<h*.75){pts.push([px,py]);px+=(Math.random()-.5)*70;py+=24+Math.random()*40;}return{pts,life:1};}
+  function draw(t){
+    x.clearRect(0,0,w,h);
+    if(t>next&&!FX.reduce){bolt=mkBolt();next=t+3500+Math.random()*5000;flash.style.transition="none";flash.style.opacity=.55;requestAnimationFrame(()=>{flash.style.transition="opacity 1.2s";flash.style.opacity=0;});}
+    if(bolt){x.strokeStyle=`rgba(230,236,255,${bolt.life})`;x.lineWidth=2.2;x.shadowColor="#c9d4ff";x.shadowBlur=18;x.beginPath();bolt.pts.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.stroke();x.shadowBlur=0;bolt.life-=.04;if(bolt.life<=0)bolt=null;}
+    x.strokeStyle="rgba(220,226,235,.45)";x.lineCap="round";
+    stones.forEach(s=>{x.lineWidth=s.r;x.beginPath();x.moveTo(s.x,s.y);x.lineTo(s.x-s.l*.35,s.y-s.l);x.stroke();
+      if(!FX.reduce){s.y+=s.v;s.x+=s.v*.35;if(s.y>h+20){s.y=-20;s.x=Math.random()*w*1.2-w*.2;}}});
+    if(!FX.reduce)requestAnimationFrame(draw);
+  }
+  size();addEventListener("resize",size);requestAnimationFrame(draw);
+
+  // Review rotator
+  const R=[
+    ['"Two roofers said we needed a whole new roof. Ridgeline found it was <span class="y">just the north slope.</span>"','<b>Dana R.</b> · Frisco · Hail repair'],
+    ['"They met the adjuster and pointed out the vents he skipped. <span class="y">Approved the next week.</span>"','<b>Marcus T.</b> · Arlington · Insurance claim'],
+    ['"Crew showed up at 7, roof was done by 4. <span class="y">Not one nail left in the yard.</span>"','<b>Priya S.</b> · McKinney · Replacement']];
+  const q=document.getElementById("q"),qw=document.getElementById("qw"),dots=[...document.querySelectorAll(".dots button")];let i=0,tm;
+  function show(n){i=n;q.classList.add("out");setTimeout(()=>{q.innerHTML=R[n][0];qw.innerHTML=R[n][1];q.classList.remove("out");},350);dots.forEach((d,k)=>d.setAttribute("aria-current",k===n));clearInterval(tm);tm=setInterval(()=>show((i+1)%R.length),7000);}
+  dots.forEach((d,k)=>d.addEventListener("click",()=>show(k)));tm=setInterval(()=>show((i+1)%R.length),7000);
+})();
+</script>
+</body>
+</html>

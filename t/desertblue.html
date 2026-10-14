@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Desert Blue Pools · Scottsdale, AZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Outfit:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --ink:#06293a; --pool:#00a6d6; --deep:#035a7a; --sun:#ffb547; --coral:#ff7a6b; --bg:#f2f8fa; --white:#fff; --muted:#4c6672; --line:#d3e3e9; --ok:#1fbf7a;
+  --display:"Unbounded",system-ui,sans-serif; --body:"Outfit",system-ui,sans-serif;
+  --gl:max(18px,env(safe-area-inset-left,0px)); --gr:max(18px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 var(--body)}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 26px;border-radius:18px;font:600 16px var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.btn:hover{transform:translateY(-3px)}
+.btn-s{background:var(--sun);color:#3a2300;box-shadow:0 12px 26px -12px rgba(255,181,71,.9)}
+.btn-i{background:var(--ink);color:#fff}
+.btn-w{background:rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.5)}
+.kick{font:700 12px var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--pool)}
+
+.nav{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:var(--gl);right:var(--gr);z-index:50;max-width:1240px;margin:0 auto;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:22px;box-shadow:0 14px 40px -20px rgba(6,41,58,.45);display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 8px 8px 18px}
+.logo{display:flex;align-items:center;gap:10px;font:800 16px var(--display);text-decoration:none;letter-spacing:-.02em;white-space:nowrap}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-weight:600;color:var(--muted);font-size:15px}
+.nav ul a:hover{color:var(--pool)}
+.slot{font:600 13px var(--body);color:var(--deep);background:#e2f5fb;border-radius:999px;padding:7px 12px;white-space:nowrap}
+.nav .btn{min-height:44px;padding:0 18px;font-size:15px;border-radius:14px}
+
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;color:#fff;display:grid;align-items:end;background:linear-gradient(160deg,#16c0e8,#0288b8 55%,#035a7a)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,40,60,0) 40%,rgba(3,40,60,.55));pointer-events:none}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-block:140px 72px}
+.hero h1{font:800 clamp(48px,9vw,150px)/.9 var(--display);letter-spacing:-.05em;max-width:11ch;text-shadow:0 10px 40px rgba(3,40,60,.3)}
+.hero .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-top:28px}
+.hero p{max-width:42ch;font-size:19px;color:#e6f8fd}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.ring{position:absolute;z-index:1;right:12%;top:20%;width:clamp(110px,14vw,200px);animation:bob 4.5s ease-in-out infinite;filter:drop-shadow(0 30px 20px rgba(3,40,60,.35))}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-18px) rotate(6deg)}}
+.leaf{position:absolute;z-index:1;width:40px;animation:float 14s linear infinite;opacity:.9}
+@keyframes float{from{transform:translate(0,0) rotate(0)}to{transform:translate(-60vw,10vh) rotate(260deg)}}
+
+.sec{padding-block:clamp(88px,11vw,150px)}
+h2.h{font:800 clamp(34px,5.2vw,76px)/.95 var(--display);letter-spacing:-.045em}
+h2.h span{color:var(--pool)}
+
+/* Chemistry */
+.chem{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,64px);align-items:center}
+.dials{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:36px}
+.dial{background:#fff;border:1.5px solid var(--line);border-radius:26px;padding:20px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.dial svg{width:84px;height:84px;transform:rotate(-90deg)}
+.dial circle{fill:none;stroke-width:9}
+.dial .bg{stroke:#e5f1f5}
+.dial .fg{stroke:var(--c,var(--pool));stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)}
+.dial.in .fg{stroke-dashoffset:var(--o)}
+.dial b{display:block;font:800 26px var(--display);letter-spacing:-.03em}
+.dial span{font-size:14px;color:var(--muted)}
+.dial em{font-style:normal;font-size:12px;font-weight:700;color:var(--ok);display:block}
+.phone{justify-self:center;width:min(340px,100%);background:var(--ink);border-radius:46px;padding:14px;box-shadow:0 40px 80px -40px rgba(6,41,58,.7)}
+.scr{background:#eef4f6;border-radius:34px;padding:22px 16px;display:grid;gap:10px;min-height:520px;align-content:start}
+.scr .who{text-align:center;font-weight:700;font-size:14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.scr .who small{display:block;font-weight:500;color:var(--muted)}
+.msg{max-width:84%;background:#fff;border-radius:20px 20px 20px 6px;padding:10px 14px;font-size:15px;line-height:1.45;opacity:0;transform:translateY(12px) scale(.96);transition:.5s cubic-bezier(.2,.8,.2,1)}
+.msg.me{justify-self:end;background:var(--pool);color:#fff;border-radius:20px 20px 6px 20px}
+.msg.on{opacity:1;transform:none}
+.msg .pic{height:140px;border-radius:14px;margin-bottom:8px;background:radial-gradient(circle at 30% 30%,#7fe3ff,#00a6d6 55%,#037aa6);position:relative;overflow:hidden}
+.msg .pic::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 18px,rgba(255,255,255,.22) 18px 22px);animation:shim 4s linear infinite}
+@keyframes shim{to{background-position:200px 0}}
+.typing{display:flex;gap:4px;padding:12px 14px;background:#fff;border-radius:20px;width:max-content}
+.typing i{width:7px;height:7px;border-radius:50%;background:#9db4bd;animation:ty 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes ty{50%{transform:translateY(-4px)}}
+
+/* Plans */
+.plans-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px}
+.bill{display:flex;align-items:center;gap:12px;font-weight:600}
+.tog{width:58px;height:32px;border-radius:999px;background:var(--line);border:0;position:relative;cursor:pointer;transition:background .3s}
+.tog::after{content:"";position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.tog[aria-checked=true]{background:var(--pool)}
+.tog[aria-checked=true]::after{transform:translateX(26px)}
+.save{background:#fff2dd;color:#8a5200;font-size:13px;font-weight:700;border-radius:999px;padding:4px 10px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;align-items:stretch}
+.plan{background:#fff;border:1.5px solid var(--line);border-radius:30px;padding:28px;display:flex;flex-direction:column;gap:14px;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.plan:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(6,41,58,.35)}
+.plan h3{font:700 20px var(--display);letter-spacing:-.02em}
+.plan .price{font:800 52px/1 var(--display);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.plan .price small{font:500 15px var(--body);color:var(--muted);letter-spacing:0}
+.plan ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;font-size:15px;flex:1}
+.plan li{display:flex;gap:10px}
+.plan li::before{content:"";width:20px;height:20px;border-radius:50%;flex:none;background:#dff5fc url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='m6 10 3 3 5-6' fill='none' stroke='%2300a6d6' stroke-width='2.2' stroke-linecap='round'/></svg>") center/contain}
+.plan.feat{background:var(--ink);color:#e6f6fb;border-color:var(--ink)}
+.plan.feat .price small{color:#8fb3c2}
+.plan .badge{align-self:start;background:var(--sun);color:#3a2300;font:700 11px var(--display);letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:6px 10px}
+
+.gtc{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,64px);align-items:center}
+.cmp{aspect-ratio:5/4;border-radius:34px;--cmp-line:#fff;--cmp-knob:var(--ink)}
+.cmp svg{width:100%;height:100%}
+
+/* Visit timeline */
+.visit{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:44px;position:relative}
+.visit::before{content:"";position:absolute;left:4%;right:4%;top:34px;height:3px;background:var(--line)}
+.visit::after{content:"";position:absolute;left:4%;top:34px;height:3px;background:var(--pool);width:calc(92% * var(--vp,0));transition:width .2s}
+.vs{position:relative;z-index:1;display:grid;justify-items:center;text-align:center;gap:10px}
+.vs i{width:68px;height:68px;border-radius:50%;background:#fff;border:3px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:26px;transition:border-color .4s,transform .5s cubic-bezier(.34,1.56,.64,1)}
+.vs.on i{border-color:var(--pool);transform:scale(1.08)}
+.vs b{font:700 15px var(--display);letter-spacing:-.02em}
+.vs span{font-size:14px;color:var(--muted)}
+
+/* ZIP checker */
+.zip{background:var(--pool);color:#fff;border-radius:40px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;position:relative;overflow:hidden}
+.zip::before{content:"";position:absolute;right:-80px;bottom:-80px;width:320px;height:320px;border-radius:50%;border:50px solid rgba(255,255,255,.12)}
+.zrow{display:flex;gap:10px;flex-wrap:wrap;position:relative}
+.zrow input{flex:1 1 180px;min-height:60px;border-radius:18px;border:0;padding:0 20px;font:700 22px var(--display);letter-spacing:.08em;color:var(--ink)}
+.zres{min-height:28px;margin-top:14px;font-weight:600;position:relative}
+.towns{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;position:relative}
+.towns span{background:rgba(255,255,255,.16);border-radius:999px;padding:6px 12px;font-size:14px}
+
+.sign{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(28px,5vw,80px);align-items:start}
+.form{background:#fff;border:1.5px solid var(--line);border-radius:30px;padding:clamp(22px,3vw,34px);display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font-weight:600;font-size:14px}
+[data-field] input,[data-field] select{width:100%;min-height:54px;border-radius:16px;border:1.5px solid var(--line);background:var(--bg);font:inherit;padding:0 16px;color:var(--ink)}
+[data-field] input:focus,[data-field] select:focus{outline:none;border-color:var(--pool);box-shadow:0 0 0 4px rgba(0,166,214,.15)}
+.err{font-size:13px;color:#d33}
+.form-done{background:#fff;border:1.5px solid var(--pool);border-radius:30px;padding:34px}
+.form-done h3{font:800 30px var(--display);letter-spacing:-.04em;color:var(--pool)}
+.form-done p{color:var(--muted)}
+
+.revs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.rv{background:#fff;border:1.5px solid var(--line);border-radius:28px;padding:28px;display:grid;gap:12px}
+.rv p{font:500 20px/1.4 var(--body)}
+.rv cite{font-style:normal;color:var(--muted)}
+.rv cite b{color:var(--ink)}
+
+footer{background:var(--ink);color:#bcd3dc;padding-block:64px calc(100px + env(safe-area-inset-bottom,0px));margin-top:clamp(60px,8vw,120px)}
+footer .big{font:800 clamp(48px,10vw,160px)/.9 var(--display);letter-spacing:-.06em;color:#fff}
+footer .big span{color:var(--pool)}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:28px}
+@media (max-width:1000px){.nav ul{display:none}.chem,.gtc,.sign,.zip{grid-template-columns:1fr}.plans{grid-template-columns:1fr}.visit{grid-template-columns:1fr 1fr 1fr;row-gap:28px}.visit::before,.visit::after{display:none}}
+@media (max-width:600px){.slot{display:none}.dials{grid-template-columns:1fr}.two,.revs{grid-template-columns:1fr}.visit{grid-template-columns:1fr 1fr}.ring{right:6%;top:16%}}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <a class="logo" href="#top"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#00a6d6"/><path d="M5 16c3-3 6 3 9 0s6 3 9 0" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>Desert Blue</a>
+  <ul><li><a href="#water">Your water</a></li><li><a href="#plans">Plans</a></li><li><a href="#green">Green pools</a></li><li><a href="#zip">Service area</a></li></ul>
+  <span class="slot" id="slot">Next opening: —</span>
+  <a class="btn btn-i" href="#signup">Start service</a>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="water" aria-hidden="true"></canvas>
+  <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><defs><mask id="hole"><rect width="200" height="200" fill="#fff"/><circle cx="100" cy="100" r="42" fill="#000"/></mask></defs><g mask="url(#hole)"><circle cx="100" cy="100" r="92" fill="#ff7a6b"/><g fill="#fff"><path d="M100 100 L100 8 A92 92 0 0 1 180 54Z"/><path d="M100 100 L180 146 A92 92 0 0 1 100 192Z"/><path d="M100 100 L20 146 A92 92 0 0 1 20 54Z"/></g></g><ellipse cx="72" cy="40" rx="20" ry="8" fill="#fff" opacity=".5" transform="rotate(-30 72 40)"/></svg>
+  <svg class="leaf" style="left:90%;top:70%" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 36C4 14 18 4 36 4c0 18-10 32-32 32Z" fill="#7cc46a"/><path d="M6 34 30 10" stroke="#4f9a4a" stroke-width="2"/></svg>
+  <div class="wrap">
+    <span class="kick" data-reveal="fade" style="color:#bff0ff">Weekly pool service · Scottsdale, AZ</span>
+    <h1 data-split style="margin-top:16px">Crystal clear. Every single week.</h1>
+    <div class="row">
+      <p data-reveal style="--rd:500">Chemicals, cleaning and equipment checks for Scottsdale and Paradise Valley pools, with a photo of your water texted after every visit.</p>
+      <div class="ctas" data-reveal style="--rd:650"><a class="btn btn-s" href="#signup" data-magnetic>Start weekly service →</a><a class="btn btn-w" href="#plans">Compare plans</a></div>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="water"><div class="wrap chem">
+  <div>
+    <span class="kick">Your water, this week</span>
+    <h2 class="h" data-split style="margin-top:14px">We test it. <span>You see it.</span></h2>
+    <p style="color:var(--muted);margin-top:18px;max-width:46ch" data-reveal>Every visit we log four readings and text them to you with a photo. Here's what a balanced Scottsdale pool looks like in October.</p>
+    <div class="dials" id="dials">
+      <div class="dial" style="--o:28;--c:#00a6d6"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.9" pathLength="100"/><circle class="fg" cx="18" cy="18" r="15.9" pathLength="100"/></svg><div><b>7.4</b><span>pH · ideal 7.2–7.6</span><em>● Balanced</em></div></div>
+      <div class="dial" style="--o:40;--c:#1fbf7a"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.9" pathLength="100"/><circle class="fg" cx="18" cy="18" r="15.9" pathLength="100"/></svg><div><b>3.0 ppm</b><span>Free chlorine · ideal 2–4</span><em>● Balanced</em></div></div>
+      <div class="dial" style="--o:50;--c:#ffb547"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.9" pathLength="100"/><circle class="fg" cx="18" cy="18" r="15.9" pathLength="100"/></svg><div><b>100 ppm</b><span>Alkalinity · ideal 80–120</span><em>● Balanced</em></div></div>
+      <div class="dial" style="--o:18;--c:#ff7a6b"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.9" pathLength="100"/><circle class="fg" cx="18" cy="18" r="15.9" pathLength="100"/></svg><div><b>82°F</b><span>Water temperature</span><em style="color:var(--muted)">Swim weather</em></div></div>
+    </div>
+  </div>
+  <div class="phone" data-reveal="scale"><div class="scr" id="chat">
+    <div class="who">Desert Blue · Marco<small>Your pool tech</small></div>
+  </div></div>
+</div></section>
+
+<section class="sec" id="plans" style="padding-top:0"><div class="wrap">
+  <div class="plans-head"><div><span class="kick">Plans</span><h2 class="h" data-split style="margin-top:14px">Simple pricing. <span>Chemicals included.</span></h2></div>
+    <div class="bill">Monthly <button class="tog" id="tog" role="switch" aria-checked="false" aria-label="Pay quarterly"></button> Quarterly <span class="save">Save 10%</span></div></div>
+  <div class="plans">
+    <div class="plan" data-reveal><h3>Chemical only</h3><div class="price">$<span data-m="95">95</span><small>/mo</small></div><ul><li>Weekly test &amp; balance</li><li>All chemicals included</li><li>Basket emptying</li></ul><a class="btn btn-i" href="#signup" style="justify-content:center">Choose</a></div>
+    <div class="plan feat" data-reveal style="--rd:100"><span class="badge">Most popular</span><h3>Full service</h3><div class="price">$<span data-m="145">145</span><small>/mo</small></div><ul><li>Everything in Chemical only</li><li>Skim, brush &amp; vacuum</li><li>Filter cleans twice a year</li><li>Equipment check every visit</li></ul><a class="btn btn-s" href="#signup" style="justify-content:center">Choose</a></div>
+    <div class="plan" data-reveal style="--rd:200"><h3>Green to clean</h3><div class="price">$<span>350</span><small> once</small></div><ul><li>Shock &amp; algae treatment</li><li>Three follow-up visits</li><li>Clear water in 72 hours</li></ul><a class="btn btn-i" href="#signup" style="justify-content:center">Book</a></div>
+  </div>
+</div></section>
+
+<section class="sec" id="green" style="padding-top:0"><div class="wrap gtc">
+  <div><span class="kick">Green to clean</span><h2 class="h" data-split style="margin-top:14px">72 hours. <span>Drag to see.</span></h2><p style="color:var(--muted);margin-top:18px;max-width:40ch" data-reveal>A foreclosure pool in Fountain Hills on Monday, and the same pool on Thursday. Shock, brush, filter, repeat.</p></div>
+  <div class="cmp" data-reveal="scale">
+    <svg viewBox="0 0 500 400" aria-label="Green pool before treatment"><rect width="500" height="400" fill="#e8dcc6"/><rect x="40" y="40" width="420" height="320" rx="60" fill="#c9bfa8"/><rect x="58" y="58" width="384" height="284" rx="46" fill="#4f6b2a"/><g fill="#6b8a33" opacity=".8"><circle cx="150" cy="140" r="40"/><circle cx="320" cy="220" r="60"/><circle cx="220" cy="280" r="30"/></g><g fill="#3c5220"><circle cx="380" cy="110" r="10"/><circle cx="120" cy="260" r="14"/></g><path d="M330 90l20 10-14 8z" fill="#7a5a2c"/></svg>
+    <div class="after"><svg viewBox="0 0 500 400" aria-label="Same pool after treatment"><defs><linearGradient id="pw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fe3ff"/><stop offset="1" stop-color="#00a6d6"/></linearGradient></defs><rect width="500" height="400" fill="#e8dcc6"/><rect x="40" y="40" width="420" height="320" rx="60" fill="#d9d1bd"/><rect x="58" y="58" width="384" height="284" rx="46" fill="url(#pw)"/><g stroke="#fff" stroke-width="3" opacity=".5" fill="none"><path d="M90 120q30-14 60 0t60 0M220 220q30-14 60 0t60 0M120 290q30-14 60 0"/></g><g stroke="#fff" stroke-width="4"><path d="M400 70v50M420 70v50M400 86h20M400 104h20"/></g></svg></div>
+    <span class="tag l">Monday</span><span class="tag r">Thursday</span>
+    <input type="range" min="0" max="100" value="50" aria-label="Compare green and clean pool"><span class="handle"></span>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="kick">Every visit</span><h2 class="h" data-split style="margin-top:14px">Six steps, <span>every week.</span></h2>
+  <div class="visit" id="visit">
+    <div class="vs"><i>🧪</i><b>Test</b><span>Four readings, logged</span></div>
+    <div class="vs"><i>⚖️</i><b>Balance</b><span>Dosed for AZ hard water</span></div>
+    <div class="vs"><i>🍃</i><b>Skim</b><span>Surface &amp; baskets</span></div>
+    <div class="vs"><i>🧹</i><b>Brush</b><span>Walls, steps, tile line</span></div>
+    <div class="vs"><i>⚙️</i><b>Check gear</b><span>Pump, filter, heater</span></div>
+    <div class="vs"><i>📸</i><b>Text you</b><span>Photo + readings</span></div>
+  </div>
+</div></section>
+
+<section class="sec" id="zip" style="padding-top:0"><div class="wrap">
+  <div class="zip" data-reveal>
+    <div><span class="kick" style="color:#cff3ff">Service area</span><h2 class="h" style="margin-top:14px;color:#fff">Do we come to you?</h2><div class="towns"><span>Scottsdale</span><span>Paradise Valley</span><span>Fountain Hills</span><span>Cave Creek</span><span>North Phoenix</span><span>Tempe</span></div></div>
+    <div><label for="zipin" style="font-weight:600">Enter your ZIP code</label><div class="zrow" style="margin-top:10px"><input id="zipin" inputmode="numeric" maxlength="5" placeholder="85254" autocomplete="postal-code"><button class="btn btn-s" id="zipbtn" type="button">Check</button></div><div class="zres" id="zres" aria-live="polite"></div></div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="kick">Reviews</span><h2 class="h" data-split style="margin-top:14px">Clear water. <span>Happy neighbors.</span></h2>
+  <div class="revs">
+    <figure class="rv" data-reveal style="margin:0"><span style="color:var(--sun);letter-spacing:2px">★★★★★</span><p>"The weekly photo is such a small thing, but I actually trust what's happening now. Perfect water all summer."</p><cite><b>Heather M.</b> · North Scottsdale</cite></figure>
+    <figure class="rv" data-reveal style="margin:0;--rd:120"><span style="color:var(--sun);letter-spacing:2px">★★★★★</span><p>"They caught a failing pump bearing early and saved us a $1,400 replacement in July."</p><cite><b>Victor A.</b> · Paradise Valley</cite></figure>
+  </div>
+</div></section>
+
+<section class="sec" id="signup" style="padding-top:0"><div class="wrap sign">
+  <div><span class="kick">Start service</span><h2 class="h" data-split style="margin-top:14px">First visit <span>within 5 days.</span></h2><p style="color:var(--muted);margin-top:18px;max-width:40ch">No contracts. Cancel anytime with a text. (480) 555-0158</p></div>
+  <form class="form" data-kit novalidate data-done-title="Welcome aboard{n}!" data-done-text="We'll text you within one business day to schedule your first visit.">
+    <div class="two">
+      <div data-field><label for="d-name">Name</label><input id="d-name" name="name" autocomplete="name" required><span class="err"></span></div>
+      <div data-field><label for="d-phone">Mobile</label><input id="d-phone" name="phone" type="tel" autocomplete="tel" required><span class="err"></span></div>
+    </div>
+    <div data-field><label for="d-addr">Pool address</label><input id="d-addr" name="address" autocomplete="street-address" required><span class="err"></span></div>
+    <div data-field><label for="d-plan">Plan</label><select id="d-plan" name="plan"><option>Chemical only · $95/mo</option><option selected>Full service · $145/mo</option><option>Green to clean · $350</option></select></div>
+    <button class="btn btn-s" type="submit" style="justify-content:center">Start my service</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap"><div class="big">Desert <span>Blue</span></div><div class="row"><span>Weekly pool service · Scottsdale, AZ</span><span>(480) 555-0158</span><span>© 2026 · Sample site</span></div></div></footer>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  // WebGL water
+  (function(){const c=$("water");const gl=c.getContext("webgl",{premultipliedAlpha:false,antialias:false});if(!gl)return;
+    const vs="attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
+    const fs=`precision mediump float;uniform vec2 r;uniform float t;
+      void main(){vec2 uv=gl_FragCoord.xy/r.y*2.6;vec2 q=uv;
+        for(int n=1;n<5;n++){float f=float(n);q+=vec2(.65/f*sin(f*q.y+t*.55+.3*f),.45/f*sin(f*q.x+t*.45+.3*f+1.6));}
+        float v=sin(q.x*2.1)+sin(q.y*2.3);float ca=pow(.5+.5*cos(v*3.1),10.)+.6*pow(.5+.5*cos(v*5.3+1.),18.);
+        vec2 s=gl_FragCoord.xy/r;vec3 deep=vec3(.01,.35,.5),shal=vec3(.05,.72,.86);
+        vec3 col=mix(deep,shal,s.y*.9+.1*sin(q.x))+ca*vec3(.55,.9,1.)*.75;
+        gl_FragColor=vec4(col,1.);}`;
+    const sh=(ty,src)=>{const s=gl.createShader(ty);gl.shaderSource(s,src);gl.compileShader(s);return s;};
+    const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;gl.useProgram(pr);
+    const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+    const loc=gl.getAttribLocation(pr,"p");gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+    const ur=gl.getUniformLocation(pr,"r"),ut=gl.getUniformLocation(pr,"t");
+    function size(){const d=Math.min(devicePixelRatio||1,1.5);c.width=c.clientWidth*d;c.height=c.clientHeight*d;gl.viewport(0,0,c.width,c.height);}
+    size();addEventListener("resize",size);const t0=performance.now();let vis=true;
+    new IntersectionObserver(e=>{vis=e[0].isIntersecting;}).observe(c);
+    (function f(){if(vis){gl.uniform2f(ur,c.width,c.height);gl.uniform1f(ut,(performance.now()-t0)/1000);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);}if(!FX.reduce)requestAnimationFrame(f);})();
+  })();
+
+  // Next opening (weekday, 2 days out)
+  (function(){const d=new Date();d.setDate(d.getDate()+2);while(d.getDay()===0)d.setDate(d.getDate()+1);$("slot").textContent="Next opening: "+d.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});})();
+
+  // Dials + chat reveal
+  const dials=[...document.querySelectorAll(".dial")],chat=$("chat");let played=false;
+  const M=[["me",""],["","<div class='pic'></div>Pool's looking great today, Heather 👌"],["","pH 7.4 · chlorine 3.0 · alk 100. Filter pressure normal."],["","Brushed the tile line, emptied both baskets. See you Thursday!"],["me","You're the best, thank you!"]];
+  function play(){if(played)return;played=true;dials.forEach((d,i)=>setTimeout(()=>d.classList.add("in"),i*150));
+    let i=1;const add=()=>{if(i>=M.length)return;const ty=document.createElement("div");ty.className="typing";ty.innerHTML="<i></i><i></i><i></i>";if(M[i][0]==="me")ty.style.justifySelf="end";chat.append(ty);
+      setTimeout(()=>{ty.remove();const m=document.createElement("div");m.className="msg "+M[i][0];m.innerHTML=M[i][1];chat.append(m);requestAnimationFrame(()=>m.classList.add("on"));i++;setTimeout(add,700);},FX.reduce?0:900);};add();}
+  new IntersectionObserver(e=>{if(e[0].isIntersecting)play();},{threshold:.3}).observe($("dials"));
+
+  // Billing toggle
+  const tog=$("tog");tog.onclick=()=>{const q=tog.getAttribute("aria-checked")!=="true";tog.setAttribute("aria-checked",q);document.querySelectorAll("[data-m]").forEach(el=>{const v=+el.dataset.m;el.textContent=q?Math.round(v*.9):v;if(!FX.reduce)el.animate([{opacity:0,transform:"translateY(-8px)"},{opacity:1,transform:"none"}],{duration:350});});};
+
+  // Visit timeline
+  const vis=$("visit"),vs=[...vis.querySelectorAll(".vs")];
+  FX.onScroll.push(()=>{const r=vis.getBoundingClientRect();const p=FX.clamp((innerHeight*.8-r.top)/(innerHeight*.5),0,1);vis.style.setProperty("--vp",p);vs.forEach((s,i)=>s.classList.toggle("on",p>=i/(vs.length-1)-.01));});
+
+  // ZIP checker
+  const Z={"85250":"Scottsdale","85251":"Scottsdale","85254":"Scottsdale","85255":"North Scottsdale","85257":"Scottsdale","85258":"Scottsdale","85259":"Scottsdale","85260":"Scottsdale","85262":"North Scottsdale","85266":"North Scottsdale","85253":"Paradise Valley","85268":"Fountain Hills","85331":"Cave Creek","85377":"Carefree","85050":"North Phoenix","85054":"North Phoenix","85281":"Tempe","85282":"Tempe","85284":"Tempe"};
+  function check(){const z=$("zipin").value.trim(),r=$("zres");if(!/^\d{5}$/.test(z)){r.textContent="Enter a 5-digit ZIP code.";return;}
+    r.textContent=Z[z]?`✓ Yes! We service ${Z[z]} (${z}). First visit within 5 days.`:`We're not in ${z} yet. Leave your number below and we'll tell you when we are.`;}
+  $("zipbtn").onclick=check;$("zipin").addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+})();
+</script>
+</body>
+</html>

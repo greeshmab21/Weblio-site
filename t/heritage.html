@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Heritage Slate &amp; Tile · San Antonio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --olive:#1a221c; --olive2:#222c25; --line:#344038; --bone:#ece4d4; --muted:#a3a795; --clay:#c26b3b;
+  --display:"Gloock",Georgia,serif; --body:"Hanken Grotesk",system-ui,sans-serif;
+  --gl:max(24px,env(safe-area-inset-left,0px)); --gr:max(24px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+body{background:var(--olive);color:var(--bone);font:300 17px/1.7 var(--body)}
+a{color:inherit}
+.wrap{max-width:1440px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.cap{font:500 11px var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.link{display:inline-flex;align-items:center;gap:14px;text-decoration:none;font:500 13px var(--body);letter-spacing:.2em;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid var(--clay);transition:gap .4s,color .3s}
+.link:hover{gap:24px;color:var(--clay)}
+
+/* Preloader */
+.loader{position:fixed;inset:0;z-index:100;display:grid;pointer-events:none;animation:lgo .01s 2.3s forwards}
+.loader i{grid-area:1/1;background:var(--olive2);animation:lup 1s 1.5s cubic-bezier(.76,0,.24,1) forwards}
+.loader i:nth-child(2){background:var(--clay);animation-delay:1.35s;z-index:-1}
+.loader .ct{grid-area:1/1;z-index:2;display:flex;justify-content:space-between;align-items:end;padding:0 var(--gr) 32px var(--gl);font:400 clamp(64px,12vw,180px)/.8 var(--display);animation:lfade .4s 1.4s forwards}
+.loader .ct small{font:500 11px var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);padding-bottom:12px}
+@keyframes lup{to{transform:translateY(-101%)}}
+@keyframes lfade{to{opacity:0}}
+@keyframes lgo{to{visibility:hidden}}
+
+/* Nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;mix-blend-mode:difference;padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;min-height:84px;color:#fff}
+.nav .logo{font:400 26px var(--display);text-decoration:none;color:#fff}
+.mbtn{background:none;border:0;color:#fff;font:500 12px var(--body);letter-spacing:.24em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:12px;padding:10px 0}
+.mbtn i{display:grid;gap:5px;width:28px}.mbtn i::before,.mbtn i::after{content:"";height:1px;background:#fff}
+.menu{position:fixed;inset:0;z-index:60;background:var(--clay);color:var(--olive);clip-path:inset(0 0 100% 0);transition:clip-path .9s cubic-bezier(.76,0,.24,1);display:grid;grid-template-rows:auto 1fr auto;padding:calc(24px + env(safe-area-inset-top,0px)) var(--gr) 32px var(--gl)}
+.menu:not(.open){visibility:hidden;transition:clip-path .9s cubic-bezier(.76,0,.24,1),visibility 0s .9s}
+.menu.open{clip-path:inset(0)}
+.menu .top{display:flex;justify-content:space-between;align-items:center;min-height:60px}
+.menu .top button{background:none;border:0;font:500 12px var(--body);letter-spacing:.24em;text-transform:uppercase;cursor:pointer;color:var(--olive)}
+.menu nav{display:grid;align-content:center;gap:4px}
+.menu nav a{font:400 clamp(52px,9vw,128px)/1 var(--display);text-decoration:none;display:flex;align-items:baseline;gap:20px;transform:translateY(40px);opacity:0;transition:transform .8s cubic-bezier(.16,1,.3,1),opacity .6s,padding .4s}
+.menu nav a small{font:500 12px var(--body);letter-spacing:.2em}
+.menu nav a:hover{padding-left:24px}
+.menu.open nav a{transform:none;opacity:1}
+.menu.open nav a:nth-child(2){transition-delay:.06s}.menu.open nav a:nth-child(3){transition-delay:.12s}.menu.open nav a:nth-child(4){transition-delay:.18s}
+.menu .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:15px}
+
+/* Hero */
+.hero{padding-top:clamp(120px,14vw,180px);padding-bottom:clamp(60px,8vw,120px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(32px,5vw,96px);align-items:end}
+.hero h1{font:400 clamp(64px,10.4vw,176px)/.9 var(--display);letter-spacing:-.025em}
+.hero h1 em{font-style:normal;color:var(--clay)}
+.hero .meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;margin-top:clamp(36px,5vw,64px);align-items:end}
+.hero .meta p{max-width:40ch;color:#cfc8b7}
+.arch{position:relative;border-radius:999px 999px 0 0;overflow:hidden;aspect-ratio:3/4.2;width:100%;max-width:100%}
+.arch canvas,.frame canvas{position:absolute;inset:-8% 0;width:100%;height:116%}
+.figcap{display:flex;justify-content:space-between;gap:12px;margin-top:14px}
+
+.strip{border-block:1px solid var(--line);padding-block:22px;--mqs:50s}
+.strip span{font:400 clamp(28px,3.4vw,48px)/1 var(--display);padding-right:48px;white-space:nowrap}
+.strip span::after{content:"✦";color:var(--clay);font-size:.5em;margin-left:48px;vertical-align:middle}
+
+.sec{padding-block:clamp(96px,12vw,180px)}
+.statement{font:400 clamp(32px,4.4vw,68px)/1.12 var(--display);letter-spacing:-.015em;max-width:24ch}
+.statement .w{opacity:.14;transition:opacity .25s}
+.statement .w.on{opacity:1}
+
+h2.h{font:400 clamp(48px,6.4vw,104px)/.95 var(--display);letter-spacing:-.02em}
+h2.h em{font-style:normal;color:var(--clay)}
+
+.mats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,24px);margin-top:56px}
+.mat{display:grid;gap:16px}
+.mat .frame{position:relative;aspect-ratio:3/4;overflow:hidden}
+.mat .frame canvas{transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.mat:hover .frame canvas{transform:scale(1.07)}
+.mat h3{font:400 30px/1 var(--display)}
+.mat dl{display:grid;grid-template-columns:1fr auto;gap:6px 12px;margin:0;font-size:14px}
+.mat dt{color:var(--muted)}.mat dd{margin:0;font-variant-numeric:tabular-nums}
+
+/* Pinned gallery */
+.gal .h-sticky{flex-direction:column;align-items:stretch;justify-content:center;gap:32px}
+.gal .head{display:flex;justify-content:space-between;align-items:end;gap:24px;padding-left:var(--gl);padding-right:var(--gr)}
+.gal .h-track{gap:clamp(16px,2vw,32px);padding-left:var(--gl);padding-right:var(--gr)}
+.proj{flex:none;width:min(560px,80vw);display:grid;gap:16px;text-decoration:none}
+.proj .frame{position:relative;aspect-ratio:4/3;overflow:hidden}
+.proj .yr{position:absolute;left:16px;top:12px;font:400 64px/1 var(--display);color:var(--bone);mix-blend-mode:difference}
+.proj h3{font:400 clamp(26px,2.6vw,36px)/1.05 var(--display)}
+.proj p{color:var(--muted);font-size:15px;max-width:46ch}
+.gal .count{font:400 clamp(40px,5vw,72px)/1 var(--display);font-variant-numeric:tabular-nums}
+.gal .count small{font:500 12px var(--body);letter-spacing:.2em;color:var(--muted)}
+
+.proc{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);margin-top:56px}
+.proc div{padding:36px 32px 0 0}
+.proc div+div{padding-left:32px;border-left:1px solid var(--line)}
+.proc b{font:400 64px/1 var(--display);color:var(--clay)}
+.proc h3{font:400 32px var(--display);margin-top:20px}
+.proc p{color:var(--muted);margin-top:10px}
+
+.consult{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:clamp(32px,6vw,120px);align-items:start}
+.form{display:grid;gap:28px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font:500 11px var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+[data-field] input,[data-field] select{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--bone);font:300 20px var(--body);padding:10px 0;border-radius:0}
+[data-field] select option{color:#111}
+[data-field] input:focus,[data-field] select:focus{outline:none;border-color:var(--clay)}
+.err{font-size:13px;color:#f2967a}
+.sub{justify-self:start;background:var(--clay);color:var(--olive);border:0;font:500 13px var(--body);letter-spacing:.2em;text-transform:uppercase;padding:20px 30px;cursor:pointer;transition:background .3s}
+.sub:hover{background:var(--bone)}
+.form-done h3{font:400 48px/1 var(--display);color:var(--clay)}
+.form-done p{color:var(--muted)}
+
+footer{padding-block:64px calc(100px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+footer .big{font:400 clamp(80px,19vw,320px)/.8 var(--display);letter-spacing:-.04em}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:32px;color:var(--muted);font-size:15px}
+
+.cursor{position:fixed;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--clay);pointer-events:none;z-index:70;transition:width .35s,height .35s,margin .35s,background .3s;display:grid;place-items:center;font:500 10px var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--olive);overflow:hidden}
+.cursor.big{width:96px;height:96px;margin:-48px 0 0 -48px}
+@media (max-width:980px){.hero .wrap,.consult{grid-template-columns:1fr}.arch{max-width:440px}.mats{grid-template-columns:1fr 1fr}.proc{grid-template-columns:1fr}.proc div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}.proc div{padding-bottom:28px}}
+@media (max-width:560px){.mats{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
+@media (hover:none){.cursor{display:none}}
+</style>
+</head>
+<body>
+<div class="loader" aria-hidden="true"><i></i><i></i><div class="ct"><small>Heritage · Slate &amp; Tile<br>San Antonio</small><span id="lc">0</span></div></div>
+
+<header class="nav"><div class="wrap"><a class="logo" href="#top">Heritage</a><button class="mbtn" id="mopen" aria-expanded="false" aria-controls="menu">Menu <i></i></button></div></header>
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="top"><span style="font:400 26px var(--display)">Heritage</span><button id="mclose">Close ✕</button></div>
+  <nav><a href="#materials"><small>01</small>Materials</a><a href="#projects"><small>02</small>Projects</a><a href="#process"><small>03</small>Process</a><a href="#consult"><small>04</small>Consultation</a></nav>
+  <div class="foot"><span>(210) 555-0123</span><span>studio@heritagetile.example</span><span>Southtown, San Antonio</span></div>
+</div>
+
+<header class="hero" id="top"><div class="wrap">
+  <div>
+    <span class="cap" data-reveal="fade" style="--rd:1700">Clay tile · Natural slate · Copper — since 1994</span>
+    <h1 data-split style="--sd:1700ms;margin-top:24px">Roofs that <em>outlast</em> the house.</h1>
+    <div class="meta">
+      <p data-reveal style="--rd:2100">We restore and install clay tile and slate roofs on San Antonio's historic and custom homes, matching original materials down to the color of the clay.</p>
+      <a class="link" href="#consult" data-reveal style="--rd:2250" data-cursor="Book">Book a consultation →</a>
+    </div>
+  </div>
+  <figure style="margin:0;--rd:1800" data-reveal="fade">
+    <div class="arch"><canvas data-tex="clay" data-seed="7" data-parallax=".06"></canvas></div>
+    <figcaption class="figcap cap"><span>Fig. 1 — Reclaimed barrel tile</span><span>Monte Vista, 1927</span></figcaption>
+  </figure>
+</div></header>
+
+<div class="strip mq" aria-hidden="true"><div><span>Reclaimed clay barrel</span><span>Vermont sea-green slate</span><span>Hand-formed copper</span><span>Two-piece mission tile</span></div><div><span>Reclaimed clay barrel</span><span>Vermont sea-green slate</span><span>Hand-formed copper</span><span>Two-piece mission tile</span></div></div>
+
+<section class="sec"><div class="wrap">
+  <span class="cap">The studio</span>
+  <p class="statement" id="stmt" style="margin-top:28px">Some roofs are replaced every twenty years. Ours are handed down. We number every original tile, lift it, and set it back by hand, so a hundred-year-old house keeps the roof it was built with.</p>
+</div></section>
+
+<section class="sec" id="materials" style="padding-top:0"><div class="wrap">
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px"><h2 class="h" data-split>Materials measured <em>in generations</em></h2><span class="cap">Lifespans are typical, with proper maintenance</span></div>
+  <div class="mats">
+    <div class="mat" data-reveal data-cursor="View"><div class="frame"><canvas data-tex="clay" data-seed="3"></canvas></div><h3>Clay barrel</h3><dl><dt>Lifespan</dt><dd>50–100 yrs</dd><dt>Weight</dt><dd>~1,000 lb/sq</dd><dt>Best for</dt><dd>Spanish Revival</dd></dl></div>
+    <div class="mat" data-reveal style="--rd:100" data-cursor="View"><div class="frame"><canvas data-tex="slate" data-seed="11"></canvas></div><h3>Natural slate</h3><dl><dt>Lifespan</dt><dd>75–150 yrs</dd><dt>Weight</dt><dd>~900 lb/sq</dd><dt>Best for</dt><dd>Tudor, Victorian</dd></dl></div>
+    <div class="mat" data-reveal style="--rd:200" data-cursor="View"><div class="frame"><canvas data-tex="concrete" data-seed="5"></canvas></div><h3>Concrete tile</h3><dl><dt>Lifespan</dt><dd>30–50 yrs</dd><dt>Weight</dt><dd>~950 lb/sq</dd><dt>Best for</dt><dd>Mediterranean</dd></dl></div>
+    <div class="mat" data-reveal style="--rd:300" data-cursor="View"><div class="frame"><canvas data-tex="copper" data-seed="9"></canvas></div><h3>Copper</h3><dl><dt>Lifespan</dt><dd>60+ yrs</dd><dt>Patina</dt><dd>15–30 yrs</dd><dt>Best for</dt><dd>Valleys, bays</dd></dl></div>
+  </div>
+</div></section>
+
+<section class="gal" id="projects" data-hscroll><div class="h-sticky">
+  <div class="head"><h2 class="h">Selected <em>restorations</em></h2><div class="count"><span id="pc">01</span><small> / 04</small></div></div>
+  <div class="h-track">
+    <a class="proj" href="#consult" data-cursor="Enquire"><div class="frame"><canvas data-tex="slate" data-seed="21"></canvas><span class="yr">1891</span></div><h3>Victorian on King William Street</h3><p>Replaced 40% of the slate with reclaimed Vermont stone that matched the original sea-green.</p></a>
+    <a class="proj" href="#consult" data-cursor="Enquire"><div class="frame"><canvas data-tex="clay" data-seed="14"></canvas><span class="yr">1927</span></div><h3>Spanish Revival in Monte Vista</h3><p>Lifted, re-felted and relaid 3,200 original clay tiles. Fewer than 90 needed replacing.</p></a>
+    <a class="proj" href="#consult" data-cursor="Enquire"><div class="frame"><canvas data-tex="copper" data-seed="31"></canvas><span class="yr">1938</span></div><h3>Tudor cottage in Olmos Park</h3><p>New slate roof with hand-formed copper valleys and a matching bay window cap.</p></a>
+    <a class="proj" href="#consult" data-cursor="Enquire"><div class="frame"><canvas data-tex="concrete" data-seed="17"></canvas><span class="yr">2019</span></div><h3>New build in The Dominion</h3><p>Two-piece tile in a blended palette chosen to look a century old on day one.</p></a>
+  </div>
+</div></section>
+
+<section class="sec" id="process"><div class="wrap">
+  <h2 class="h" data-split>How a restoration <em>unfolds</em></h2>
+  <div class="proc">
+    <div data-reveal><b>i.</b><h3>Assessment</h3><p>We go up, count broken tiles, check underlayment and decking, and tell you honestly whether you need a restoration or only repairs.</p></div>
+    <div data-reveal style="--rd:120"><b>ii.</b><h3>Sourcing</h3><p>We match your tile or slate from salvage yards and quarries, and hold samples against your roof before ordering.</p></div>
+    <div data-reveal style="--rd:240"><b>iii.</b><h3>Restoration</h3><p>Original pieces are numbered, lifted and relaid by hand. Most homes take two to four weeks.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="consult" style="padding-top:0"><div class="wrap consult">
+  <div><h2 class="h" data-split>Begin with <em>a consultation</em></h2><p style="color:var(--muted);margin-top:24px;max-width:42ch">A roof assessment with written findings and photographs is $150, credited toward your project if you proceed.</p><p class="cap" style="margin-top:28px">(210) 555-0123 · Tue–Sat by appointment</p></div>
+  <form class="form" data-kit novalidate data-done-title="Thank you{n}." data-done-text="We'll write within two business days to arrange your assessment.">
+    <div class="two">
+      <div data-field><label for="h-name">Name</label><input id="h-name" name="name" autocomplete="name" required><span class="err"></span></div>
+      <div data-field><label for="h-email">Email</label><input id="h-email" name="email" type="email" autocomplete="email" required><span class="err"></span></div>
+    </div>
+    <div class="two">
+      <div data-field><label for="h-year">Year built</label><input id="h-year" name="year" inputmode="numeric" placeholder="1928"></div>
+      <div data-field><label for="h-mat">Current roof</label><select id="h-mat" name="material"><option>Clay tile</option><option>Slate</option><option>Concrete tile</option><option>Something else</option></select></div>
+    </div>
+    <button class="sub" type="submit">Request an assessment</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap"><div class="big">Heritage</div><div class="row"><span>Slate &amp; Tile · Southtown, San Antonio</span><span>(210) 555-0123</span><span>© 2026 · Sample site</span></div></div></footer>
+<div class="cursor" id="cur" aria-hidden="true"></div>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  // Loader counter
+  const lc=document.getElementById("lc");let t0=performance.now();
+  (function cnt(t){const p=Math.min((t-t0)/1300,1);lc.textContent=Math.round(100*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(cnt);})(t0);
+
+  // Texture generator
+  function rng(s){return()=>{s=(s*16807)%2147483647;return(s-1)/2147483646;};}
+  function draw(cv){
+    const r=rng(+cv.dataset.seed||1),t=cv.dataset.tex,dpr=Math.min(devicePixelRatio||1,2),w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;
+    cv.width=w*dpr;cv.height=h*dpr;const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);
+    if(t==="clay"){x.fillStyle="#5b2c18";x.fillRect(0,0,w,h);const tw=Math.max(w/7,42),th=tw*1.4;
+      for(let row=-1;row*th*.62<h+th;row++){for(let col=-1;col*tw<w+tw;col++){const cx=col*tw+(row%2?tw/2:0),cy=row*th*.62;const hue=14+r()*12,l=34+r()*16,s=50+r()*14;
+        const g=x.createLinearGradient(cx-tw/2,0,cx+tw/2,0);g.addColorStop(0,`hsl(${hue},${s}%,${l-14}%)`);g.addColorStop(.45,`hsl(${hue},${s}%,${l+8}%)`);g.addColorStop(1,`hsl(${hue},${s}%,${l-18}%)`);
+        x.fillStyle=g;x.beginPath();x.moveTo(cx-tw/2,cy+th);x.lineTo(cx-tw/2,cy+tw/2);x.arc(cx,cy+tw/2,tw/2,Math.PI,0);x.lineTo(cx+tw/2,cy+th);x.closePath();x.fill();
+        x.fillStyle="rgba(0,0,0,.25)";x.fillRect(cx-tw/2,cy+th-6,tw,6);}}}
+    else if(t==="slate"){x.fillStyle="#1e2526";x.fillRect(0,0,w,h);const sw=Math.max(w/6,40),sh=sw*.7;
+      for(let row=0;row*sh*.55<h+sh;row++){for(let col=-1;col*sw<w+sw;col++){const sx=col*sw+(row%2?sw/2:0),sy=row*sh*.55;const l=22+r()*14,hue=180+r()*30;
+        x.fillStyle=`hsl(${hue},${8+r()*10}%,${l}%)`;x.fillRect(sx+1,sy,sw-2,sh);x.fillStyle=`rgba(255,255,255,${.03+r()*.05})`;x.fillRect(sx+1,sy,sw-2,2);
+        x.fillStyle="rgba(0,0,0,.35)";x.fillRect(sx+1,sy+sh-3,sw-2,3);}}}
+    else if(t==="concrete"){x.fillStyle="#6d655a";x.fillRect(0,0,w,h);const sw=Math.max(w/5,50),sh=sw*.5;
+      for(let row=0;row*sh<h+sh;row++){for(let col=-1;col*sw<w+sw;col++){const sx=col*sw+(row%2?sw/3:0),sy=row*sh;const l=44+r()*14;
+        const g=x.createLinearGradient(0,sy,0,sy+sh);g.addColorStop(0,`hsl(32,12%,${l+6}%)`);g.addColorStop(1,`hsl(30,10%,${l-10}%)`);x.fillStyle=g;x.beginPath();x.roundRect?x.roundRect(sx+2,sy+2,sw-4,sh-4,sh*.4):x.rect(sx+2,sy+2,sw-4,sh-4);x.fill();}}}
+    else{const g=x.createLinearGradient(0,0,w,h);g.addColorStop(0,"#b0602f");g.addColorStop(.5,"#d99a62");g.addColorStop(1,"#8a4a26");x.fillStyle=g;x.fillRect(0,0,w,h);
+      for(let i=0;i<220;i++){const px=r()*w,py=r()*h,rad=4+r()*w*.08;const gg=x.createRadialGradient(px,py,0,px,py,rad);gg.addColorStop(0,`rgba(${90+r()*40},${150+r()*40},${130+r()*30},${.35+r()*.4})`);gg.addColorStop(1,"rgba(90,160,140,0)");x.fillStyle=gg;x.fillRect(px-rad,py-rad,rad*2,rad*2);}
+      x.strokeStyle="rgba(60,30,15,.35)";for(let i=1;i<6;i++){x.beginPath();x.moveTo(0,h*i/6);x.lineTo(w,h*i/6);x.stroke();}}
+    // grain
+    const n=Math.round(w*h/40);x.fillStyle="rgba(255,255,255,.035)";for(let i=0;i<n;i++)x.fillRect(r()*w,r()*h,1,1);
+  }
+  const cvs=[...document.querySelectorAll("canvas[data-tex]")];
+  const all=()=>cvs.forEach(draw);all();let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(all,200);});addEventListener("load",all);
+
+  // Statement lit word by word on scroll
+  const st=document.getElementById("stmt");st.innerHTML=st.textContent.split(" ").map(w=>`<span class="w">${w}</span>`).join(" ");
+  const ws=[...st.querySelectorAll(".w")];
+  if(!FX.reduce)FX.onScroll.push(()=>{const r=st.getBoundingClientRect();const p=FX.clamp((innerHeight*.85-r.top)/(r.height+innerHeight*.35),0,1);const n=Math.round(p*ws.length);ws.forEach((w,i)=>w.classList.toggle("on",i<n));});
+  if(FX.reduce)ws.forEach(w=>w.classList.add("on"));
+
+  // Gallery counter
+  const gal=document.querySelector(".gal"),pc=document.getElementById("pc");
+  FX.onScroll.push(()=>{const p=parseFloat(getComputedStyle(gal).getPropertyValue("--hp"))||0;pc.textContent="0"+(Math.min(3,Math.floor(p*4))+1);});
+
+  // Menu
+  const menu=document.getElementById("menu"),mo=document.getElementById("mopen");
+  const setM=o=>{menu.classList.toggle("open",o);menu.setAttribute("aria-hidden",!o);mo.setAttribute("aria-expanded",o);if(FX.lenis)o?FX.lenis.stop():FX.lenis.start();};
+  mo.onclick=()=>setM(true);document.getElementById("mclose").onclick=()=>setM(false);document.addEventListener("fx:navigate",()=>setM(false));
+  addEventListener("keydown",e=>{if(e.key==="Escape")setM(false);});
+
+  // Cursor
+  if(FX.fine&&!FX.reduce){const c=document.getElementById("cur");let X=-50,Y=-50,cx=X,cy=Y;addEventListener("pointermove",e=>{X=e.clientX;Y=e.clientY;},{passive:true});
+    (function l(){cx+=(X-cx)*.2;cy+=(Y-cy)*.2;c.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(l);})();
+    document.querySelectorAll("[data-cursor]").forEach(el=>{el.addEventListener("pointerenter",()=>{c.textContent=el.dataset.cursor;c.classList.add("big");});el.addEventListener("pointerleave",()=>{c.textContent="";c.classList.remove("big");});});}
+  else document.getElementById("cur").remove();
+})();
+</script>
+</body>
+</html>
