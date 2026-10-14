@@ -6,7 +6,7 @@ Agency website for Weblio, plus nine sample client sites.
 - `t/` — sample sites: Ridgeline, Bluebonnet, Gulf Coast, Heritage (roofing, Texas), Marlowe's (restaurant), Fog City (café), Maya Chen (portfolio), Sweetgrass (landscaping), Desert Blue (pool service)
 - `t/fx.js`, `t/fx.css` — shared motion library for the samples
 
-No build step. Netlify serves the folder as-is.
+No build step. Vercel serves the folder as-is.
 
 ## Deploy on Vercel
 
