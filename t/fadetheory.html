@@ -52,6 +52,7 @@ a{color:inherit}
 @keyframes bl{50%{box-shadow:0 0 0 8px rgba(31,157,85,0)}}
 .portrait{position:relative;border:1.5px solid var(--ink);background:var(--bone2);min-height:280px;overflow:hidden}
 .portrait svg{position:absolute;inset:0;width:100%;height:100%}
+.pcap{position:absolute;left:14px;bottom:12px;z-index:2;font:italic 700 20px var(--display);background:var(--bone);padding:2px 10px;border:1.5px solid var(--ink)}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--ink)}
 .stats div{padding:14px;border-right:1.5px solid var(--ink)}
 .stats div:last-child{border-right:0}
@@ -167,7 +168,7 @@ footer p{color:var(--muted);margin-top:18px}
   <div class="pole" aria-hidden="true"><div class="cap"></div><div class="glass"></div><div class="cap b"></div></div>
   <div class="r">
     <div class="now"><span class="open"><i></i><span id="openTxt">Open now · walk-ins welcome</span></span><span class="lab">Tue–Sun</span></div>
-    <div class="portrait" data-reveal="scale">
+    <div class="portrait" data-reveal="scale"><span class="pcap">The low taper · 45 min</span>
       <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <rect width="400" height="400" fill="#e4dbcb"/>
         <g stroke="#0e0d0c" stroke-width="3" fill="none" stroke-linecap="round">
@@ -175,14 +176,13 @@ footer p{color:var(--muted);margin-top:18px}
           <path d="M200 300 q-62 0 -66 -90 q0 -84 66 -90 q66 6 66 90 q-4 90 -66 90Z" fill="#c69472"/>
           <path d="M134 200 q-4 -84 66 -84 q70 0 66 84 q-10 -46 -66 -48 q-56 2 -66 48Z" fill="#0e0d0c"/>
           <path d="M138 214 q-4 -10 0 -24M262 214 q4 -10 0 -24" stroke="#6a4a36"/>
-          <path d="M150 248 q50 72 100 0 q-6 60 -50 60 q-44 0 -50 -60Z" fill="#0e0d0c"/>
+          <path d="M146 236 q54 60 108 0 q-4 66 -54 70 q-50 -4 -54 -70Z" fill="#3a2a1f" fill-opacity=".55" stroke="none"/>
           <path d="M172 210 h18M210 210 h18"/>
           <path d="M184 266 q16 8 32 0" stroke="#c69472"/>
         </g>
         <g stroke="#b5121b" stroke-width="2" stroke-dasharray="4 6" fill="none"><path d="M134 186 q66 -26 132 0"/></g>
         <text x="276" y="176" font-family="Manrope" font-weight="800" font-size="11" letter-spacing="2" fill="#b5121b">#1 GUARD</text>
-        <text x="20" y="380" font-family="Playfair Display" font-style="italic" font-weight="700" font-size="22" fill="#0e0d0c">The low taper, 45 min</text>
-      </svg>
+              </svg>
     </div>
     <div class="stats"><div><b data-count="4.9">0</b><span>Google rating</span></div><div><b data-count="1200" data-suf="+">0</b><span>5-star reviews</span></div><div><b>$40</b><span>Classic cut</span></div></div>
   </div>
@@ -253,7 +253,7 @@ footer p{color:var(--muted);margin-top:18px}
   const $=id=>document.getElementById(id);
   const B=[["Marcus","Fades & designs","#7a4a2c","#0e0d0c",1],["Luis","Tapers & scissor work","#c69472","#3a2a1f",2],["Tre","Beards & shaves","#5a3826","#0e0d0c",3],["Danny","Kids & classic cuts","#e2b896","#8a5a2b",0]];
   const T=["10:00","10:45","11:30","12:15","1:00","2:30","3:15","4:00","5:30","6:15"];
-  function face(sk,hr,beard){return `<svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="200" fill="#e4dbcb"/><g stroke="#0e0d0c" stroke-width="2.5"><path d="M50 200 q6 -50 50 -56 q44 6 50 56" fill="#0e0d0c"/><ellipse cx="100" cy="100" rx="36" ry="44" fill="${sk}"/><path d="M64 96 q0 -48 36 -48 q36 0 36 48 q-8 -28 -36 -28 q-28 0 -36 28Z" fill="${hr}"/>${beard?`<path d="M66 112 q34 ${30+beard*6} 68 0 q-4 ${34+beard*4} -34 ${34+beard*4} q-30 0 -34 -${34+beard*4}Z" fill="${hr}"/>`:""}<path d="M86 100h8M106 100h8" stroke-linecap="round"/></g></svg>`;}
+  function face(sk,hr,beard){return `<svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="200" fill="#e4dbcb"/><g stroke="#0e0d0c" stroke-width="2.5"><path d="M50 200 q6 -50 50 -56 q44 6 50 56" fill="#0e0d0c"/><ellipse cx="100" cy="100" rx="36" ry="44" fill="${sk}"/><path d="M64 96 q0 -48 36 -48 q36 0 36 48 q-8 -28 -36 -28 q-28 0 -36 28Z" fill="${hr}"/>${beard?`<path d="M66 106 q34 ${14+beard*4} 68 0 q-2 ${30+beard*3} -34 ${34+beard*3} q-32 -4 -34 -${34+beard*3}Z" fill="${hr}" fill-opacity=".55" stroke="none"/>`:""}<path d="M86 100h8M106 100h8" stroke-linecap="round"/></g></svg>`;}
   const g=$("chairsGrid");let seed=3;const r=()=>(seed=(seed*9301+49297)%233280)/233280;
   g.innerHTML=B.map((b,i)=>`<div class="ch" data-reveal style="--rd:${i*80}"><div class="face">${face(b[2],b[3],b[4])}</div><div class="who"><b>${b[0]}</b><span>${b[1]}</span></div><div class="slots">${T.map(t=>`<button ${r()<.45?"disabled aria-label='"+t+" taken'":""} data-b="${b[0]}" data-t="${t}">${t}</button>`).join("")}</div></div>`).join("");
   g.querySelectorAll("[data-reveal]").forEach(el=>el.classList.add("in"));

@@ -1,6 +1,6 @@
 # Weblio
 
-Agency website for Weblio, plus nine sample client sites.
+Agency website for Weblio, plus 17 sample client sites.
 
 - `index.html` — the Weblio site (contact form uses Netlify Forms, form name `contact`)
 - `t/` — sample sites: Ridgeline, Bluebonnet, Gulf Coast, Heritage (roofing, Texas), Marlowe's (restaurant), Fog City (café), Maya Chen (portfolio), Sweetgrass (landscaping), Desert Blue (pool service)
