@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Flashbox Photo Booths · Los Angeles, CA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --bg:#12061f; --bg2:#1c0b30; --card:#24103d; --line:#3b2160; --fg:#fff4fb; --muted:#bfa8d6; --hot:#ff2e93; --lime:#c6ff3d; --cyan:#36e2ff;
+  --display:"Bungee",system-ui,sans-serif; --body:"DM Sans",system-ui,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+body{background:var(--bg);color:var(--fg);font:17px/1.6 var(--body)}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.kick{font:400 13px var(--display);letter-spacing:.12em;color:var(--lime)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:14px;font:400 16px var(--display);text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-h{background:var(--hot);color:#fff;box-shadow:0 0 0 2px var(--hot),0 10px 40px -8px var(--hot)}
+.btn-o{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 2px var(--line)}
+.neon{color:#fff;text-shadow:0 0 6px var(--hot),0 0 22px var(--hot),0 0 46px var(--hot)}
+.neon.c{text-shadow:0 0 6px var(--cyan),0 0 22px var(--cyan),0 0 46px var(--cyan)}
+.flick{animation:flick 4s infinite}
+.neon .sw{overflow:visible}
+@keyframes flick{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.4}}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(18,6,31,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;min-height:74px;gap:16px}
+.logo{font:400 22px var(--display);text-decoration:none}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-weight:700;color:var(--muted)}
+.nav ul a:hover{color:var(--fg)}
+.nav .btn{min-height:44px;padding:0 16px;font-size:14px}
+
+.hero{min-height:100vh;min-height:100svh;padding-top:110px;padding-bottom:60px;display:grid;align-items:center;position:relative;overflow:hidden;background:radial-gradient(60% 50% at 80% 30%,rgba(255,46,147,.22),transparent 70%),radial-gradient(50% 40% at 10% 80%,rgba(54,226,255,.14),transparent 70%)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center}
+.hero h1{font:400 clamp(44px,7.4vw,112px)/.95 var(--display);margin-top:18px}
+.hero p{color:var(--muted);font-size:19px;max-width:44ch;margin-top:22px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.ev{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.ev span{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:var(--muted)}
+
+/* Booth */
+.booth{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;justify-items:center}
+.strip{background:#fff;padding:12px 12px 40px;width:min(210px,42vw);display:grid;gap:10px;transform:rotate(4deg);box-shadow:0 30px 60px -20px rgba(0,0,0,.8);position:relative}
+.strip canvas{width:100%;aspect-ratio:4/3;display:block;background:#222}
+.strip .cap{position:absolute;bottom:10px;left:0;right:0;text-align:center;font:400 12px var(--display);color:#12061f}
+.ctrl{display:grid;gap:12px;justify-items:start}
+.snap{width:120px;height:120px;border-radius:50%;background:var(--hot);border:6px solid #fff;color:#fff;font:400 18px var(--display);cursor:pointer;box-shadow:0 0 0 6px var(--hot),0 0 60px var(--hot);transition:transform .15s}
+.snap:active{transform:scale(.94)}
+.snap:disabled{opacity:.6;cursor:wait}
+.count{font:400 64px/1 var(--display);height:64px;color:var(--lime)}
+.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:90}
+.filt{display:flex;gap:6px;flex-wrap:wrap}
+.filt button{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:10px;padding:8px 12px;font:700 13px var(--body);cursor:pointer}
+.filt button[aria-pressed=true]{background:var(--lime);color:#12061f;border-color:var(--lime)}
+
+.sec{padding-block:clamp(84px,10vw,140px)}
+h2.h{font:400 clamp(34px,5vw,72px)/1 var(--display);margin-top:14px}
+
+/* builder */
+.pb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:24px;margin-top:40px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:clamp(20px,3vw,34px);display:grid;gap:26px}
+.ql{font:400 14px var(--display);letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:10px}
+.bt{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;position:relative}
+.bt input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0}
+.bt label{border:2px solid var(--line);border-radius:18px;padding:16px;cursor:pointer;display:grid;gap:4px;background:var(--bg2);transition:border-color .2s}
+.bt label b{font:400 17px var(--display)}
+.bt label small{color:var(--muted)}
+.bt input:checked+label{border-color:var(--hot);box-shadow:0 0 30px -8px var(--hot)}
+.bt input:focus-visible+label{outline:2px solid var(--lime);outline-offset:2px}
+.hrs{display:flex;align-items:center;gap:14px}
+.hrs input{flex:1;accent-color:var(--hot);height:28px}
+.hrs output{font:400 28px var(--display);min-width:4ch;text-align:right}
+.ads{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ads label{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;background:var(--bg2);font-weight:700}
+.ads input{width:20px;height:20px;accent-color:var(--hot);flex:none}
+.ads b{margin-left:auto;color:var(--lime);font-weight:700}
+.quote{position:sticky;top:96px;align-self:start;background:linear-gradient(160deg,var(--hot),#7a1fff);border-radius:26px;padding:30px;display:grid;gap:10px}
+.quote .t{font:400 64px/1 var(--display);font-variant-numeric:tabular-nums}
+.quote ul{list-style:none;margin:6px 0 10px;padding:0;display:grid;gap:6px;font-size:15px}
+.quote li{display:flex;justify-content:space-between;gap:10px}
+.quote .btn{background:#fff;color:#12061f}
+
+/* Crew */
+.crew{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.cw{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;position:relative;overflow:hidden;min-height:220px;display:flex;flex-direction:column;justify-content:flex-end}
+.cw svg{position:absolute;top:18px;right:18px;width:56px;height:56px}
+.cw h3{font:400 20px var(--display)}
+.cw p{color:var(--muted);font-size:15px}
+.cw .p{color:var(--lime);font-weight:700;margin-top:8px}
+
+.wall{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:40px}
+.wall canvas{width:100%;aspect-ratio:3/4;border-radius:14px;display:block;background:#222}
+.wall canvas:nth-child(odd){transform:translateY(18px)}
+
+.book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(28px,5vw,72px);align-items:start}
+.form{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:clamp(22px,3vw,32px);display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font-weight:700;font-size:14px;color:var(--muted)}
+[data-field] input,[data-field] select{width:100%;min-height:52px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);color:var(--fg);font:inherit;padding:0 14px;color-scheme:dark}
+[data-field] input:focus,[data-field] select:focus{outline:none;border-color:var(--hot)}
+.err{font-size:13px;color:#ff8fb8}
+.form-done{background:var(--card);border:2px solid var(--hot);border-radius:26px;padding:32px}
+.form-done h3{font:400 28px var(--display)}
+.form-done p{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding-block:60px calc(100px + env(safe-area-inset-bottom,0px));text-align:center}
+footer .big{font:400 clamp(44px,10vw,150px)/1 var(--display)}
+footer p{color:var(--muted);margin-top:16px}
+@media (max-width:980px){.nav ul{display:none}.hero .wrap,.pb,.book{grid-template-columns:1fr}.quote{position:static}.crew{grid-template-columns:1fr 1fr}.wall{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:600px){.bt{grid-template-columns:1fr}.ads,.two,.crew{grid-template-columns:1fr}.booth{grid-template-columns:1fr}.ctrl{justify-items:center}.wall canvas:nth-child(odd){transform:none}}
+</style>
+</head>
+<body>
+<div class="flash" id="flash" aria-hidden="true"></div>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top"><span class="neon">FLASH</span>BOX</a>
+  <ul><li><a href="#try">Try it</a></li><li><a href="#build">Pricing</a></li><li><a href="#crew">DJ &amp; rentals</a></li></ul>
+  <a class="btn btn-h" href="#book">Check date</a>
+</div></header>
+
+<section class="hero" id="top"><div class="wrap">
+  <div>
+    <span class="kick" data-reveal="fade">PHOTO BOOTHS · 360 VIDEO · DJS · LOS ANGELES</span>
+    <h1 data-split>The line at <span class="neon flick">every</span> party.</h1>
+    <p data-reveal style="--rd:400">Open-air and 360 booths with unlimited prints, props, a live attendant and a custom template with your names on it. Add a DJ and you're done planning.</p>
+    <div class="ctas" data-reveal style="--rd:550"><a class="btn btn-h" href="#build" data-magnetic>Build a package</a><a class="btn btn-o" href="#try">Take a test strip</a></div>
+    <div class="ev" data-reveal style="--rd:700"><span>Weddings</span><span>Quinceañeras</span><span>Birthdays</span><span>Corporate</span><span>Graduations</span></div>
+  </div>
+  <div class="booth" id="try" data-reveal="scale" style="--rd:200">
+    <div class="strip" aria-label="Photo strip preview"><canvas id="s0"></canvas><canvas id="s1"></canvas><canvas id="s2"></canvas><span class="cap" id="cap">FLASHBOX · LA</span></div>
+    <div class="ctrl">
+      <div class="count" id="count" aria-live="polite"></div>
+      <button class="snap" id="snap">SNAP</button>
+      <div class="filt" id="fx"><button aria-pressed="true" data-f="color">Color</button><button aria-pressed="false" data-f="bw">B&amp;W</button><button aria-pressed="false" data-f="glam">Glam</button></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="build" style="padding-top:20px"><div class="wrap">
+  <span class="kick">INSTANT QUOTE</span>
+  <h2 class="h" data-split>Build your <span class="neon c">booth.</span></h2>
+  <div class="pb">
+    <div class="pcard" data-reveal id="pform">
+      <fieldset style="border:0;margin:0;padding:0"><legend class="ql">BOOTH</legend><div class="bt">
+        <input type="radio" name="bt" id="b1" value="open" checked><label for="b1"><b>Open-air</b><small>Big groups, backdrop, prints</small></label>
+        <input type="radio" name="bt" id="b2" value="360"><label for="b2"><b>360 video</b><small>Slow-mo spin, instant share</small></label>
+        <input type="radio" name="bt" id="b3" value="glam"><label for="b3"><b>Glam B&amp;W</b><small>Skin-smoothing studio light</small></label>
+      </div></fieldset>
+      <div><label class="ql" for="hr">HOURS</label><div class="hrs"><input type="range" id="hr" min="2" max="6" step="1" value="3"><output id="hro" for="hr">3 hr</output></div></div>
+      <fieldset style="border:0;margin:0;padding:0"><legend class="ql">ADD-ONS</legend><div class="ads">
+        <label><input type="checkbox" value="150" data-n="Flower wall backdrop" checked>Flower wall<b>+$150</b></label>
+        <label><input type="checkbox" value="125" data-n="Guest scrapbook">Guest scrapbook<b>+$125</b></label>
+        <label><input type="checkbox" value="95" data-n="Neon name sign">Neon name sign<b>+$95</b></label>
+        <label><input type="checkbox" value="600" data-n="DJ, 4 hours">DJ, 4 hours<b>+$600</b></label>
+      </div></fieldset>
+    </div>
+    <aside class="quote" data-reveal style="--rd:150" aria-live="polite">
+      <span class="kick" style="color:#fff">YOUR PACKAGE</span>
+      <div class="t" id="qt">$0</div>
+      <ul id="ql"></ul>
+      <a class="btn" href="#book">Hold my date</a>
+      <small style="opacity:.85">$100 deposit holds your date. Setup, attendant, props and travel within LA County included.</small>
+    </aside>
+  </div>
+</div></section>
+
+<section class="sec" id="crew" style="padding-top:0"><div class="wrap">
+  <span class="kick">ONE CALL, WHOLE PARTY</span>
+  <h2 class="h" data-split>Booth + DJ + <span class="neon">rentals.</span></h2>
+  <div class="crew">
+    <div class="cw" data-reveal><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="24" fill="none" stroke="#ff2e93" stroke-width="3"/><circle cx="28" cy="28" r="6" fill="#ff2e93"/></svg><h3>DJ &amp; MC</h3><p>Clean edits, bilingual MC, uplighting included.</p><span class="p">from $600</span></div>
+    <div class="cw" data-reveal style="--rd:80"><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M6 46 L28 8 L50 46Z" fill="none" stroke="#c6ff3d" stroke-width="3"/></svg><h3>Bounce houses</h3><p>Castles, combos and water slides for kids' parties.</p><span class="p">from $225</span></div>
+    <div class="cw" data-reveal style="--rd:160"><svg viewBox="0 0 56 56" aria-hidden="true"><rect x="8" y="14" width="40" height="28" rx="4" fill="none" stroke="#36e2ff" stroke-width="3"/><path d="M8 24h40" stroke="#36e2ff" stroke-width="3"/></svg><h3>Tables &amp; tents</h3><p>Chairs, linens, 20×20 tents, string lights.</p><span class="p">from $8/chair</span></div>
+    <div class="cw" data-reveal style="--rd:240"><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M10 40h36M14 40V22h28v18M20 22v-8h16v8" fill="none" stroke="#ff2e93" stroke-width="3"/></svg><h3>Taco truck</h3><p>Partner al pastor truck, 50–300 guests.</p><span class="p">from $14/guest</span></div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="kick">FROM LAST SATURDAY</span>
+  <h2 class="h" data-split>The wall of <span class="neon c">fame.</span></h2>
+  <div class="wall" id="wall"></div>
+</div></section>
+
+<section class="sec" id="book" style="padding-top:20px"><div class="wrap book">
+  <div><span class="kick">CHECK YOUR DATE</span><h2 class="h" data-split>Saturdays go <span class="neon">fast.</span></h2><p style="color:var(--muted);margin-top:16px;max-width:40ch">We reply within an hour with availability and a hold link. (213) 555-0177</p></div>
+  <form class="form" data-kit novalidate data-done-title="It's a party{n}." data-done-text="We'll text your date's availability within the hour.">
+    <div class="two">
+      <div data-field><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required><span class="err"></span></div>
+      <div data-field><label for="f-phone">Mobile</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required><span class="err"></span></div>
+    </div>
+    <div class="two">
+      <div data-field><label for="f-date">Event date</label><input id="f-date" name="date" type="date" required><span class="err"></span></div>
+      <div data-field><label for="f-type">Event</label><select id="f-type" name="event"><option>Wedding</option><option>Quinceañera</option><option>Birthday</option><option>Corporate</option><option>Other</option></select></div>
+    </div>
+    <button class="btn btn-h" type="submit">Check availability</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap"><div class="big"><span class="neon">FLASH</span>BOX</div><p>Photo booths · 360 video · DJs · Party rentals · Los Angeles · (213) 555-0177 · © 2026 · Sample site</p></div></footer>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  // procedural "guest" portrait
+  const BG=[["#ff2e93","#7a1fff"],["#36e2ff","#1c0b30"],["#c6ff3d","#0f6b5a"],["#ffb02e","#ff2e93"],["#7a1fff","#36e2ff"]];
+  const SK=["#f1c7a5","#d9a07a","#a86b45","#7a4a2c","#f6d6bf"],HR=["#1b1b1b","#5a3a22","#d9a441","#8a2b1d","#2c2c3a"];
+  function person(x,cx,cy,s,r){const sk=SK[r()*5|0],hr=HR[r()*5|0];
+    x.fillStyle=hr;x.beginPath();x.ellipse(cx,cy-s*.08,s*.36,s*.4,0,0,7);x.fill();
+    x.fillStyle=sk;x.beginPath();x.ellipse(cx,cy,s*.27,s*.33,0,0,7);x.fill();
+    x.fillStyle=["#ff2e93","#36e2ff","#c6ff3d","#fff"][r()*4|0];x.beginPath();x.ellipse(cx,cy+s*.75,s*.5,s*.4,0,Math.PI,0);x.fill();
+    x.fillStyle="#1b1b1b";x.beginPath();x.arc(cx-s*.1,cy-s*.04,s*.03,0,7);x.arc(cx+s*.1,cy-s*.04,s*.03,0,7);x.fill();
+    x.strokeStyle="#1b1b1b";x.lineWidth=s*.03;x.lineCap="round";x.beginPath();x.arc(cx,cy+s*.08,s*.1,.15*Math.PI,.85*Math.PI);x.stroke();
+    const p=r();x.lineWidth=s*.035;
+    if(p<.33){x.strokeStyle="#ff2e93";x.beginPath();x.ellipse(cx-s*.11,cy-s*.04,s*.09,s*.07,0,0,7);x.ellipse(cx+s*.11,cy-s*.04,s*.09,s*.07,0,0,7);x.stroke();}
+    else if(p<.6){x.fillStyle="#ffd400";x.beginPath();x.moveTo(cx-s*.25,cy-s*.32);for(let i=0;i<5;i++){x.lineTo(cx-s*.25+i*s*.125+s*.06,cy-s*.55);x.lineTo(cx-s*.25+(i+1)*s*.1,cy-s*.32);}x.fill();}
+    else if(p<.8){x.fillStyle="#1b1b1b";x.beginPath();x.ellipse(cx-s*.07,cy+s*.04,s*.09,s*.03,-.3,0,7);x.ellipse(cx+s*.07,cy+s*.04,s*.09,s*.03,.3,0,7);x.fill();}}
+  function rng(seed){let t=seed;return()=>{t=(t*1664525+1013904223)%4294967296;return t/4294967296;};}
+  function shot(cv,seed,mode){const W=cv.width=cv.clientWidth*2||320,H=cv.height=cv.clientHeight*2||240,x=cv.getContext("2d"),r=rng(seed),b=BG[r()*5|0];
+    const g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,b[0]);g.addColorStop(1,b[1]);x.fillStyle=g;x.fillRect(0,0,W,H);
+    for(let i=0;i<30;i++){x.fillStyle=`rgba(255,255,255,${r()*.4})`;x.beginPath();x.arc(r()*W,r()*H,r()*4+1,0,7);x.fill();}
+    const n=1+(r()*3|0),s=Math.min(W,H)*(n===1?.55:.42);for(let i=0;i<n;i++)person(x,W*(i+1)/(n+1),H*.5,s,r);
+    if(mode!=="color"){const d=x.getImageData(0,0,W,H),a=d.data;for(let i=0;i<a.length;i+=4){let l=a[i]*.3+a[i+1]*.59+a[i+2]*.11;if(mode==="glam")l=Math.min(255,(l-128)*1.25+140);a[i]=a[i+1]=a[i+2]=l;}x.putImageData(d,0,0);}}
+  let mode="color",seed=7;const S=[$("s0"),$("s1"),$("s2")];
+  const drawAll=()=>S.forEach((c,i)=>shot(c,seed+i*17,mode));
+  addEventListener("load",drawAll);drawAll();
+  $("fx").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;mode=b.dataset.f;$("fx").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));drawAll();});
+  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+  $("snap").addEventListener("click",async()=>{const b=$("snap");b.disabled=true;seed=Math.random()*1e6|0;
+    for(let i=0;i<3;i++){if(!FX.reduce)for(const n of ["3","2","1"]){$("count").textContent=n;await wait(380);}
+      $("count").textContent="";if(!FX.reduce)$("flash").animate([{opacity:.9},{opacity:0}],{duration:350});shot(S[i],seed+i*17,mode);await wait(250);}
+    $("cap").textContent="FLASHBOX · "+new Date().toLocaleDateString("en-US",{month:"short",day:"numeric"}).toUpperCase();b.disabled=false;});
+  // wall
+  const wall=$("wall");for(let i=0;i<6;i++){const c=document.createElement("canvas");c.setAttribute("aria-hidden","true");wall.appendChild(c);}
+  const drawWall=()=>wall.querySelectorAll("canvas").forEach((c,i)=>shot(c,900+i*31,i%3===1?"bw":"color"));addEventListener("load",drawWall);drawWall();
+  // quote
+  const RATE={open:[175,"Open-air booth"],"360":[225,"360 video booth"],glam:[200,"Glam B&W booth"]};
+  function q(){const t=document.querySelector("[name=bt]:checked").value,h=+$("hr").value;$("hro").textContent=h+" hr";
+    let tot=RATE[t][0]*h,L=[[RATE[t][1]+" × "+h+" hr",RATE[t][0]*h]];
+    if(h>=4){L.push(["4+ hour discount",-100]);tot-=100;}
+    document.querySelectorAll(".ads input:checked").forEach(i=>{tot+=+i.value;L.push([i.dataset.n,+i.value]);});
+    $("qt").textContent="$"+tot.toLocaleString("en-US");$("ql").innerHTML=L.map(l=>`<li><span>${l[0]}</span><span>${l[1]<0?"−$"+(-l[1]):"$"+l[1]}</span></li>`).join("");}
+  $("pform").addEventListener("input",q);$("pform").addEventListener("change",q);q();
+})();
+</script>
+</body>
+</html>

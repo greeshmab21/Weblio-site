@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lumen &amp; Pine Holiday Lighting · Denver, CO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mulish:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --night:#0a1430; --night2:#111e44; --line:#24335f; --snow:#f4f6fb; --muted:#9aa6c8; --gold:#ffcf6b; --red:#e23a48; --pine:#1f7a52;
+  --display:"DM Serif Display",Georgia,serif; --body:"Mulish",system-ui,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+body{background:var(--night);color:var(--snow);font:17px/1.6 var(--body)}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.tag{font:800 12px var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;font:800 15px var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.btn:hover{transform:translateY(-3px)}
+.btn-g{background:var(--gold);color:#2a1a00;box-shadow:0 0 30px rgba(255,207,107,.45)}
+.btn-o{background:transparent;color:var(--snow);box-shadow:inset 0 0 0 1.5px rgba(244,246,251,.4)}
+.deadline{background:var(--red);color:#fff;text-align:center;font:700 14px var(--body);padding:10px 16px}
+.deadline b{font-variant-numeric:tabular-nums}
+
+.nav{position:sticky;top:0;z-index:40;background:rgba(10,20,48,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;min-height:72px;gap:16px}
+.logo{font:400 24px var(--display);text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo i{font-style:italic;color:var(--gold)}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-weight:700;font-size:15px;color:var(--muted)}
+.nav ul a:hover{color:var(--gold)}
+.nav .btn{min-height:44px;padding:0 20px;font-size:14px}
+
+.hero{position:relative;overflow:hidden;background:radial-gradient(80% 60% at 50% 0%,#1b2c63 0%,var(--night) 70%)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,56px);align-items:center;padding-block:clamp(56px,8vw,110px)}
+.hero h1{font:400 clamp(48px,7vw,104px)/.95 var(--display);letter-spacing:-.01em}
+.hero h1 i{color:var(--gold)}
+.hero p{color:#c8d0ea;margin-top:20px;max-width:42ch}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.count{display:flex;gap:10px;margin-top:30px}
+.count div{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:16px;padding:10px 14px;text-align:center;min-width:76px}
+.count b{display:block;font:400 34px/1 var(--display);color:var(--gold);font-variant-numeric:tabular-nums}
+.count span{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.housebox{position:relative}
+.house{width:100%;height:auto;overflow:visible}
+.bulb{transition:fill .5s,filter .5s,opacity .5s}
+.off .bulb{fill:#2a3352!important;filter:none!important}
+.on .bulb{animation:tw var(--t,2.4s) ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes tw{50%{opacity:.55}}
+.on .win{fill:#ffd98a}
+.win{transition:fill .6s}
+.ctrl{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin-top:10px}
+.switch{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:999px;padding:6px 16px 6px 6px;cursor:pointer;font:800 14px var(--body);color:var(--snow)}
+.switch i{width:52px;height:30px;border-radius:999px;background:#2a3352;position:relative;transition:background .3s}
+.switch i::after{content:"";position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.switch[aria-checked=true] i{background:var(--gold)}
+.switch[aria-checked=true] i::after{transform:translateX(22px)}
+.themes{display:flex;gap:6px}
+.themes button{width:34px;height:34px;border-radius:50%;border:2px solid transparent;cursor:pointer;background:var(--sw)}
+.themes button[aria-pressed=true]{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.2)}
+
+.sec{padding-block:clamp(88px,11vw,150px)}
+h2.h{font:400 clamp(40px,5.6vw,80px)/1 var(--display);margin-top:14px}
+h2.h i{color:var(--gold)}
+
+.season{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px;counter-reset:s}
+.ss{background:var(--night2);border:1px solid var(--line);border-radius:24px;padding:24px;display:grid;gap:10px;align-content:start;position:relative;overflow:hidden}
+.ss .mo{font:800 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.ss h3{font:400 30px var(--display)}
+.ss p{color:var(--muted);font-size:15px}
+.ss::after{content:"";position:absolute;right:-30px;top:-30px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 70%);opacity:.6}
+
+.est{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);border-radius:32px;overflow:hidden;border:1px solid var(--line);margin-top:44px}
+.eq{background:var(--night2);padding:clamp(22px,3vw,40px);display:grid;gap:26px}
+.ql{font:800 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+.ql b{color:var(--snow);font-size:15px;letter-spacing:0;text-transform:none;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--gold);margin-top:10px}
+.cnt{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cnt div{border:1px solid var(--line);border-radius:18px;padding:14px;text-align:center}
+.cnt span{display:block;font-weight:700;font-size:14px;color:var(--muted)}
+.cnt .ctl{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:8px}
+.cnt button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--snow);font-size:18px;cursor:pointer}
+.cnt output{font:400 26px var(--display);min-width:24px}
+.ea{background:linear-gradient(160deg,#ffcf6b,#f29b3a);color:#2a1a00;padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.ea .p{font:400 clamp(60px,7vw,96px)/1 var(--display);font-variant-numeric:tabular-nums}
+.ea .btn{background:#2a1a00;color:var(--gold);justify-content:center}
+
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.rv{background:var(--night2);border:1px solid var(--line);border-radius:24px;padding:26px;display:grid;gap:12px}
+.rv p{font:400 21px/1.3 var(--display)}
+.rv cite{font-style:normal;color:var(--muted);font-size:14px}
+
+.book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(28px,5vw,80px);align-items:start}
+.form{background:var(--night2);border:1px solid var(--line);border-radius:28px;padding:clamp(22px,3vw,34px);display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font-weight:700;font-size:14px}
+[data-field] input{width:100%;min-height:52px;border-radius:14px;border:1px solid var(--line);background:var(--night);color:var(--snow);font:inherit;padding:0 14px}
+[data-field] input:focus{outline:none;border-color:var(--gold)}
+.err{font-size:13px;color:#ff9aa2}
+.form-done{background:var(--night2);border:1px solid var(--gold);border-radius:28px;padding:34px}
+.form-done h3{font:400 40px var(--display);color:var(--gold)}
+.form-done p{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding-block:56px calc(100px + env(safe-area-inset-bottom,0px));text-align:center}
+footer .big{font:400 clamp(56px,11vw,170px)/.9 var(--display)}
+footer .big i{color:var(--gold)}
+footer p{color:var(--muted);margin-top:18px}
+@media (max-width:980px){.nav ul{display:none}.hero .wrap,.est,.book{grid-template-columns:1fr}.season,.revs{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.season,.revs{grid-template-columns:1fr}.two{grid-template-columns:1fr}.count div{min-width:0;flex:1}.nav .btn{display:none}}
+</style>
+</head>
+<body>
+<div class="deadline" id="dl">Book by Nov 15 to be lit by Thanksgiving · <b id="slots">14</b> November install slots left</div>
+<nav class="nav"><div class="wrap">
+  <a class="logo" href="#top"><svg width="22" height="30" viewBox="0 0 22 30" aria-hidden="true"><path d="M11 0v4" stroke="#9aa6c8" stroke-width="2"/><rect x="7" y="4" width="8" height="5" rx="1" fill="#9aa6c8"/><path d="M11 9c-6 4-8 9-8 13a8 8 0 0 0 16 0c0-4-2-9-8-13Z" fill="#ffcf6b"/></svg>Lumen <i>&amp;</i> Pine</a>
+  <ul><li><a href="#season">How it works</a></li><li><a href="#estimate">Pricing</a></li><li><a href="#reviews">Reviews</a></li></ul>
+  <a class="btn btn-g" href="#book">Get a free quote</a>
+</div></nav>
+
+<header class="hero" id="top">
+  <canvas id="snow" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="tag" data-reveal="fade">Holiday lighting · Denver metro</span>
+      <h1 data-split style="margin-top:16px">Your house, lit. <i>Without the ladder.</i></h1>
+      <p data-reveal style="--rd:500">Custom-cut, commercial-grade LED lights designed for your home, installed by our crew, fixed within 48 hours if anything goes out, and taken down and stored in January.</p>
+      <div class="ctas" data-reveal style="--rd:650"><a class="btn btn-g" href="#book" data-magnetic>Get a free design →</a><a class="btn btn-o" href="#estimate">Estimate my price</a></div>
+      <div class="count" data-reveal style="--rd:800" aria-label="Countdown to Christmas"><div><b id="cd-d">0</b><span>Days</span></div><div><b id="cd-h">0</b><span>Hours</span></div><div><b id="cd-m">0</b><span>Mins</span></div><div style="display:grid;place-items:center;font-weight:800;font-size:13px;color:var(--muted)">until<br>Christmas</div></div>
+    </div>
+    <div class="housebox" data-reveal="scale" style="--rd:300">
+      <svg class="house on" id="house" viewBox="0 0 600 440" role="img" aria-label="House decorated with holiday lights">
+        <rect x="0" y="380" width="600" height="60" fill="#e9eef8"/><path d="M0 380 Q150 368 300 378 T600 374 V440 H0Z" fill="#fff"/>
+        <path d="M60 210 L300 70 L540 210 Z" fill="#1a2547"/><rect x="100" y="205" width="400" height="180" fill="#26325a"/>
+        <path d="M60 210 L300 70 L540 210" fill="none" stroke="#e9eef8" stroke-width="8" stroke-linejoin="round"/>
+        <rect class="win" x="140" y="250" width="70" height="60" rx="4" fill="#3a4672"/><rect class="win" x="390" y="250" width="70" height="60" rx="4" fill="#3a4672"/><rect x="265" y="285" width="70" height="100" rx="6" fill="#7a2330"/>
+        <circle cx="300" cy="250" r="26" fill="none" stroke="#1f7a52" stroke-width="12"/><circle cx="300" cy="226" r="6" fill="#e23a48"/>
+        <path d="M535 380 L560 300 L585 380Z M540 330 L560 270 L580 330Z" fill="#1f7a52"/><path d="M15 380 L42 290 L69 380Z M20 330 L42 260 L64 330Z" fill="#1f7a52"/>
+        <g id="bulbs"></g>
+      </svg>
+      <div class="ctrl">
+        <button class="switch" id="sw" role="switch" aria-checked="true"><i></i>Lights on</button>
+        <div class="themes" role="group" aria-label="Light colors">
+          <button aria-pressed="true" data-th="warm" style="--sw:#ffcf6b" aria-label="Warm white"></button>
+          <button aria-pressed="false" data-th="multi" style="--sw:conic-gradient(#e23a48 0 25%,#2ec27e 0 50%,#3d8bff 0 75%,#ffcf6b 0)" aria-label="Classic multicolor"></button>
+          <button aria-pressed="false" data-th="ice" style="--sw:#8fd8ff" aria-label="Icy blue"></button>
+          <button aria-pressed="false" data-th="candy" style="--sw:linear-gradient(90deg,#e23a48 50%,#fff 50%)" aria-label="Candy cane"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="season"><div class="wrap">
+  <span class="tag">How it works</span>
+  <h2 class="h" data-split>One call. <i>All season handled.</i></h2>
+  <div class="season">
+    <div class="ss" data-reveal style="--glow:#ffcf6b"><span class="mo">October</span><h3>Free design</h3><p>We measure your roofline and send a mockup of your home lit up, with a fixed price.</p></div>
+    <div class="ss" data-reveal style="--rd:100;--glow:#e23a48"><span class="mo">November</span><h3>Install</h3><p>Lights custom-cut to your roofline and clipped on. No nails, no staples, no damage.</p></div>
+    <div class="ss" data-reveal style="--rd:200;--glow:#2ec27e"><span class="mo">December</span><h3>We maintain</h3><p>Bulb out or a timer acting up? Text us and we fix it within 48 hours, free.</p></div>
+    <div class="ss" data-reveal style="--rd:300;--glow:#8fd8ff"><span class="mo">January</span><h3>Takedown &amp; storage</h3><p>We take everything down and store it labeled for next year, so reinstalls cost less.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="estimate" style="padding-top:0"><div class="wrap">
+  <span class="tag">Pricing</span>
+  <h2 class="h" data-split>Estimate it <i>in 20 seconds.</i></h2>
+  <div class="est" data-reveal>
+    <div class="eq">
+      <div><div class="ql">Roofline to light <b id="ft-o">120 ft</b></div><input id="ft" type="range" min="40" max="400" step="10" value="120" aria-label="Feet of roofline"><p style="color:var(--muted);font-size:13px;margin-top:6px">A typical 2-story Denver home has 100–160 ft of front roofline.</p></div>
+      <div class="cnt">
+        <div><span>Trees wrapped</span><div class="ctl"><button data-k="tr" data-d="-1" aria-label="Fewer trees">−</button><output id="tr">1</output><button data-k="tr" data-d="1" aria-label="More trees">+</button></div></div>
+        <div><span>Bushes</span><div class="ctl"><button data-k="bu" data-d="-1" aria-label="Fewer bushes">−</button><output id="bu">2</output><button data-k="bu" data-d="1" aria-label="More bushes">+</button></div></div>
+        <div><span>Wreaths</span><div class="ctl"><button data-k="wr" data-d="-1" aria-label="Fewer wreaths">−</button><output id="wr">1</output><button data-k="wr" data-d="1" aria-label="More wreaths">+</button></div></div>
+      </div>
+    </div>
+    <div class="ea" aria-live="polite">
+      <div><span style="font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase">Season total, all-inclusive</span><div class="p" id="price">$0</div><p style="font-weight:600">Lights, install, maintenance, takedown and storage. Lights are leased, so there's nothing to buy or store yourself.</p></div>
+      <a class="btn" href="#book">Lock in this price</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="reviews" style="padding-top:0"><div class="wrap">
+  <span class="tag">Neighbors</span>
+  <div class="revs">
+    <figure class="rv" data-reveal style="margin:0"><p>"Best-lit house on the block and I never touched a ladder. They even came back when the dog chewed a strand."</p><cite>★★★★★ · Megan T., Highlands Ranch</cite></figure>
+    <figure class="rv" data-reveal style="margin:0;--rd:100"><p>"The mockup they sent looked exactly like the finished house. Kids lost their minds."</p><cite>★★★★★ · Andre W., Littleton</cite></figure>
+    <figure class="rv" data-reveal style="margin:0;--rd:200"><p>"Fourth year with Lumen &amp; Pine. Takedown in January is my favorite part, honestly."</p><cite>★★★★★ · Rosa K., Aurora</cite></figure>
+  </div>
+</div></section>
+
+<section class="sec" id="book" style="padding-top:0"><div class="wrap book">
+  <div><span class="tag">Free design</span><h2 class="h" data-split>See your house lit <i>before you pay.</i></h2><p style="color:var(--muted);margin-top:18px;max-width:40ch">Send your address. We'll measure from satellite imagery and email a mockup of your home lit up within 2 days. (720) 555-0172</p></div>
+  <form class="form" data-kit novalidate data-done-title="Thanks{n}! 🎄" data-done-text="Your free lighting design will land in your inbox within 2 days.">
+    <div class="two">
+      <div data-field><label for="l-name">Name</label><input id="l-name" name="name" autocomplete="name" required><span class="err"></span></div>
+      <div data-field><label for="l-email">Email</label><input id="l-email" name="email" type="email" autocomplete="email" required><span class="err"></span></div>
+    </div>
+    <div data-field><label for="l-addr">Home address</label><input id="l-addr" name="address" autocomplete="street-address" required><span class="err"></span></div>
+    <button class="btn btn-g" type="submit" style="justify-content:center">Send my free design</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap"><div class="big">Lumen <i>&amp;</i> Pine</div><p>Holiday lighting · Denver, Aurora, Littleton, Highlands Ranch, Golden · (720) 555-0172 · © 2026 · Sample site</p></div></footer>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  // Snow
+  const c=$("snow"),x=c.getContext("2d");let w,h,F=[];
+  function size(){const d=Math.min(devicePixelRatio||1,2);w=c.clientWidth;h=c.clientHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);F=Array.from({length:Math.round(w*h/7000)},()=>({x:Math.random()*w,y:Math.random()*h,r:.8+Math.random()*2.4,v:.3+Math.random()*.9,o:Math.random()*6}));}
+  function draw(t){x.clearRect(0,0,w,h);x.fillStyle="rgba(255,255,255,.85)";F.forEach(f=>{x.beginPath();x.arc(f.x+Math.sin(t/1400+f.o)*8,f.y,f.r,0,7);x.fill();if(!FX.reduce){f.y+=f.v;if(f.y>h+5){f.y=-5;f.x=Math.random()*w;}}});if(!FX.reduce)requestAnimationFrame(draw);}
+  size();addEventListener("resize",size);requestAnimationFrame(draw);
+
+  // Bulbs along roofline + windows
+  const pts=[];const seg=(x1,y1,x2,y2,n)=>{for(let i=0;i<=n;i++)pts.push([x1+(x2-x1)*i/n,y1+(y2-y1)*i/n]);};
+  seg(60,214,300,74,16);seg(300,74,540,214,16);seg(100,212,500,212,24);seg(140,246,210,246,4);seg(390,246,460,246,4);
+  for(let i=0;i<7;i++){pts.push([42-10+i*3.5,270+i*16]);pts.push([560-10+i*3.5,280+i*14]);}
+  $("bulbs").innerHTML=pts.map((p,i)=>`<circle class="bulb" cx="${p[0].toFixed(1)}" cy="${(p[1]+5).toFixed(1)}" r="5" data-i="${i}" style="--d:${(Math.random()*2).toFixed(2)}s;--t:${(1.8+Math.random()*1.6).toFixed(2)}s"/>`).join("");
+  const TH={warm:["#ffcf6b"],multi:["#e23a48","#2ec27e","#3d8bff","#ffcf6b"],ice:["#8fd8ff","#ffffff"],candy:["#e23a48","#ffffff"]};
+  function theme(k){const cs=TH[k];document.querySelectorAll(".bulb").forEach((b,i)=>{const col=cs[i%cs.length];b.style.fill=col;b.style.filter=`drop-shadow(0 0 6px ${col})`;});}
+  theme("warm");
+  document.querySelectorAll(".themes button").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".themes button").forEach(x=>x.setAttribute("aria-pressed",x===b));theme(b.dataset.th);setOn(true);}));
+  const house=$("house"),sw=$("sw");
+  function setOn(o){house.classList.toggle("on",o);house.classList.toggle("off",!o);sw.setAttribute("aria-checked",o);sw.lastChild.textContent=o?"Lights on":"Lights off";}
+  sw.onclick=()=>setOn(sw.getAttribute("aria-checked")!=="true");
+
+  // Countdown
+  function cd(){const n=new Date(),y=n.getMonth()===11&&n.getDate()>25?n.getFullYear()+1:n.getFullYear(),t=new Date(y,11,25)-n;
+    $("cd-d").textContent=Math.floor(t/864e5);$("cd-h").textContent=Math.floor(t/36e5)%24;$("cd-m").textContent=Math.floor(t/6e4)%60;}
+  cd();setInterval(cd,30000);
+
+  // Estimator
+  const cnt={tr:1,bu:2,wr:1};
+  function price(){const ft=+$("ft").value;$("ft-o").textContent=ft+" ft";let p=Math.max(499,ft*4.5+cnt.tr*150+cnt.bu*60+cnt.wr*95);$("price").textContent="$"+(Math.round(p/10)*10).toLocaleString("en-US");}
+  $("ft").addEventListener("input",price);
+  document.querySelectorAll(".cnt button").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.k;cnt[k]=Math.max(0,Math.min(12,cnt[k]+ +b.dataset.d));$(k).textContent=cnt[k];price();}));
+  price();
+})();
+</script>
+</body>
+</html>

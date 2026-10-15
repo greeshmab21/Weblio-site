@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Shadeline Tint &amp; Wrap · San Diego, CA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --bg:#09090b; --panel:#121216; --panel2:#1a1a20; --line:#26262e; --fg:#f2f2f4; --muted:#93939e;
+  --iri:linear-gradient(110deg,#7cf7ff,#a98bff 35%,#ff7ad9 65%,#ffd66b);
+  --display:"Syncopate",system-ui,sans-serif; --body:"Plus Jakarta Sans",system-ui,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body)}
+a{color:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.tag{font:700 11px var(--display);letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.iri{background:var(--iri);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:iri 6s ease-in-out infinite alternate}
+@keyframes iri{to{background-position:100% 0}}
+.iri *{background:inherit;-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font:700 15px var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .3s,box-shadow .3s}
+.btn:hover{transform:translateY(-2px)}
+.btn-i{background:var(--iri);color:#0b0b0e;background-size:200% 100%}
+.btn-i:hover{box-shadow:0 10px 40px -10px rgba(169,139,255,.8)}
+.btn-g{background:rgba(255,255,255,.07);color:var(--fg);box-shadow:inset 0 0 0 1px var(--line)}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:linear-gradient(rgba(9,9,11,.9),rgba(9,9,11,0))}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;min-height:78px;gap:16px}
+.logo{font:700 17px var(--display);letter-spacing:.24em;text-decoration:none}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-weight:600;font-size:14px;color:var(--muted)}
+.nav ul a:hover{color:var(--fg)}
+.nav .btn{min-height:44px;padding:0 18px;font-size:14px}
+
+.hero{position:relative;min-height:100vh;min-height:100svh;display:grid;align-items:center;overflow:hidden;padding-top:90px}
+.hero .glow{position:absolute;width:70vw;height:70vw;left:50%;top:60%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(169,139,255,.25),rgba(124,247,255,.08) 40%,transparent 65%);filter:blur(20px);animation:pulse 8s ease-in-out infinite alternate}
+@keyframes pulse{to{transform:translate(-50%,-50%) scale(1.15)}}
+.hero .wrap{position:relative;z-index:2;text-align:center}
+.hero h1{font:700 clamp(30px,5.6vw,84px)/1.05 var(--display);letter-spacing:-.02em;text-transform:uppercase}
+.hero p{max-width:50ch;margin:22px auto 0;color:#c4c4cc;font-size:18px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
+.herocar{width:min(1000px,100%);margin:20px auto 0;display:block;filter:drop-shadow(0 40px 40px rgba(0,0,0,.6))}
+.herocar .refl{animation:refl 5s ease-in-out infinite}
+@keyframes refl{0%{transform:translateX(-300px)}60%,100%{transform:translateX(900px)}}
+
+.sec{padding-block:clamp(88px,11vw,150px)}
+h2.h{font:700 clamp(26px,4vw,58px)/1.08 var(--display);text-transform:uppercase;letter-spacing:-.02em;margin-top:14px}
+
+/* Tint lab */
+.lab{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(20px,3vw,40px);margin-top:40px;align-items:center}
+.view{position:relative;border-radius:28px;overflow:hidden;background:linear-gradient(180deg,#87c6ff 0%,#d8ecff 55%,#e8d7b8 56%,#c9b48f 100%);aspect-ratio:16/9;border:1px solid var(--line)}
+.view svg{position:absolute;inset:0;width:100%;height:100%}
+.glass{transition:fill-opacity .5s}
+.ctrls{display:grid;gap:22px}
+.ql{font:700 11px var(--display);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:block}
+.vlt{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;position:relative}
+.vlt input,.film input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0}
+.vlt label{border:1px solid var(--line);border-radius:14px;padding:12px 4px;text-align:center;cursor:pointer;font-weight:700;background:var(--panel)}
+.vlt label i{display:block;height:18px;border-radius:6px;margin-bottom:6px;background:rgba(10,10,14,var(--a))}
+.vlt input:checked+label,.film input:checked+label{border-color:#a98bff;box-shadow:0 0 0 1px #a98bff}
+.vlt input:focus-visible+label,.film input:focus-visible+label{outline:2px solid #a98bff;outline-offset:2px}
+.film{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative}
+.film label{border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;background:var(--panel)}
+.film b{display:block}
+.film small{color:var(--muted)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stats div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.stats b{display:block;font:700 22px var(--display);font-variant-numeric:tabular-nums}
+.stats span{font-size:12px;color:var(--muted)}
+.law{font-size:13px;color:var(--muted);border-left:2px solid #a98bff;padding-left:12px}
+
+/* Wrap configurator */
+.wrapcfg{background:var(--panel);border:1px solid var(--line);border-radius:32px;padding:clamp(22px,4vw,48px);margin-top:40px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(20px,3vw,40px);align-items:center}
+.stage{position:relative;aspect-ratio:16/8;border-radius:22px;background:radial-gradient(70% 70% at 50% 100%,#2b2b35,#121216);overflow:hidden}
+.stage svg{position:absolute;inset:0;width:100%;height:100%}
+.body{transition:fill .6s}
+.fin{display:flex;flex-wrap:wrap;gap:6px}
+.fin button{border:1px solid var(--line);background:var(--panel2);color:var(--fg);border-radius:999px;padding:9px 14px;font:700 13px var(--body);cursor:pointer}
+.fin button[aria-pressed=true]{background:var(--fg);color:var(--bg)}
+.sws{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.sws button{aspect-ratio:1;border-radius:50%;border:2px solid transparent;cursor:pointer;background:var(--c)}
+.sws button[aria-pressed=true]{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.2)}
+.wp{font:700 32px var(--display);font-variant-numeric:tabular-nums}
+
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.pc{background:var(--panel);border:1px solid var(--line);border-radius:26px;padding:26px;display:grid;gap:12px;align-content:start;position:relative;overflow:hidden}
+.pc::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--iri)}
+.pc h3{font:700 15px var(--display);letter-spacing:.12em;text-transform:uppercase}
+.pc .p{font:700 34px var(--display)}
+.pc ul{margin:0;padding-left:18px;color:#c4c4cc;display:grid;gap:4px;font-size:15px}
+
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.rv{border:1px solid var(--line);border-radius:22px;padding:24px;display:grid;gap:10px;background:var(--panel)}
+.rv cite{font-style:normal;color:var(--muted);font-size:14px}
+
+.book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(28px,5vw,80px);align-items:start}
+.form{background:var(--panel);border:1px solid var(--line);border-radius:26px;padding:clamp(22px,3vw,34px);display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font-weight:700;font-size:13px;color:var(--muted)}
+[data-field] input,[data-field] select{width:100%;min-height:52px;border-radius:14px;border:1px solid var(--line);background:var(--panel2);color:var(--fg);font:inherit;padding:0 14px}
+[data-field] input:focus,[data-field] select:focus{outline:none;border-color:#a98bff}
+.err{font-size:13px;color:#ff9aa2}
+.form-done{background:var(--panel);border:1px solid #a98bff;border-radius:26px;padding:32px}
+.form-done h3{font:700 26px var(--display);text-transform:uppercase}
+.form-done p{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding-block:56px calc(100px + env(safe-area-inset-bottom,0px));text-align:center}
+footer .big{font:700 clamp(36px,9vw,140px)/1 var(--display);letter-spacing:-.02em}
+footer p{color:var(--muted);margin-top:18px}
+@media (max-width:980px){.nav ul{display:none}.lab,.wrapcfg,.book{grid-template-columns:1fr}.pk,.revs{grid-template-columns:1fr}}
+@media (max-width:600px){.vlt label{font-size:13px}.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top">SHADE<span class="iri">LINE</span></a>
+  <ul><li><a href="#tint">Tint lab</a></li><li><a href="#wrap">Wraps</a></li><li><a href="#packages">Packages</a></li></ul>
+  <a class="btn btn-i" href="#book">Book now</a>
+</div></header>
+
+<section class="hero" id="top">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="tag" data-reveal="fade">Window tint · Wraps · PPF · San Diego</span>
+    <h1 data-split style="margin-top:18px">Darker glass. Cooler cabin. <span class="iri">Sharper car.</span></h1>
+    <p data-reveal style="--rd:500">Ceramic window tint that blocks the heat without the dark-cave look, plus full color-change wraps and paint protection film. Lifetime warranty on every film.</p>
+    <div class="ctas" data-reveal style="--rd:650"><a class="btn btn-i" href="#tint" data-magnetic>Try the tint lab →</a><a class="btn btn-g" href="#wrap">Design a wrap</a></div>
+    <svg class="herocar" viewBox="0 0 1000 300" aria-hidden="true" data-reveal="scale" style="--rd:400">
+      <defs><linearGradient id="hb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3a46"/><stop offset=".5" stop-color="#16161c"/><stop offset="1" stop-color="#050507"/></linearGradient><clipPath id="hc"><path d="M60 220 C70 180 120 168 200 160 L330 146 C380 96 450 76 540 76 L660 80 C720 86 770 116 810 146 L900 158 C940 166 960 190 960 220 Z"/></clipPath></defs>
+      <ellipse cx="510" cy="262" rx="470" ry="16" fill="rgba(169,139,255,.25)"/>
+      <path d="M60 220 C70 180 120 168 200 160 L330 146 C380 96 450 76 540 76 L660 80 C720 86 770 116 810 146 L900 158 C940 166 960 190 960 220 Z" fill="url(#hb)"/>
+      <path d="M360 146 C400 106 455 92 540 92 L650 95 C700 100 735 120 765 146Z" fill="#050508"/>
+      <g clip-path="url(#hc)"><rect class="refl" x="0" y="0" width="120" height="300" fill="rgba(255,255,255,.18)" transform="skewX(-20)"/></g>
+      <path d="M90 170 C300 150 700 146 940 168" stroke="url(#hi)" stroke-width="3" fill="none"/>
+      <linearGradient id="hi"><stop offset="0" stop-color="#7cf7ff"/><stop offset=".5" stop-color="#a98bff"/><stop offset="1" stop-color="#ff7ad9"/></linearGradient>
+      <g fill="#050507"><circle cx="230" cy="222" r="52"/><circle cx="790" cy="222" r="52"/></g><g fill="#2a2a33"><circle cx="230" cy="222" r="26"/><circle cx="790" cy="222" r="26"/></g>
+    </svg>
+  </div>
+</section>
+
+<section class="sec" id="tint"><div class="wrap">
+  <span class="tag">Tint lab</span>
+  <h2 class="h" data-split>Pick your <span class="iri">shade.</span></h2>
+  <div class="lab">
+    <div class="view" data-reveal="scale">
+      <svg viewBox="0 0 800 450" aria-label="Car side window with tint preview">
+        <circle cx="640" cy="90" r="46" fill="#fff6c9"/>
+        <path d="M20 360 C40 300 110 286 220 276 L330 266 C380 196 450 170 540 170 L640 174 C700 180 740 210 770 250 L790 290 L790 360Z" fill="#e9e9ee"/>
+        <path d="M345 262 C385 210 445 190 535 190 L625 194 C670 198 700 220 722 256 Z" fill="#2e3440"/>
+        <g opacity=".9"><circle cx="470" cy="236" r="20" fill="#c49a7a"/><path d="M440 262 q30 -20 60 0 v20h-60Z" fill="#3a5a8a"/></g>
+        <path class="glass" id="glass" d="M345 262 C385 210 445 190 535 190 L625 194 C670 198 700 220 722 256 Z" fill="#07070b" fill-opacity=".5"/>
+        <path d="M530 190 L524 262" stroke="#e9e9ee" stroke-width="8"/>
+        <g fill="#16161c"><circle cx="200" cy="362" r="54"/><circle cx="660" cy="362" r="54"/></g>
+      </svg>
+    </div>
+    <div class="ctrls">
+      <fieldset style="border:0;margin:0;padding:0"><legend class="ql">Shade (light let through)</legend><div class="vlt">
+        <input type="radio" name="vlt" id="t5" value="5"><label for="t5" style="--a:.95"><i></i>5%</label>
+        <input type="radio" name="vlt" id="t20" value="20"><label for="t20" style="--a:.8"><i></i>20%</label>
+        <input type="radio" name="vlt" id="t35" value="35" checked><label for="t35" style="--a:.6"><i></i>35%</label>
+        <input type="radio" name="vlt" id="t50" value="50"><label for="t50" style="--a:.45"><i></i>50%</label>
+        <input type="radio" name="vlt" id="t70" value="70"><label for="t70" style="--a:.25"><i></i>70%</label>
+      </div></fieldset>
+      <fieldset style="border:0;margin:0;padding:0"><legend class="ql">Film</legend><div class="film">
+        <input type="radio" name="film" id="f1" value="c"><label for="f1"><b>Carbon</b><small>Matte look, no signal issues</small></label>
+        <input type="radio" name="film" id="f2" value="k" checked><label for="f2"><b>Ceramic</b><small>Max heat rejection</small></label>
+      </div></fieldset>
+      <div class="stats" aria-live="polite"><div><b id="ir">0%</b><span>Infrared heat blocked</span></div><div><b id="tp">$0</b><span>Full car, installed</span></div></div>
+      <p class="law" id="law">California: front side windows must let in 70% of light. Rear windows can be any shade.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="wrap" style="padding-top:0"><div class="wrap">
+  <span class="tag">Wrap studio</span>
+  <h2 class="h" data-split>New color. <span class="iri">Same paint underneath.</span></h2>
+  <div class="wrapcfg" data-reveal>
+    <div class="stage">
+      <svg viewBox="0 0 800 400" aria-label="Car wrap color preview">
+        <defs><linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></linearGradient></defs>
+        <ellipse cx="400" cy="330" rx="350" ry="16" fill="rgba(0,0,0,.6)"/>
+        <path class="body" id="wbody" d="M60 300 C70 260 120 248 200 240 L300 228 C350 172 420 150 500 150 L590 154 C650 160 690 190 720 226 L760 238 C780 246 790 270 790 300 Z" fill="#7a2cff"/>
+        <path id="wsheen" d="M60 300 C70 260 120 248 200 240 L300 228 C350 172 420 150 500 150 L590 154 C650 160 690 190 720 226 L760 238 C780 246 790 270 790 300 Z" fill="url(#sheen)" opacity=".9"/>
+        <path d="M330 226 C370 184 430 166 500 166 L585 170 C630 175 660 196 684 226Z" fill="#0a0a0e"/>
+        <g fill="#0b0b0e"><circle cx="210" cy="300" r="44"/><circle cx="650" cy="300" r="44"/></g><g fill="#3a3a44"><circle cx="210" cy="300" r="22"/><circle cx="650" cy="300" r="22"/></g>
+      </svg>
+    </div>
+    <div style="display:grid;gap:20px">
+      <div><span class="ql">Finish</span><div class="fin" id="fin"><button aria-pressed="true" data-f="gloss">Gloss</button><button aria-pressed="false" data-f="satin">Satin</button><button aria-pressed="false" data-f="matte">Matte</button><button aria-pressed="false" data-f="chrome">Chrome</button></div></div>
+      <div><span class="ql">Color</span><div class="sws" id="sws"></div></div>
+      <div><span class="ql" style="margin-bottom:2px">Full wrap, sedan</span><div class="wp" id="wp">$0</div><span style="font-size:13px;color:var(--muted)">3–5 days in shop · removable, protects factory paint</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="packages" style="padding-top:0"><div class="wrap">
+  <span class="tag">Packages</span>
+  <h2 class="h" data-split>Most-booked</h2>
+  <div class="pk">
+    <div class="pc" data-reveal><h3>Ceramic tint</h3><div class="p">from $399</div><ul><li>All side &amp; rear windows</li><li>Up to 90% heat rejection</li><li>Lifetime warranty</li><li>Done in 2–3 hours</li></ul></div>
+    <div class="pc" data-reveal style="--rd:100"><h3>Front-end PPF</h3><div class="p">from $1,499</div><ul><li>Hood, bumper, fenders, mirrors</li><li>Self-healing film</li><li>Stops rock chips cold</li><li>10-year warranty</li></ul></div>
+    <div class="pc" data-reveal style="--rd:200"><h3>Color-change wrap</h3><div class="p">from $2,900</div><ul><li>Full body, door jambs optional</li><li>300+ colors &amp; finishes</li><li>Removable, protects paint</li><li>3–5 days in shop</li></ul></div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="tag">Reviews</span>
+  <div class="revs">
+    <figure class="rv" data-reveal style="margin:0"><span class="iri">★★★★★</span><p>"Ceramic 35 on my Model 3. Steering wheel doesn't burn my hands anymore in July."</p><cite>Jess L. · La Jolla</cite></figure>
+    <figure class="rv" data-reveal style="margin:0;--rd:100"><span class="iri">★★★★★</span><p>"Satin black wrap on the M3. Turned it into a completely different car. Flawless edges."</p><cite>Omar K. · Chula Vista</cite></figure>
+    <figure class="rv" data-reveal style="margin:0;--rd:200"><span class="iri">★★★★★</span><p>"Used the tint lab to show my husband what 20% looks like. Ended up doing 35. Perfect."</p><cite>Grace H. · Escondido</cite></figure>
+  </div>
+</div></section>
+
+<section class="sec" id="book" style="padding-top:0"><div class="wrap book">
+  <div><span class="tag">Book</span><h2 class="h" data-split>Get on <span class="iri">the schedule.</span></h2><p style="color:var(--muted);margin-top:18px;max-width:40ch">Most tint jobs are same-week. Wraps book 1–2 weeks out. (619) 555-0151</p></div>
+  <form class="form" data-kit novalidate data-done-title="You're in{n}." data-done-text="We'll text you a quote and open slots within the hour.">
+    <div class="two">
+      <div data-field><label for="s-name">Name</label><input id="s-name" name="name" autocomplete="name" required><span class="err"></span></div>
+      <div data-field><label for="s-phone">Mobile</label><input id="s-phone" name="phone" type="tel" autocomplete="tel" required><span class="err"></span></div>
+    </div>
+    <div class="two">
+      <div data-field><label for="s-car">Car</label><input id="s-car" name="car" placeholder="2024 BMW M3" required><span class="err"></span></div>
+      <div data-field><label for="s-svc">Service</label><select id="s-svc" name="service"><option>Window tint</option><option>Color-change wrap</option><option>Paint protection film</option></select></div>
+    </div>
+    <button class="btn btn-i" type="submit" style="justify-content:center">Get my quote</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap"><div class="big">SHADE<span class="iri">LINE</span></div><p>Tint · Wraps · PPF · Miramar, San Diego · (619) 555-0151 · © 2026 · Sample site</p></div></footer>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  // Tint lab
+  const IR={c:{5:55,20:50,35:45,50:40,70:35},k:{5:92,20:90,35:88,50:85,70:80}},PR={c:299,k:399};
+  function tint(){const v=+document.querySelector("[name=vlt]:checked").value,f=document.querySelector("[name=film]:checked").value;
+    $("glass").setAttribute("fill-opacity",(1-v/100)*.95);$("ir").textContent="up to "+IR[f][v]+"%";$("tp").textContent="$"+PR[f];
+    $("law").innerHTML=v<70?"California: front side windows must let in 70% of light, so we'd put "+v+"% on the rear windows only.":"70% is legal on every window in California, including the front sides.";}
+  document.querySelector(".ctrls").addEventListener("change",tint);tint();
+  // Wrap studio
+  const C=["#7a2cff","#0f0f12","#e8e8ea","#c8102e","#0b6e4f","#2b5cff","#ff8a00","#5b6770","#ffd400","#00b3c7","#ff4fa3","#6b4e2e"];
+  const FIN={gloss:[2900,.55,1],satin:[3200,.25,1],matte:[3400,.05,1],chrome:[5500,.9,1]};
+  let col=C[0],fin="gloss";
+  $("sws").innerHTML=C.map((c,i)=>`<button aria-pressed="${i===0}" style="--c:${c}" data-c="${c}" aria-label="Color ${i+1}"></button>`).join("");
+  function wrap(){const f=FIN[fin];$("wbody").setAttribute("fill",col);document.querySelector("#sheen stop").setAttribute("stop-opacity",f[1]);
+    $("wsheen").setAttribute("opacity",fin==="chrome"?"1":".9");$("wp").textContent="$"+f[0].toLocaleString("en-US");
+    if(!FX.reduce)$("wbody").animate([{opacity:.6},{opacity:1}],{duration:400});}
+  $("sws").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;col=b.dataset.c;$("sws").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));wrap();});
+  $("fin").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;fin=b.dataset.f;$("fin").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));wrap();});
+  wrap();
+})();
+</script>
+</body>
+</html>

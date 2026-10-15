@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Apex Shine Mobile Detailing · Miami, FL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Rubik:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --bg:#06070a; --panel:#0e1117; --panel2:#151a22; --line:#232a35; --fg:#eef3f8; --muted:#8d99a8; --ice:#6fd3ff; --ice2:#2aa8e8; --chrome:linear-gradient(180deg,#ffffff 0%,#b9c4d0 45%,#6b7685 55%,#e6edf4 100%);
+  --display:"Chakra Petch",system-ui,sans-serif; --body:"Rubik",system-ui,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body)}
+a{color:inherit}
+.wrap{max-width:1300px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.tag{font:600 12px var(--display);letter-spacing:.24em;text-transform:uppercase;color:var(--ice)}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 26px;font:700 14px var(--display);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);transition:filter .3s,transform .3s}
+.btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.btn-i{background:linear-gradient(90deg,var(--ice),var(--ice2));color:#03141d}
+.btn-g{background:rgba(255,255,255,.08);color:var(--fg)}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .4s}
+.nav.solid{background:rgba(6,7,10,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;min-height:76px;gap:16px}
+.logo{font:700 22px var(--display);letter-spacing:.14em;text-decoration:none;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font:600 13px var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.nav ul a:hover{color:var(--ice)}
+.nav .btn{min-height:44px;padding:0 20px}
+
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;display:grid;align-items:end;background:radial-gradient(90% 60% at 70% 0%,#18304a 0%,transparent 60%),linear-gradient(#0a0d12,#06070a)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.sweep{position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.09) 45%,rgba(111,211,255,.12) 50%,transparent 60%);background-size:250% 100%;animation:sweep 6s ease-in-out infinite;pointer-events:none}
+@keyframes sweep{0%{background-position:120% 0}60%,100%{background-position:-60% 0}}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-block:140px 64px}
+.hero h1{font:700 clamp(54px,9vw,140px)/.88 var(--display);text-transform:uppercase;letter-spacing:-.01em;max-width:12ch}
+.hero h1 .chr{background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .chr *{background:inherit;-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:28px;margin-top:30px}
+.hero p{max-width:44ch;color:#c5cfdb;font-size:18px}
+.specs{display:flex;gap:0;border:1px solid var(--line);background:rgba(14,17,23,.7);backdrop-filter:blur(8px)}
+.specs div{padding:14px 20px;border-left:1px solid var(--line)}
+.specs div:first-child{border-left:0}
+.specs b{display:block;font:700 26px var(--display);color:var(--ice)}
+.specs span{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+.sec{padding-block:clamp(88px,11vw,150px)}
+h2.h{font:700 clamp(40px,6vw,88px)/.92 var(--display);text-transform:uppercase;margin-top:14px}
+h2.h em{font-style:normal;color:var(--ice)}
+
+.pc{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,64px);align-items:center}
+.cmp{aspect-ratio:16/10;--cmp-line:var(--ice);--cmp-knob:#03141d;border:1px solid var(--line)}
+.cmp svg{width:100%;height:100%}
+.pc ul{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:12px}
+.pc li{display:flex;gap:12px;color:#c5cfdb}
+.pc li b{font:700 13px var(--display);color:var(--ice);min-width:28px}
+
+/* Package builder */
+.builder{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:0;border:1px solid var(--line);margin-top:48px}
+.bq{padding:clamp(20px,3vw,36px);display:grid;gap:28px;background:var(--panel)}
+.ql{font:600 12px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:block}
+.seg{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:8px;position:relative}
+.seg input,.adds input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0}
+.seg label{border:1px solid var(--line);padding:14px 10px;text-align:center;cursor:pointer;transition:.25s;background:var(--panel2)}
+.seg label b{display:block;font:700 15px var(--display);letter-spacing:.06em}
+.seg label small{color:var(--muted);font-size:12px}
+.seg input:checked+label{border-color:var(--ice);background:rgba(111,211,255,.1);box-shadow:inset 0 0 0 1px var(--ice)}
+.seg input:focus-visible+label,.adds input:focus-visible+label{outline:2px solid var(--ice);outline-offset:2px}
+.adds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative}
+.adds label{border:1px dashed var(--line);padding:12px;cursor:pointer;font-size:14px;transition:.25s;display:flex;justify-content:space-between;gap:8px}
+.adds input:checked+label{border-style:solid;border-color:var(--ice);color:var(--ice)}
+.ba{background:linear-gradient(160deg,#0f2a3d,#071019);padding:clamp(20px,3vw,36px);display:flex;flex-direction:column;gap:20px;border-left:1px solid var(--line)}
+.total{font:700 clamp(56px,6vw,88px)/1 var(--display);font-variant-numeric:tabular-nums;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.inc{list-style:none;padding:0;margin:0;display:grid;gap:8px;flex:1}
+.inc li{display:flex;gap:10px;font-size:15px;color:#c5cfdb}
+.inc li::before{content:"◆";color:var(--ice);font-size:10px;margin-top:5px}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);margin-top:48px}
+.st{padding:28px 24px 0 0}
+.st+.st{padding-left:24px;border-left:1px solid var(--line)}
+.st b{font:700 44px var(--display);color:transparent;-webkit-text-stroke:1px var(--ice)}
+.st h3{font:700 22px var(--display);text-transform:uppercase;letter-spacing:.04em;margin-top:10px}
+.st p{color:var(--muted);margin-top:6px;font-size:15px}
+
+.gal .h-sticky{flex-direction:column;align-items:stretch;justify-content:center;gap:28px}
+.gal .head{display:flex;justify-content:space-between;align-items:end;gap:20px;padding-left:var(--gl);padding-right:var(--gr)}
+.gal .h-track{gap:18px;padding-left:var(--gl);padding-right:var(--gr)}
+.car{flex:none;width:min(520px,82vw);background:var(--panel);border:1px solid var(--line);padding:22px;display:grid;gap:14px}
+.car svg{width:100%;height:auto}
+.car .m{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.car h3{font:700 22px var(--display);text-transform:uppercase}
+.car span{font-size:13px;color:var(--ice);font-family:var(--display);letter-spacing:.1em}
+
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.rv{background:var(--panel);border:1px solid var(--line);padding:24px;display:grid;gap:12px}
+.rv p{color:#d4dbe4}
+.rv cite{font-style:normal;color:var(--muted);font-size:14px}
+.rv .s{color:var(--ice);letter-spacing:3px}
+
+.book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(28px,5vw,80px);align-items:start}
+.form{background:var(--panel);border:1px solid var(--line);padding:clamp(22px,3vw,34px);display:grid;gap:16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font:600 12px var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+[data-field] input,[data-field] select{width:100%;min-height:52px;background:var(--panel2);border:1px solid var(--line);color:var(--fg);font:inherit;padding:0 14px;border-radius:0}
+[data-field] input:focus,[data-field] select:focus{outline:none;border-color:var(--ice)}
+.err{font-size:13px;color:#ff8a8a}
+.form-done{background:var(--panel);border:1px solid var(--ice);padding:34px}
+.form-done h3{font:700 36px var(--display);text-transform:uppercase;color:var(--ice)}
+.form-done p{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding-block:48px calc(100px + env(safe-area-inset-bottom,0px))}
+footer .big{font:700 clamp(56px,12vw,190px)/.85 var(--display);letter-spacing:.02em;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:24px;color:var(--muted);font-size:14px}
+@media (max-width:980px){.nav ul{display:none}.pc,.builder,.book{grid-template-columns:1fr}.ba{border-left:0;border-top:1px solid var(--line)}.steps,.revs{grid-template-columns:1fr 1fr}.st:nth-child(3){padding-left:0;border-left:0}}
+@media (max-width:600px){.steps,.revs{grid-template-columns:1fr}.st+.st{padding-left:0;border-left:0}.adds{grid-template-columns:1fr}.seg{--n:1!important}.two{grid-template-columns:1fr}.specs div{padding:10px 12px}.specs b{font-size:20px}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="#top">APEX SHINE</a>
+  <ul><li><a href="#correction">Correction</a></li><li><a href="#packages">Packages</a></li><li><a href="#work">Work</a></li></ul>
+  <a class="btn btn-i" href="#book">Book a detail</a>
+</div></header>
+
+<section class="hero" id="top">
+  <canvas id="beads" aria-hidden="true"></canvas><div class="sweep" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="tag" data-reveal="fade">Mobile detailing &amp; ceramic coating · Miami</span>
+    <h1 data-split style="margin-top:18px">Showroom <span class="chr">shine</span>, in your driveway.</h1>
+    <div class="row">
+      <p data-reveal style="--rd:500">We bring the water, the power and the products. Paint correction and 9H ceramic coatings across Miami-Dade, done at your home or office.</p>
+      <div style="display:grid;gap:16px;justify-items:start;--rd:650" data-reveal>
+        <div style="display:flex;flex-wrap:wrap;gap:10px"><a class="btn btn-i" href="#packages" data-magnetic>Build my package →</a><a class="btn btn-g" href="#correction">See a correction</a></div>
+        <div class="specs"><div><b>9H</b><span>Ceramic hardness</span></div><div><b>5 yr</b><span>Coating warranty</span></div><div><b>0</b><span>Trips to a shop</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="correction"><div class="wrap pc">
+  <div>
+    <span class="tag">Paint correction</span>
+    <h2 class="h" data-split>Swirls out. <em>Mirror in.</em></h2>
+    <p style="color:#c5cfdb;margin-top:18px;max-width:42ch" data-reveal>Automatic car washes leave thousands of fine scratches that catch the sun. We machine-polish them out before coating, so the gloss is real, not hidden. Drag to compare.</p>
+    <ul data-reveal><li><b>01</b>Decontamination wash &amp; clay</li><li><b>02</b>Paint depth measured panel by panel</li><li><b>03</b>Two-stage cut and polish</li><li><b>04</b>Ceramic coating locks it in</li></ul>
+  </div>
+  <div class="cmp" data-reveal="scale">
+    <svg viewBox="0 0 800 500" aria-label="Paint with swirl marks"><defs><radialGradient id="rp" cx=".5" cy=".4" r=".8"><stop offset="0" stop-color="#b3121f"/><stop offset="1" stop-color="#4a050b"/></radialGradient></defs><rect width="800" height="500" fill="url(#rp)"/><g id="swirls" fill="none" stroke="rgba(255,220,220,.18)" stroke-width="1"></g><ellipse cx="420" cy="180" rx="220" ry="46" fill="rgba(255,255,255,.12)"/></svg>
+    <div class="after"><svg viewBox="0 0 800 500" aria-label="Same paint after correction"><defs><radialGradient id="rp2" cx=".5" cy=".4" r=".8"><stop offset="0" stop-color="#d0182a"/><stop offset="1" stop-color="#55060d"/></radialGradient><linearGradient id="refl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><rect width="800" height="500" fill="url(#rp2)"/><path d="M0 150 C200 120 600 120 800 160 L800 210 C600 170 200 170 0 200Z" fill="url(#refl)" opacity=".7"/><path d="M0 330 C250 300 550 300 800 340 L800 352 C550 314 250 314 0 342Z" fill="url(#refl)" opacity=".35"/><g fill="rgba(255,255,255,.9)"><circle cx="300" cy="400" r="5"/><circle cx="330" cy="420" r="3"/><circle cx="560" cy="380" r="6"/><circle cx="590" cy="410" r="3.5"/></g></svg></div>
+    <span class="tag l">Before</span><span class="tag r">After</span>
+    <input type="range" min="0" max="100" value="50" aria-label="Compare before and after"><span class="handle"></span>
+  </div>
+</div></section>
+
+<section class="sec" id="packages" style="padding-top:0"><div class="wrap">
+  <span class="tag">Build your package</span>
+  <h2 class="h" data-split>Your car. <em>Your price.</em></h2>
+  <div class="builder" data-reveal>
+    <div class="bq">
+      <fieldset style="border:0;margin:0;padding:0"><legend class="ql">Vehicle</legend><div class="seg"><input type="radio" name="veh" id="v1" value="0" checked><label for="v1"><b>Coupe / Sedan</b><small>Civic, Model 3</small></label><input type="radio" name="veh" id="v2" value="1"><label for="v2"><b>SUV</b><small>RAV4, Model Y</small></label><input type="radio" name="veh" id="v3" value="2"><label for="v3"><b>Truck / 3-row</b><small>F-150, Tahoe</small></label></div></fieldset>
+      <fieldset style="border:0;margin:0;padding:0"><legend class="ql">Package</legend><div class="seg" style="--n:2"><input type="radio" name="pk" id="p1" value="0"><label for="p1"><b>Maintenance</b><small>Hand wash + interior wipe</small></label><input type="radio" name="pk" id="p2" value="1"><label for="p2"><b>Full detail</b><small>Inside &amp; out, deep clean</small></label><input type="radio" name="pk" id="p3" value="2"><label for="p3"><b>Paint correction</b><small>Swirl removal + sealant</small></label><input type="radio" name="pk" id="p4" value="3" checked><label for="p4"><b>Ceramic coating</b><small>Correction + 5-yr coat</small></label></div></fieldset>
+      <fieldset style="border:0;margin:0;padding:0"><legend class="ql">Add-ons</legend><div class="adds"><input type="checkbox" id="a1" value="40"><label for="a1">Pet hair<span>+$40</span></label><input type="checkbox" id="a2" value="50"><label for="a2">Engine bay<span>+$50</span></label><input type="checkbox" id="a3" value="60"><label for="a3">Headlights<span>+$60</span></label></div></fieldset>
+    </div>
+    <div class="ba" aria-live="polite">
+      <span class="ql" style="margin:0">Your price</span>
+      <div class="total" id="tot">$0</div>
+      <ul class="inc" id="inc"></ul>
+      <span style="font-size:13px;color:var(--muted)" id="dur"></span>
+      <a class="btn btn-i" href="#book" style="justify-content:center">Book this package</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="tag">How it works</span>
+  <h2 class="h" data-split>We come <em>to you.</em></h2>
+  <div class="steps">
+    <div class="st" data-reveal><b>01</b><h3>Book online</h3><p>Pick a package and a time. Home, office or condo garage all work.</p></div>
+    <div class="st" data-reveal style="--rd:100"><b>02</b><h3>We roll up</h3><p>Our van carries its own water tank, generator and shade canopy.</p></div>
+    <div class="st" data-reveal style="--rd:200"><b>03</b><h3>We detail</h3><p>Two to eight hours depending on the package. You keep working.</p></div>
+    <div class="st" data-reveal style="--rd:300"><b>04</b><h3>You inspect</h3><p>Walk-around under our LED light before we pack up. Not happy? We fix it.</p></div>
+  </div>
+</div></section>
+
+<section class="gal" id="work" data-hscroll><div class="h-sticky">
+  <div class="head"><h2 class="h">Recent <em>work</em></h2><span class="tag">Scroll →</span></div>
+  <div class="h-track" id="cars"></div>
+</div></section>
+
+<section class="sec" style="padding-top:clamp(60px,8vw,110px)"><div class="wrap">
+  <span class="tag">Reviews</span>
+  <div class="revs">
+    <figure class="rv" data-reveal style="margin:0"><span class="s">★★★★★</span><p>"They detailed my Model Y in my office parking garage. Looked better than the day I picked it up."</p><cite>Daniela R. · Brickell</cite></figure>
+    <figure class="rv" data-reveal style="margin:0;--rd:100"><span class="s">★★★★★</span><p>"Five years of car-wash swirls gone in one day. The ceramic makes washing it take ten minutes."</p><cite>Marcus J. · Coral Gables</cite></figure>
+    <figure class="rv" data-reveal style="margin:0;--rd:200"><span class="s">★★★★★</span><p>"Golden retriever hair everywhere. They got every last strand. Worth every dollar of the add-on."</p><cite>Lena P. · Doral</cite></figure>
+  </div>
+</div></section>
+
+<section class="sec" id="book" style="padding-top:0"><div class="wrap book">
+  <div><span class="tag">Book</span><h2 class="h" data-split>Lock in <em>your slot.</em></h2><p style="color:var(--muted);margin-top:18px;max-width:40ch">Weekend slots go first. We'll text to confirm the exact time and location. (305) 555-0129</p></div>
+  <form class="form" data-kit novalidate data-done-title="You're booked{n}." data-done-text="We'll text you within the hour to confirm your time and address.">
+    <div class="two">
+      <div data-field><label for="x-name">Name</label><input id="x-name" name="name" autocomplete="name" required><span class="err"></span></div>
+      <div data-field><label for="x-phone">Mobile</label><input id="x-phone" name="phone" type="tel" autocomplete="tel" required><span class="err"></span></div>
+    </div>
+    <div class="two">
+      <div data-field><label for="x-car">Car (year, make, model)</label><input id="x-car" name="car" placeholder="2023 Tesla Model Y" required><span class="err"></span></div>
+      <div data-field><label for="x-zip">ZIP code</label><input id="x-zip" name="zip" inputmode="numeric" required><span class="err"></span></div>
+    </div>
+    <button class="btn btn-i" type="submit" style="justify-content:center">Request booking</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap"><div class="big">APEX SHINE</div><div class="row"><span>Mobile detailing &amp; ceramic coating · Miami-Dade</span><span>(305) 555-0129</span><span>© 2026 · Sample site</span></div></div></footer>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  FX.onScroll.push(y=>$("nav").classList.toggle("solid",y>60));
+  // Water beading canvas
+  const c=$("beads"),x=c.getContext("2d");let w,h,D=[];
+  function size(){const d=Math.min(devicePixelRatio||1,2);w=c.clientWidth;h=c.clientHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
+    D=Array.from({length:Math.round(w*h/5200)},()=>({x:Math.random()*w,y:Math.random()*h,r:1.5+Math.pow(Math.random(),3)*14,v:0}));}
+  function drop(d){const g=x.createRadialGradient(d.x-d.r*.35,d.y-d.r*.4,d.r*.1,d.x,d.y,d.r);g.addColorStop(0,"rgba(255,255,255,.9)");g.addColorStop(.25,"rgba(180,225,255,.35)");g.addColorStop(.8,"rgba(40,90,130,.15)");g.addColorStop(1,"rgba(0,0,0,.35)");
+    x.fillStyle=g;x.beginPath();x.arc(d.x,d.y,d.r,0,Math.PI*2);x.fill();}
+  function draw(){x.clearRect(0,0,w,h);D.forEach(d=>{if(!FX.reduce&&d.r>9){d.v=Math.min(d.v+.02,2.2);d.y+=d.v;if(d.y-d.r>h){d.y=-d.r;d.x=Math.random()*w;d.r=1.5+Math.random()*4;d.v=0;}}else if(!FX.reduce&&Math.random()<.002){d.r+=.6;}drop(d);});if(!FX.reduce)requestAnimationFrame(draw);}
+  size();addEventListener("resize",size);draw();
+
+  // Swirl marks
+  const sw=$("swirls");let s="";for(let i=0;i<70;i++){const cx=380+(Math.random()-.5)*300,cy=200+(Math.random()-.5)*160,r=20+Math.random()*320,a=Math.random()*6.28,b=a+.3+Math.random()*1.2;
+    s+=`<path d="M${cx+r*Math.cos(a)} ${cy+r*Math.sin(a)} A${r} ${r} 0 0 1 ${cx+r*Math.cos(b)} ${cy+r*Math.sin(b)}"/>`;}sw.innerHTML=s;
+
+  // Package builder
+  const P=[["Maintenance",[79,99,119],"1.5–2 hrs",["Foam pre-wash & hand wash","Wheels, tires & door jambs","Interior vacuum & wipe-down","Streak-free glass"]],
+           ["Full detail",[229,269,299],"4–5 hrs",["Everything in Maintenance","Steam-cleaned seats & carpets","Leather cleaned & conditioned","Clay bar + 6-month sealant"]],
+           ["Paint correction",[549,649,749],"6–8 hrs",["Full exterior decontamination","Two-stage machine polish","Up to 90% swirl removal","12-month sealant"]],
+           ["Ceramic coating",[1299,1499,1699],"1–2 days",["Paint correction included","9H ceramic, 5-year warranty","Wheels & glass coated","Free 6-month check-up wash"]]];
+  let shown=0,raf;
+  function calc(){const v=+document.querySelector("[name=veh]:checked").value,p=P[+document.querySelector("[name=pk]:checked").value];
+    let t=p[1][v];document.querySelectorAll(".adds input:checked").forEach(a=>t+=+a.value);
+    $("inc").innerHTML=p[3].map(i=>`<li>${i}</li>`).join("");$("dur").textContent="Time on site: "+p[2];
+    cancelAnimationFrame(raf);const go=()=>{shown+=(t-shown)*.18;if(Math.abs(t-shown)<.5)shown=t;$("tot").textContent="$"+Math.round(shown).toLocaleString("en-US");if(shown!==t)raf=requestAnimationFrame(go);};go();}
+  document.querySelector(".bq").addEventListener("change",calc);calc();
+
+  // Work gallery cars
+  const CARS=[["Porsche 911","Ceramic coating","#c9d2db"],["Tesla Model Y","Full detail","#e8ecef"],["Ford Bronco","Paint correction","#2f6fbd"],["BMW M4","Ceramic coating","#1d7a58"],["Range Rover","Full detail","#2a2d33"],["Corvette C8","Ceramic coating","#e2401c"]];
+  const body="M30 150 C40 120 70 112 120 106 L200 96 C230 64 280 52 340 52 L420 54 C460 58 492 78 520 98 L572 106 C596 112 610 128 610 150 Z";
+  $("cars").innerHTML=CARS.map((cr,i)=>`<article class="car"><svg viewBox="0 0 640 200" aria-label="${cr[0]} illustration"><defs><linearGradient id="cg${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".35" stop-color="${cr[2]}"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></linearGradient></defs><ellipse cx="320" cy="176" rx="300" ry="10" fill="rgba(111,211,255,.18)"/><path d="${body}" fill="${cr[2]}"/><path d="${body}" fill="url(#cg${i})"/><path d="M230 98 C258 72 290 64 336 64 L410 66 C440 70 460 84 476 98Z" fill="#0b1118" opacity=".85"/><g fill="#0b0d10"><circle cx="150" cy="150" r="34"/><circle cx="490" cy="150" r="34"/></g><g fill="#9aa7b4"><circle cx="150" cy="150" r="16"/><circle cx="490" cy="150" r="16"/></g><path d="M60 112 C200 96 420 92 600 112" stroke="#fff" stroke-opacity=".5" stroke-width="3" fill="none"/></svg><div class="m"><h3>${cr[0]}</h3><span>${cr[1]}</span></div></article>`).join("");
+})();
+</script>
+</body>
+</html>
