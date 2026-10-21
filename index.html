@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Gabarito:wght@900&family=Big+Shoulders+Display:wght@900&family=Gloock&family=Bodoni+Moda:ital,opsz,wght@1,6..96,500&family=Syne:wght@800&family=Petrona:wght@800&family=Unbounded:wght@800&family=Chakra+Petch:wght@700&family=DM+Serif+Display&family=Bowlby+One&family=Teko:wght@700&family=Syncopate:wght@700&family=Fredoka:wght@700&family=Bungee&family=Playfair+Display:wght@900&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Gabarito:wght@900&family=Big+Shoulders+Display:wght@900&family=Gloock&family=Bodoni+Moda:ital,opsz,wght@1,6..96,500&family=Syne:wght@800&family=Petrona:wght@800&family=Unbounded:wght@800&family=Chakra+Petch:wght@700&family=DM+Serif+Display&family=Bowlby+One&family=Teko:wght@700&family=Syncopate:wght@700&family=Fredoka:wght@700&family=Bungee&family=Playfair+Display:wght@900&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Fraunces:ital,wght@0,500;1,500&display=swap">
 <style>
 /* Layout: one black field. Giant expanded type, a sticky stack of roofing samples, an index grid of other industries, list-style services, and a footer wordmark that rises in. */
 :root{
@@ -142,7 +142,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .more{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(14px,1.6vw,22px);margin-top:clamp(40px,6vw,80px)}
 .tile{grid-column:span 2;display:grid;gap:16px;text-decoration:none;min-width:0}
 .tile:nth-child(1),.tile:nth-child(2){grid-column:span 3}
-.more.six .tile{grid-column:span 2}
+@media (min-width:1001px){.more.six .tile{grid-column:span 2}.more.six .tile:nth-child(n+4){grid-column:span 3}}
 .tile .frame{border-radius:20px;background:var(--cb);padding:clamp(18px,2.6vw,36px);overflow:hidden;aspect-ratio:4/3;display:grid;place-items:center}
 .tile .mock{width:100%;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
 .tile:hover .mock{transform:scale(1.045) rotate(-1deg)}
@@ -344,7 +344,7 @@ fieldset.field{border:0;margin:0;padding:0}
 
 <section class="sec" id="work"><div class="wrap">
   <div class="head">
-    <h2>Sample<br>sites<sup>(18)</sup></h2>
+    <h2>Sample<br>sites<sup>(19)</sup></h2>
     <p>Concept sites we designed to show what Weblio builds for different kinds of businesses. Open any of them; they're fully clickable.</p>
   </div>
 
@@ -393,6 +393,10 @@ fieldset.field{border:0;margin:0;padding:0}
     <a class="tile reveal" href="t/rainline.html" style="--cb:#c96f3b" data-cursor="Open site">
       <div class="frame"><div class="mock" style="--mb:#13202b;--mf:#ffffff;--ma:#c96f3b;--mfont:'Bricolage Grotesque';--mw:800;--mtt:none"><div class="chrome"><i></i><i></i><i></i><span>Rainline Gutter Co.</span></div><div class="scr"><div class="mnav"><b>RAINLINE</b><em></em></div><div class="mh">Rain goes where you tell it.</div><div class="ml"></div><div class="mbtn"></div></div></div></div>
       <div class="cap"><div><h3>Rainline Gutter Co.</h3><p>Falling rain hero, a storm check that sizes your gutters and an instant price by home and material.</p></div><span class="label">Gutters · Charlotte, NC</span></div>
+    </a>
+    <a class="tile reveal" href="t/halcyon.html" style="--cb:#4f6b58" data-cursor="Open site">
+      <div class="frame"><div class="mock lt" style="--mb:#f7f3ec;--mf:#1f2a24;--ma:#4f6b58;--mfont:'Fraunces';--mw:500;--mtt:none"><div class="chrome"><i></i><i></i><i></i><span>Halcyon &amp; Hue</span></div><div class="scr"><div class="mnav"><b>HALCYON &amp; HUE</b><em></em></div><div class="mh">Color, without <i style='color:#4f6b58'>the chaos.</i></div><div class="ml"></div><div class="mbtn"></div></div></div></div>
+      <div class="cap"><div><h3>Halcyon &amp; Hue Painting</h3><p>A color studio that repaints a house or living room as you tap swatches, plus an instant interior and exterior estimate.</p></div><span class="label">Interior &amp; exterior painting · Indianapolis, IN</span></div>
     </a>
   </div>
 

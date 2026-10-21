@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Halcyon &amp; Hue Painting · Indianapolis, IN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=Albert+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --bg:#f7f3ec; --card:#fffdf9; --ink:#1f2a24; --muted:#66706a; --line:#e4ddd0;
+  --sage:#4f6b58; --sage2:#3d5545; --clay:#d9825b; --butter:#f2d388;
+  --display:"Fraunces",Georgia,serif; --body:"Albert Sans",system-ui,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+a{color:inherit}
+.wrap{max-width:1260px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.kick{font:600 12px var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--sage)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;font:700 15px var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-s{background:var(--sage);color:#fff}
+.btn-s:hover{background:var(--sage2)}
+.btn-o{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(247,243,236,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;min-height:74px;gap:16px}
+.logo{font:700 22px var(--display);text-decoration:none;letter-spacing:-.01em}
+.logo i{font-style:italic;color:var(--clay)}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-weight:600;font-size:15px;color:var(--muted)}
+.nav ul a:hover{color:var(--ink)}
+.nav .btn{min-height:44px;padding:0 18px;font-size:14px}
+
+.hero{padding-top:140px;padding-bottom:40px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center}
+.hero h1{font:500 clamp(48px,7vw,104px)/.95 var(--display);letter-spacing:-.035em;position:relative}
+.hero h1 em{font-style:italic;font-weight:700;color:var(--sage)}
+.hero p{color:var(--muted);font-size:19px;max-width:44ch;margin-top:22px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.badges span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600}
+.swatchwall{position:relative;aspect-ratio:1;max-width:540px;width:100%;margin-left:auto}
+.chip{position:absolute;width:42%;aspect-ratio:3/4;border-radius:18px;background:#fff;box-shadow:0 30px 60px -30px rgba(31,42,36,.45);padding:10px 10px 0;display:grid;grid-template-rows:1fr auto;transform:rotate(var(--r));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.chip:hover{transform:rotate(0) translateY(-8px)}
+.chip i{border-radius:10px;background:var(--c)}
+.chip b{font:600 italic 15px var(--display);padding:10px 4px 2px}
+.chip small{display:block;padding:0 4px 12px;color:var(--muted);font-size:12px}
+.roll{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.roll path{stroke-dasharray:1400;stroke-dashoffset:1400;animation:roll 2.2s .4s cubic-bezier(.6,.1,.2,1) forwards}
+@keyframes roll{to{stroke-dashoffset:0}}
+
+.sec{padding-block:clamp(84px,10vw,140px)}
+h2.h{font:500 clamp(38px,5.4vw,78px)/1 var(--display);letter-spacing:-.035em;margin-top:14px}
+h2.h em{font-style:italic;font-weight:700;color:var(--sage)}
+.lede{color:var(--muted);font-size:18px;max-width:52ch;margin-top:16px}
+
+/* studio */
+.tabs{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;margin-top:30px}
+.tabs button{border:0;background:transparent;border-radius:999px;padding:10px 20px;font:700 15px var(--body);cursor:pointer;color:var(--muted)}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff}
+.studio{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:24px;margin-top:20px}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:28px;overflow:hidden;aspect-ratio:4/3;position:relative}
+.stage svg{position:absolute;inset:0;width:100%;height:100%}
+.stage svg [data-part]{transition:fill .5s ease}
+.pick{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(18px,3vw,28px);display:grid;gap:18px;align-content:start}
+.parts{display:flex;flex-wrap:wrap;gap:6px}
+.parts button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:600 14px var(--body);cursor:pointer;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+.parts button i{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.parts button[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:#fff}
+.swg{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.swg button{aspect-ratio:1;border-radius:12px;border:2px solid transparent;cursor:pointer;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
+.swg button[aria-pressed=true]{border-color:var(--ink);transform:scale(1.06)}
+.cur{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:16px}
+.cur i{width:44px;height:44px;border-radius:12px;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.cur b{font:600 italic 20px var(--display);display:block}
+.cur small{color:var(--muted)}
+
+/* estimate */
+.est{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:24px;margin-top:40px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(20px,3vw,32px);display:grid;gap:22px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:16px}
+.row:last-child{border-bottom:0;padding-bottom:0}
+.row[hidden],.stage svg[hidden]{display:none}
+.row b{font:600 18px var(--display)}
+.row small{display:block;color:var(--muted);font-size:13px}
+.step{display:flex;align-items:center;gap:8px}
+.step button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:#fff;font:700 18px var(--body);cursor:pointer;color:var(--ink)}
+.step output{font:700 22px var(--display);min-width:2ch;text-align:center}
+.seg{display:inline-flex;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:3px;position:relative}
+.seg input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0}
+.seg label{padding:8px 14px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;color:var(--muted)}
+.seg input:checked+label{background:var(--sage);color:#fff}
+.seg input:focus-visible+label{outline:2px solid var(--sage);outline-offset:2px}
+.switch{position:relative;width:52px;height:30px;flex:none}
+.switch input{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:1}
+.switch span{position:absolute;inset:0;border-radius:99px;background:#d8d1c3;transition:.25s}
+.switch span::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.25s;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.switch input:checked+span{background:var(--sage)}
+.switch input:checked+span::after{transform:translateX(22px)}
+.switch input:focus-visible+span{outline:2px solid var(--sage);outline-offset:2px}
+.total{position:sticky;top:100px;align-self:start;background:var(--sage2);color:#fff;border-radius:28px;padding:28px;display:grid;gap:12px}
+.total .t{font:700 64px/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.total ul{list-style:none;padding:0;margin:4px 0;display:grid;gap:7px;font-size:14px;color:#d9e3dc}
+.total li{display:flex;justify-content:space-between;gap:10px}
+.total .btn{background:var(--butter);color:var(--ink)}
+.total small{color:#b9c9be}
+
+/* compare */
+.cmpwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(24px,4vw,60px);align-items:center}
+.cmp{border-radius:28px;aspect-ratio:16/10;--cmp-knob:var(--sage)}
+.cmp svg{display:block;width:100%;height:100%}
+.promise{display:grid;gap:14px;margin-top:22px}
+.promise>div{display:flex;gap:14px;align-items:flex-start}
+.promise i{flex:none;width:40px;height:40px;border-radius:12px;background:var(--butter);display:grid;place-items:center;font-style:normal;font-weight:700}
+.promise b{font:600 18px var(--display);display:block}
+.promise span{color:var(--muted);font-size:15px}
+
+.revs{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;margin-top:40px}
+.rv{margin:0;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px;display:grid;gap:12px;align-content:space-between}
+.rv p{font:500 19px/1.4 var(--display);margin:0}
+.rv:first-child{background:var(--sage);color:#fff;border-color:var(--sage)}
+.rv:first-child p{font-size:24px}
+.rv cite{font-style:normal;font-weight:700;font-size:14px}
+
+.book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(28px,5vw,72px);align-items:start}
+.form{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(22px,3vw,32px);display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font-weight:700;font-size:13px}
+[data-field] input,[data-field] select{width:100%;min-height:52px;border-radius:14px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font:inherit;padding:0 14px}
+[data-field] input:focus,[data-field] select:focus{outline:none;border-color:var(--sage)}
+.err{font-size:13px;color:#b23a2a;font-weight:600}
+.form-done{background:var(--card);border:1.5px solid var(--sage);border-radius:28px;padding:32px}
+.form-done h3{font:700 30px var(--display)}
+.form-done p{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding-block:56px calc(100px + env(safe-area-inset-bottom,0px))}
+footer .fb{font:500 clamp(48px,11vw,170px)/.9 var(--display);letter-spacing:-.04em}
+footer .fb i{color:var(--clay)}
+footer p{color:var(--muted);margin-top:16px}
+@media (max-width:980px){.nav ul{display:none}.hero .wrap,.studio,.est,.cmpwrap,.book{grid-template-columns:1fr}.swatchwall{margin:0 auto}.total{position:static}.revs{grid-template-columns:1fr}}
+@media (max-width:600px){.two{grid-template-columns:1fr}.row{flex-wrap:wrap}.swg{grid-template-columns:repeat(5,1fr)}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top">Halcyon <i>&amp;</i> Hue</a>
+  <ul><li><a href="#studio">Color studio</a></li><li><a href="#estimate">Pricing</a></li><li><a href="#reviews">Reviews</a></li></ul>
+  <a class="btn btn-s" href="#book">Free estimate</a>
+</div></header>
+
+<section class="hero" id="top"><div class="wrap">
+  <div>
+    <span class="kick" data-reveal="fade">Interior &amp; exterior painting · Indianapolis</span>
+    <h1 data-split style="margin-top:18px">Color, without <em>the chaos.</em></h1>
+    <p data-reveal style="--rd:450">Clean lines, covered floors and a crew that leaves your home tidier than they found it. Interiors, exteriors, cabinets and decks, with a free color consult before any paint opens.</p>
+    <div class="ctas" data-reveal style="--rd:600"><a class="btn btn-s" href="#studio" data-magnetic>Try colors on a house</a><a class="btn btn-o" href="#estimate">Get a price</a></div>
+    <div class="badges" data-reveal style="--rd:750"><span>★ 4.9 · 310 reviews</span><span>2-year warranty</span><span>Low-VOC paints</span></div>
+  </div>
+  <div class="swatchwall" data-reveal="scale" style="--rd:200" aria-hidden="true">
+    <div class="chip" style="--c:#7d9a86;--r:-8deg;left:4%;top:10%"><i></i><b>Fern Hollow</b><small>Living room favorite</small></div>
+    <div class="chip" style="--c:#e9dcc4;--r:6deg;left:48%;top:2%"><i></i><b>Oat Milk</b><small>Warm white</small></div>
+    <div class="chip" style="--c:#2f4a5c;--r:-3deg;left:30%;top:42%"><i></i><b>Harbor Night</b><small>Front doors</small></div>
+    <div class="chip" style="--c:#d9825b;--r:10deg;left:58%;top:50%"><i></i><b>Terracotta Dusk</b><small>Accent walls</small></div>
+    <svg class="roll" viewBox="0 0 540 540"><path d="M20 470 C140 430 260 500 380 450 S520 420 530 400" fill="none" stroke="#f2d388" stroke-width="44" stroke-linecap="round" opacity=".85"/></svg>
+  </div>
+</div></section>
+
+<section class="sec" id="studio" style="padding-top:60px"><div class="wrap">
+  <span class="kick">Color studio</span>
+  <h2 class="h" data-split>See it <em>before</em> we paint it.</h2>
+  <div class="tabs" role="tablist" aria-label="Interior or exterior">
+    <button role="tab" aria-selected="true" data-mode="ext" id="tabExt">Exterior</button>
+    <button role="tab" aria-selected="false" data-mode="int" id="tabInt">Interior</button>
+  </div>
+  <div class="studio">
+    <div class="stage" data-reveal>
+      <svg id="ext" viewBox="0 0 800 600" aria-label="House exterior color preview">
+        <rect width="800" height="600" fill="#dfe9ec"/><rect y="470" width="800" height="130" fill="#b7c9a6"/>
+        <path d="M120 250 L400 90 L680 250Z" data-part="roof" fill="#3b3f44"/>
+        <rect x="160" y="250" width="480" height="230" data-part="body" fill="#e9dcc4"/>
+        <g data-part="trim" fill="#ffffff"><rect x="150" y="242" width="500" height="14"/><rect x="200" y="300" width="96" height="96"/><rect x="504" y="300" width="96" height="96"/><rect x="358" y="330" width="84" height="150"/></g>
+        <g fill="#a9c4d4"><rect x="208" y="308" width="80" height="80"/><rect x="512" y="308" width="80" height="80"/></g>
+        <path d="M248 308v80M208 348h80M552 308v80M512 348h80" stroke="#fff" stroke-width="5"/>
+        <rect x="366" y="338" width="68" height="142" data-part="door" fill="#2f4a5c"/>
+        <circle cx="422" cy="412" r="5" fill="#d9b25b"/>
+        <g data-part="shutters" fill="#4f6b58"><rect x="180" y="300" width="16" height="96"/><rect x="300" y="300" width="16" height="96"/><rect x="484" y="300" width="16" height="96"/><rect x="604" y="300" width="16" height="96"/></g>
+        <rect x="330" y="480" width="140" height="20" fill="#c9bfae"/>
+        <g fill="#6e8f5d"><circle cx="150" cy="470" r="40"/><circle cx="660" cy="470" r="44"/></g>
+      </svg>
+      <svg id="int" viewBox="0 0 800 600" aria-label="Living room color preview" hidden>
+        <path d="M0 0 H800 V440 H0Z" data-part="walls" fill="#e9dcc4"/>
+        <path d="M250 60 H550 V440 H250Z" data-part="accent" fill="#7d9a86"/>
+        <path d="M0 440 H800 V600 H0Z" fill="#b48a5e"/>
+        <g data-part="trim" fill="#ffffff"><rect y="430" width="800" height="16"/><rect y="0" width="800" height="18"/></g>
+        <rect x="320" y="120" width="160" height="110" rx="6" fill="#f7f3ec" stroke="#3a3a3a" stroke-width="6"/><path d="M330 220 l40-50 30 30 30-40 40 60z" fill="#d9825b" opacity=".8"/>
+        <rect x="230" y="320" width="340" height="110" rx="26" data-part="sofa" fill="#2f4a5c"/>
+        <rect x="250" y="290" width="300" height="60" rx="20" fill="#3c5a6e" data-part="sofa2"/>
+        <rect x="60" y="250" width="12" height="180" fill="#3a3a3a"/><path d="M30 250 h72 l-14-60 h-44z" fill="#f2d388"/>
+        <rect x="640" y="330" width="90" height="100" rx="8" fill="#6b4f36"/><circle cx="685" cy="300" r="36" fill="#6e8f5d"/>
+      </svg>
+    </div>
+    <div class="pick" data-reveal style="--rd:120">
+      <div><span class="kick" style="display:block;margin-bottom:10px">Paint this</span><div class="parts" id="parts"></div></div>
+      <div><span class="kick" style="display:block;margin-bottom:10px">Pick a color</span><div class="swg" id="sw"></div></div>
+      <div class="cur" aria-live="polite"><i id="curC"></i><div><b id="curN"></b><small id="curP"></small></div></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="estimate" style="padding-top:0"><div class="wrap">
+  <span class="kick">Instant estimate</span>
+  <h2 class="h" data-split>A real number, <em>right now.</em></h2>
+  <div class="est">
+    <div class="panel" data-reveal id="estIn">
+      <div class="row"><div><b>Job type</b><small>Pick one or both</small></div>
+        <div class="seg" role="radiogroup" aria-label="Job type"><input type="radio" name="jt" id="j1" value="int" checked><label for="j1">Interior</label><input type="radio" name="jt" id="j2" value="ext"><label for="j2">Exterior</label><input type="radio" name="jt" id="j3" value="both"><label for="j3">Both</label></div></div>
+      <div class="row" data-for="int"><div><b>Bedrooms</b><small>$420 each, walls + trim</small></div><div class="step"><button type="button" data-s="bed" data-d="-1" aria-label="Fewer bedrooms">−</button><output id="bed">3</output><button type="button" data-s="bed" data-d="1" aria-label="More bedrooms">+</button></div></div>
+      <div class="row" data-for="int"><div><b>Living spaces</b><small>Living, dining, kitchen · $560 each</small></div><div class="step"><button type="button" data-s="liv" data-d="-1" aria-label="Fewer living spaces">−</button><output id="liv">2</output><button type="button" data-s="liv" data-d="1" aria-label="More living spaces">+</button></div></div>
+      <div class="row" data-for="int"><div><b>Bathrooms</b><small>Moisture-resistant finish · $280 each</small></div><div class="step"><button type="button" data-s="bath" data-d="-1" aria-label="Fewer bathrooms">−</button><output id="bath">2</output><button type="button" data-s="bath" data-d="1" aria-label="More bathrooms">+</button></div></div>
+      <div class="row" data-for="int"><div><b>Ceilings too</b><small>+25% on interior rooms</small></div><label class="switch"><input type="checkbox" id="ceil" aria-label="Include ceilings"><span></span></label></div>
+      <div class="row" data-for="ext"><div><b>Home size</b><small>Exterior body, trim and doors</small></div>
+        <div class="seg" role="radiogroup" aria-label="Home size"><input type="radio" name="hz" id="z1" value="3800"><label for="z1">Ranch</label><input type="radio" name="hz" id="z2" value="5400" checked><label for="z2">2-story</label><input type="radio" name="hz" id="z3" value="7600"><label for="z3">Large</label></div></div>
+      <div class="row" data-for="ext"><div><b>Siding</b><small>Brick and stucco need more prep</small></div>
+        <div class="seg" role="radiogroup" aria-label="Siding"><input type="radio" name="sd" id="s1" value="1" checked><label for="s1">Vinyl / wood</label><input type="radio" name="sd" id="s2" value="1.2"><label for="s2">Brick</label><input type="radio" name="sd" id="s3" value="1.15"><label for="s3">Stucco</label></div></div>
+    </div>
+    <aside class="total" data-reveal style="--rd:150" aria-live="polite">
+      <span class="kick" style="color:var(--butter)">Estimated total</span>
+      <div class="t" id="tot">$0</div>
+      <ul id="lines"></ul>
+      <a class="btn" href="#book">Book my color consult</a>
+      <small>Includes premium paint, prep, patching and full cleanup. Confirmed after a free walkthrough.</small>
+    </aside>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap cmpwrap">
+  <div class="cmp" data-reveal="scale">
+    <svg viewBox="0 0 800 500" aria-label="Dated room with scuffed walls">
+      <rect width="800" height="500" fill="#c9b98f"/><rect y="380" width="800" height="120" fill="#8a6f4b"/><rect y="372" width="800" height="12" fill="#b9ab88"/>
+      <g fill="#a99a73" opacity=".6"><ellipse cx="180" cy="300" rx="50" ry="14"/><ellipse cx="520" cy="250" rx="30" ry="10"/><circle cx="640" cy="320" r="10"/></g>
+      <path d="M300 80 h200 v130 h-200z" fill="none" stroke="#a99a73" stroke-width="4" stroke-dasharray="6 6"/>
+      <path d="M120 120 l14 30 M680 140 l-10 26" stroke="#9a8a64" stroke-width="3"/>
+    </svg>
+    <div class="after"><svg viewBox="0 0 800 500" aria-label="Same room freshly painted">
+      <rect width="800" height="500" fill="#e9dcc4"/><rect x="250" y="0" width="300" height="380" fill="#7d9a86"/><rect y="380" width="800" height="120" fill="#8a6f4b"/><rect y="372" width="800" height="12" fill="#ffffff"/>
+      <rect x="320" y="90" width="160" height="110" rx="6" fill="#f7f3ec" stroke="#2f2f2f" stroke-width="6"/><path d="M330 190 l40-50 30 30 30-40 40 60z" fill="#d9825b" opacity=".85"/>
+      <rect x="60" y="230" width="10" height="150" fill="#2f2f2f"/><path d="M34 230 h62 l-12-52 h-38z" fill="#f2d388"/>
+    </svg></div>
+    <span class="tag l">Before</span><span class="tag r">After</span>
+    <input type="range" min="0" max="100" value="50" aria-label="Compare room before and after painting"><span class="handle"></span>
+  </div>
+  <div>
+    <span class="kick">The Halcyon promise</span>
+    <h2 class="h" data-split style="font-size:clamp(34px,4vw,58px)">The tidy painters <em>your neighbor</em> told you about.</h2>
+    <div class="promise">
+      <div data-reveal><i>1</i><div><b>Furniture moved and covered</b><span>Floors masked, outlets taped, everything put back.</span></div></div>
+      <div data-reveal style="--rd:80"><i>2</i><div><b>Daily photo updates</b><span>A text every evening with what's done and what's next.</span></div></div>
+      <div data-reveal style="--rd:160"><i>3</i><div><b>2-year touch-up warranty</b><span>Peeling or chipping? We come back and fix it free.</span></div></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="reviews" style="padding-top:0"><div class="wrap">
+  <span class="kick">Reviews</span>
+  <div class="revs">
+    <figure class="rv" data-reveal><p>"We couldn't pick between two greens, so they painted sample squares on three walls. Ended up loving the darker one. Lines are razor sharp."</p><cite>★★★★★ Lauren M. · Broad Ripple</cite></figure>
+    <figure class="rv" data-reveal style="--rd:100"><p>"Exterior on our brick ranch in four days. They even pressure-washed first."</p><cite>★★★★★ Marcus T. · Carmel</cite></figure>
+    <figure class="rv" data-reveal style="--rd:200"><p>"Whole downstairs while we were on vacation. Came home to fresh paint and zero mess."</p><cite>★★★★★ Priya K. · Fishers</cite></figure>
+  </div>
+</div></section>
+
+<section class="sec" id="book" style="padding-top:0"><div class="wrap book">
+  <div><span class="kick">Free estimate</span><h2 class="h" data-split>Let's pick <em>your colors.</em></h2><p class="lede">Indianapolis, Carmel, Fishers, Zionsville &amp; Greenwood. (317) 555-0129</p></div>
+  <form class="form" data-kit novalidate data-done-title="Thanks{n}!" data-done-text="We'll text you this week's color-consult times within the hour.">
+    <div class="two">
+      <div data-field><label for="p-name">Name</label><input id="p-name" name="name" autocomplete="name" required><span class="err"></span></div>
+      <div data-field><label for="p-phone">Mobile</label><input id="p-phone" name="phone" type="tel" autocomplete="tel" required><span class="err"></span></div>
+    </div>
+    <div class="two">
+      <div data-field><label for="p-zip">ZIP</label><input id="p-zip" name="zip" inputmode="numeric" autocomplete="postal-code" required><span class="err"></span></div>
+      <div data-field><label for="p-job">Project</label><select id="p-job" name="project"><option>Interior painting</option><option>Exterior painting</option><option>Cabinets</option><option>Deck / fence stain</option></select></div>
+    </div>
+    <button class="btn btn-s" type="submit">Book my free estimate</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap"><div class="fb">Halcyon <i>&amp;</i> Hue</div><p>Interior &amp; exterior painting · Indianapolis, IN · (317) 555-0129 · © 2026 · Sample site</p></div></footer>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id),fmt=n=>Math.round(n).toLocaleString("en-US");
+  const COLORS=[["Oat Milk","#e9dcc4"],["Chalk","#f4f1ea"],["Fog Bank","#c9cfd1"],["Greige Day","#bdb2a2"],["Fern Hollow","#7d9a86"],["Sage Leaf","#a7b8a0"],["Harbor Night","#2f4a5c"],["Lake Blue","#6f8fa6"],["Terracotta Dusk","#d9825b"],["Butter","#f2d388"],["Charcoal","#3b3f44"],["Barn Red","#8c3b33"],["Midnight Ink","#1f2a24"],["Blush","#e7c2b4"],["Olive Grove","#6b6a3a"]];
+  const MODES={ext:{svg:"ext",parts:[["body","Siding"],["trim","Trim"],["door","Front door"],["shutters","Shutters"],["roof","Roof"]]},int:{svg:"int",parts:[["walls","Walls"],["accent","Accent wall"],["trim","Trim"],["sofa","Sofa"]]}};
+  let mode="ext",part="body";
+  const nameOf=hex=>(COLORS.find(c=>c[1].toLowerCase()===hex.toLowerCase())||["Custom"])[0];
+  function fillOf(p){const el=$(MODES[mode].svg).querySelector(`[data-part="${p}"]`);return el.getAttribute("fill");}
+  function renderParts(){$("parts").innerHTML=MODES[mode].parts.map(([k,l])=>`<button type="button" data-p="${k}" aria-pressed="${k===part}" style="--c:${fillOf(k)}"><i></i>${l}</button>`).join("");}
+  function renderSw(){const cur=fillOf(part);$("sw").innerHTML=COLORS.map(([n,h])=>`<button type="button" data-h="${h}" style="--c:${h}" aria-label="${n}" aria-pressed="${h.toLowerCase()===cur.toLowerCase()}" title="${n}"></button>`).join("");
+    $("curC").style.setProperty("--c",cur);$("curN").textContent=nameOf(cur);$("curP").textContent="on "+MODES[mode].parts.find(p=>p[0]===part)[1].toLowerCase();}
+  function setMode(m){mode=m;part=MODES[m].parts[0][0];$("ext").toggleAttribute("hidden",m!=="ext");$("int").toggleAttribute("hidden",m!=="int");$("tabExt").setAttribute("aria-selected",m==="ext");$("tabInt").setAttribute("aria-selected",m==="int");renderParts();renderSw();}
+  document.querySelector(".tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setMode(b.dataset.mode);});
+  $("parts").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;part=b.dataset.p;renderParts();renderSw();});
+  $("sw").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const svg=$(MODES[mode].svg);
+    svg.querySelectorAll(`[data-part="${part}"]`).forEach(el=>el.setAttribute("fill",b.dataset.h));
+    if(part==="sofa"){svg.querySelector('[data-part="sofa2"]').setAttribute("fill",b.dataset.h);}
+    renderParts();renderSw();});
+  setMode("ext");
+  // estimate
+  const N={bed:3,liv:2,bath:2};
+  document.querySelectorAll("[data-s]").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.s;N[k]=Math.max(0,Math.min(8,N[k]+ +b.dataset.d));$(k).textContent=N[k];est();}));
+  function est(){const jt=document.querySelector("[name=jt]:checked").value,L=[];
+    document.querySelectorAll("[data-for]").forEach(r=>r.hidden=!(jt==="both"||r.dataset.for===jt));
+    if(jt!=="ext"){let i=N.bed*420+N.liv*560+N.bath*280;const c=$("ceil").checked;L.push([`Interior · ${N.bed+N.liv+N.bath} rooms`,i]);if(c)L.push(["Ceilings",i*.25]);}
+    if(jt!=="int"){const base=+document.querySelector("[name=hz]:checked").value,m=+document.querySelector("[name=sd]:checked").value;L.push(["Exterior body, trim & doors",base]);if(m>1)L.push(["Masonry prep & primer",base*(m-1)]);}
+    const t=L.reduce((a,b)=>a+b[1],0),days=Math.max(1,Math.round(t/1800));
+    $("tot").textContent="$"+fmt(t);$("lines").innerHTML=L.map(l=>`<li><span>${l[0]}</span><span>$${fmt(l[1])}</span></li>`).join("")+`<li><span>Crew time</span><span>about ${days} day${days>1?"s":""}</span></li>`;}
+  $("estIn").addEventListener("change",est);est();
+})();
+</script>
+</body>
+</html>
