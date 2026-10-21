@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rainline Gutter Co. · Charlotte, NC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter+Tight:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --slate:#13202b; --slate2:#1c2d3b; --paper:#f3efe8; --card:#fbf9f5; --ink:#13202b; --muted:#5f6b75; --line:#ddd5c8;
+  --copper:#c96f3b; --copper2:#e08a52; --rain:#6fb7e8;
+  --display:"Bricolage Grotesque",system-ui,sans-serif; --body:"Inter Tight",system-ui,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--body)}
+a{color:inherit}
+.wrap{max-width:1260px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:600 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--copper)}
+.eyebrow::before{content:"";width:18px;height:2px;background:currentColor}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 24px;border-radius:12px;font:700 15px var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-c{background:var(--copper);color:#fff}
+.btn-c:hover{background:var(--copper2)}
+.btn-g{background:rgba(255,255,255,.08);color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25)}
+.btn-d{background:var(--slate);color:#fff}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .3s}
+.nav.solid{background:rgba(19,32,43,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;min-height:76px;gap:16px;color:#fff}
+.logo{display:flex;align-items:center;gap:10px;font:800 21px var(--display);text-decoration:none;letter-spacing:-.02em}
+.logo svg{width:30px;height:30px}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-weight:600;font-size:15px;opacity:.8}
+.nav ul a:hover{opacity:1}
+.nav .btn{min-height:44px;padding:0 18px;font-size:14px}
+
+.hero{position:relative;min-height:100vh;min-height:100svh;background:linear-gradient(180deg,#0d1720 0%,var(--slate) 60%,#1d3040 100%);color:#fff;overflow:hidden;display:grid;align-items:center;padding-top:96px;padding-bottom:40px}
+#rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero h1{font:800 clamp(46px,6.6vw,96px)/.95 var(--display);letter-spacing:-.04em;margin-top:18px}
+.hero h1 em{font-style:normal;color:var(--copper2)}
+.hero p{color:#c3ced7;font-size:18px;max-width:44ch;margin-top:20px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.trust{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:26px;font-size:14px;color:#a9b6c0}
+.trust b{color:#fff}
+.house{width:100%;max-width:600px;margin-left:auto;display:block}
+.flow{stroke-dasharray:6 10;animation:flow .7s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-16}}
+.splash{animation:spl 1.2s ease-out infinite}
+@keyframes spl{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(1.6)}}
+
+.sec{padding-block:clamp(84px,10vw,140px)}
+h2.h{font:800 clamp(36px,5vw,72px)/1 var(--display);letter-spacing:-.035em;margin-top:14px}
+h2.h em{font-style:normal;color:var(--copper)}
+.lede{color:var(--muted);font-size:18px;max-width:52ch;margin-top:16px}
+
+/* storm calculator */
+.storm{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:44px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,3vw,34px)}
+.lbl{display:flex;justify-content:space-between;font-weight:700;margin-bottom:10px}
+.lbl span{color:var(--copper);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--copper);height:28px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative;margin-top:6px}
+.seg input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0}
+.seg label{border:1.5px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center;cursor:pointer;font-weight:700;background:#fff}
+.seg label small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.seg input:checked+label{border-color:var(--copper);background:#fbeee5}
+.seg input:focus-visible+label{outline:2px solid var(--copper);outline-offset:2px}
+.out{background:var(--slate);color:#fff;border-radius:24px;padding:clamp(20px,3vw,34px);display:grid;gap:18px;align-content:start;position:relative;overflow:hidden}
+.out .big{font:800 clamp(48px,6vw,80px)/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.out .big small{font:600 16px var(--body);color:#a9b6c0;letter-spacing:0;margin-left:6px}
+.meter{height:14px;border-radius:9px;background:#0d1720;overflow:hidden;position:relative}
+.meter i{position:absolute;inset:0 auto 0 0;width:var(--w,40%);background:linear-gradient(90deg,var(--rain),#9fd3f5);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.meter i.over{background:linear-gradient(90deg,#e8a35f,#e0573b)}
+.rec{display:flex;gap:14px;align-items:center;background:rgba(255,255,255,.06);border-radius:16px;padding:14px 16px}
+.rec svg{width:54px;height:40px;flex:none}
+.rec b{font:700 18px var(--display)}
+.rec p{margin:0;color:#a9b6c0;font-size:14px}
+
+/* quote */
+.quote{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:24px;margin-top:44px}
+.q{display:grid;gap:24px}
+.opts{display:grid;gap:8px;position:relative}
+.opts.c3{grid-template-columns:repeat(3,1fr)}
+.opts input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0}
+.opts label{border:1.5px solid var(--line);border-radius:16px;padding:14px;cursor:pointer;background:#fff;display:grid;gap:2px}
+.opts label b{font:700 16px var(--display)}
+.opts label small{color:var(--muted);font-size:13px}
+.opts .sw{width:28px;height:8px;border-radius:4px;margin-bottom:6px}
+.opts input:checked+label{border-color:var(--copper);box-shadow:0 0 0 3px #f3d8c6}
+.opts input:focus-visible+label{outline:2px solid var(--copper);outline-offset:2px}
+.tog{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;background:#fff}
+.tog b{font:700 16px var(--display)}
+.tog small{display:block;color:var(--muted);font-size:13px}
+.switch{position:relative;width:52px;height:30px;flex:none}
+.switch input{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:1}
+.switch span{position:absolute;inset:0;border-radius:99px;background:#d9d2c5;transition:.25s}
+.switch span::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.25s;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.switch input:checked+span{background:var(--copper)}
+.switch input:checked+span::after{transform:translateX(22px)}
+.switch input:focus-visible+span{outline:2px solid var(--copper);outline-offset:2px}
+.step{display:flex;align-items:center;gap:10px}
+.step button{width:40px;height:40px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font:700 20px var(--body);cursor:pointer;color:var(--ink)}
+.step output{font:700 22px var(--display);min-width:2ch;text-align:center}
+.total{position:sticky;top:96px;align-self:start;background:var(--slate);color:#fff;border-radius:24px;padding:28px;display:grid;gap:12px}
+.total .t{font:800 64px/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.total ul{list-style:none;margin:4px 0 6px;padding:0;display:grid;gap:7px;font-size:14px;color:#c3ced7}
+.total li{display:flex;justify-content:space-between;gap:10px}
+.total small{color:#8fa0ad}
+
+/* compare */
+.cmpwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(24px,4vw,60px);align-items:center;margin-top:20px}
+.cmp{border-radius:24px;aspect-ratio:16/10;--cmp-knob:var(--copper)}
+.cmp svg{display:block;width:100%;height:100%}
+.checks{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.checks li{display:flex;gap:10px;align-items:flex-start}
+.checks li::before{content:"";flex:none;width:22px;height:22px;border-radius:50%;background:var(--copper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6 11.5l3.2 3.2L16 8' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");margin-top:1px}
+
+/* services */
+.svcs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+.sv{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;display:grid;gap:10px;align-content:start;transition:transform .3s,box-shadow .3s}
+.sv:hover{transform:translateY(-4px);box-shadow:0 18px 40px -20px rgba(19,32,43,.35)}
+.sv svg{width:46px;height:46px}
+.sv h3{font:700 21px var(--display)}
+.sv p{color:var(--muted);font-size:15px;margin:0}
+.sv .p{font-weight:700;color:var(--copper)}
+
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
+.rv{margin:0;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;display:grid;gap:10px}
+.rv .s{color:var(--copper);letter-spacing:2px}
+.rv cite{font-style:normal;font-weight:700;font-size:14px}
+
+.book{background:var(--slate);color:#fff;border-radius:32px;padding:clamp(24px,5vw,64px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,500px);gap:clamp(24px,5vw,64px);align-items:start}
+.book .lede{color:#a9b6c0}
+.form{background:#fff;color:var(--ink);border-radius:22px;padding:clamp(20px,3vw,30px);display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+[data-field]{display:grid;gap:6px;min-width:0}
+[data-field] label{font-weight:700;font-size:13px}
+[data-field] input,[data-field] select{width:100%;min-height:52px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;padding:0 14px}
+[data-field] input:focus,[data-field] select:focus{outline:none;border-color:var(--copper)}
+.err{font-size:13px;color:#c0392b;font-weight:600}
+.form-done{background:#fff;color:var(--ink);border-radius:22px;padding:30px}
+.form-done h3{font:800 28px var(--display)}
+.form-done p{color:var(--muted)}
+footer{padding-block:56px calc(100px + env(safe-area-inset-bottom,0px))}
+footer .fb{font:800 clamp(52px,12vw,180px)/.85 var(--display);letter-spacing:-.05em}
+footer .fb em{font-style:normal;color:var(--copper)}
+footer p{color:var(--muted);margin-top:16px}
+@media (max-width:980px){.nav ul{display:none}.hero .wrap,.storm,.quote,.cmpwrap,.book{grid-template-columns:1fr}.house{margin:0 auto}.total{position:static}.svcs{grid-template-columns:1fr 1fr}.revs{grid-template-columns:1fr}}
+@media (max-width:600px){.opts.c3,.svcs,.two{grid-template-columns:1fr}.seg label{font-size:14px}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="#top"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M3 9h24v4a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z" fill="#c96f3b"/><path d="M21 17v8" stroke="#c96f3b" stroke-width="4" stroke-linecap="round"/><circle cx="21" cy="28" r="1.6" fill="#6fb7e8"/></svg>Rainline</a>
+  <ul><li><a href="#storm">Storm check</a></li><li><a href="#quote">Pricing</a></li><li><a href="#services">Services</a></li></ul>
+  <a class="btn btn-c" href="#book">Free estimate</a>
+</div></header>
+
+<section class="hero" id="top">
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-reveal="fade">Seamless gutters · Guards · Cleaning · Charlotte, NC</span>
+      <h1 data-split>Rain goes where <em>you</em> tell it.</h1>
+      <p data-reveal style="--rd:450">Seamless aluminum and copper gutters formed on your driveway, sized for Carolina downpours. No leaks at the seams, no water in the basement, no ladder for you.</p>
+      <div class="ctas" data-reveal style="--rd:600"><a class="btn btn-c" href="#quote" data-magnetic>Price my gutters</a><a class="btn btn-g" href="#storm">Can mine handle a storm?</a></div>
+      <div class="trust" data-reveal style="--rd:750"><span><b>4.9★</b> 280+ Google reviews</span><span><b>20-yr</b> workmanship warranty</span><span><b>1 day</b> installs</span></div>
+    </div>
+    <svg class="house" viewBox="0 0 600 460" aria-hidden="true" data-reveal="scale" style="--rd:200">
+      <defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a3f50"/><stop offset="1" stop-color="#22343f"/></linearGradient><linearGradient id="cu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9a070"/><stop offset="1" stop-color="#a9552a"/></linearGradient></defs>
+      <path d="M60 200 L300 60 L540 200Z" fill="#26394a"/>
+      <path d="M60 200 L300 60 L540 200" fill="none" stroke="#3a5164" stroke-width="3"/>
+      <rect x="100" y="210" width="400" height="200" fill="url(#wall)"/>
+      <rect x="150" y="260" width="70" height="60" rx="4" fill="#f5c46b" opacity=".85"/><rect x="380" y="260" width="70" height="60" rx="4" fill="#f5c46b" opacity=".85"/>
+      <rect x="270" y="300" width="60" height="110" rx="4" fill="#0f1a23"/>
+      <rect x="48" y="196" width="504" height="18" rx="6" fill="url(#cu)"/>
+      <rect x="512" y="210" width="16" height="190" rx="5" fill="url(#cu)"/>
+      <path d="M512 400 h40 v12 h-40z" fill="url(#cu)"/>
+      <path class="flow" d="M60 205 H520" stroke="#9fd3f5" stroke-width="4" fill="none" opacity=".8"/>
+      <path class="flow" d="M520 214 V404 H556" stroke="#9fd3f5" stroke-width="5" fill="none" opacity=".9"/>
+      <g transform="translate(572 408)"><circle class="splash" r="10" fill="none" stroke="#9fd3f5" stroke-width="2" style="transform-origin:0 0"/></g>
+      <rect x="0" y="410" width="600" height="50" fill="#0b141b"/>
+      <path d="M556 414 q30 6 44 0" stroke="#6fb7e8" stroke-width="3" fill="none" opacity=".6"/>
+    </svg>
+  </div>
+</section>
+
+<section class="sec" id="storm"><div class="wrap">
+  <span class="eyebrow">Storm check</span>
+  <h2 class="h" data-split>Can your gutters keep up <em>in a downpour?</em></h2>
+  <p class="lede" data-reveal>Every square foot of roof sheds water. Slide in your roof size and see how much your gutters have to move.</p>
+  <div class="storm">
+    <div class="panel" data-reveal id="stormIn">
+      <div class="lbl"><span style="color:var(--ink)">Roof size</span><span id="sqV"></span></div>
+      <input type="range" id="sq" min="1000" max="5000" step="100" value="2400" aria-label="Roof size in square feet">
+      <div style="margin-top:26px" class="lbl"><span style="color:var(--ink)">Storm strength</span></div>
+      <div class="seg" role="radiogroup" aria-label="Storm strength">
+        <input type="radio" name="rn" id="r1" value="1"><label for="r1">Steady<small>1 in / hr</small></label>
+        <input type="radio" name="rn" id="r2" value="2" checked><label for="r2">Heavy<small>2 in / hr</small></label>
+        <input type="radio" name="rn" id="r3" value="3"><label for="r3">Summer storm<small>3 in / hr</small></label>
+      </div>
+    </div>
+    <div class="out" data-reveal style="--rd:150" aria-live="polite">
+      <span class="eyebrow" style="color:var(--rain)">Water off your roof</span>
+      <div class="big"><span id="gal">0</span><small>gallons / hour</small></div>
+      <div><div class="meter"><i id="m5"></i></div><p style="margin:8px 0 0;font-size:14px;color:#a9b6c0" id="m5t"></p></div>
+      <div class="rec"><svg viewBox="0 0 54 40" aria-hidden="true"><path d="M4 8h46v10a12 12 0 0 1-12 12H16A12 12 0 0 1 4 18z" fill="none" stroke="#e08a52" stroke-width="3"/><path d="M8 16h38" stroke="#6fb7e8" stroke-width="3" stroke-dasharray="4 4"/></svg><div><b id="recT"></b><p id="recP"></p></div></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="quote" style="padding-top:0"><div class="wrap">
+  <span class="eyebrow">Instant pricing</span>
+  <h2 class="h" data-split>Your price, <em>before we show up.</em></h2>
+  <div class="quote">
+    <div class="panel q" data-reveal id="qIn">
+      <fieldset style="border:0;margin:0;padding:0"><legend class="lbl" style="color:var(--ink)">Home</legend><div class="opts c3">
+        <input type="radio" name="hs" id="h1" value="140"><label for="h1"><b>Ranch</b><small>1 story · ~140 ft</small></label>
+        <input type="radio" name="hs" id="h2" value="180" checked><label for="h2"><b>Two-story</b><small>~180 ft</small></label>
+        <input type="radio" name="hs" id="h3" value="240"><label for="h3"><b>Large two-story</b><small>~240 ft</small></label>
+      </div></fieldset>
+      <fieldset style="border:0;margin:0;padding:0"><legend class="lbl" style="color:var(--ink)">Material</legend><div class="opts c3">
+        <input type="radio" name="mt" id="a1" value="al" checked><label for="a1"><span class="sw" style="background:#e9e6e0;border:1px solid #ccc"></span><b>Aluminum</b><small>25+ colors · $9/ft</small></label>
+        <input type="radio" name="mt" id="a2" value="st"><label for="a2"><span class="sw" style="background:#7d8790"></span><b>Galvalume steel</b><small>Hail tough · $14/ft</small></label>
+        <input type="radio" name="mt" id="a3" value="cu"><label for="a3"><span class="sw" style="background:linear-gradient(90deg,#e9a070,#a9552a)"></span><b>Copper</b><small>Lasts 50+ yrs · $28/ft</small></label>
+      </div></fieldset>
+      <div class="tog"><div><b>Gutter guards</b><small>Micro-mesh, never clean again · $7/ft</small></div><label class="switch"><input type="checkbox" id="gd" aria-label="Add gutter guards"><span></span></label></div>
+      <div class="tog"><div><b>Downspouts</b><small>4 included · $95 each extra</small></div><div class="step"><button type="button" id="dm" aria-label="Fewer downspouts">−</button><output id="dn">4</output><button type="button" id="dp" aria-label="More downspouts">+</button></div></div>
+      <div class="tog"><div><b>Remove old gutters</b><small>Haul-away included in price</small></div><label class="switch"><input type="checkbox" id="rm" checked aria-label="Remove old gutters"><span></span></label></div>
+    </div>
+    <aside class="total" data-reveal style="--rd:150" aria-live="polite">
+      <span class="eyebrow" style="color:var(--copper2)">Estimated total</span>
+      <div class="t" id="tot">$0</div>
+      <ul id="lines"></ul>
+      <a class="btn btn-c" href="#book">Lock this price</a>
+      <small>Final price confirmed after a free 15-minute measure. Financing from $49/mo.</small>
+    </aside>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap cmpwrap">
+  <div class="cmp" data-reveal="scale">
+    <svg viewBox="0 0 800 500" aria-label="Clogged gutter overflowing">
+      <rect width="800" height="500" fill="#4c5a64"/>
+      <path d="M0 140 L800 60 L800 0 L0 0Z" fill="#2b343b"/>
+      <rect x="0" y="150" width="800" height="70" rx="12" fill="#8a8f91"/>
+      <g fill="#6b5a2e"><ellipse cx="120" cy="160" rx="70" ry="18"/><ellipse cx="300" cy="158" rx="90" ry="22"/><ellipse cx="520" cy="160" rx="80" ry="18"/><ellipse cx="700" cy="158" rx="70" ry="20"/></g>
+      <g fill="#8a6d32"><path d="M90 150 l20-20 10 22z"/><path d="M280 146 l30-24 6 26z"/><path d="M520 150 l18-26 16 24z"/><path d="M690 148 l22-18 4 22z"/></g>
+      <g stroke="#9fd3f5" stroke-width="5" opacity=".75" fill="none"><path d="M200 220 v220"/><path d="M380 222 v200"/><path d="M610 220 v230"/></g>
+      <rect x="0" y="440" width="800" height="60" fill="#3b4a2e"/><g fill="#6fb7e8" opacity=".5"><ellipse cx="200" cy="452" rx="70" ry="8"/><ellipse cx="380" cy="450" rx="60" ry="7"/><ellipse cx="610" cy="452" rx="80" ry="9"/></g>
+    </svg>
+    <div class="after"><svg viewBox="0 0 800 500" aria-label="Clean gutter with micro-mesh guard">
+      <defs><pattern id="mesh" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#c7cbcd"/><path d="M0 0l10 10M10 0L0 10" stroke="#9aa1a5" stroke-width="1"/></pattern><linearGradient id="cu2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9a070"/><stop offset="1" stop-color="#a9552a"/></linearGradient></defs>
+      <rect width="800" height="500" fill="#566673"/>
+      <path d="M0 140 L800 60 L800 0 L0 0Z" fill="#2b343b"/>
+      <rect x="0" y="150" width="800" height="70" rx="12" fill="url(#cu2)"/>
+      <rect x="0" y="144" width="800" height="14" fill="url(#mesh)"/>
+      <g fill="#8a6d32" opacity=".9"><path d="M160 140 l24-14 8 16z"/><path d="M460 138 l20-16 10 18z"/></g>
+      <rect x="720" y="210" width="34" height="230" rx="8" fill="url(#cu2)"/>
+      <path class="flow" d="M737 220 V440" stroke="#9fd3f5" stroke-width="5" fill="none"/>
+      <rect x="0" y="440" width="800" height="60" fill="#4a6b35"/>
+    </svg></div>
+    <span class="tag l">Before</span><span class="tag r">After</span>
+    <input type="range" min="0" max="100" value="50" aria-label="Compare clogged and guarded gutters"><span class="handle"></span>
+  </div>
+  <div>
+    <span class="eyebrow">Gutter guards</span>
+    <h2 class="h" data-split style="font-size:clamp(32px,4vw,56px)">Leaves stay out. <em>Water gets in.</em></h2>
+    <ul class="checks" data-reveal>
+      <li>Stainless micro-mesh blocks pine needles and shingle grit</li>
+      <li>Handles 100+ inches of rain per hour on test</li>
+      <li>No-clog guarantee, or we clean them free</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="sec" id="services" style="padding-top:0"><div class="wrap">
+  <span class="eyebrow">Services</span>
+  <h2 class="h" data-split>Everything from roof edge <em>to ground.</em></h2>
+  <div class="svcs">
+    <div class="sv" data-reveal><svg viewBox="0 0 46 46" aria-hidden="true"><path d="M4 14h38v8a8 8 0 0 1-8 8H12a8 8 0 0 1-8-8z" fill="none" stroke="#c96f3b" stroke-width="3"/></svg><h3>Seamless install</h3><p>Formed on-site in one continuous piece. No seams, no drips.</p><span class="p">from $9 / ft</span></div>
+    <div class="sv" data-reveal style="--rd:80"><svg viewBox="0 0 46 46" aria-hidden="true"><path d="M4 14h38" stroke="#c96f3b" stroke-width="3"/><path d="M4 20h38M4 26h38" stroke="#6fb7e8" stroke-width="2" stroke-dasharray="3 3"/></svg><h3>Gutter guards</h3><p>Micro-mesh covers that fit new or existing gutters.</p><span class="p">from $7 / ft</span></div>
+    <div class="sv" data-reveal style="--rd:160"><svg viewBox="0 0 46 46" aria-hidden="true"><path d="M23 6c6 9 10 14 10 20a10 10 0 0 1-20 0c0-6 4-11 10-20z" fill="none" stroke="#6fb7e8" stroke-width="3"/></svg><h3>Clean &amp; flush</h3><p>Hand-cleaned, downspouts flushed, photos sent after.</p><span class="p">from $149</span></div>
+    <div class="sv" data-reveal style="--rd:240"><svg viewBox="0 0 46 46" aria-hidden="true"><path d="M10 36l16-16 6 6-16 16H10z M28 18l6-6 6 6-6 6" fill="none" stroke="#c96f3b" stroke-width="3" stroke-linejoin="round"/></svg><h3>Repairs</h3><p>Sagging runs, leaking corners, pulled hangers and fascia.</p><span class="p">from $125</span></div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="eyebrow">Reviews</span>
+  <div class="revs">
+    <figure class="rv" data-reveal><span class="s">★★★★★</span><p>"Water used to pour off the back corner straight into our crawl space. Bigger downspout, gone. Crew was in and out by 3pm."</p><cite>Melissa R. · Ballantyne</cite></figure>
+    <figure class="rv" data-reveal style="--rd:100"><span class="s">★★★★★</span><p>"The storm check on their site told me I needed 6-inch gutters. They were right. Zero overflow this summer."</p><cite>Derek W. · Huntersville</cite></figure>
+    <figure class="rv" data-reveal style="--rd:200"><span class="s">★★★★★</span><p>"Copper gutters on our 1920s house in Dilworth. Neighbors keep stopping to ask who did them."</p><cite>Anne P. · Dilworth</cite></figure>
+  </div>
+</div></section>
+
+<section class="sec" id="book" style="padding-top:0"><div class="wrap">
+  <div class="book" data-reveal>
+    <div><span class="eyebrow" style="color:var(--copper2)">Free estimate</span><h2 class="h" style="color:#fff" data-split>Measured this week. <em>Installed next.</em></h2><p class="lede">Serving Charlotte, Matthews, Huntersville, Concord and Fort Mill. (704) 555-0164</p></div>
+    <form class="form" data-kit novalidate data-done-title="Got it{n}." data-done-text="We'll text you two estimate times for this week within the hour.">
+      <div class="two">
+        <div data-field><label for="g-name">Name</label><input id="g-name" name="name" autocomplete="name" required><span class="err"></span></div>
+        <div data-field><label for="g-phone">Mobile</label><input id="g-phone" name="phone" type="tel" autocomplete="tel" required><span class="err"></span></div>
+      </div>
+      <div class="two">
+        <div data-field><label for="g-zip">ZIP</label><input id="g-zip" name="zip" inputmode="numeric" autocomplete="postal-code" required><span class="err"></span></div>
+        <div data-field><label for="g-svc">Need</label><select id="g-svc" name="service"><option>New gutters</option><option>Gutter guards</option><option>Cleaning</option><option>Repair</option></select></div>
+      </div>
+      <button class="btn btn-d" type="submit">Book my free estimate</button>
+    </form>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><div class="fb">Rain<em>line</em></div><p>Seamless gutters · Guards · Cleaning · Charlotte, NC · (704) 555-0164 · © 2026 · Sample site</p></div></footer>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id),fmt=n=>Math.round(n).toLocaleString("en-US");
+  // nav
+  FX.onScroll.push(y=>$("nav").classList.toggle("solid",y>40));
+  // rain
+  const cv=$("rain"),x=cv.getContext("2d");let W,H,D=[];
+  function size(){W=cv.width=cv.clientWidth*devicePixelRatio;H=cv.height=cv.clientHeight*devicePixelRatio;D=Array.from({length:Math.round(W*H/9000)},()=>({x:Math.random()*W,y:Math.random()*H,l:8+Math.random()*16,v:7+Math.random()*7}));}
+  size();addEventListener("resize",size);
+  function rain(){x.clearRect(0,0,W,H);x.strokeStyle="rgba(159,211,245,.35)";x.lineWidth=1.2*devicePixelRatio;x.beginPath();
+    for(const d of D){x.moveTo(d.x,d.y);x.lineTo(d.x-d.l*.18,d.y+d.l*devicePixelRatio);d.y+=d.v*devicePixelRatio;d.x-=d.v*.18;if(d.y>H){d.y=-20;d.x=Math.random()*W*1.1;}}
+    x.stroke();if(!FX.reduce)requestAnimationFrame(rain);}
+  rain();
+  // storm check (gallons/hr = sqft * in/hr * 0.623)
+  function storm(){const sq=+$("sq").value,r=+document.querySelector("[name=rn]:checked").value,g=sq*r*.623;
+    $("sqV").textContent=fmt(sq)+" sq ft";$("gal").textContent=fmt(g);
+    const cap5=4400,load=Math.min(g/cap5,1.4),i=$("m5");i.style.setProperty("--w",Math.min(load*100,100)+"%");i.classList.toggle("over",g>cap5);
+    $("m5t").textContent=g>cap5?`Standard 5" gutters overflow at about ${fmt(cap5)} gal/hr. You're over by ${fmt(g-cap5)}.`:`Standard 5" gutters use ${Math.round(load*100)}% of their capacity here.`;
+    const six=g>cap5*.85;$("recT").textContent=six?`6" seamless + 3×4" downspouts`:`5" seamless + 2×3" downspouts`;
+    $("recP").textContent=six?"Bigger troughs and oversized downspouts so heavy storms don't spill over the front edge.":"Standard size is plenty. Add guards and they'll stay clear year-round.";}
+  $("stormIn").addEventListener("input",storm);$("stormIn").addEventListener("change",storm);storm();
+  // quote
+  const RATE={al:[9,"Aluminum"],st:[14,"Galvalume steel"],cu:[28,"Copper"]};let ds=4;
+  function quote(){const ft=+document.querySelector("[name=hs]:checked").value,m=RATE[document.querySelector("[name=mt]:checked").value];
+    const L=[[`${m[1]} · ${ft} ft`,ft*m[0]]];if($("gd").checked)L.push([`Guards · ${ft} ft`,ft*7]);if(ds>4)L.push([`${ds-4} extra downspouts`,(ds-4)*95]);if($("rm").checked)L.push(["Remove & haul old gutters",0]);
+    const t=L.reduce((a,b)=>a+b[1],0);$("tot").textContent="$"+fmt(t);$("dn").textContent=ds;
+    $("lines").innerHTML=L.map(l=>`<li><span>${l[0]}</span><span>${l[1]?"$"+fmt(l[1]):"Included"}</span></li>`).join("");}
+  $("qIn").addEventListener("change",quote);
+  $("dm").addEventListener("click",()=>{ds=Math.max(2,ds-1);quote();});$("dp").addEventListener("click",()=>{ds=Math.min(12,ds+1);quote();});
+  quote();
+})();
+</script>
+</body>
+</html>
