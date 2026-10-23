@@ -146,7 +146,7 @@ h2.h .g{color:var(--rose)}
 .slot.full{border:0;background:transparent}
 .slot .x{position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;display:none;place-items:center}
 .slot.full:hover .x{display:grid}
-.boxfoot{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.boxfoot{display:flex;justify-content:center;align-items:center;margin-top:16px}
 .boxfoot b{font:400 40px var(--display)}
 .boxfoot span{color:var(--mint);font-weight:700}
 .ways{display:flex;gap:8px;margin-top:14px}
@@ -274,7 +274,7 @@ footer .note{max-width:60ch;font-size:14px}
     <aside class="box" data-reveal style="--rd:120" aria-live="polite">
       <div class="sizes" id="sizes"><button aria-pressed="false" data-n="4" data-p="18">Box of 4</button><button aria-pressed="true" data-n="6" data-p="26">Box of 6</button><button aria-pressed="false" data-n="12" data-p="48">Party 12</button></div>
       <div class="slots" id="slots"></div>
-      <div class="boxfoot"><div><b id="price">$26</b></div><span id="left">6 spots left</span></div>
+      <div class="boxfoot"><span id="left">6 spots left</span></div>
       <div class="ways"><label><input type="radio" name="way" value="Pickup" checked><span>Pickup</span></label><label><input type="radio" name="way" value="Local delivery"><span>Local delivery</span></label></div>
       <button class="btn btn-c" id="send" disabled>Fill the box to order</button>
       <p style="font-size:13px;color:var(--mint);margin:12px 0 0;text-align:center" id="sent">Tap send and your order is copied, ready to paste into our DMs.</p>
@@ -403,7 +403,7 @@ footer .note{max-width:60ch;font-size:14px}
   function renderBox(){const s=$("slots");s.style.setProperty("--cols",size===12?4:size===6?3:2);
     s.innerHTML=Array.from({length:size},(_,i)=>box[i]?`<button class="slot full" type="button" data-i="${i}" aria-label="Remove ${FL[box[i]].n}"><canvas width="160" height="160" data-f="${box[i]}" data-s="${i+71}"></canvas><span class="x">×</span></button>`:`<span class="slot" data-i="${i}"></span>`).join("");
     s.querySelectorAll("canvas").forEach(c=>drawCookie(c,FL[c.dataset.f],+c.dataset.s));
-    const left=size-box.length;$("left").textContent=left?`${left} spot${left>1?"s":""} left`:"Box is full!";$("price").textContent="$"+price;$("cartn").textContent=box.length;
+    const left=size-box.length;$("left").textContent=left?`${left} spot${left>1?"s":""} left`:"Box is full!";$("cartn").textContent=box.length;
     const btn=$("send");btn.disabled=!!left;btn.textContent=left?"Fill the box to order":"Send my order";}
   function addCookie(k,from){if(box.length>=size){const s=$("slots");if(!R)s.animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(0)"}],{duration:300});return;}
     const idx=box.length;box.push(k);
