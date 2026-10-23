@@ -7,7 +7,7 @@
 <title>Clover Cookies · Website concept by Weblio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Onest:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="fx.css">
+<link rel="stylesheet" href="/t/fx.css">
 <style>
 :root{
   --green:#1f6b3a; --deep:#0e3a20; --mint:#cfe8c9; --cream:#fff4e2; --cream2:#f7e6c8; --dough:#e0a96d; --choc:#3b2416; --pink:#f6a6b2; --butter:#ffd36b;
@@ -34,7 +34,9 @@ a{color:inherit}
 /* preloader */
 .oven{position:fixed;inset:0;z-index:100;background:var(--green);display:grid;place-items:center;transition:clip-path 1s cubic-bezier(.8,0,.2,1)}
 .oven.done{clip-path:circle(0% at 50% 50%);pointer-events:none}
-.oven svg{width:min(42vw,220px)}
+.oven{animation:ovenFail .9s 5s forwards}@keyframes ovenFail{to{clip-path:circle(0% at 50% 50%);visibility:hidden}}
+.ovenbox{position:relative;width:min(46vw,240px)}.oven svg{width:100%;display:block}
+#ovenCookie{position:absolute;inset:3.5%;width:93%;height:93%;opacity:0;transform:scale(.9) rotate(-30deg);transition:opacity .6s,transform .9s cubic-bezier(.3,1.5,.5,1);filter:drop-shadow(0 18px 24px rgba(0,0,0,.35))}#ovenCookie.on{opacity:1;transform:none}
 .oven .dough{transform-origin:100px 100px;animation:bake 1.3s cubic-bezier(.5,0,.3,1) forwards}
 @keyframes bake{0%{transform:scale(.55,.75);fill:#f1d3a8}60%{transform:scale(1.05,.95)}100%{transform:scale(1);fill:#d9984f}}
 .oven .chips circle{opacity:0;animation:pop .3s forwards}
@@ -102,7 +104,6 @@ h2.h .g{color:var(--green)}
 .dots i::after{content:"";position:absolute;inset:0;background:var(--butter);transform:scaleX(var(--f,0));transform-origin:left}
 .bitecookie{position:relative;width:min(100%,560px);aspect-ratio:1;margin:0 auto}
 .bitecookie svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.goo{transition:opacity .5s}
 
 /* flavors */
 .flv{margin-top:50px}
@@ -190,13 +191,13 @@ footer p{color:#a8c2ad;margin-top:24px}
 footer .note{max-width:60ch;font-size:14px}
 @media (max-width:980px){.nav ul{display:none}.hero .wrap,.builder,.story,.visit,.bite .pin{grid-template-columns:1fr}.bigcookie{margin:0 auto;width:min(100%,460px)}.box{position:static}.menu{grid-template-columns:repeat(3,1fr)}.ig{grid-template-columns:repeat(3,1fr)}.bite .pin{align-content:center;gap:0}.bitecookie{width:min(70vw,340px)}.steps{min-height:170px}}
 @media (max-width:760px){.flavors .head{position:static;padding:0 var(--gr) 0 var(--gl);margin-bottom:20px}.flavors .h-track{padding:0 var(--gr) 20px var(--gl)}.flavors{padding-block:80px 40px}}
-@media (max-width:600px){.menu{grid-template-columns:repeat(2,1fr)}.facts{grid-template-columns:1fr}.sticker{width:96px;height:96px;font-size:14px}.concept{font-size:11px;padding:7px 11px}.concept .cl{display:none}.wb-back span{display:none}}
+@media (max-width:600px){.hero .leaf:first-of-type{display:none}.menu{grid-template-columns:repeat(2,1fr)}.facts{grid-template-columns:1fr}.sticker{width:96px;height:96px;font-size:14px}.concept{font-size:11px;padding:7px 11px}.concept .cl{display:none}.wb-back span{display:none}}
 @media (prefers-reduced-motion:reduce){.oven{display:none}.marq .tr,.leaf,.sticker{animation:none}}
 </style>
 </head>
 <body>
 <div class="oven" id="oven" aria-hidden="true">
-  <svg viewBox="0 0 200 200"><circle class="dough" cx="100" cy="100" r="80" fill="#f1d3a8"/><g class="chips" fill="#3b2416"><circle cx="70" cy="80" r="9" style="animation-delay:.6s"/><circle cx="122" cy="70" r="8" style="animation-delay:.75s"/><circle cx="100" cy="112" r="10" style="animation-delay:.9s"/><circle cx="135" cy="125" r="7" style="animation-delay:1.05s"/><circle cx="68" cy="130" r="8" style="animation-delay:1.2s"/></g></svg>
+  <div class="ovenbox"><svg viewBox="0 0 200 200"><circle class="dough" cx="100" cy="100" r="80" fill="#f1d3a8"/><g class="chips" fill="#3b2416"><circle cx="70" cy="80" r="9" style="animation-delay:.6s"/><circle cx="122" cy="70" r="8" style="animation-delay:.75s"/><circle cx="100" cy="112" r="10" style="animation-delay:.9s"/><circle cx="135" cy="125" r="7" style="animation-delay:1.05s"/><circle cx="68" cy="130" r="8" style="animation-delay:1.2s"/></g></svg><canvas id="ovenCookie" width="440" height="440"></canvas></div>
   <p>Preheating…</p>
 </div>
 <canvas id="crumbs" aria-hidden="true"></canvas>
@@ -245,16 +246,13 @@ footer .note{max-width:60ch;font-size:14px}
     <div class="bitecookie">
       <svg viewBox="0 0 500 500" aria-label="Cookie being bitten as you scroll">
         <defs>
-          <mask id="bm"><rect width="500" height="500" fill="#fff"/><g fill="#000" id="bites"><circle cx="430" cy="110" r="0"/><circle cx="470" cy="190" r="0"/><circle cx="455" cy="290" r="0"/><circle cx="400" cy="370" r="0"/></g></mask>
-          <radialGradient id="dg" cx=".45" cy=".4" r=".65"><stop offset="0" stop-color="#e8b67a"/><stop offset=".75" stop-color="#cf8f4c"/><stop offset="1" stop-color="#9c5f2b"/></radialGradient>
-          <radialGradient id="gooG" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f3d39c"/><stop offset="1" stop-color="#e0a96d" stop-opacity="0"/></radialGradient>
+          <mask id="bm"><rect width="500" height="500" fill="#fff"/><g fill="#000" id="bitesO"><circle cx="430" cy="110" r="0"/><circle cx="470" cy="190" r="0"/><circle cx="455" cy="290" r="0"/><circle cx="400" cy="370" r="0"/></g></mask>
+          <mask id="bm2"><rect width="500" height="500" fill="#fff"/><g fill="#000" id="bitesI"><circle cx="430" cy="110" r="0"/><circle cx="470" cy="190" r="0"/><circle cx="455" cy="290" r="0"/><circle cx="400" cy="370" r="0"/></g></mask>
+          <clipPath id="disc"><circle cx="250" cy="250" r="196"/></clipPath>
+          <radialGradient id="crumbG" cx=".5" cy=".5" r=".5"><stop offset=".6" stop-color="#f3d7a6"/><stop offset="1" stop-color="#d9a466"/></radialGradient>
         </defs>
-        <g mask="url(#bm)">
-          <path id="bcEdge" fill="url(#dg)"/>
-          <ellipse class="goo" id="goo" cx="300" cy="230" rx="120" ry="110" fill="url(#gooG)" opacity="0"/>
-          <g id="bcChips"></g>
-          <g id="salt" opacity="0" fill="#fff"></g>
-        </g>
+        <g clip-path="url(#disc)" mask="url(#bm2)"><g id="bitesR" fill="url(#crumbG)"><circle cx="430" cy="110" r="0"/><circle cx="470" cy="190" r="0"/><circle cx="455" cy="290" r="0"/><circle cx="400" cy="370" r="0"/></g></g>
+        <g mask="url(#bm)"><image id="biteImg" x="15" y="15" width="470" height="470"/><g id="salt" opacity="0" fill="#fff"></g></g>
         <g id="crumbBits" fill="#c9884a"></g>
       </svg>
     </div>
@@ -320,10 +318,10 @@ footer .note{max-width:60ch;font-size:14px}
 <footer><div class="wrap"><div class="fb">Clover</div><p>Small-batch cookies · baked fresh daily</p>
 <p class="note">This is a website concept designed by Weblio for Clover to preview. It isn't the official Clover website, and the prices, flavors and details shown are placeholders.</p></div></footer>
 <div class="concept"><b>Concept</b><span class="cl"> by Weblio</span> · not the official site</div>
-<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+<a class="wb-back" href="/" data-back><i>←</i>Weblio <span>· sample site</span></a>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="fx.js"></script>
+<script src="/t/fx.js"></script>
 <script>
 (function(){
   const $=id=>document.getElementById(id),R=FX.reduce;
@@ -340,43 +338,82 @@ footer .note{max-width:60ch;font-size:14px}
     {k:"sc",n:"Salted Caramel",d:["#edc489","#d29a52","#9a6328"],inc:"caramel",tag:"Weekend only",c:"#ffe7c4",p:5,desc:["Brown sugar dough","Caramel pockets","Maldon salt"]},
     {k:"ma",n:"Matcha White",d:["#cfe0a8","#9cbb6c","#617d3b"],inc:"white",tag:"Lucky green",c:"#e2f2d2",p:5,desc:["Ceremonial matcha dough","White chocolate","Toasted sesame"]},
   ];
-  function edgePath(r,cx,cy,rand,n=48,j=.06){const pts=[];for(let i=0;i<n;i++){const a=i/n*Math.PI*2,rr=r*(1+(rand()-.5)*j*2+Math.sin(a*3+rand())*.015);pts.push([cx+Math.cos(a)*rr,cy+Math.sin(a)*rr]);}return pts;}
-  function drawCookie(cv,f,seed=1){
-    const x=cv.getContext("2d"),W=cv.width,H=cv.height,cx=W/2,cy=H/2,r=W*.44,rand=rng(seed*9973+7);x.clearRect(0,0,W,H);
-    const pts=edgePath(r,cx,cy,rand);const shape=()=>{x.beginPath();pts.forEach((p,i)=>{const q=pts[(i+1)%pts.length];const mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2;i?x.quadraticCurveTo(p[0],p[1],mx,my):x.moveTo(mx,my);});x.closePath();};
-    // base
-    shape();const g=x.createRadialGradient(cx-r*.15,cy-r*.2,r*.1,cx,cy,r*1.05);g.addColorStop(0,f.d[0]);g.addColorStop(.7,f.d[1]);g.addColorStop(1,f.d[2]);x.fillStyle=g;x.fill();
-    x.save();shape();x.clip();
-    // baked rim
-    const rim=x.createRadialGradient(cx,cy,r*.72,cx,cy,r*1.02);rim.addColorStop(0,"rgba(0,0,0,0)");rim.addColorStop(1,"rgba(70,35,10,.45)");x.fillStyle=rim;x.fillRect(0,0,W,H);
-    // cracks
-    x.strokeStyle="rgba(60,30,10,.28)";x.lineWidth=W*.006;x.lineCap="round";
-    for(let i=0;i<9;i++){let a=rand()*Math.PI*2,d=r*(.15+rand()*.6),px=cx+Math.cos(a)*d,py=cy+Math.sin(a)*d;x.beginPath();x.moveTo(px,py);for(let k=0;k<4;k++){a+=(rand()-.5)*1.4;px+=Math.cos(a)*r*.09;py+=Math.sin(a)*r*.09;x.lineTo(px,py);}x.stroke();}
-    // highlight bumps
-    for(let i=0;i<26;i++){const a=rand()*7,d=rand()*r*.85,bx=cx+Math.cos(a)*d,by=cy+Math.sin(a)*d,br=r*(.04+rand()*.07);const hg=x.createRadialGradient(bx-br*.3,by-br*.3,0,bx,by,br);hg.addColorStop(0,"rgba(255,240,210,.35)");hg.addColorStop(1,"rgba(255,240,210,0)");x.fillStyle=hg;x.beginPath();x.arc(bx,by,br,0,7);x.fill();}
-    // inclusions
-    const blob=(bx,by,s,c1,c2)=>{x.fillStyle=c1;x.beginPath();const m=6+(rand()*4|0);for(let i=0;i<m;i++){const a=i/m*7,rr=s*(.75+rand()*.5);i?x.lineTo(bx+Math.cos(a)*rr,by+Math.sin(a)*rr):x.moveTo(bx+Math.cos(a)*rr,by+Math.sin(a)*rr);}x.closePath();x.fill();if(c2){x.fillStyle=c2;x.beginPath();x.ellipse(bx-s*.25,by-s*.3,s*.35,s*.18,-.6,0,7);x.fill();}};
-    const spot=()=>{const a=rand()*7,d=Math.sqrt(rand())*r*.86;return[cx+Math.cos(a)*d,cy+Math.sin(a)*d];};
-    const N=Math.round(14+rand()*6);
-    if(f.inc==="choc"||f.inc==="pist"&&0){}
-    for(let i=0;i<N;i++){const[bx,by]=spot(),s=r*(.06+rand()*.07);
-      if(f.inc==="choc")blob(bx,by,s,"#3b2416","rgba(255,255,255,.18)");
-      else if(f.inc==="white")blob(bx,by,s,"#fbf3e4","rgba(255,255,255,.6)");
-      else if(f.inc==="pist")blob(bx,by,s*.7,i%2?"#86a64a":"#fbf3e4","rgba(255,255,255,.3)");
-      else if(f.inc==="straw")blob(bx,by,s*.7,i%3?"#d8455d":"#fbf3e4","rgba(255,255,255,.3)");
-      else if(f.inc==="caramel"){blob(bx,by,s,"#c77b2a","rgba(255,230,180,.5)");}
-      else if(f.inc==="swirl"){if(i<4){x.strokeStyle="#8b4a1f";x.lineWidth=W*.02;x.beginPath();x.arc(bx,by,s*1.6,rand()*6,rand()*6+3);x.stroke();}else blob(bx,by,s*.6,"#b06a2c");}
-      else if(f.inc==="sprink"){for(let k=0;k<4;k++){const[sx,sy]=spot();x.save();x.translate(sx,sy);x.rotate(rand()*7);x.fillStyle=["#ff6b8b","#3fb5ff","#ffd36b","#6fd28a","#b28cff"][k+i&3];x.fillRect(-W*.012,-W*.004,W*.024,W*.008);x.restore();}if(i%4==0)blob(bx,by,s*.8,"#fff8ee","rgba(0,0,0,.05)");}
+  // ---------- realistic cookie renderer: height-field + lighting ----------
+  const hsh=(x,y,s)=>{let h=(Math.imul(x,374761393)+Math.imul(y,668265263)+Math.imul(s,1442695041))|0;h=Math.imul(h^(h>>>13),1274126177);h^=h>>>16;return (h>>>0)/4294967296;};
+  function vn(x,y,s){const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi,u=xf*xf*(3-2*xf),v=yf*yf*(3-2*yf),a=hsh(xi,yi,s),b=hsh(xi+1,yi,s),c=hsh(xi,yi+1,s),d=hsh(xi+1,yi+1,s);return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v;}
+  function fbm(x,y,s,o){let t=0,a=.5,f=1,n=0;for(let i=0;i<o;i++){t+=a*vn(x*f,y*f,s+i*31);n+=a;f*=2.07;a*=.5;}return t/n;}
+  const hex=h=>[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];
+  const sm=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t);};
+  function paintInclusions(f,M,G,C,S,R,cx,cy,rand){
+    const spot=(m=.84)=>{const a=rand()*6.283,d=Math.sqrt(rand())*R*m;return[cx+Math.cos(a)*d,cy+Math.sin(a)*d];};
+    const both=(fn,col,gl)=>{M.fillStyle=M.strokeStyle=col;const g=Math.round(gl*255);G.fillStyle=G.strokeStyle=`rgb(${g},${g},${g})`;fn(M);fn(G);};
+    const chunk=(px,py,s,col,gl,sharp)=>{const m=sharp?6+(rand()*3|0):10,rot=rand()*6.283,pts=[];for(let i=0;i<m;i++){const a=rot+i/m*6.283+(rand()-.5)*(sharp?.7:.3),rr=s*(sharp?.55+rand()*.6:.78+rand()*.3);pts.push([px+Math.cos(a)*rr,py+Math.sin(a)*rr*(sharp?1:.85)]);}
+      both(c=>{c.beginPath();if(sharp){pts.forEach((p,i)=>{const q=pts[(i+1)%m],mx=(p[0]*.35+q[0]*.65),my=(p[1]*.35+q[1]*.65);i?c.quadraticCurveTo(p[0],p[1],mx,my):c.moveTo(mx,my);});}else{pts.forEach((p,i)=>{const q=pts[(i+1)%m],mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2;i?c.quadraticCurveTo(p[0],p[1],mx,my):c.moveTo(mx,my);});}c.closePath();c.fill();},col,gl);};
+    const sprinkle=(px,py,col)=>{const a=rand()*6.283,l=R*.1,w=R*.032;both(c=>{c.save();c.translate(px,py);c.rotate(a);c.beginPath();c.roundRect?c.roundRect(-l/2,-w/2,l,w,w/2):c.rect(-l/2,-w/2,l,w);c.fill();c.restore();},col,.4);};
+    const n=(k,fn)=>{for(let i=0;i<k;i++)fn(i);};
+    const DK=["#2a150b","#3a2013","#45271a"],WH=["#f6eedd","#efe3c9"];
+    const choc=(pools,chunks,shards)=>{n(pools,()=>{const[a,b]=spot(.7);chunk(a,b,R*(.12+rand()*.06),"#2f190e",.95,false);});n(chunks,()=>{const[a,b]=spot();chunk(a,b,R*(.06+rand()*.05),DK[rand()*3|0],.85,true);});n(shards,()=>{const[a,b]=spot(.9);chunk(a,b,R*(.018+rand()*.02),DK[rand()*3|0],.7,true);});};
+    const white=(k,sz=1.45)=>n(k,()=>{const[a,b]=spot();chunk(a,b,R*(.05+rand()*.045)*sz,WH[rand()*2|0],.5,true);});
+    switch(f.inc){
+      case"choc":choc(5,12,16);break;
+      case"white":white(13);n(f.k==="dc"?7:0,()=>{const[a,b]=spot();chunk(a,b,R*(.05+rand()*.04),"#1e0f07",.85,true);});if(f.k==="ma")n(30,()=>{const[a,b]=spot(.9);chunk(a,b,R*.012,"#f3e7cf",.2,false);});break;
+      case"pist":white(9,.9);n(26,()=>{const[a,b]=spot(.9);chunk(a,b,R*(.032+rand()*.03),rand()<.5?"#7d9c37":"#a8bd5c",.15,true);});break;
+      case"straw":white(9,.9);n(18,()=>{const[a,b]=spot(.88);chunk(a,b,R*(.042+rand()*.04),rand()<.6?"#c8304d":"#e8647b",.12,true);});break;
+      case"caramel":n(6,()=>{const[a,b]=spot(.72);chunk(a,b,R*(.11+rand()*.07),"#b5651c",1,false);});n(8,()=>{const[a,b]=spot();chunk(a,b,R*(.04+rand()*.03),DK[1],.8,true);});break;
+      case"swirl":n(3,()=>{const[a,b]=spot(.55);const r0=R*(.14+rand()*.1),a0=rand()*6.283;both(c=>{c.lineWidth=R*.07;c.lineCap="round";c.beginPath();for(let t=0;t<=1;t+=.02){const rr=r0*(.25+t*.75),an=a0+t*4.6;t?c.lineTo(a+Math.cos(an)*rr,b+Math.sin(an)*rr):c.moveTo(a+Math.cos(an)*rr,b+Math.sin(an)*rr);}c.stroke();},"#8e4c1d",.8);});n(10,()=>{const[a,b]=spot();chunk(a,b,R*(.06+rand()*.04),"#c88743",.08,true);});break;
+      case"sprink":const SP=["#ff5f86","#36a9f5","#ffc93c","#5ccb7d","#a77bff","#ffffff"];n(38,()=>{const[a,b]=spot(.9);sprinkle(a,b,SP[rand()*6|0]);});n(7,()=>{const[a,b]=spot();chunk(a,b,R*(.04+rand()*.025),"#fff6ea",.15,false);});white(5,.8);break;
     }
-    if(f.k==="bb"||f.k==="sc"){x.fillStyle="rgba(255,255,255,.9)";for(let i=0;i<22;i++){const[sx,sy]=spot();x.fillRect(sx,sy,W*.008,W*.008);}}
-    if(f.k==="dc"){x.fillStyle="rgba(30,15,5,.5)";for(let i=0;i<60;i++){const[sx,sy]=spot();x.fillRect(sx,sy,2,2);}}
-    x.restore();
+    // cracks: branching fissures, mostly in the outer ring
+    C.strokeStyle="#fff";C.lineCap=C.lineJoin="round";
+    const crack=(px,py,a,len,w,depth)=>{C.lineWidth=w;C.beginPath();C.moveTo(px,py);for(let k=0;k<len;k++){a+=(rand()-.5)*1.1;px+=Math.cos(a)*R*.07;py+=Math.sin(a)*R*.07;if(Math.hypot(px-cx,py-cy)>R*.95)break;C.lineTo(px,py);if(depth&&rand()<.3)crack(px,py,a+(rand()<.5?1:-1)*1.1,2+(rand()*2|0),w*.6,depth-1);}C.stroke();};
+    n(0,()=>{const a=rand()*6.283,d=R*(.4+rand()*.45),px=cx+Math.cos(a)*d,py=cy+Math.sin(a)*d;crack(px,py,a+Math.PI/2+(rand()-.5),3+(rand()*4|0),S*(.004+rand()*.004),1);});
+  }
+  const RENDERS={};
+  function renderCookie(f,S,seed){
+    const key=f.k+S+"_"+seed;if(RENDERS[key])return RENDERS[key];
+    const cv=document.createElement("canvas");cv.width=cv.height=S;const x=cv.getContext("2d"),cx=S/2,cy=S/2,R=S*.43,rand=rng(seed*7919+13),s1=seed*3+1;
+    const NA=720,edge=new Float32Array(NA);for(let i=0;i<NA;i++){const a=i/NA*6.2832;edge[i]=R*(1+.075*(fbm(Math.cos(a)*1.7+9,Math.sin(a)*1.7+9,s1,3)-.5)+.012*Math.sin(a*11+seed));}
+    const mk=()=>{const c=document.createElement("canvas");c.width=c.height=S;return c.getContext("2d");};
+    const M=mk(),G=mk(),C=mk();const bl=Math.max(.5,S*.0016);M.filter=G.filter=`blur(${bl}px)`;C.filter=`blur(${S*.0025}px)`;
+    paintInclusions(f,M,G,C,S,R,cx,cy,rand);
+    const md=M.getImageData(0,0,S,S).data,gd=G.getImageData(0,0,S,S).data,cd=C.getImageData(0,0,S,S).data;
+    const N=S*S,hg=new Float32Array(N),rr=new Float32Array(N),bp=new Float32Array(N),amp=R*.3,inv=1/S;
+    for(let y=0;y<S;y++)for(let X=0;X<S;X++){const i=y*S+X,dx=X-cx,dy=y-cy,d=Math.sqrt(dx*dx+dy*dy);let a=Math.atan2(dy,dx)/6.2832;if(a<0)a+=1;const e=edge[(a*NA|0)%NA],r=d/e;rr[i]=r;if(r>1.04)continue;
+      const dome=.6*sm(1.0,.68,r)+.2*(1-Math.min(1,r*r)),bump=(fbm(X*inv*3.6,y*inv*3.6,s1,3)-.5)*.34+(vn(X*inv*11,y*inv*11,s1+5)-.5)*.07,grain=(vn(X*inv*52,y*inv*52,s1+9)-.5)*.025;bp[i]=bump;
+      const ia=md[i*4+3]/255;hg[i]=(dome+bump*(.4+.6*sm(1.02,.75,r))*(1-ia*.6)+grain*(1-ia))*amp+ia*amp*.05;}
+    const img=x.createImageData(S,S),o=img.data,D=f.d.map(hex),lx=-.48,ly=-.56,lz=.68,hx=lx,hy=ly,hz=lz+1,hl=Math.hypot(hx,hy,hz);
+    const mix=(A,B,t)=>[A[0]+(B[0]-A[0])*t,A[1]+(B[1]-A[1])*t,A[2]+(B[2]-A[2])*t];
+    for(let y=1;y<S-1;y++)for(let X=1;X<S-1;X++){const i=y*S+X,r=rr[i];if(r>1.04)continue;
+      let nx=(hg[i-1]-hg[i+1])*.5,ny=(hg[i-S]-hg[i+S])*.5,nz=1;const nl=Math.hypot(nx,ny,nz);nx/=nl;ny/=nl;nz/=nl;
+      const dif=Math.max(0,nx*lx+ny*ly+nz*lz),hd=Math.max(0,(nx*hx+ny*hy+nz*hz)/hl);
+      let t=sm(.3,1,r)*.75+(fbm(X*inv*2.6,y*inv*2.6,s1+40,3)-.5)*.7+bp[i]*.9;t=Math.min(1,Math.max(0,t));
+      let col=t<.55?mix(D[0],D[1],t/.55):mix(D[1],D[2],(t-.55)/.45);
+      if(r>.9)col=mix(col,D[2],sm(.9,1.02,r)*.55);
+      const ck=cd[i*4]/255;if(ck>0)col=mix(col,[D[2][0]*.8,D[2][1]*.8,D[2][2]*.8],ck*.45);
+      const ia=md[i*4+3]/255;if(ia>0)col=mix(col,[md[i*4]/ia,md[i*4+1]/ia,md[i*4+2]/ia],Math.min(1,ia*1.15));
+      const gl=ia>0?(gd[i*4]/255)/Math.max(ia,.001)*ia:0;
+      let sp=gl>.3?Math.pow(hd,60)*gl*1.2+Math.pow(hd,8)*gl*.12:Math.pow(hd,14)*(gl*.6+.025);
+      if(ia<.2&&hsh(X,y,s1+77)>.9965)sp+=.35;
+      const shade=.52+.62*dif,A=Math.min(1,Math.max(0,(1-r)*edge[0]+.5))*255;
+      const k=i*4;o[k]=col[0]*shade+255*sp;o[k+1]=col[1]*shade+245*sp;o[k+2]=col[2]*shade+225*sp;o[k+3]=A;}
+    x.putImageData(img,0,0);
+    if(f.k==="bb"||f.k==="sc"){for(let i=0;i<16;i++){const a=rand()*6.283,d=Math.sqrt(rand())*R*.8,px=cx+Math.cos(a)*d,py=cy+Math.sin(a)*d,s=S*(.004+rand()*.006);x.save();x.translate(px,py);x.rotate(rand()*6);x.fillStyle="rgba(60,30,10,.25)";x.fillRect(-s/2+1,-s/2+1.5,s,s*.8);x.fillStyle="rgba(255,255,255,.92)";x.fillRect(-s/2,-s/2,s,s*.8);x.fillStyle="rgba(255,255,255,.5)";x.fillRect(-s/2,-s/2,s*.5,s*.3);x.restore();}}
+    if(f.k==="dc"){x.globalCompositeOperation="source-atop";for(let i=0;i<220;i++){const a=rand()*6.283,d=Math.sqrt(rand())*R,px=cx+Math.cos(a)*d,py=cy+Math.sin(a)*d;x.fillStyle="rgba(20,8,2,.35)";x.fillRect(px,py,S*.003,S*.003);}x.globalCompositeOperation="source-over";}
+    return RENDERS[key]=cv;
+  }
+  // renders are queued one per tick so the page never freezes; cached renders paint instantly
+  const Q=[];let qBusy=false;
+  function pump(){if(qBusy)return;qBusy=true;const step=()=>{const job=Q.shift();if(!job){qBusy=false;return;}job();setTimeout(step,12);};setTimeout(step,0);}
+  function getRender(f,S,sd){const key=f.k+S+"_"+sd;if(RENDERS[key])return Promise.resolve(RENDERS[key]);return new Promise(res=>{Q.push(()=>res(renderCookie(f,S,sd)));pump();});}
+  function drawCookie(cv,f){
+    const big=cv.width>=600,S=big?760:380,sd=big?3:1,paint=src=>{const x=cv.getContext("2d");x.clearRect(0,0,cv.width,cv.height);x.drawImage(src,0,0,cv.width,cv.height);};
+    const hit=RENDERS[f.k+S+"_"+sd];if(hit){paint(hit);return Promise.resolve();}return getRender(f,S,sd).then(paint);
   }
   const FL=Object.fromEntries(FLAVORS.map(f=>[f.k,f]));
 
   // ---------- preloader ----------
-  const oven=$("oven");const hideOven=()=>oven.classList.add("done");
-  if(R)hideOven();else{addEventListener("load",()=>setTimeout(hideOven,1500));setTimeout(hideOven,3200);}
+  const oven=$("oven");drawCookie($("ovenCookie"),FL.bb);setTimeout(()=>{$("ovenCookie").classList.add("on");oven.querySelector("p").textContent="Fresh out the oven";},1150);const hideOven=()=>oven.classList.add("done");
+  if(R)hideOven();else{addEventListener("load",()=>setTimeout(hideOven,2300));setTimeout(hideOven,4000);}
 
   // ---------- hero cookie ----------
   const hc=$("heroCookie");drawCookie(hc,FL.bb,3);
@@ -398,19 +435,18 @@ footer .note{max-width:60ch;font-size:14px}
 
   // ---------- nav + hero scroll ----------
   FX.onScroll.push(y=>{$("nav").classList.toggle("solid",y>40);
-    if(!R){hc.style.transform=`rotate(${y*.12}deg) translateY(${y*.15}px)`;const v=Math.abs(y-lastY);if(y<innerHeight&&v>8){const b=hc.getBoundingClientRect();spawn(Math.min(6,v/8|0),(b.left+b.width*Math.random())*devicePixelRatio,(b.top+b.height*.85)*devicePixelRatio);}}
+    if(!R){hc.style.transform=`translateY(${y*.18}px) scale(${1-Math.min(y,900)/9000})`;const v=Math.abs(y-lastY);if(y<innerHeight&&v>8){const b=hc.getBoundingClientRect();spawn(Math.min(6,v/8|0),(b.left+b.width*Math.random())*devicePixelRatio,(b.top+b.height*.85)*devicePixelRatio);}}
     lastY=y;});
 
   // ---------- bite scrolly ----------
-  (function(){const sec=$("bite"),rr=rng(42),edge=edgePath(210,250,250,rr,60,.04);
-    const mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2].map(v=>v.toFixed(1)).join(" ");$("bcEdge").setAttribute("d","M"+mid(edge[edge.length-1],edge[0])+edge.map((p,i)=>" Q"+p.map(v=>v.toFixed(1)).join(" ")+" "+mid(p,edge[(i+1)%edge.length])).join("")+"Z");
-    let ch="";for(let i=0;i<16;i++){const a=rr()*7,d=Math.sqrt(rr())*170,s=10+rr()*16;ch+=`<path d="M${250+Math.cos(a)*d} ${250+Math.sin(a)*d} m-${s} 0 q${s*.4} -${s} ${s} -${s*.8} q${s} ${s*.2} ${s} ${s} q-${s*.3} ${s} -${s} ${s*.8} q-${s} -${s*.2} -${s} -${s}z" fill="#3b2416"/>`;}
-    $("bcChips").innerHTML=ch;let sl="";for(let i=0;i<30;i++){const a=rr()*7,d=Math.sqrt(rr())*180;sl+=`<rect x="${(250+Math.cos(a)*d).toFixed(0)}" y="${(250+Math.sin(a)*d).toFixed(0)}" width="5" height="5" transform="rotate(${rr()*90|0} ${(250+Math.cos(a)*d).toFixed(0)} ${(250+Math.sin(a)*d).toFixed(0)})"/>`;}$("salt").innerHTML=sl;
-    const bites=[...$("bites").children],steps=[...document.querySelectorAll(".st")],dots=[...$("dots").children];let cur=-1;
+  (function(){const sec=$("bite"),rr=rng(42);
+    const bc=document.createElement("canvas");bc.width=bc.height=700;drawCookie(bc,FL.bb).then(()=>$("biteImg").setAttribute("href",bc.toDataURL("image/png")));
+    let sl="";for(let i=0;i<30;i++){const a=rr()*7,d=Math.sqrt(rr())*170,X=(250+Math.cos(a)*d).toFixed(0),Y=(250+Math.sin(a)*d).toFixed(0);sl+=`<rect x="${X}" y="${Y}" width="5" height="4" transform="rotate(${rr()*90|0} ${X} ${Y})"/>`;}$("salt").innerHTML=sl;
+    const bO=[...$("bitesO").children],bI=[...$("bitesI").children],bR=[...$("bitesR").children],steps=[...document.querySelectorAll(".st")],dots=[...$("dots").children];let cur=-1;
     const crumbG=$("crumbBits");
     function upd(){const b=sec.getBoundingClientRect(),p=FX.clamp(-b.top/(b.height-innerHeight),0,1);
-      bites.forEach((c,i)=>{const t=FX.clamp(p*4.4-i*.95,0,1);c.setAttribute("r",(t*(70-i*6)).toFixed(1));});
-      $("goo").setAttribute("opacity",FX.clamp(p*3-1,0,1));$("salt").setAttribute("opacity",FX.clamp(p*4-2.6,0,1));
+      bI.forEach((c,i)=>{const t=FX.clamp(p*4.4-i*.95,0,1),r=t*(70-i*6);c.setAttribute("r",r.toFixed(1));bO[i].setAttribute("r",(r?r+9:0).toFixed(1));bR[i].setAttribute("r",(r?r+9:0).toFixed(1));});
+      $("salt").setAttribute("opacity",FX.clamp(p*4-2.6,0,1));
       const i=Math.min(3,p*4|0);dots.forEach((d,k)=>d.style.setProperty("--f",FX.clamp(p*4-k,0,1)));
       if(i!==cur){cur=i;steps.forEach((s,k)=>s.classList.toggle("on",k===i));
         let bits="";const rb=rng(i+5);for(let k=0;k<8*i;k++)bits+=`<rect x="${(420+rb()*90).toFixed(0)}" y="${(120+rb()*300).toFixed(0)}" width="${(4+rb()*8).toFixed(0)}" height="${(3+rb()*6).toFixed(0)}" transform="rotate(${rb()*90|0})" opacity=".9"/>`;crumbG.innerHTML=bits;}}
@@ -451,9 +487,9 @@ footer .note{max-width:60ch;font-size:14px}
 
   // ---------- polaroids + instagram ----------
   const BG=["#cfe8c9","#ffd7de","#fff0b8","#ffdcb0","#e2f2d2","#f7e6c8"];
-  function scene(cv,i){const x=cv.getContext("2d"),W=cv.width;x.fillStyle=BG[i%BG.length];x.fillRect(0,0,W,W);
-    const n=i%3===0?3:1,tmp=document.createElement("canvas");tmp.width=tmp.height=W;
-    for(let k=0;k<n;k++){drawCookie(tmp,FLAVORS[(i*3+k)%FLAVORS.length],i*7+k);const s=n===1?W*.9:W*.55,ox=n===1?W*.05:[W*.02,W*.42,W*.2][k],oy=n===1?W*.05:[W*.05,W*.12,W*.45][k];x.save();x.shadowColor="rgba(59,36,22,.35)";x.shadowBlur=W*.06;x.shadowOffsetY=W*.03;x.drawImage(tmp,ox,oy,s,s);x.restore();}}
+  async function scene(cv,i){const x=cv.getContext("2d"),W=cv.width;x.fillStyle=BG[i%BG.length];x.fillRect(0,0,W,W);
+    const n=i%3===0?3:1;
+    for(let k=0;k<n;k++){const tmp=await getRender(FLAVORS[(i*3+k)%FLAVORS.length],380,1);const s=n===1?W*.9:W*.55,ox=n===1?W*.05:[W*.02,W*.42,W*.2][k],oy=n===1?W*.05:[W*.05,W*.12,W*.45][k];x.save();x.shadowColor="rgba(59,36,22,.35)";x.shadowBlur=W*.06;x.shadowOffsetY=W*.03;x.drawImage(tmp,ox,oy,s,s);x.restore();}}
   document.querySelectorAll("[data-pol]").forEach(c=>scene(c,+c.dataset.pol+2));
   $("ig").innerHTML=Array.from({length:6},(_,i)=>`<a href="#" onclick="return false" aria-label="Instagram post ${i+1}"><canvas width="360" height="360" data-ig="${i}"></canvas></a>`).join("");
   document.querySelectorAll("[data-ig]").forEach(c=>scene(c,+c.dataset.ig));
