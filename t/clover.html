@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Clover Cookies · Website concept by Weblio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Onest:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="fx.css">
+<style>
+:root{
+  --green:#1f6b3a; --deep:#0e3a20; --mint:#cfe8c9; --cream:#fff4e2; --cream2:#f7e6c8; --dough:#e0a96d; --choc:#3b2416; --pink:#f6a6b2; --butter:#ffd36b;
+  --ink:#1d140d; --muted:#6d5a49;
+  --display:"Shrikhand",Georgia,serif; --body:"Onest",system-ui,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+body{background:var(--cream);color:var(--ink);font:16px/1.6 var(--body);overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.kick{font:800 12px var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--green)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border-radius:999px;font:800 16px var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .25s cubic-bezier(.3,1.6,.5,1),box-shadow .25s}
+.btn:hover{transform:translateY(-3px) rotate(-1.5deg)}
+.btn-g{background:var(--green);color:var(--cream);box-shadow:0 6px 0 var(--deep)}
+.btn-g:active{transform:translateY(3px);box-shadow:0 3px 0 var(--deep)}
+.btn-c{background:var(--cream);color:var(--deep);box-shadow:0 6px 0 #d9c39c}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+
+/* concept ribbon */
+.concept{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:80;background:var(--ink);color:var(--cream);font:600 12px var(--body);padding:8px 14px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.concept b{color:var(--butter)}
+
+/* preloader */
+.oven{position:fixed;inset:0;z-index:100;background:var(--green);display:grid;place-items:center;transition:clip-path 1s cubic-bezier(.8,0,.2,1)}
+.oven.done{clip-path:circle(0% at 50% 50%);pointer-events:none}
+.oven svg{width:min(42vw,220px)}
+.oven .dough{transform-origin:100px 100px;animation:bake 1.3s cubic-bezier(.5,0,.3,1) forwards}
+@keyframes bake{0%{transform:scale(.55,.75);fill:#f1d3a8}60%{transform:scale(1.05,.95)}100%{transform:scale(1);fill:#d9984f}}
+.oven .chips circle{opacity:0;animation:pop .3s forwards}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.oven p{position:absolute;bottom:18%;left:0;right:0;text-align:center;color:var(--cream);font:400 22px var(--display)}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:60;padding-top:env(safe-area-inset-top,0px);transition:transform .4s,background .3s}
+.nav.solid{background:rgba(255,244,226,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(29,20,13,.08)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;min-height:78px;gap:16px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;font:400 28px var(--display);color:var(--deep)}
+.logo svg{width:34px;height:34px;transition:transform .6s cubic-bezier(.3,1.6,.5,1)}
+.logo:hover svg{transform:rotate(180deg)}
+.nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:6px;background:rgba(255,255,255,.6);border-radius:999px}
+.nav ul a{display:block;text-decoration:none;font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px;transition:background .2s}
+.nav ul a:hover{background:var(--mint)}
+.nav .btn{min-height:46px;padding:0 20px;font-size:14px}
+.cartn{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:99px;background:var(--butter);color:var(--ink);font-size:12px;padding:0 6px}
+
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:grid;align-items:center;overflow:hidden;padding-top:90px}
+.hero .wrap{position:relative;z-index:3;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center;width:100%}
+.hero h1{font:400 clamp(64px,10vw,168px)/.86 var(--display);color:var(--deep);letter-spacing:-.01em}
+.hero h1 .g{color:var(--green)}
+.hero h1 .p{color:#e27a8b}
+.hero p{font-size:19px;color:var(--muted);max-width:40ch;margin-top:22px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.drop{display:inline-flex;align-items:center;gap:12px;margin-top:28px;background:#fff;border-radius:999px;padding:8px 18px 8px 8px;box-shadow:0 10px 30px -12px rgba(29,20,13,.25);font-weight:700;font-size:14px}
+.drop i{width:34px;height:34px;border-radius:50%;background:var(--green);display:grid;place-items:center;color:#fff;font-style:normal;animation:pulse 1.8s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(31,107,58,.15)}}
+.drop span{font-variant-numeric:tabular-nums;color:var(--green)}
+.bigcookie{position:relative;aspect-ratio:1;width:min(100%,640px);margin-left:auto;perspective:900px}
+.bigcookie .tilt{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .2s ease-out}
+.bigcookie canvas{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 50px 50px rgba(59,36,22,.35))}
+.bigcookie .halo{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle,var(--mint) 0%,transparent 70%);transform:translateZ(-60px)}
+.leaf{position:absolute;width:var(--s,46px);height:var(--s,46px);animation:drift var(--d,7s) ease-in-out infinite;z-index:2;pointer-events:none}
+@keyframes drift{0%,100%{transform:translate(0,0) rotate(var(--r,0deg))}50%{transform:translate(var(--x,12px),-22px) rotate(calc(var(--r,0deg) + 40deg))}}
+.sticker{position:absolute;z-index:4;background:var(--butter);color:var(--ink);font:400 18px/1.05 var(--display);width:130px;height:130px;border-radius:50%;display:grid;place-items:center;text-align:center;transform:rotate(-12deg);box-shadow:0 10px 0 #e0b84e;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(348deg)}}
+#crumbs{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:55}
+
+.marq{background:var(--green);color:var(--cream);overflow:hidden;padding:18px 0;transform:rotate(-2deg);margin:0 -20px;border-block:3px solid var(--deep)}
+.marq .tr{display:flex;gap:46px;width:max-content;animation:mq 30s linear infinite;font:400 30px var(--display)}
+.marq .tr span{display:flex;align-items:center;gap:46px}
+.marq .tr span::after{content:"";width:28px;height:28px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg fill='%23ffd36b'%3E%3Ccircle cx='14' cy='14' r='8'/%3E%3Ccircle cx='26' cy='14' r='8'/%3E%3Ccircle cx='14' cy='26' r='8'/%3E%3Ccircle cx='26' cy='26' r='8'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+.sec{padding-block:clamp(90px,11vw,160px)}
+h2.h{font:400 clamp(46px,7vw,110px)/.9 var(--display);color:var(--deep);margin-top:14px}
+h2.h .g{color:var(--green)}
+.lede{color:var(--muted);font-size:19px;max-width:48ch;margin-top:18px}
+
+/* bite scrolly */
+.bite{height:320vh;position:relative;background:var(--deep);color:var(--cream)}
+.bite .pin{position:sticky;top:0;height:100vh;height:100svh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:30px;max-width:1280px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr);overflow:hidden}
+.bite .kick{color:var(--butter)}
+.bite h2.h{color:var(--cream)}
+.steps{position:relative;margin-top:30px;min-height:190px}
+.st{position:absolute;inset:0;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.st.on{opacity:1;transform:none}
+.st b{display:block;font:400 clamp(34px,4vw,54px)/1 var(--display);color:var(--butter)}
+.st p{color:#c9d8c9;font-size:18px;max-width:38ch;margin-top:12px}
+.dots{display:flex;gap:8px;margin-top:20px}
+.dots i{width:40px;height:6px;border-radius:9px;background:rgba(255,244,226,.2);overflow:hidden;position:relative}
+.dots i::after{content:"";position:absolute;inset:0;background:var(--butter);transform:scaleX(var(--f,0));transform-origin:left}
+.bitecookie{position:relative;width:min(100%,560px);aspect-ratio:1;margin:0 auto}
+.bitecookie svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.goo{transition:opacity .5s}
+
+/* flavors */
+.flv{margin-top:50px}
+.flavors .h-sticky{background:var(--cream)}
+.flavors .head{display:flex;justify-content:space-between;align-items:end;gap:20px;padding-left:max(var(--gl),calc((100vw - 1280px)/2 + 20px));padding-right:var(--gr);position:absolute;top:110px;left:0;right:0}
+.flavors .h-track{gap:22px;padding:220px max(var(--gl),calc((100vw - 1280px)/2 + 20px)) 40px}
+.card{flex:none;width:min(78vw,340px);perspective:1200px;cursor:pointer}
+.card .in{position:relative;aspect-ratio:3/4;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,1.3,.5,1)}
+.card.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:30px;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:22px;display:flex;flex-direction:column;overflow:hidden}
+.front{background:var(--c);color:var(--deep)}
+.front canvas{width:86%;aspect-ratio:1;margin:8px auto 0;display:block;transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
+.card:hover .front canvas{transform:rotate(25deg) scale(1.05)}
+.front h3{font:400 30px/1 var(--display);margin-top:auto}
+.front .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-weight:800}
+.tagx{font:800 11px var(--body);letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.7);border-radius:99px;padding:5px 10px;align-self:flex-start}
+.back{background:var(--deep);color:var(--cream);transform:rotateY(180deg);gap:12px}
+.back h3{font:400 30px/1 var(--display);color:var(--butter)}
+.back ul{margin:0;padding-left:18px;color:#c9d8c9;display:grid;gap:4px}
+.back .btn{margin-top:auto}
+
+/* box builder */
+.builder{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:28px;margin-top:50px;align-items:start}
+.menu{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mi{background:#fff;border-radius:22px;padding:12px;display:grid;gap:6px;text-align:center;border:2px solid transparent;cursor:pointer;transition:transform .25s cubic-bezier(.3,1.6,.5,1),border-color .2s;font:inherit;color:inherit}
+.mi:hover{transform:translateY(-4px) rotate(-2deg);border-color:var(--green)}
+.mi:active{transform:scale(.95)}
+.mi canvas{width:100%;aspect-ratio:1}
+.mi b{font-size:14px;line-height:1.2}
+.mi small{color:var(--muted);font-weight:700}
+.box{position:sticky;top:100px;background:var(--green);border-radius:34px;padding:24px;color:var(--cream);box-shadow:0 10px 0 var(--deep)}
+.sizes{display:flex;gap:6px;background:rgba(0,0,0,.18);border-radius:999px;padding:4px}
+.sizes button{flex:1;border:0;border-radius:999px;padding:10px;font:800 14px var(--body);cursor:pointer;background:transparent;color:var(--cream)}
+.sizes button[aria-pressed=true]{background:var(--cream);color:var(--deep)}
+.slots{display:grid;grid-template-columns:repeat(var(--cols,2),1fr);gap:10px;margin-top:18px;background:#f2d7a7;border-radius:20px;padding:14px;box-shadow:inset 0 0 0 4px #e3c189}
+.slot{aspect-ratio:1;border-radius:50%;background:rgba(122,82,40,.15);border:2px dashed rgba(122,82,40,.35);display:grid;place-items:center;position:relative;cursor:pointer;padding:0}
+.slot canvas{width:100%;height:100%}
+.slot:not(.full){cursor:default}
+.slot.full{border:0;background:transparent}
+.slot .x{position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;display:none;place-items:center}
+.slot.full:hover .x{display:grid}
+.boxfoot{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.boxfoot b{font:400 40px var(--display)}
+.boxfoot span{color:var(--mint);font-weight:700}
+.ways{display:flex;gap:8px;margin-top:14px}
+.ways label{flex:1;position:relative}
+.ways input{position:absolute;opacity:0;inset:0}
+.ways span{display:block;text-align:center;border:2px solid rgba(255,244,226,.35);border-radius:14px;padding:10px;font-weight:700;cursor:pointer}
+.ways input:checked+span{background:var(--cream);color:var(--deep);border-color:var(--cream)}
+.ways input:focus-visible+span{outline:2px solid var(--butter);outline-offset:2px}
+.box .btn{width:100%;margin-top:16px}
+.flyer{position:fixed;z-index:90;pointer-events:none;border-radius:50%}
+
+/* story */
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,90px);align-items:center}
+.polaroids{position:relative;aspect-ratio:1}
+.pol{position:absolute;width:56%;background:#fff;padding:12px 12px 46px;box-shadow:0 30px 60px -30px rgba(29,20,13,.5);transform:rotate(var(--r))}
+.pol canvas{width:100%;aspect-ratio:1;display:block}
+.pol span{position:absolute;bottom:12px;left:0;right:0;text-align:center;font:400 18px var(--display);color:var(--deep)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+.facts div{background:#fff;border-radius:20px;padding:18px}
+.facts b{display:block;font:400 40px/1 var(--display);color:var(--green)}
+.facts span{font-size:14px;color:var(--muted);font-weight:600}
+
+/* insta */
+.ig{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:40px}
+.ig a{position:relative;aspect-ratio:1;border-radius:18px;overflow:hidden;display:block}
+.ig canvas{width:100%;height:100%;display:block;transition:transform .6s}
+.ig a:hover canvas{transform:scale(1.08) rotate(3deg)}
+.ig a::after{content:"♥";position:absolute;inset:0;display:grid;place-items:center;font-size:34px;color:#fff;background:rgba(14,58,32,.45);opacity:0;transition:opacity .3s}
+.ig a:hover::after{opacity:1}
+
+/* visit */
+.visit{background:var(--pink);border-radius:40px;padding:clamp(28px,5vw,70px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;position:relative;overflow:hidden}
+.visit h2.h{color:var(--ink)}
+.hours{background:rgba(255,255,255,.6);border-radius:24px;padding:22px;display:grid;gap:8px;font-weight:600;align-self:start}
+.hours div{display:flex;justify-content:space-between;border-bottom:1px dashed rgba(29,20,13,.2);padding-bottom:8px}
+.hours div:last-child{border:0}
+.hours .today{color:var(--green);font-weight:800}
+.ph{display:inline-block;background:rgba(255,255,255,.7);border-radius:8px;padding:1px 8px;font-size:.85em;color:var(--muted)}
+
+footer{background:var(--deep);color:var(--cream);padding-block:80px calc(120px + env(safe-area-inset-bottom,0px));overflow:hidden;position:relative}
+footer .fb{font:400 clamp(90px,24vw,360px)/.8 var(--display);color:var(--green);letter-spacing:-.02em;white-space:nowrap}
+footer p{color:#a8c2ad;margin-top:24px}
+footer .note{max-width:60ch;font-size:14px}
+@media (max-width:980px){.nav ul{display:none}.hero .wrap,.builder,.story,.visit,.bite .pin{grid-template-columns:1fr}.bigcookie{margin:0 auto;width:min(100%,460px)}.box{position:static}.menu{grid-template-columns:repeat(3,1fr)}.ig{grid-template-columns:repeat(3,1fr)}.bite .pin{align-content:center;gap:0}.bitecookie{width:min(70vw,340px)}.steps{min-height:170px}}
+@media (max-width:760px){.flavors .head{position:static;padding:0 var(--gr) 0 var(--gl);margin-bottom:20px}.flavors .h-track{padding:0 var(--gr) 20px var(--gl)}.flavors{padding-block:80px 40px}}
+@media (max-width:600px){.menu{grid-template-columns:repeat(2,1fr)}.facts{grid-template-columns:1fr}.sticker{width:96px;height:96px;font-size:14px}.concept{font-size:11px;padding:7px 11px}.concept .cl{display:none}.wb-back span{display:none}}
+@media (prefers-reduced-motion:reduce){.oven{display:none}.marq .tr,.leaf,.sticker{animation:none}}
+</style>
+</head>
+<body>
+<div class="oven" id="oven" aria-hidden="true">
+  <svg viewBox="0 0 200 200"><circle class="dough" cx="100" cy="100" r="80" fill="#f1d3a8"/><g class="chips" fill="#3b2416"><circle cx="70" cy="80" r="9" style="animation-delay:.6s"/><circle cx="122" cy="70" r="8" style="animation-delay:.75s"/><circle cx="100" cy="112" r="10" style="animation-delay:.9s"/><circle cx="135" cy="125" r="7" style="animation-delay:1.05s"/><circle cx="68" cy="130" r="8" style="animation-delay:1.2s"/></g></svg>
+  <p>Preheating…</p>
+</div>
+<canvas id="crumbs" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="#top"><svg viewBox="0 0 40 40" aria-hidden="true"><g fill="#1f6b3a"><circle cx="14" cy="14" r="8.5"/><circle cx="26" cy="14" r="8.5"/><circle cx="14" cy="26" r="8.5"/><circle cx="26" cy="26" r="8.5"/></g><circle cx="20" cy="20" r="4" fill="#ffd36b"/></svg>Clover</a>
+  <ul><li><a href="#flavors">Flavors</a></li><li><a href="#box">Build a box</a></li><li><a href="#story">Our story</a></li><li><a href="#visit">Visit</a></li></ul>
+  <a class="btn btn-g" href="#box">My box <span class="cartn" id="cartn">0</span></a>
+</div></header>
+
+<section class="hero" id="top">
+  <svg class="leaf" style="left:6%;top:18%;--s:54px;--d:8s;--r:-20deg" viewBox="0 0 40 40" aria-hidden="true"><g fill="#1f6b3a" opacity=".85"><circle cx="14" cy="14" r="8"/><circle cx="26" cy="14" r="8"/><circle cx="14" cy="26" r="8"/><circle cx="26" cy="26" r="8"/></g></svg>
+  <svg class="leaf" style="left:44%;top:12%;--s:30px;--d:6s;--r:30deg;--x:-16px" viewBox="0 0 40 40" aria-hidden="true"><g fill="#f6a6b2"><circle cx="14" cy="14" r="8"/><circle cx="26" cy="14" r="8"/><circle cx="14" cy="26" r="8"/><circle cx="26" cy="26" r="8"/></g></svg>
+  <svg class="leaf" style="left:52%;bottom:12%;--s:40px;--d:9s;--r:10deg" viewBox="0 0 40 40" aria-hidden="true"><g fill="#ffd36b"><circle cx="14" cy="14" r="8"/><circle cx="26" cy="14" r="8"/><circle cx="14" cy="26" r="8"/><circle cx="26" cy="26" r="8"/></g></svg>
+  <svg class="leaf" style="right:4%;top:20%;--s:62px;--d:10s;--r:-40deg;--x:-20px" viewBox="0 0 40 40" aria-hidden="true"><g fill="#1f6b3a" opacity=".5"><circle cx="14" cy="14" r="8"/><circle cx="26" cy="14" r="8"/><circle cx="14" cy="26" r="8"/><circle cx="26" cy="26" r="8"/></g></svg>
+  <div class="wrap">
+    <div>
+      <span class="kick" data-reveal="fade">Small-batch cookies · baked every morning</span>
+      <h1 data-split style="margin-top:16px">Baked <span class="g">for</span> <span class="p">luck.</span></h1>
+      <p data-reveal style="--rd:500">Thick, gooey-in-the-middle cookies with crackly edges and way too much chocolate. A new lucky flavor drops every Friday.</p>
+      <div class="ctas" data-reveal style="--rd:650"><a class="btn btn-g" href="#box" data-magnetic>Build a box</a><a class="btn btn-c" href="#flavors">See this week's flavors</a></div>
+      <div class="drop" data-reveal style="--rd:800"><i>☘</i>Next flavor drop in <span id="cd">--</span></div>
+    </div>
+    <div class="bigcookie" id="big" data-reveal="scale" style="--rd:300">
+      <div class="tilt" id="tilt"><div class="halo"></div><canvas id="heroCookie" width="900" height="900" aria-label="A thick chocolate chip cookie"></canvas></div>
+      <div class="sticker" style="right:2%;top:4%">Warm<br>till 3pm</div>
+    </div>
+  </div>
+</section>
+
+<div style="overflow:hidden;padding:24px 0"><div class="marq" aria-hidden="true"><div class="tr"><span>Brown butter chunk</span><span>Pistachio cloud</span><span>Strawberry milk</span><span>Lucky charm</span><span>Salted caramel</span><span>Biscoff swirl</span><span>Brown butter chunk</span><span>Pistachio cloud</span><span>Strawberry milk</span><span>Lucky charm</span><span>Salted caramel</span><span>Biscoff swirl</span></div></div></div>
+
+<section class="bite" id="bite">
+  <div class="pin">
+    <div>
+      <span class="kick">Anatomy of a Clover cookie</span>
+      <h2 class="h">Take a <span style="color:var(--butter)">bite.</span></h2>
+      <div class="steps">
+        <div class="st on" data-i="0"><b>Crackly golden edge</b><p>Brown butter, two sugars and a 48-hour dough rest. That's where the crunch comes from.</p></div>
+        <div class="st" data-i="1"><b>Gooey, barely-set center</b><p>Baked hot and fast so the middle stays soft for hours. Pull it apart. It stretches.</p></div>
+        <div class="st" data-i="2"><b>Puddles of chocolate</b><p>Chopped bars, not chips, so you get melty pools and little shards in every bite.</p></div>
+        <div class="st" data-i="3"><b>A pinch of flaky salt</b><p>Finished by hand right out of the oven. Sweet, then salty, then you want another.</p></div>
+      </div>
+      <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="bitecookie">
+      <svg viewBox="0 0 500 500" aria-label="Cookie being bitten as you scroll">
+        <defs>
+          <mask id="bm"><rect width="500" height="500" fill="#fff"/><g fill="#000" id="bites"><circle cx="430" cy="110" r="0"/><circle cx="470" cy="190" r="0"/><circle cx="455" cy="290" r="0"/><circle cx="400" cy="370" r="0"/></g></mask>
+          <radialGradient id="dg" cx=".45" cy=".4" r=".65"><stop offset="0" stop-color="#e8b67a"/><stop offset=".75" stop-color="#cf8f4c"/><stop offset="1" stop-color="#9c5f2b"/></radialGradient>
+          <radialGradient id="gooG" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f3d39c"/><stop offset="1" stop-color="#e0a96d" stop-opacity="0"/></radialGradient>
+        </defs>
+        <g mask="url(#bm)">
+          <path id="bcEdge" fill="url(#dg)"/>
+          <ellipse class="goo" id="goo" cx="300" cy="230" rx="120" ry="110" fill="url(#gooG)" opacity="0"/>
+          <g id="bcChips"></g>
+          <g id="salt" opacity="0" fill="#fff"></g>
+        </g>
+        <g id="crumbBits" fill="#c9884a"></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="flavors" id="flavors" data-hscroll><div class="h-sticky">
+  <div class="head"><div><span class="kick">This week's case</span><h2 class="h" style="font-size:clamp(42px,6vw,92px)">Pick your <span class="g">lucky one.</span></h2></div><p style="color:var(--muted);font-weight:600;max-width:24ch">Tap a cookie to flip it. Scroll to see the whole case →</p></div>
+  <div class="h-track" id="track"></div>
+</div></section>
+
+<section class="sec" id="box"><div class="wrap">
+  <span class="kick">Build a box</span>
+  <h2 class="h" data-split>Fill it <span class="g">your way.</span></h2>
+  <p class="lede" data-reveal>Tap cookies to drop them in. Tap one in the box to take it out. Mix and match as much as you like.</p>
+  <div class="builder">
+    <div class="menu" id="menu" data-reveal></div>
+    <aside class="box" data-reveal style="--rd:120" aria-live="polite">
+      <div class="sizes" id="sizes"><button aria-pressed="false" data-n="4" data-p="18">Box of 4</button><button aria-pressed="true" data-n="6" data-p="26">Box of 6</button><button aria-pressed="false" data-n="12" data-p="48">Party 12</button></div>
+      <div class="slots" id="slots"></div>
+      <div class="boxfoot"><div><b id="price">$26</b></div><span id="left">6 spots left</span></div>
+      <div class="ways"><label><input type="radio" name="way" value="Pickup" checked><span>Pickup</span></label><label><input type="radio" name="way" value="Local delivery"><span>Local delivery</span></label></div>
+      <button class="btn btn-c" id="send" disabled>Fill the box to order</button>
+      <p style="font-size:13px;color:var(--mint);margin:12px 0 0;text-align:center" id="sent">Tap send and your order is copied, ready to paste into Clover's DMs.</p>
+    </aside>
+  </div>
+</div></section>
+
+<section class="sec" id="story" style="padding-top:0"><div class="wrap story">
+  <div class="polaroids" data-reveal="scale">
+    <div class="pol" style="--r:-7deg;left:0;top:6%"><canvas data-pol="0" width="400" height="400"></canvas><span>4am dough</span></div>
+    <div class="pol" style="--r:6deg;right:0;top:0"><canvas data-pol="1" width="400" height="400"></canvas><span>Friday drop</span></div>
+    <div class="pol" style="--r:-2deg;left:20%;bottom:0"><canvas data-pol="2" width="400" height="400"></canvas><span>Still warm</span></div>
+  </div>
+  <div>
+    <span class="kick">Our story</span>
+    <h2 class="h" data-split>A tiny kitchen <span class="g">and a lot of butter.</span></h2>
+    <p class="lede" data-reveal>Clover started with one recipe, an oven and a lot of very happy taste-testers. Every cookie is still mixed, scooped and baked by hand in small batches, so they sell out. Fast.</p>
+    <div class="facts" data-reveal>
+      <div><b data-count="48">0</b><span>hour dough rest</span></div>
+      <div><b data-count="6">0</b><span>flavors every week</span></div>
+      <div><b data-count="1">0</b><span>new drop every Friday</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap"><div><span class="kick">On Instagram</span><h2 class="h" data-split style="font-size:clamp(40px,5vw,78px)">Fresh from the feed.</h2></div><a class="btn btn-g" href="#" onclick="return false">Follow @clover</a></div>
+  <div class="ig" id="ig"></div>
+  <p style="color:var(--muted);font-size:14px;margin-top:12px">Clover's real Instagram posts can show here, updating on their own.</p>
+</div></section>
+
+<section class="sec" id="visit" style="padding-top:0"><div class="wrap">
+  <div class="visit" data-reveal>
+    <div><span class="kick" style="color:var(--deep)">Come say hi</span><h2 class="h" data-split>Visit <span class="g">the shop.</span></h2>
+      <p class="lede" style="color:var(--ink)">Address <span class="ph">your address</span><br>Call or text <span class="ph">your number</span></p>
+      <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px"><a class="btn btn-g" href="#box">Order ahead</a><a class="btn btn-c" href="#" onclick="return false">Get directions</a></div>
+    </div>
+    <div class="hours" id="hours"></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><div class="fb">Clover</div><p>Small-batch cookies · baked fresh daily</p>
+<p class="note">This is a website concept designed by Weblio for Clover to preview. It isn't the official Clover website, and the prices, flavors and details shown are placeholders.</p></div></footer>
+<div class="concept"><b>Concept</b><span class="cl"> by Weblio</span> · not the official site</div>
+<a class="wb-back" href="../" data-back><i>←</i>Weblio <span>· sample site</span></a>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id),R=FX.reduce;
+  // ---------- seeded random ----------
+  const rng=s=>()=>((s=Math.imul(s^s>>>15,1|s)+0x6D2B79F5|0,((s^s>>>7)>>>0)/4294967296));
+  // ---------- procedural cookie ----------
+  const FLAVORS=[
+    {k:"bb",n:"Brown Butter Chunk",d:["#e9b97c","#c9853f","#8a4f22"],inc:"choc",tag:"Bestseller",c:"#ffe3b3",p:4.5,desc:["Brown butter dough","Dark chocolate chunks","Flaky sea salt"]},
+    {k:"pi",n:"Pistachio Cloud",d:["#e8d9a6","#b9b06a","#7c7a3a"],inc:"pist",tag:"New",c:"#d7ecc4",p:5,desc:["Pistachio butter dough","White chocolate","Crushed pistachios"]},
+    {k:"sm",n:"Strawberry Milk",d:["#f9d4d6","#eba8b0","#c4727f"],inc:"straw",tag:"Fan fave",c:"#ffd7de",p:4.5,desc:["Strawberry dough","White chocolate","Freeze-dried berries"]},
+    {k:"lc",n:"Lucky Charm",d:["#f8e7c5","#e8c78d","#b98a48"],inc:"sprink",tag:"Signature",c:"#fff0b8",p:5,desc:["Vanilla sugar dough","Marshmallow bits","Rainbow sprinkles"]},
+    {k:"dc",n:"Double Dark",d:["#6d4430","#4a2c1d","#2b190f"],inc:"white",tag:"Rich",c:"#e6d2c2",p:4.5,desc:["Cocoa dough","Dark + white chunks","Espresso dust"]},
+    {k:"bs",n:"Biscoff Swirl",d:["#e3ae73","#c27b3c","#8d5125"],inc:"swirl",tag:"Gooey",c:"#ffdcb0",p:5,desc:["Cinnamon dough","Biscoff butter core","Crushed biscuits"]},
+    {k:"sc",n:"Salted Caramel",d:["#edc489","#d29a52","#9a6328"],inc:"caramel",tag:"Weekend only",c:"#ffe7c4",p:5,desc:["Brown sugar dough","Caramel pockets","Maldon salt"]},
+    {k:"ma",n:"Matcha White",d:["#cfe0a8","#9cbb6c","#617d3b"],inc:"white",tag:"Lucky green",c:"#e2f2d2",p:5,desc:["Ceremonial matcha dough","White chocolate","Toasted sesame"]},
+  ];
+  function edgePath(r,cx,cy,rand,n=48,j=.06){const pts=[];for(let i=0;i<n;i++){const a=i/n*Math.PI*2,rr=r*(1+(rand()-.5)*j*2+Math.sin(a*3+rand())*.015);pts.push([cx+Math.cos(a)*rr,cy+Math.sin(a)*rr]);}return pts;}
+  function drawCookie(cv,f,seed=1){
+    const x=cv.getContext("2d"),W=cv.width,H=cv.height,cx=W/2,cy=H/2,r=W*.44,rand=rng(seed*9973+7);x.clearRect(0,0,W,H);
+    const pts=edgePath(r,cx,cy,rand);const shape=()=>{x.beginPath();pts.forEach((p,i)=>{const q=pts[(i+1)%pts.length];const mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2;i?x.quadraticCurveTo(p[0],p[1],mx,my):x.moveTo(mx,my);});x.closePath();};
+    // base
+    shape();const g=x.createRadialGradient(cx-r*.15,cy-r*.2,r*.1,cx,cy,r*1.05);g.addColorStop(0,f.d[0]);g.addColorStop(.7,f.d[1]);g.addColorStop(1,f.d[2]);x.fillStyle=g;x.fill();
+    x.save();shape();x.clip();
+    // baked rim
+    const rim=x.createRadialGradient(cx,cy,r*.72,cx,cy,r*1.02);rim.addColorStop(0,"rgba(0,0,0,0)");rim.addColorStop(1,"rgba(70,35,10,.45)");x.fillStyle=rim;x.fillRect(0,0,W,H);
+    // cracks
+    x.strokeStyle="rgba(60,30,10,.28)";x.lineWidth=W*.006;x.lineCap="round";
+    for(let i=0;i<9;i++){let a=rand()*Math.PI*2,d=r*(.15+rand()*.6),px=cx+Math.cos(a)*d,py=cy+Math.sin(a)*d;x.beginPath();x.moveTo(px,py);for(let k=0;k<4;k++){a+=(rand()-.5)*1.4;px+=Math.cos(a)*r*.09;py+=Math.sin(a)*r*.09;x.lineTo(px,py);}x.stroke();}
+    // highlight bumps
+    for(let i=0;i<26;i++){const a=rand()*7,d=rand()*r*.85,bx=cx+Math.cos(a)*d,by=cy+Math.sin(a)*d,br=r*(.04+rand()*.07);const hg=x.createRadialGradient(bx-br*.3,by-br*.3,0,bx,by,br);hg.addColorStop(0,"rgba(255,240,210,.35)");hg.addColorStop(1,"rgba(255,240,210,0)");x.fillStyle=hg;x.beginPath();x.arc(bx,by,br,0,7);x.fill();}
+    // inclusions
+    const blob=(bx,by,s,c1,c2)=>{x.fillStyle=c1;x.beginPath();const m=6+(rand()*4|0);for(let i=0;i<m;i++){const a=i/m*7,rr=s*(.75+rand()*.5);i?x.lineTo(bx+Math.cos(a)*rr,by+Math.sin(a)*rr):x.moveTo(bx+Math.cos(a)*rr,by+Math.sin(a)*rr);}x.closePath();x.fill();if(c2){x.fillStyle=c2;x.beginPath();x.ellipse(bx-s*.25,by-s*.3,s*.35,s*.18,-.6,0,7);x.fill();}};
+    const spot=()=>{const a=rand()*7,d=Math.sqrt(rand())*r*.86;return[cx+Math.cos(a)*d,cy+Math.sin(a)*d];};
+    const N=Math.round(14+rand()*6);
+    if(f.inc==="choc"||f.inc==="pist"&&0){}
+    for(let i=0;i<N;i++){const[bx,by]=spot(),s=r*(.06+rand()*.07);
+      if(f.inc==="choc")blob(bx,by,s,"#3b2416","rgba(255,255,255,.18)");
+      else if(f.inc==="white")blob(bx,by,s,"#fbf3e4","rgba(255,255,255,.6)");
+      else if(f.inc==="pist")blob(bx,by,s*.7,i%2?"#86a64a":"#fbf3e4","rgba(255,255,255,.3)");
+      else if(f.inc==="straw")blob(bx,by,s*.7,i%3?"#d8455d":"#fbf3e4","rgba(255,255,255,.3)");
+      else if(f.inc==="caramel"){blob(bx,by,s,"#c77b2a","rgba(255,230,180,.5)");}
+      else if(f.inc==="swirl"){if(i<4){x.strokeStyle="#8b4a1f";x.lineWidth=W*.02;x.beginPath();x.arc(bx,by,s*1.6,rand()*6,rand()*6+3);x.stroke();}else blob(bx,by,s*.6,"#b06a2c");}
+      else if(f.inc==="sprink"){for(let k=0;k<4;k++){const[sx,sy]=spot();x.save();x.translate(sx,sy);x.rotate(rand()*7);x.fillStyle=["#ff6b8b","#3fb5ff","#ffd36b","#6fd28a","#b28cff"][k+i&3];x.fillRect(-W*.012,-W*.004,W*.024,W*.008);x.restore();}if(i%4==0)blob(bx,by,s*.8,"#fff8ee","rgba(0,0,0,.05)");}
+    }
+    if(f.k==="bb"||f.k==="sc"){x.fillStyle="rgba(255,255,255,.9)";for(let i=0;i<22;i++){const[sx,sy]=spot();x.fillRect(sx,sy,W*.008,W*.008);}}
+    if(f.k==="dc"){x.fillStyle="rgba(30,15,5,.5)";for(let i=0;i<60;i++){const[sx,sy]=spot();x.fillRect(sx,sy,2,2);}}
+    x.restore();
+  }
+  const FL=Object.fromEntries(FLAVORS.map(f=>[f.k,f]));
+
+  // ---------- preloader ----------
+  const oven=$("oven");const hideOven=()=>oven.classList.add("done");
+  if(R)hideOven();else{addEventListener("load",()=>setTimeout(hideOven,1500));setTimeout(hideOven,3200);}
+
+  // ---------- hero cookie ----------
+  const hc=$("heroCookie");drawCookie(hc,FL.bb,3);
+  const big=$("big"),tilt=$("tilt");let rot=0;
+  if(FX.fine&&!R){big.addEventListener("pointermove",e=>{const b=big.getBoundingClientRect(),px=(e.clientX-b.left)/b.width-.5,py=(e.clientY-b.top)/b.height-.5;tilt.style.transform=`rotateY(${px*22}deg) rotateX(${-py*22}deg)`;});big.addEventListener("pointerleave",()=>tilt.style.transform="");}
+  // ---------- countdown ----------
+  function nextDrop(){const n=new Date(),d=new Date(n);d.setHours(10,0,0,0);const add=(5-n.getDay()+7)%7;d.setDate(n.getDate()+add);if(d<=n)d.setDate(d.getDate()+7);return d;}
+  const target=nextDrop();
+  function tick(){let s=Math.max(0,(target-new Date())/1000|0);const dd=s/86400|0;s%=86400;const hh=s/3600|0;s%=3600;const mm=s/60|0,ss=s%60;$("cd").textContent=`${dd}d ${String(hh).padStart(2,"0")}h ${String(mm).padStart(2,"0")}m ${String(ss).padStart(2,"0")}s`;}
+  tick();setInterval(tick,1000);
+
+  // ---------- crumbs ----------
+  const cc=$("crumbs"),cx2=cc.getContext("2d");let CW,CH,crumbs=[],lastY=scrollY;
+  const csize=()=>{CW=cc.width=innerWidth*devicePixelRatio;CH=cc.height=innerHeight*devicePixelRatio;};csize();addEventListener("resize",csize);
+  function spawn(n,x0,y0){for(let i=0;i<n;i++)crumbs.push({x:x0+(Math.random()-.5)*80*devicePixelRatio,y:y0,vx:(Math.random()-.5)*3,vy:-Math.random()*4,s:(2+Math.random()*5)*devicePixelRatio,r:Math.random()*6,c:["#c9884a","#a56a35","#e6b27a","#3b2416"][Math.random()*4|0]});if(crumbs.length>260)crumbs.splice(0,crumbs.length-260);}
+  function crumbLoop(){cx2.clearRect(0,0,CW,CH);for(const p of crumbs){p.vy+=.25;p.x+=p.vx;p.y+=p.vy*devicePixelRatio;p.r+=.1;cx2.save();cx2.translate(p.x,p.y);cx2.rotate(p.r);cx2.fillStyle=p.c;cx2.fillRect(-p.s/2,-p.s/2,p.s,p.s*.7);cx2.restore();}crumbs=crumbs.filter(p=>p.y<CH+20);requestAnimationFrame(crumbLoop);}
+  if(!R)crumbLoop();
+  big.addEventListener("click",e=>{if(R)return;spawn(40,e.clientX*devicePixelRatio,e.clientY*devicePixelRatio);});
+
+  // ---------- nav + hero scroll ----------
+  FX.onScroll.push(y=>{$("nav").classList.toggle("solid",y>40);
+    if(!R){hc.style.transform=`rotate(${y*.12}deg) translateY(${y*.15}px)`;const v=Math.abs(y-lastY);if(y<innerHeight&&v>8){const b=hc.getBoundingClientRect();spawn(Math.min(6,v/8|0),(b.left+b.width*Math.random())*devicePixelRatio,(b.top+b.height*.85)*devicePixelRatio);}}
+    lastY=y;});
+
+  // ---------- bite scrolly ----------
+  (function(){const sec=$("bite"),rr=rng(42),edge=edgePath(210,250,250,rr,60,.04);
+    const mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2].map(v=>v.toFixed(1)).join(" ");$("bcEdge").setAttribute("d","M"+mid(edge[edge.length-1],edge[0])+edge.map((p,i)=>" Q"+p.map(v=>v.toFixed(1)).join(" ")+" "+mid(p,edge[(i+1)%edge.length])).join("")+"Z");
+    let ch="";for(let i=0;i<16;i++){const a=rr()*7,d=Math.sqrt(rr())*170,s=10+rr()*16;ch+=`<path d="M${250+Math.cos(a)*d} ${250+Math.sin(a)*d} m-${s} 0 q${s*.4} -${s} ${s} -${s*.8} q${s} ${s*.2} ${s} ${s} q-${s*.3} ${s} -${s} ${s*.8} q-${s} -${s*.2} -${s} -${s}z" fill="#3b2416"/>`;}
+    $("bcChips").innerHTML=ch;let sl="";for(let i=0;i<30;i++){const a=rr()*7,d=Math.sqrt(rr())*180;sl+=`<rect x="${(250+Math.cos(a)*d).toFixed(0)}" y="${(250+Math.sin(a)*d).toFixed(0)}" width="5" height="5" transform="rotate(${rr()*90|0} ${(250+Math.cos(a)*d).toFixed(0)} ${(250+Math.sin(a)*d).toFixed(0)})"/>`;}$("salt").innerHTML=sl;
+    const bites=[...$("bites").children],steps=[...document.querySelectorAll(".st")],dots=[...$("dots").children];let cur=-1;
+    const crumbG=$("crumbBits");
+    function upd(){const b=sec.getBoundingClientRect(),p=FX.clamp(-b.top/(b.height-innerHeight),0,1);
+      bites.forEach((c,i)=>{const t=FX.clamp(p*4.4-i*.95,0,1);c.setAttribute("r",(t*(70-i*6)).toFixed(1));});
+      $("goo").setAttribute("opacity",FX.clamp(p*3-1,0,1));$("salt").setAttribute("opacity",FX.clamp(p*4-2.6,0,1));
+      const i=Math.min(3,p*4|0);dots.forEach((d,k)=>d.style.setProperty("--f",FX.clamp(p*4-k,0,1)));
+      if(i!==cur){cur=i;steps.forEach((s,k)=>s.classList.toggle("on",k===i));
+        let bits="";const rb=rng(i+5);for(let k=0;k<8*i;k++)bits+=`<rect x="${(420+rb()*90).toFixed(0)}" y="${(120+rb()*300).toFixed(0)}" width="${(4+rb()*8).toFixed(0)}" height="${(3+rb()*6).toFixed(0)}" transform="rotate(${rb()*90|0})" opacity=".9"/>`;crumbG.innerHTML=bits;}}
+    FX.onScroll.push(upd);addEventListener("resize",upd);upd();})();
+
+  // ---------- flavor cards ----------
+  const track=$("track");
+  track.innerHTML=FLAVORS.map((f,i)=>`<div class="card" tabindex="0" role="button" aria-label="${f.n}, tap to flip"><div class="in"><div class="face front" style="--c:${f.c}"><span class="tagx">${f.tag}</span><canvas width="420" height="420" data-f="${f.k}" data-s="${i+11}"></canvas><h3>${f.n}</h3><div class="row"><span>$${f.p.toFixed(2)}</span><span>Tap to flip ↻</span></div></div><div class="face back"><span class="tagx" style="background:var(--butter);color:var(--ink)">What's inside</span><h3>${f.n}</h3><ul>${f.desc.map(d=>`<li>${d}</li>`).join("")}</ul><button class="btn btn-c" data-add="${f.k}" type="button">Add to box +</button></div></div></div>`).join("");
+  track.querySelectorAll("canvas").forEach(c=>drawCookie(c,FL[c.dataset.f],+c.dataset.s));
+  track.addEventListener("click",e=>{const add=e.target.closest("[data-add]");if(add){e.stopPropagation();addCookie(add.dataset.add,add);return;}const c=e.target.closest(".card");if(c)c.classList.toggle("flip");});
+  track.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("card")){e.preventDefault();e.target.classList.toggle("flip");}});
+
+  // ---------- box builder ----------
+  const menu=$("menu");menu.innerHTML=FLAVORS.map((f,i)=>`<button class="mi" type="button" data-k="${f.k}" aria-label="Add ${f.n}"><canvas width="240" height="240" data-f="${f.k}" data-s="${i+31}"></canvas><b>${f.n}</b><small>+ Add</small></button>`).join("");
+  menu.querySelectorAll("canvas").forEach(c=>drawCookie(c,FL[c.dataset.f],+c.dataset.s));
+  let size=6,price=26,box=[];
+  function renderBox(){const s=$("slots");s.style.setProperty("--cols",size===12?4:size===6?3:2);
+    s.innerHTML=Array.from({length:size},(_,i)=>box[i]?`<button class="slot full" type="button" data-i="${i}" aria-label="Remove ${FL[box[i]].n}"><canvas width="160" height="160" data-f="${box[i]}" data-s="${i+71}"></canvas><span class="x">×</span></button>`:`<span class="slot" data-i="${i}"></span>`).join("");
+    s.querySelectorAll("canvas").forEach(c=>drawCookie(c,FL[c.dataset.f],+c.dataset.s));
+    const left=size-box.length;$("left").textContent=left?`${left} spot${left>1?"s":""} left`:"Box is full!";$("price").textContent="$"+price;$("cartn").textContent=box.length;
+    const btn=$("send");btn.disabled=!!left;btn.textContent=left?"Fill the box to order":"Send my order";}
+  function addCookie(k,from){if(box.length>=size){const s=$("slots");if(!R)s.animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(0)"}],{duration:300});return;}
+    const idx=box.length;box.push(k);
+    const src=(from.querySelector&&from.querySelector("canvas"))||from;renderBox();
+    if(R||!src.getBoundingClientRect)return;const dst=$("slots").querySelector(`[data-i="${idx}"]`);if(!dst)return;
+    const a=src.getBoundingClientRect(),b=dst.getBoundingClientRect(),fl=document.createElement("canvas");fl.width=fl.height=200;drawCookie(fl,FL[k],idx+71);fl.className="flyer";
+    Object.assign(fl.style,{left:a.left+"px",top:a.top+"px",width:a.width+"px",height:a.width+"px"});document.body.appendChild(fl);dst.style.visibility="hidden";
+    const dx=b.left-a.left,dy=b.top-a.top,sc=b.width/a.width;
+    fl.animate([{transform:"translate(0,0) scale(1) rotate(0)"},{transform:`translate(${dx*.5}px,${dy*.5-120}px) scale(${(1+sc)/2}) rotate(180deg)`},{transform:`translate(${dx}px,${dy}px) scale(${sc}) rotate(360deg)`}],{duration:700,easing:"cubic-bezier(.4,0,.2,1)"}).onfinish=()=>{fl.remove();dst.style.visibility="";dst.animate([{transform:"scale(1.25)"},{transform:"scale(1)"}],{duration:260,easing:"cubic-bezier(.3,1.6,.5,1)"});spawn(14,(b.left+b.width/2)*devicePixelRatio,(b.top+b.height/2)*devicePixelRatio);};}
+  menu.addEventListener("click",e=>{const b=e.target.closest(".mi");if(b)addCookie(b.dataset.k,b);});
+  $("slots").addEventListener("click",e=>{const b=e.target.closest(".slot.full");if(!b)return;box.splice(+b.dataset.i,1);renderBox();});
+  $("sizes").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;size=+b.dataset.n;price=+b.dataset.p;box=box.slice(0,size);$("sizes").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));renderBox();});
+  $("send").addEventListener("click",async()=>{const counts={};box.forEach(k=>counts[FL[k].n]=(counts[FL[k].n]||0)+1);const way=document.querySelector("[name=way]:checked").value;
+    const msg=`Hi Clover! I'd like a box of ${size} (${way}):\n`+Object.entries(counts).map(([n,c])=>`${c}× ${n}`).join("\n");
+    try{await navigator.clipboard.writeText(msg);$("sent").textContent="Order copied! Paste it into Clover's Instagram DMs to place it.";}catch(_){$("sent").textContent=msg.replace(/\n/g," · ");}
+    if(!R)spawn(60,innerWidth/2*devicePixelRatio,innerHeight*.4*devicePixelRatio);});
+  renderBox();
+
+  // ---------- polaroids + instagram ----------
+  const BG=["#cfe8c9","#ffd7de","#fff0b8","#ffdcb0","#e2f2d2","#f7e6c8"];
+  function scene(cv,i){const x=cv.getContext("2d"),W=cv.width;x.fillStyle=BG[i%BG.length];x.fillRect(0,0,W,W);
+    const n=i%3===0?3:1,tmp=document.createElement("canvas");tmp.width=tmp.height=W;
+    for(let k=0;k<n;k++){drawCookie(tmp,FLAVORS[(i*3+k)%FLAVORS.length],i*7+k);const s=n===1?W*.9:W*.55,ox=n===1?W*.05:[W*.02,W*.42,W*.2][k],oy=n===1?W*.05:[W*.05,W*.12,W*.45][k];x.save();x.shadowColor="rgba(59,36,22,.35)";x.shadowBlur=W*.06;x.shadowOffsetY=W*.03;x.drawImage(tmp,ox,oy,s,s);x.restore();}}
+  document.querySelectorAll("[data-pol]").forEach(c=>scene(c,+c.dataset.pol+2));
+  $("ig").innerHTML=Array.from({length:6},(_,i)=>`<a href="#" onclick="return false" aria-label="Instagram post ${i+1}"><canvas width="360" height="360" data-ig="${i}"></canvas></a>`).join("");
+  document.querySelectorAll("[data-ig]").forEach(c=>scene(c,+c.dataset.ig));
+
+  // ---------- hours ----------
+  const D=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],H=["10am – 4pm","Closed","8am – 6pm","8am – 6pm","8am – 6pm","8am – 8pm","9am – 8pm"],t=new Date().getDay();
+  $("hours").innerHTML=[1,2,3,4,5,6,0].map(i=>`<div class="${i===t?"today":""}"><span>${D[i]}${i===t?" · today":""}</span><span>${H[i]}</span></div>`).join("")+`<p style="margin:6px 0 0;font-size:13px;color:var(--muted)">Placeholder hours, swapped for yours.</p>`;
+})();
+</script>
+</body>
+</html>
