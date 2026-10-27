@@ -113,8 +113,8 @@ h2.h em{color:var(--ember2);font-style:italic}
 .stats b{display:block;font:500 46px/1 var(--display);color:var(--ember2)}
 .stats span{font-size:13px;color:var(--muted);font-weight:600}
 .amen{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.amen div{display:flex;gap:14px;align-items:center;padding:16px;border-radius:16px;background:var(--char2);border:1px solid rgba(242,234,223,.06);transition:border-color .3s,transform .3s}
-.amen div:hover{border-color:rgba(224,119,58,.5);transform:translateY(-2px)}
+.amen>div{display:flex;gap:14px;align-items:center;padding:16px;border-radius:16px;background:var(--char2);border:1px solid rgba(242,234,223,.06);transition:border-color .3s,transform .3s}
+.amen>div:hover{border-color:rgba(224,119,58,.5);transform:translateY(-2px)}
 .amen svg{width:28px;height:28px;flex:none;stroke:var(--ember2);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .amen b{display:block;font-size:15px}.amen span{font-size:13px;color:var(--muted)}
 
@@ -188,8 +188,8 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
 .sample{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:80;background:#000;color:var(--cream);font:600 12px var(--body);padding:8px 14px;border-radius:999px;border:1px solid #2c2620}
 .sample b{color:var(--ember2)}
 
-@media (max-width:980px){.nav ul{display:none}.hero .wrap,.stay,.book{grid-template-columns:1fr}.quick{max-width:420px}.rail{display:none}.plan{width:150px;padding:10px;bottom:auto;top:calc(86px + env(safe-area-inset-top,0px))}.plan small{display:none}.stats{grid-template-columns:repeat(2,1fr)}.area{grid-template-columns:repeat(2,1fr)}.sum{position:static}.gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}.gal button{grid-column:span 1!important;grid-row:span 1!important}.gal .g1{grid-column:span 2!important;grid-row:span 2!important}}
-@media (max-width:600px){.amen{grid-template-columns:1fr}.host{grid-template-columns:1fr}.cap p{font-size:15px}.hot::after{display:none}.sample{font-size:11px}.wb-back span{display:none}}
+@media (max-width:980px){.hero{height:auto;min-height:100vh;min-height:100svh;padding-top:110px}.hero h1{font-size:clamp(56px,14vw,110px)}.cue{display:none}.nav ul{display:none}.hero .wrap,.stay,.book{grid-template-columns:1fr}.quick{max-width:420px}.rail{display:none}.plan{width:150px;padding:10px;bottom:auto;top:calc(86px + env(safe-area-inset-top,0px))}.plan small{display:none}.stats{grid-template-columns:repeat(2,1fr)}.area{grid-template-columns:repeat(2,1fr)}.sum{position:static}.gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}.gal button{grid-column:span 1!important;grid-row:span 1!important}.gal .g1{grid-column:span 2!important;grid-row:span 2!important}}
+@media (max-width:600px){.hot{display:none}.amen{grid-template-columns:1fr}.host{grid-template-columns:1fr}.cap p{font-size:15px}.hot::after{display:none}.sample{font-size:11px}.wb-back span{display:none}}
 @media (prefers-reduced-motion:reduce){.doors{display:none}.hero .ph{transition:none;transform:none}.hot{animation:none}}
 </style>
 </head>
@@ -350,7 +350,7 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
   ];
   const N=ROOMS.length,sec=$("walk"),roomsEl=$("rooms"),capsEl=$("caps"),rail=$("rail");
   sec.style.height=`${N*110+60}vh`;
-  roomsEl.innerHTML=ROOMS.map((r,i)=>`<div class="room" data-i="${i}" style="z-index:${i+1}"><img ${i<2?'':'loading="lazy"'} decoding="async" src="${U(IMG[r.k],1600)}" srcset="${SET(IMG[r.k])}" sizes="100vw" alt="${r.h}">${r.hs.map(h=>`<span class="hot ${h.side==='l'?'l':''}" data-l="${h.l}" style="left:${h.x}%;top:${h.y}%"></span>`).join("")}</div>`).join("");
+  roomsEl.innerHTML=ROOMS.map((r,i)=>`<div class="room" data-i="${i}" style="z-index:${i+1}"><img decoding="async" ${i<2?'fetchpriority="high"':''} src="${U(IMG[r.k],1600)}" srcset="${SET(IMG[r.k])}" sizes="100vw" alt="${r.h}">${r.hs.map(h=>`<span class="hot ${h.side==='l'?'l':''}" data-l="${h.l}" style="left:${h.x}%;top:${h.y}%"></span>`).join("")}</div>`).join("");
   capsEl.innerHTML=ROOMS.map((r,i)=>`<div class="cap" data-i="${i}"><span class="n">${String(i+1).padStart(2,"0")} / ${String(N).padStart(2,"0")} · ${r.n}</span><h3>${r.h}</h3><p>${r.p}</p><div class="chips">${r.c.map(c=>`<span>${c}</span>`).join("")}</div></div>`).join("");
   rail.innerHTML=ROOMS.map((r,i)=>`<li><button type="button" data-i="${i}">${r.n}<i></i></button></li>`).join("");
   const rEls=[...roomsEl.children],cEls=[...capsEl.children],bEls=[...rail.querySelectorAll("button")];

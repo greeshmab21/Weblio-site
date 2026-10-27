@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Gabarito:wght@900&family=Big+Shoulders+Display:wght@900&family=Gloock&family=Bodoni+Moda:ital,opsz,wght@1,6..96,500&family=Syne:wght@800&family=Petrona:wght@800&family=Unbounded:wght@800&family=Chakra+Petch:wght@700&family=DM+Serif+Display&family=Bowlby+One&family=Shrikhand&family=Teko:wght@700&family=Syncopate:wght@700&family=Fredoka:wght@700&family=Bungee&family=Playfair+Display:wght@900&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Fraunces:ital,wght@0,500;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Gabarito:wght@900&family=Big+Shoulders+Display:wght@900&family=Gloock&family=Bodoni+Moda:ital,opsz,wght@1,6..96,500&family=Syne:wght@800&family=Petrona:wght@800&family=Unbounded:wght@800&family=Chakra+Petch:wght@700&family=DM+Serif+Display&family=Bowlby+One&family=Shrikhand&family=Cormorant:wght@500&family=Teko:wght@700&family=Syncopate:wght@700&family=Fredoka:wght@700&family=Bungee&family=Playfair+Display:wght@900&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Fraunces:ital,wght@0,500;1,500&display=swap">
 <style>
 /* Layout: one black field. Giant expanded type, a sticky stack of roofing samples, an index grid of other industries, list-style services, and a footer wordmark that rises in. */
 :root{
@@ -142,7 +142,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .more{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(14px,1.6vw,22px);margin-top:clamp(40px,6vw,80px)}
 .tile{grid-column:span 2;display:grid;gap:16px;text-decoration:none;min-width:0}
 .tile:nth-child(1),.tile:nth-child(2){grid-column:span 3}
-@media (min-width:1001px){.more.six .tile{grid-column:span 2}.more.six .tile:nth-child(n+4){grid-column:span 3}}
+@media (min-width:1001px){.more.six .tile{grid-column:span 2}.more.six .tile:nth-child(n+4){grid-column:span 3}.more.four .tile{grid-column:span 3}}
 .tile .frame{border-radius:20px;background:var(--cb);padding:clamp(18px,2.6vw,36px);overflow:hidden;aspect-ratio:4/3;display:grid;place-items:center}
 .tile .mock{width:100%;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
 .tile:hover .mock{transform:scale(1.045) rotate(-1deg)}
@@ -344,7 +344,7 @@ fieldset.field{border:0;margin:0;padding:0}
 
 <section class="sec" id="work"><div class="wrap">
   <div class="head">
-    <h2>Sample<br>sites<sup>(20)</sup></h2>
+    <h2>Sample<br>sites<sup>(21)</sup></h2>
     <p>Concept sites we designed to show what Weblio builds for different kinds of businesses. Open any of them; they're fully clickable.</p>
   </div>
 
@@ -370,18 +370,6 @@ fieldset.field{border:0;margin:0;padding:0}
 
   <p class="label" style="margin-top:clamp(56px,8vw,112px)">More industries</p>
   <div class="more">
-    <a class="tile reveal" href="t/marlowes.html" style="--cb:#c9a35a" data-cursor="Open site">
-      <div class="frame"><div class="mock" style="--mb:#0e0907;--mf:#f1e6d4;--ma:#c9a35a;--mfont:'Bodoni Moda';--mw:500;--mtt:none"><div class="chrome"><i></i><i></i><i></i><span>Marlowe's</span></div><div class="scr"><div class="mnav"><b>MARLOWE'S</b><em></em></div><div class="mh" style="font-style:italic;font-size:clamp(30px,4vw,54px)">Marlowe's</div><div class="ml"></div><div class="mbtn"></div></div></div></div>
-      <div class="cap"><div><h3>Marlowe's Chophouse</h3><p>Candlelit hero, live open-now status and a butcher's chart that lights up the cut behind each steak.</p></div><span class="label">Restaurant · Chicago, IL</span></div>
-    </a>
-    <a class="tile reveal" href="t/fogcity.html" style="--cb:#ff5a2c" data-cursor="Open site">
-      <div class="frame"><div class="mock lt" style="--mb:#dde4e7;--mf:#141414;--ma:#ff5a2c;--mfont:'Syne';--mw:800;--mtt:uppercase"><div class="chrome"><i></i><i></i><i></i><span>Fog City Coffee</span></div><div class="scr"><div class="mnav"><b>FOG CITY COFFEE</b><em></em></div><div class="mh">Fog City Coffee</div><div class="ml"></div><div class="mbtn"></div></div></div></div>
-      <div class="cap"><div><h3>Fog City Coffee</h3><p>Drag-around stickers, a drifting fog canvas, a filterable menu and a bean club builder.</p></div><span class="label">Café · San Francisco, CA</span></div>
-    </a>
-    <a class="tile reveal" href="t/clover.html" style="--cb:#F6C6D0" data-cursor="Open site">
-      <div class="frame"><div class="mock lt" style="--mb:#FBE3E8;--mf:#3B2218;--ma:#D9738A;--mfont:'Shrikhand';--mw:400;--mtt:none"><div class="chrome"><i></i><i></i><i></i><span>Lucky Crumb</span></div><div class="scr"><div class="mnav"><b>LUCKY CRUMB</b><em></em></div><div class="mh">Baked for <i style='color:#D9738A'>luck.</i></div><div class="ml"></div><div class="mbtn"></div></div></div></div>
-      <div class="cap"><div><h3>Lucky Crumb Cookies</h3><p>A preheating oven intro, a cookie you bite as you scroll, flip-card flavors and a build-your-own box that orders by DM.</p></div><span class="label">Cookie shop &amp; bakery</span></div>
-    </a>
     <a class="tile reveal" href="t/maya.html" style="--cb:#2340ff" data-cursor="Open site">
       <div class="frame"><div class="mock lt" style="--mb:#f5f5f2;--mf:#0e0e0e;--ma:#2340ff;--mfont:'Instrument Serif';--mw:400;--mtt:none"><div class="chrome"><i></i><i></i><i></i><span>Maya Chen</span></div><div class="scr"><div class="mnav"><b>MAYA CHEN</b><em></em></div><div class="mh" style="font-size:clamp(30px,4vw,52px)">Maya <i style='color:#2340ff'>Chen</i></div><div class="ml"></div><div class="mbtn"></div></div></div></div>
       <div class="cap"><div><h3>Maya Chen</h3><p>Designer portfolio with a live Brooklyn clock, list and grid views and full case-study pages.</p></div><span class="label">Portfolio · Brooklyn, NY</span></div>
@@ -401,6 +389,26 @@ fieldset.field{border:0;margin:0;padding:0}
     <a class="tile reveal" href="t/halcyon.html" style="--cb:#4f6b58" data-cursor="Open site">
       <div class="frame"><div class="mock lt" style="--mb:#f7f3ec;--mf:#1f2a24;--ma:#4f6b58;--mfont:'Fraunces';--mw:500;--mtt:none"><div class="chrome"><i></i><i></i><i></i><span>Halcyon &amp; Hue</span></div><div class="scr"><div class="mnav"><b>HALCYON &amp; HUE</b><em></em></div><div class="mh">Color, without <i style='color:#4f6b58'>the chaos.</i></div><div class="ml"></div><div class="mbtn"></div></div></div></div>
       <div class="cap"><div><h3>Halcyon &amp; Hue Painting</h3><p>A color studio that repaints a house or living room as you tap swatches, plus an instant interior and exterior estimate.</p></div><span class="label">Interior &amp; exterior painting · Indianapolis, IN</span></div>
+    </a>
+  </div>
+
+  <p class="label" style="margin-top:clamp(56px,8vw,112px)">Food, bakeries &amp; stays</p>
+  <div class="more four">
+    <a class="tile reveal" href="t/marlowes.html" style="--cb:#c9a35a" data-cursor="Open site">
+      <div class="frame"><div class="mock" style="--mb:#0e0907;--mf:#f1e6d4;--ma:#c9a35a;--mfont:'Bodoni Moda';--mw:500;--mtt:none"><div class="chrome"><i></i><i></i><i></i><span>Marlowe's</span></div><div class="scr"><div class="mnav"><b>MARLOWE'S</b><em></em></div><div class="mh" style="font-style:italic;font-size:clamp(30px,4vw,54px)">Marlowe's</div><div class="ml"></div><div class="mbtn"></div></div></div></div>
+      <div class="cap"><div><h3>Marlowe's Chophouse</h3><p>Candlelit hero, live open-now status and a butcher's chart that lights up the cut behind each steak.</p></div><span class="label">Restaurant · Chicago, IL</span></div>
+    </a>
+    <a class="tile reveal" href="t/fogcity.html" style="--cb:#ff5a2c" data-cursor="Open site">
+      <div class="frame"><div class="mock lt" style="--mb:#dde4e7;--mf:#141414;--ma:#ff5a2c;--mfont:'Syne';--mw:800;--mtt:uppercase"><div class="chrome"><i></i><i></i><i></i><span>Fog City Coffee</span></div><div class="scr"><div class="mnav"><b>FOG CITY COFFEE</b><em></em></div><div class="mh">Fog City Coffee</div><div class="ml"></div><div class="mbtn"></div></div></div></div>
+      <div class="cap"><div><h3>Fog City Coffee</h3><p>Drag-around stickers, a drifting fog canvas, a filterable menu and a bean club builder.</p></div><span class="label">Café · San Francisco, CA</span></div>
+    </a>
+    <a class="tile reveal" href="t/clover.html" style="--cb:#F6C6D0" data-cursor="Open site">
+      <div class="frame"><div class="mock lt" style="--mb:#FBE3E8;--mf:#3B2218;--ma:#D9738A;--mfont:'Shrikhand';--mw:400;--mtt:none"><div class="chrome"><i></i><i></i><i></i><span>Lucky Crumb</span></div><div class="scr"><div class="mnav"><b>LUCKY CRUMB</b><em></em></div><div class="mh">Baked for <i style='color:#D9738A'>luck.</i></div><div class="ml"></div><div class="mbtn"></div></div></div></div>
+      <div class="cap"><div><h3>Lucky Crumb Cookies</h3><p>A preheating oven intro, a cookie you bite as you scroll, flip-card flavors and a build-your-own box that orders by DM.</p></div><span class="label">Cookie shop &amp; bakery</span></div>
+    </a>
+    <a class="tile reveal" href="t/emberwood.html" style="--cb:#6b4128" data-cursor="Open site">
+      <div class="frame"><div class="mock" style="--mb:#12100e;--mf:#f2eadf;--ma:#e0773a;--mfont:'Cormorant';--mw:500;--mtt:none"><div class="chrome"><i></i><i></i><i></i><span>Emberwood Cabin</span></div><div class="scr"><div class="mnav"><b>EMBERWOOD</b><em></em></div><div class="mh">Stay by <i style='color:#f3a467'>the fire.</i></div><div class="ml"></div><div class="mbtn"></div></div></div></div>
+      <div class="cap"><div><h3>Emberwood Cabin</h3><p>A scroll walkthrough that moves you room to room, a live floor plan, and a booking calendar that prices your stay.</p></div><span class="label">Vacation rental · book direct</span></div>
     </a>
   </div>
 
