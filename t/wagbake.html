@@ -85,12 +85,12 @@ h2.h em{font-style:normal;color:var(--pb)}
 @keyframes tk{to{transform:translateX(-50%)}}
 
 /* sniff test */
-.sniff{background:#fff;overflow:hidden;padding-bottom:0;border-bottom:3px solid var(--ink)}
+.sniff{background:#F7FBFE;overflow:hidden;padding-bottom:0;border-bottom:3px solid var(--ink)}
 .sniff .big{font:800 clamp(40px,6vw,92px)/.95 var(--display);letter-spacing:-.04em;max-width:15ch;margin:14px auto 0;text-align:center}
 .sniff .big em{font-style:normal;background:linear-gradient(transparent 62%,var(--yellow) 62%)}
 .sniff p.sm{text-align:center;max-width:46ch;margin:22px auto 0;color:var(--muted);font-size:18px}
 .peek{position:relative;height:clamp(240px,34vw,460px);margin-top:30px}
-.peek img{position:absolute;left:50%;bottom:0;width:min(1000px,120vw);transform:translate(-50%,var(--py,70%));will-change:transform}
+.peek img{position:absolute;left:50%;bottom:0;width:min(1000px,130vw);max-width:none;transform:translate(-50%,var(--py,70%));will-change:transform}
 .nosebtn{position:absolute;left:50%;bottom:22%;transform:translateX(-50%);z-index:2;background:none;border:0;width:120px;height:90px;cursor:pointer}
 .boop{position:absolute;left:50%;bottom:48%;z-index:3;font:800 34px var(--display);color:var(--red);pointer-events:none;opacity:0;transform:translate(-50%,0) rotate(-8deg)}
 .boop.on{animation:boop .9s forwards}
@@ -606,8 +606,8 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
 
   /* ---------- testers ---------- */
   const DOGS=[["1561037404-61cd46aa615b","Pepper","#F6B3C6","Peanut Butter Bones"],["1537151608828-ea2b11777ee8","Biscuit","#F2914A","Pumpkin Paws"],["1647179924662-13b7bc73a886","Luna","#F6C945","Chicken Jerky Strips"],["1517423440428-a5a00ad493e8","Mochi","#E2483D","Salmon Bites"],["1630361102412-bd7ed8710307","Teddy","#F6C945","Yogurt Drops"]];
-  $("testers").innerHTML=DOGS.map(([id,n,bg,fav])=>`<div class="dog" style="--bg:${bg}" data-reveal><img loading="lazy" src="${U(id,600)}" alt="${n}, a taste tester"><span class="nm">${n}</span><span class="ok">Approved!</span><button type="button" aria-label="${n}'s verdict" data-fav="${fav}"></button></div>`).join("");
-  $("testers").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const d=b.parentElement;d.classList.remove("yes");void d.offsetWidth;d.classList.add("yes");d.querySelector(".ok").textContent="Loves the "+b.dataset.fav.split(" ")[0].toLowerCase()+"!";});
+  $("testers").innerHTML=DOGS.map(([id,n,bg,fav])=>`<div class="dog" style="--bg:${bg}" data-reveal><img loading="lazy" src="${U(id,600)}" alt="${n}, a taste tester"><span class="nm">${n}</span><span class="ok">Paws up!</span><button type="button" aria-label="${n}'s verdict" data-fav="${fav}"></button></div>`).join("");
+  $("testers").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const d=b.parentElement;d.classList.remove("yes");void d.offsetWidth;d.classList.add("yes");d.querySelector(".nm").textContent="Fave: "+b.dataset.fav.split(" ")[0];});
 
   /* ---------- CTA paws ---------- */
   const cp=$("ctaPaws");
