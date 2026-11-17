@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Wag & Bake: small-batch dog treats and pup birthday cakes, baked with peanut butter, pumpkin and oats. Build a treat box or design a pup cake and order by message.">
+<title>Wag &amp; Bake · Small-batch dog treats &amp; pup cakes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<link rel="stylesheet" href="/t/fx.css">
+<style>
+:root{
+  --cream:#FFF5E6; --cream2:#FBE8CC; --ink:#2B1B12; --muted:#7A6352; --pb:#D9822B; --pb2:#F2A65A;
+  --pink:#F6B3C6; --teal:#22B0BE; --yellow:#F6C945; --red:#E2483D; --sky:#9FD0F0; --leaf:#7DBE6A;
+  --display:"Bricolage Grotesque",system-ui,sans-serif; --body:"DM Sans",system-ui,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+body{background:var(--cream);color:var(--ink);font:16px/1.6 var(--body);overflow-x:hidden}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+.kick{display:inline-flex;align-items:center;gap:8px;font:700 12px var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--pb)}
+.kick svg{width:22px;height:22px}
+h2.h{font:800 clamp(42px,6.6vw,100px)/.92 var(--display);letter-spacing:-.035em;margin-top:12px}
+h2.h em{font-style:normal;color:var(--pb)}
+.sec{padding-block:clamp(84px,11vw,160px);position:relative}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;font:700 15.5px var(--body);text-decoration:none;border:2px solid var(--ink);cursor:pointer;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,background .3s;box-shadow:0 4px 0 var(--ink)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--ink)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.btn-p{background:var(--pb);color:#fff}
+.btn-w{background:#fff;color:var(--ink)}
+.btn-y{background:var(--yellow);color:var(--ink)}
+
+/* loader: paw prints walk across */
+.ld{position:fixed;inset:0;z-index:100;background:var(--pb);display:grid;place-items:center;transition:transform .9s cubic-bezier(.8,0,.2,1)}
+.ld.go{transform:translateY(-100%)}
+.ld .trail{position:relative;width:min(560px,86vw);height:120px}
+.ld .trail svg{position:absolute;width:38px;height:38px;fill:var(--ink);opacity:0;animation:step .3s forwards}
+.ld b{position:absolute;left:0;right:0;bottom:-70px;text-align:center;font:800 40px var(--display);color:#fff;letter-spacing:-.03em;opacity:0;animation:fade .5s .9s forwards}
+@keyframes step{from{opacity:0;transform:scale(.4) rotate(var(--r))}to{opacity:1;transform:scale(1) rotate(var(--r))}}
+@keyframes fade{to{opacity:1}}
+.ld{animation:ldfs .1s 5s forwards}@keyframes ldfs{to{transform:translateY(-100%);visibility:hidden}}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:60;padding-top:env(safe-area-inset-top,0px);transition:background .35s,box-shadow .35s}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;min-height:78px;gap:16px}
+.nav.solid{background:rgba(255,245,230,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 2px 0 rgba(43,27,18,.08)}
+.logo{display:flex;align-items:center;gap:10px;font:800 25px var(--display);letter-spacing:-.04em;text-decoration:none}
+.logo svg{width:40px;height:40px;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.logo:hover svg{transform:rotate(-20deg)}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.nav ul a{display:block;text-decoration:none;font-weight:600;font-size:15px;padding:8px 14px;border-radius:999px;transition:background .2s}
+.nav ul a:hover{background:rgba(43,27,18,.07)}
+.nav .btn{min-height:46px;padding:0 18px;font-size:14.5px}
+.boxct{display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:12px;background:var(--ink);color:#fff;font-size:12px;padding:0 6px;transition:transform .3s cubic-bezier(.3,1.8,.5,1)}
+.boxct.pop{transform:scale(1.45)}
+
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;padding-top:110px;padding-bottom:40px;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,60px);align-items:center;min-height:calc(100svh - 150px);position:relative;z-index:2}
+.hero h1{font:800 clamp(56px,8.6vw,138px)/.86 var(--display);letter-spacing:-.05em;margin:16px 0 0}
+.hero h1 .sit{display:inline-block;color:var(--pb);transform-origin:50% 90%;animation:sit 2.8s cubic-bezier(.5,0,.3,1) infinite}
+@keyframes sit{0%,60%,100%{transform:none}70%{transform:scaleY(.82) scaleX(1.08)}80%{transform:scaleY(1.06) translateY(-6px)}}
+.hero .sub{font-size:clamp(17px,1.5vw,20px);max-width:38ch;margin:22px 0 0;color:#5a4334}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hint{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-weight:600;font-size:14px;color:var(--muted)}
+.hint i{font-style:normal;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:2px 10px;font-weight:700;color:var(--ink);min-width:28px;text-align:center}
+.blob{position:relative;aspect-ratio:1;max-width:560px;justify-self:end;width:100%}
+.blob .ph{position:absolute;inset:0;border-radius:46% 54% 42% 58%/55% 44% 56% 45%;overflow:hidden;background:var(--teal);border:3px solid var(--ink);animation:morph 12s ease-in-out infinite alternate;box-shadow:12px 14px 0 var(--ink)}
+.blob .ph img{width:100%;height:100%;object-fit:cover;object-position:60% 50%;transform:scale(1.05)}
+@keyframes morph{to{border-radius:58% 42% 55% 45%/44% 58% 42% 56%}}
+.sticker{position:absolute;z-index:3;display:grid;place-items:center;text-align:center;border-radius:50%;border:2.5px solid var(--ink);font:800 15px/1.05 var(--display);letter-spacing:-.02em}
+.sticker.s1{width:122px;height:122px;left:-26px;bottom:8%;background:var(--yellow);transform:rotate(-12deg)}
+.sticker.s1 span{animation:spin 14s linear infinite;display:block}
+.sticker.s2{width:96px;height:96px;right:-10px;top:4%;background:var(--pink);transform:rotate(10deg);font-size:13px}
+@keyframes spin{to{transform:rotate(360deg)}}
+#toss{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+
+/* ticker */
+.tick{background:var(--ink);color:var(--cream);overflow:hidden;border-block:3px solid var(--ink);transform:rotate(-1.5deg);margin:10px -10px 0;position:relative;z-index:3}
+.tick .row{display:flex;gap:28px;width:max-content;padding:16px 0;animation:tk 30s linear infinite;font:800 clamp(22px,2.6vw,34px) var(--display);letter-spacing:-.02em;align-items:center}
+.tick svg{width:34px;height:34px;flex:none}
+@keyframes tk{to{transform:translateX(-50%)}}
+
+/* sniff test */
+.sniff{background:#fff;overflow:hidden;padding-bottom:0;border-bottom:3px solid var(--ink)}
+.sniff .big{font:800 clamp(40px,6vw,92px)/.95 var(--display);letter-spacing:-.04em;max-width:15ch;margin:14px auto 0;text-align:center}
+.sniff .big em{font-style:normal;background:linear-gradient(transparent 62%,var(--yellow) 62%)}
+.sniff p.sm{text-align:center;max-width:46ch;margin:22px auto 0;color:var(--muted);font-size:18px}
+.peek{position:relative;height:clamp(240px,34vw,460px);margin-top:30px}
+.peek img{position:absolute;left:50%;bottom:0;width:min(1000px,120vw);transform:translate(-50%,var(--py,70%));will-change:transform}
+.nosebtn{position:absolute;left:50%;bottom:22%;transform:translateX(-50%);z-index:2;background:none;border:0;width:120px;height:90px;cursor:pointer}
+.boop{position:absolute;left:50%;bottom:48%;z-index:3;font:800 34px var(--display);color:var(--red);pointer-events:none;opacity:0;transform:translate(-50%,0) rotate(-8deg)}
+.boop.on{animation:boop .9s forwards}
+@keyframes boop{0%{opacity:0;transform:translate(-50%,10px) scale(.5) rotate(-8deg)}30%{opacity:1;transform:translate(-50%,-20px) scale(1.15) rotate(-8deg)}100%{opacity:0;transform:translate(-50%,-70px) scale(1) rotate(-8deg)}}
+
+/* menu */
+.mhead{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{all:unset;cursor:pointer;padding:10px 16px;border-radius:999px;border:2px solid var(--ink);font-weight:700;font-size:14px;background:#fff;transition:background .2s,transform .2s}
+.chips button:hover{transform:translateY(-2px)}
+.chips button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.chips button:focus-visible{outline:3px solid var(--pb);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.tc{position:relative;perspective:1200px;min-height:380px;transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.tc.off{opacity:.18;transform:scale(.94);filter:grayscale(1)}
+.tc .in2{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,1.2,.4,1)}
+.tc.flip .in2{transform:rotateY(180deg)}
+.tc .fa,.tc .ba{position:absolute;inset:0;border:2.5px solid var(--ink);border-radius:26px;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:20px;display:flex;flex-direction:column;overflow:hidden}
+.tc .fa{background:var(--bg)}
+.tc .ba{background:#fff;transform:rotateY(180deg)}
+.tc .art{flex:1;display:grid;place-items:center;position:relative}
+.tc .art svg{width:66%;max-width:180px;filter:drop-shadow(5px 7px 0 rgba(43,27,18,.9));transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.tc:hover .art svg{transform:rotate(-14deg) scale(1.08)}
+.tc h3{font:800 25px/1 var(--display);letter-spacing:-.03em;margin:0}
+.tc .tg{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.tc .tg span{font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.7);border:1.5px solid var(--ink)}
+.tc .acts{display:flex;gap:8px;margin-top:14px}
+.tc .acts button{all:unset;cursor:pointer;flex:1;text-align:center;padding:10px 0;border-radius:999px;border:2px solid var(--ink);font-weight:700;font-size:14px;background:#fff;transition:transform .2s}
+.tc .acts button.add{background:var(--ink);color:#fff}
+.tc .acts button:hover{transform:translateY(-2px)}
+.tc .acts button:focus-visible{outline:3px solid var(--pb);outline-offset:2px}
+.tc .ba h4{font:800 22px var(--display);margin:0}
+.tc .ba ul{margin:12px 0 0;padding:0 0 0 18px;font-size:14.5px;flex:1}
+.tc .ba ul li{margin:3px 0}
+.tc .ba .why{font-size:13.5px;color:var(--muted);margin-top:8px}
+.tc .ba .acts{margin-top:auto}
+
+/* box */
+.boxsec{background:var(--yellow);border-block:3px solid var(--ink)}
+.boxwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,70px);align-items:center;margin-top:30px}
+.crate{position:relative;background:#E8B172;border:3px solid var(--ink);border-radius:20px;padding:22px;box-shadow:10px 12px 0 var(--ink);background-image:repeating-linear-gradient(90deg,rgba(43,27,18,.06) 0 2px,transparent 2px 18px)}
+.crate::before{content:"WAG & BAKE";position:absolute;left:50%;top:-18px;transform:translateX(-50%);background:var(--ink);color:#fff;font:800 14px var(--display);letter-spacing:.14em;padding:6px 16px;border-radius:999px}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.slot{aspect-ratio:1;border-radius:14px;background:rgba(255,245,230,.6);border:2px dashed rgba(43,27,18,.35);display:grid;place-items:center;position:relative}
+.slot svg{width:72%;filter:drop-shadow(3px 4px 0 rgba(43,27,18,.85))}
+.slot.fill{border-style:solid;border-color:var(--ink);background:#fff}
+.slot.fill svg{animation:drop .6s cubic-bezier(.3,1.5,.5,1)}
+@keyframes drop{from{transform:translateY(-120px) rotate(-40deg);opacity:0}to{transform:none;opacity:1}}
+.slot button{all:unset;position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px;cursor:pointer;opacity:0;transition:opacity .2s}
+.slot:hover button,.slot button:focus-visible{opacity:1}
+@media (hover:none){.slot button{opacity:1}}
+.blist{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:6px}
+.blist li{display:flex;justify-content:space-between;background:rgba(255,255,255,.55);border:2px solid var(--ink);border-radius:14px;padding:10px 14px;font-weight:600}
+.empty{color:#6d5520;font-weight:600;margin-top:20px}
+.sizes{display:flex;gap:8px;margin-top:20px}
+.sizes button{all:unset;cursor:pointer;padding:10px 16px;border-radius:999px;border:2px solid var(--ink);font-weight:700;background:#fff}
+.sizes button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.ordr{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.copied{font-weight:700;font-size:14px;margin-top:10px;min-height:1.4em}
+
+/* pup cake */
+.cakewrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(30px,5vw,70px);align-items:center;margin-top:40px}
+.stage{position:relative;background:var(--sky);border:3px solid var(--ink);border-radius:32px;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden;box-shadow:12px 14px 0 var(--ink)}
+.stage::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 110%,rgba(255,255,255,.7),transparent 55%)}
+.stage svg{width:86%;position:relative;z-index:1}
+#cake{transition:transform .5s cubic-bezier(.3,1.5,.5,1);transform-origin:200px 320px}
+#cake .fr{transition:fill .4s}
+#cake .bs{transition:fill .4s}
+.conf{position:absolute;inset:0;pointer-events:none;z-index:2}
+.opts{display:grid;gap:22px}
+.opt b{display:block;font:800 18px var(--display);letter-spacing:-.02em;margin-bottom:8px}
+.sw2{display:flex;gap:8px;flex-wrap:wrap}
+.sw2 button{all:unset;cursor:pointer;padding:9px 15px;border-radius:999px;border:2px solid var(--ink);font-weight:700;font-size:14px;background:#fff;display:inline-flex;align-items:center;gap:8px;transition:transform .2s}
+.sw2 button:hover{transform:translateY(-2px)}
+.sw2 button i{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--ink);background:var(--c)}
+.sw2 button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.sw2 button:focus-visible{outline:3px solid var(--pb);outline-offset:2px}
+.field{display:grid;gap:6px}
+.field input{min-height:50px;border-radius:14px;border:2px solid var(--ink);background:#fff;padding:0 14px;font:600 16px var(--body);color:var(--ink);width:100%}
+.field input:focus{outline:3px solid var(--pb);outline-offset:1px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* party deck */
+.party{background:var(--pink);border-block:3px solid var(--ink);overflow:hidden}
+.pwrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,70px);align-items:center}
+.deck{position:relative;aspect-ratio:4/5;max-width:440px;width:100%;justify-self:center;cursor:pointer;margin:20px 0}
+.pol{position:absolute;inset:0;background:#fff;border:3px solid var(--ink);border-radius:10px;padding:14px 14px 64px;box-shadow:8px 10px 0 var(--ink);transition:transform .6s cubic-bezier(.3,1.2,.4,1),opacity .4s}
+.pol img{width:100%;height:100%;object-fit:cover;border-radius:4px;border:2px solid var(--ink)}
+.pol span{position:absolute;left:0;right:0;bottom:16px;text-align:center;font:800 22px var(--display);letter-spacing:-.02em}
+.deck button{position:absolute;inset:0;background:none;border:0;cursor:pointer;z-index:9}
+
+/* ingredients */
+.ing{height:300vh;position:relative}
+.ing .st{position:sticky;top:0;height:100vh;height:100svh;display:grid;align-items:center;overflow:hidden}
+.ingw{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,70px);align-items:center}
+.bowl{position:relative;width:100%;max-width:520px;aspect-ratio:1;justify-self:center}
+.bowl svg.b{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.pill{position:absolute;z-index:1;left:var(--x);top:var(--y);transform:translate(-50%,var(--ty,-520px)) rotate(var(--rot,0deg));padding:10px 16px;border-radius:999px;border:2.5px solid var(--ink);background:var(--c);font:800 16px var(--display);white-space:nowrap;box-shadow:3px 4px 0 var(--ink);transition:transform .7s cubic-bezier(.3,1.4,.5,1),opacity .3s;opacity:0}
+.pill.in3{--ty:0px;opacity:1}
+.inlist{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:4px}
+.inlist li{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:2px dashed rgba(43,27,18,.18);opacity:.3;transition:opacity .4s}
+.inlist li.on{opacity:1}
+.inlist b{font:800 22px var(--display);letter-spacing:-.02em;min-width:9ch}
+.inlist span{color:var(--muted);font-size:15px}
+.never{margin-top:28px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.never b{font:800 16px var(--display);margin-right:4px}
+.never s{text-decoration:none;position:relative;font-weight:700;padding:4px 10px;border-radius:999px;background:#fff;border:2px solid var(--ink)}
+.never s::after{content:"";position:absolute;left:6px;right:6px;top:50%;height:3px;background:var(--red);transform:scaleX(var(--sx,0));transform-origin:left;transition:transform .5s cubic-bezier(.6,0,.3,1)}
+.never.on s::after{--sx:1}
+
+/* oven line */
+.line{position:relative;padding-top:40px;overflow:hidden}
+.line .string{position:absolute;left:-5%;right:-5%;top:42px;height:3px;background:var(--ink);border-radius:3px}
+.line .row{display:flex;gap:clamp(16px,2.4vw,34px);width:max-content;padding:0 var(--gl) 50px;animation:lr 60s linear infinite}
+.line:hover .row{animation-play-state:paused}
+@keyframes lr{to{transform:translateX(-50%)}}
+.pc{flex:none;width:clamp(200px,22vw,300px);background:#fff;border:2.5px solid var(--ink);padding:10px 10px 48px;border-radius:6px;box-shadow:6px 8px 0 var(--ink);transform-origin:50% -20px;transform:rotate(var(--a,0deg));transition:transform .4s;position:relative;margin-top:18px}
+.pc::before{content:"";position:absolute;left:50%;top:-24px;width:14px;height:34px;margin-left:-7px;background:var(--pb);border:2px solid var(--ink);border-radius:4px}
+.pc img{width:100%;aspect-ratio:4/5;object-fit:cover;border:2px solid var(--ink);display:block}
+.pc span{position:absolute;left:0;right:0;bottom:12px;text-align:center;font:800 18px var(--display);letter-spacing:-.02em}
+
+/* testers */
+.testers{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:40px}
+.dog{position:relative;border:3px solid var(--ink);border-radius:24px;overflow:hidden;aspect-ratio:3/4;background:var(--bg);box-shadow:6px 8px 0 var(--ink);transition:transform .4s cubic-bezier(.3,1.5,.5,1);cursor:pointer}
+.dog:hover{transform:rotate(-2deg) translateY(-6px)}
+.dog img{width:100%;height:100%;object-fit:cover;display:block}
+.dog .nm{position:absolute;left:10px;bottom:10px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:4px 12px;font:800 15px var(--display)}
+.dog .ok{position:absolute;right:10px;top:10px;background:var(--leaf);color:#fff;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;font:800 14px var(--display);transform:rotate(12deg) scale(0);transition:transform .45s cubic-bezier(.3,1.8,.5,1)}
+.dog.yes .ok{transform:rotate(12deg) scale(1)}
+.dog.yes{animation:wig .5s}
+@keyframes wig{25%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}75%{transform:rotate(-2deg)}}
+.dog button{position:absolute;inset:0;background:none;border:0;cursor:pointer}
+.dog button:focus-visible{outline:3px solid var(--pb);outline-offset:-6px;border-radius:20px}
+
+/* faq + cta */
+.faq{max-width:860px;margin:40px auto 0}
+.faq details{border:2.5px solid var(--ink);border-radius:20px;background:#fff;margin-bottom:10px;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 22px;font:800 20px var(--display);letter-spacing:-.02em;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{font-style:normal;width:30px;height:30px;flex:none;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;transition:transform .3s,background .3s}
+.faq details[open] summary i{transform:rotate(45deg);background:var(--yellow)}
+.faq details p{margin:0;padding:0 22px 20px;color:#5a4334}
+.cta2{background:var(--teal);border:3px solid var(--ink);border-radius:36px;padding:clamp(34px,6vw,80px);text-align:center;box-shadow:12px 14px 0 var(--ink);position:relative;overflow:hidden}
+.cta2 h2{font:800 clamp(44px,7vw,110px)/.9 var(--display);letter-spacing:-.045em;margin:0;color:#fff;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill}
+.cta2 p{font-size:18px;max-width:42ch;margin:18px auto 0;color:#06363b;font-weight:500}
+.cta2 .cta{justify-content:center;display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.cta2 .paws{position:absolute;inset:0;pointer-events:none;opacity:.18}
+
+footer{background:var(--ink);color:var(--cream);padding-block:70px calc(110px + env(safe-area-inset-bottom,0px));overflow:hidden}
+footer .fb{font:800 clamp(80px,17vw,260px)/.85 var(--display);letter-spacing:-.06em;color:#4a3122;white-space:nowrap}
+footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-top:30px;color:#cdb8a5;font-size:14px}
+.sample{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:80;background:var(--ink);color:var(--cream);font:500 12px var(--body);padding:8px 14px;border-radius:999px;border:2px solid var(--cream)}
+.sample b{color:var(--yellow)}
+
+@media (max-width:1080px){.grid{grid-template-columns:repeat(2,1fr)}.testers{grid-template-columns:repeat(3,1fr)}.testers .dog:nth-child(n+4){display:none}}
+@media (max-width:900px){.nav ul{display:none}.hero .wrap,.boxwrap,.cakewrap,.pwrap,.ingw{grid-template-columns:1fr}.blob{justify-self:center;max-width:440px}.hero{padding-top:96px}.ing{height:auto}.ing .st{position:relative;height:auto;padding-block:90px}.pill{--ty:0px}}
+@media (max-width:600px){.grid{gap:12px}.tc{min-height:330px}.tc .fa,.tc .ba{padding:14px;border-radius:20px}.tc h3{font-size:20px}.tc .tg span{font-size:10.5px}.tc .acts button{font-size:13px;padding:9px 0}.tc .ba ul{font-size:13px}.tc .ba .why{display:none}.testers{grid-template-columns:repeat(2,1fr)}.testers .dog:nth-child(n+3){display:none}.wb-back span{display:none}.sample{font-size:11px}.sticker.s1{width:100px;height:100px;left:-6px}.sticker.s2{right:0}.slots{gap:7px}.two{grid-template-columns:1fr}.nav .btn .t{display:none}}
+@media (prefers-reduced-motion:reduce){.ld{display:none}.tick .row,.line .row,.blob .ph,.sticker span,.hero h1 .sit{animation:none}.pill{--ty:0px;opacity:1}}
+</style>
+</head>
+<body>
+<div class="ld" id="ld" aria-hidden="true"><div class="trail" id="trail"><b>Wag &amp; Bake</b></div></div>
+
+<header class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="#top"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#D9822B" stroke="#2B1B12" stroke-width="2"/><g fill="#FFF5E6" stroke="#2B1B12" stroke-width="1.6"><circle cx="11.5" cy="16" r="3.6"/><circle cx="11.5" cy="24" r="3.6"/><circle cx="28.5" cy="16" r="3.6"/><circle cx="28.5" cy="24" r="3.6"/></g><rect x="11" y="16.4" width="18" height="7.2" fill="#FFF5E6"/></svg>Wag &amp; Bake</a>
+  <ul><li><a href="#treats">Treats</a></li><li><a href="#box">Treat box</a></li><li><a href="#cake">Pup cakes</a></li><li><a href="#inside">What's inside</a></li><li><a href="#faq">FAQ</a></li></ul>
+  <a class="btn btn-p" href="#box"><span class="t">Your box</span><span class="boxct" id="navct">0</span></a>
+</div></header>
+
+<section class="hero" id="top" aria-label="Wag and Bake">
+  <canvas id="toss" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="kick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#pawI"/></svg>Small-batch dog treats</span>
+      <h1>Treats worth <span class="sit">sitting</span> for.</h1>
+      <p class="sub">Crunchy bones, chewy bites and birthday cakes for dogs, baked fresh in small batches with peanut butter, pumpkin and oats.</p>
+      <div class="cta"><a class="btn btn-p" href="#treats">See the treats</a><a class="btn btn-w" href="#cake">Design a pup cake</a></div>
+      <div class="hint" aria-live="polite">Tap anywhere to toss a treat <i id="tcount">0</i></div>
+    </div>
+    <div class="blob">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1662973544396-2885509b1d90?auto=format&fit=crop&w=1100&q=80" srcset="https://images.unsplash.com/photo-1662973544396-2885509b1d90?auto=format&fit=crop&w=700&q=78 700w, https://images.unsplash.com/photo-1662973544396-2885509b1d90?auto=format&fit=crop&w=1100&q=80 1100w" sizes="(max-width:900px) 90vw, 45vw" alt="A brown dog stretching up to take a biscuit from someone's hand" fetchpriority="high"></div>
+      <div class="sticker s1"><span>FRESH<br>BAKED<br>DAILY</span></div>
+      <div class="sticker s2">no<br>nasties</div>
+    </div>
+  </div>
+</section>
+
+<div style="overflow:hidden;padding:12px 0 18px;margin-top:-12px;position:relative;z-index:3"><div class="tick" aria-hidden="true"><div class="row" id="tick"></div></div></div>
+
+<section class="sec sniff"><div class="wrap">
+  <div style="text-align:center"><span class="kick">The sniff test</span></div>
+  <p class="big">If it doesn't pass <em>the nose</em>, it doesn't leave the kitchen.</p>
+  <p class="sm">Every batch gets tested by the toughest critics in the house. Go on, boop the nose.</p>
+  <div class="peek" id="peek"><img loading="lazy" src="https://images.unsplash.com/photo-1493723258571-01372f1c5e04?auto=format&fit=crop&w=1600&q=78" alt="A dog peeking up from below with big eyes"><button class="nosebtn" id="nose" aria-label="Boop the nose"></button><div class="boop" id="boop">boop!</div></div>
+</div></section>
+
+<section class="sec" id="treats"><div class="wrap">
+  <div class="mhead">
+    <div><span class="kick">The menu</span><h2 class="h" data-split>Pick their <em>favourite.</em></h2></div>
+    <div class="chips" id="chips" role="group" aria-label="Filter treats"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section class="sec boxsec" id="box"><div class="wrap">
+  <span class="kick" style="color:var(--ink)">Build a box</span>
+  <h2 class="h" data-split>Fill the <em style="color:#fff;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill">treat box.</em></h2>
+  <div class="boxwrap">
+    <div class="crate" data-reveal="scale"><div class="slots" id="slots"></div></div>
+    <div>
+      <p style="font-size:18px;margin:0;max-width:40ch">Tap <b>Add</b> on any treat to drop a bag in the box. Mix and match, then send us your order in one message.</p>
+      <div class="sizes" id="sizes" role="group" aria-label="Box size"><button type="button" data-n="6" aria-pressed="false">Box of 6</button><button type="button" data-n="12" aria-pressed="true">Box of 12</button></div>
+      <ul class="blist" id="blist"></ul>
+      <p class="empty" id="empty">Your box is empty. Go pick some treats!</p>
+      <div class="ordr"><a class="btn btn-p" id="waBox" href="#" target="_blank" rel="noopener">Order on WhatsApp</a><button class="btn btn-w" type="button" id="dmBox">Copy for Instagram DM</button></div>
+      <div class="copied" id="copiedBox" role="status"></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="cake"><div class="wrap">
+  <span class="kick">Pup cakes</span>
+  <h2 class="h" data-split>Design a <em>birthday cake.</em></h2>
+  <div class="cakewrap">
+    <div class="stage" data-reveal="scale">
+      <svg viewBox="0 0 400 400" aria-label="Preview of your pup cake" role="img">
+        <ellipse cx="200" cy="338" rx="168" ry="26" fill="#fff" stroke="#2B1B12" stroke-width="4"/>
+        <g id="cake">
+          <path class="bs" id="cBase" d="M80 200v110c0 16 54 28 120 28s120-12 120-28V200" stroke="#2B1B12" stroke-width="4" fill="#D9A066"/>
+          <path d="M80 262c0 14 54 26 120 26s120-12 120-26" stroke="#2B1B12" stroke-width="3" fill="none" opacity=".35"/>
+          <ellipse class="fr" id="cTop" cx="200" cy="200" rx="120" ry="30" fill="#F6B3C6" stroke="#2B1B12" stroke-width="4"/>
+          <path class="fr" id="cDrip" d="M80 200c0 10 6 22 10 32s12 10 14 0 2-14 10-12 6 26 14 30 14-4 14-14 6-10 12-4 4 18 14 18 10-10 12-18 8-8 14 0 4 24 14 24 12-12 14-22 6-8 12-2 2 14 12 14 10-10 12-20 6-10 12-4 4 16 12 14 6-14 10-24c4-10 10-20 10-30" stroke="#2B1B12" stroke-width="4" fill="#F6B3C6" stroke-linejoin="round"/>
+          <ellipse cx="170" cy="192" rx="36" ry="7" fill="#fff" opacity=".45"/>
+          <g id="dots"></g>
+          <text id="cName" x="200" y="300" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="34" fill="#2B1B12">Bruno</text>
+          <g id="topper"></g>
+        </g>
+      </svg>
+      <canvas class="conf" id="conf" aria-hidden="true"></canvas>
+    </div>
+    <div class="opts">
+      <div class="opt"><b>Size</b><div class="sw2" data-k="size"></div></div>
+      <div class="opt"><b>Cake</b><div class="sw2" data-k="base"></div></div>
+      <div class="opt"><b>Frosting <span style="font:500 14px var(--body);color:var(--muted)">(yogurt-based)</span></b><div class="sw2" data-k="frost"></div></div>
+      <div class="opt"><b>On top</b><div class="sw2" data-k="top"></div></div>
+      <div class="two">
+        <div class="field"><label for="pupName"><b style="font:800 18px var(--display)">Their name</b></label><input id="pupName" maxlength="12" value="Bruno" autocomplete="off"></div>
+        <div class="field"><label for="pupDate"><b style="font:800 18px var(--display)">Needed by</b></label><input id="pupDate" type="date"></div>
+      </div>
+      <div class="ordr" style="margin-top:4px"><a class="btn btn-p" id="waCake" href="#" target="_blank" rel="noopener">Order this cake</a><button class="btn btn-w" type="button" id="dmCake">Copy for Instagram DM</button></div>
+      <div class="copied" id="copiedCake" role="status"></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec party"><div class="wrap pwrap">
+  <div class="deck" id="deck"><button type="button" aria-label="Show the next photo"></button></div>
+  <div>
+    <span class="kick" style="color:var(--ink)">Party animals</span>
+    <h2 class="h" data-split>Birthdays, <em style="color:#fff;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill">gotchas</em> and good days.</h2>
+    <p style="font-size:18px;max-width:40ch;margin-top:20px">Cakes for birthdays, adoption anniversaries, puppy showers or just because it's Tuesday. Order three days ahead and we'll pipe their name on top.</p>
+    <p style="font-weight:700;margin-top:18px">Tap the photos to flip through.</p>
+  </div>
+</div></section>
+
+<section class="ing" id="inside">
+  <div class="st"><div class="wrap ingw">
+    <div class="bowl" id="bowl">
+      <svg class="b" viewBox="0 0 520 520" aria-hidden="true"><path d="M40 300h440c0 110-90 180-220 180S40 410 40 300z" fill="#E2483D" stroke="#2B1B12" stroke-width="6"/><path d="M40 300h440" stroke="#2B1B12" stroke-width="6"/><path d="M90 300c20 0 30 30 52 30" stroke="#fff" stroke-width="8" stroke-linecap="round" fill="none" opacity=".5"/><text x="260" y="420" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="46" fill="#FFF5E6">GOOD BOY</text></svg>
+    </div>
+    <div>
+      <span class="kick">What's inside</span>
+      <h2 class="h">Real food. <em>Nothing weird.</em></h2>
+      <ul class="inlist" id="inlist"></ul>
+      <div class="never" id="never"><b>Never in our kitchen:</b><s>xylitol</s><s>chocolate</s><s>raisins</s><s>onion</s><s>fake colours</s></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="sec" style="padding-top:clamp(40px,6vw,80px)">
+  <div class="wrap"><span class="kick">Fresh from the oven</span><h2 class="h" data-split>Baked this <em>morning.</em></h2></div>
+  <div class="line"><div class="string"></div><div class="row" id="line"></div></div>
+</section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="kick">The taste-test panel</span>
+  <h2 class="h" data-split>Every recipe gets <em>a paws up.</em></h2>
+  <p style="font-size:18px;max-width:44ch;margin-top:16px;color:var(--muted)">Tap a tester to see their verdict.</p>
+  <div class="testers" id="testers"></div>
+</div></section>
+
+<section class="sec" id="faq" style="padding-top:0"><div class="wrap">
+  <div style="text-align:center"><span class="kick">Good questions</span><h2 class="h" data-split>Ask us <em>anything.</em></h2></div>
+  <div class="faq">
+    <details><summary>How long do the treats stay fresh?<i>+</i></summary><p>Crunchy treats keep for about three weeks in an airtight jar. Chewy ones and cakes are best within a week, kept in the fridge. Every bag has a baked-on date.</p></details>
+    <details><summary>My dog has allergies. Can you help?<i>+</i></summary><p>Yes. Use the filters to find grain-free or low-fat treats, and tell us about allergies when you order. We can bake most recipes without a specific ingredient.</p></details>
+    <details><summary>Are they safe for puppies?<i>+</i></summary><p>Treats marked "Puppy safe" are soft enough and gentle enough for pups over 12 weeks. Treats are a snack, so keep them to a small part of their day.</p></details>
+    <details><summary>How do I order and pay?<i>+</i></summary><p>Build your box or cake here, then send it to us on WhatsApp or Instagram. We'll confirm the total, delivery or pickup time, and send a payment link.</p></details>
+    <details><summary>Do you deliver?<i>+</i></summary><p>We deliver locally twice a week and offer pickup from the bakery. Message us your area and we'll let you know the next delivery day.</p></details>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <div class="cta2" data-reveal="scale">
+    <svg class="paws" id="ctaPaws" width="100%" height="100%" aria-hidden="true"></svg>
+    <h2>Who's a good boy?</h2>
+    <p>Yours is. Treat them to something baked fresh this week.</p>
+    <div class="cta"><a class="btn btn-y" href="#box">Build a treat box</a><a class="btn btn-w" href="#cake">Order a pup cake</a></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fb">Wag &amp; Bake</div>
+  <div class="row"><span>Wag &amp; Bake · Small-batch dog treats &amp; pup cakes</span><span>Photos on Unsplash: @nightinga1e, @lum3n, @the_potterio, @raymondpetrik, @dadgrass, @dogfluence, @okeykat, @corleto, @laulaco, @meganmajocha, @ukterryg, @we_the_royal, @moob, @barkernotbaker, @victor_vector, @alvannee, @ngilfanov, @charlesdeluvio, @_karsten</span></div>
+  <p style="color:#a88d75;font-size:13px;max-width:72ch;margin-top:16px">Wag &amp; Bake is a made-up bakery. This is a sample website designed by Weblio to show what a site for a dog treat business can look like. Treats, dogs' names and details are placeholders.</p>
+</div></footer>
+<div class="sample"><b>Sample site</b> by Weblio</div>
+<a class="wb-back" href="/" data-back><i>←</i>Weblio <span>· sample site</span></a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="pawI"><ellipse cx="12" cy="15.5" rx="5" ry="4.2" fill="currentColor"/><circle cx="6" cy="10" r="2.2" fill="currentColor"/><circle cx="9.5" cy="6.5" r="2.2" fill="currentColor"/><circle cx="14.5" cy="6.5" r="2.2" fill="currentColor"/><circle cx="18" cy="10" r="2.2" fill="currentColor"/></g></defs></svg>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="/t/fx.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id),R=FX.reduce,cl=FX.clamp;
+  const U=(id,w)=>`https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=78`;
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const INK="#2B1B12";
+
+  /* ---------- treat shapes (shared by SVG + canvas) ---------- */
+  const C=(x,y,r)=>`M${x-r} ${y}a${r} ${r} 0 1 0 ${2*r} 0a${r} ${r} 0 1 0 ${-2*r} 0z`;
+  const star=(()=>{let d="";for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,r=i%2?19:40;d+=(i?"L":"M")+(50+Math.cos(a)*r).toFixed(1)+" "+(52+Math.sin(a)*r).toFixed(1);}return d+"z"})();
+  const SHAPES={
+    bone:{p:[C(22,40,12),C(22,60,12),C(78,40,12),C(78,60,12),"M22 41h56v18H22z"],d:[]},
+    paw:{p:[C(50,50,40)],d:[C(50,62,13),C(31,42,6.5),C(43,32,6.5),C(57,32,6.5),C(69,42,6.5)]},
+    heart:{p:["M50 84C18 62 10 46 16 31c7-15 26-17 34-2c8-15 27-13 34 2c6 15-2 31-34 53z"],d:["M30 40c6 4 12-4 18 0s12 4 18 0 10-4 14 0"]},
+    star:{p:[star],d:[]},
+    ring:{p:["M50 12a38 38 0 1 1 0 76a38 38 0 1 1 0-76zM50 37a13 13 0 1 0 0 26a13 13 0 1 0 0-26z"],ev:1,d:[]},
+    strip:{p:["M10 42q40-18 80 0v18q-40 18-80 0z"],d:["M24 46q26-8 52 0"]},
+    drop:{p:["M50 12c16 22 32 36 32 52a32 32 0 0 1-64 0c0-16 16-30 32-52z"],d:[]},
+    fish:{p:["M14 50c16-24 50-24 66 0c-16 24-50 24-66 0z","M78 50l16-15v30z"],d:[C(30,46,4)]}
+  };
+  const SPECK=[[34,46],[62,40],[48,56],[70,58],[40,36],[56,62]];
+  function treatSVG(k,col,dk,ex=""){
+    const s=SHAPES[k];let h=`<svg viewBox="0 0 100 100" aria-hidden="true" ${ex}>`;
+    h+=s.p.map(d=>`<path d="${d}" fill="${col}" stroke="${INK}" stroke-width="3.2" ${s.ev?'fill-rule="evenodd"':""} stroke-linejoin="round"/>`).join("");
+    if(k==="bone")h+=`<path d="M24 42h52v16H24z" fill="${col}"/>`;
+    h+=s.d.map(d=>/a/.test(d)&&!/q|c/.test(d)?`<path d="${d}" fill="${dk}"/>`:`<path d="${d}" stroke="${dk}" stroke-width="4" fill="none" stroke-linecap="round"/>`).join("");
+    if(k!=="paw"&&k!=="drop")h+=SPECK.slice(0,4).map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.2" fill="${dk}" opacity=".7"/>`).join("");
+    h+=`<ellipse cx="38" cy="34" rx="10" ry="4" fill="#fff" opacity=".35" transform="rotate(-20 38 34)"/></svg>`;return h;
+  }
+  const P2={};const path2=(k)=>P2[k]||(P2[k]={p:SHAPES[k].p.map(d=>new Path2D(d)),d:SHAPES[k].d.map(d=>({p:new Path2D(d),line:!(/a/.test(d)&&!/q|c/.test(d))})),ev:SHAPES[k].ev});
+
+  /* ---------- treats data ---------- */
+  const T=[
+    {k:"pb",n:"Peanut Butter Bones",sh:"bone",col:"#D9913F",dk:"#8A4F1C",bg:"#FBE3C4",tags:["crunchy","puppy"],ing:["Peanut butter (no xylitol)","Rolled oats","Whole-wheat flour","Free-range egg"],why:"The classic. Snappy, nutty and the one most dogs try first."},
+    {k:"pump",n:"Pumpkin Paws",sh:"paw",col:"#EE8A3A",dk:"#A4501C",bg:"#FFD9B8",tags:["crunchy","puppy","lowfat"],ing:["Pumpkin purée","Oat flour","Egg","A pinch of ginger"],why:"Gentle on tummies and full of fibre."},
+    {k:"sweet",n:"Sweet Potato Chews",sh:"strip",col:"#C9622E",dk:"#7E3415",bg:"#FFC9A8",tags:["chewy","grainfree","lowfat"],ing:["Sweet potato, slow-dried","That's it"],why:"Single ingredient, long-lasting chew."},
+    {k:"banana",n:"Banana Carob Hearts",sh:"heart",col:"#EBC66E",dk:"#6B3D1E",bg:"#FFF0B8",tags:["crunchy","puppy"],ing:["Banana","Carob (dog-safe, no chocolate)","Oat flour","Coconut oil"],why:"Looks like chocolate. Isn't. Carob is totally safe."},
+    {k:"chick",n:"Chicken Jerky Strips",sh:"strip",col:"#A9542B",dk:"#5E2810",bg:"#F6D2C0",tags:["chewy","grainfree"],ing:["Chicken breast, oven-dried","Nothing added"],why:"High-protein training reward."},
+    {k:"apple",n:"Apple & Oat Stars",sh:"star",col:"#E9B84C",dk:"#9A6618",bg:"#D9F0C4",tags:["crunchy","puppy","lowfat"],ing:["Apple (no seeds or core)","Rolled oats","Egg"],why:"Light, crunchy and a little bit fruity."},
+    {k:"salmon",n:"Salmon Bites",sh:"fish",col:"#F39A86",dk:"#A6493A",bg:"#CDE9F6",tags:["chewy","grainfree"],ing:["Salmon","Potato","Egg","Parsley"],why:"Omega-3 for shiny coats."},
+    {k:"yog",n:"Yogurt Drops",sh:"drop",col:"#FFF4E8",dk:"#C9A88A",bg:"#F9D2DE",tags:["puppy","grainfree"],ing:["Plain yogurt","Tapioca","Coconut oil"],why:"Frozen-friendly summer treat."}
+  ];
+  const TM=Object.fromEntries(T.map(t=>[t.k,t]));
+  const FIL=[["all","All treats"],["puppy","Puppy safe"],["grainfree","Grain-free"],["lowfat","Low-fat"],["chewy","Chewy"],["crunchy","Crunchy"]];
+  const TAGN={crunchy:"Crunchy",chewy:"Chewy",puppy:"Puppy safe",grainfree:"Grain-free",lowfat:"Low-fat"};
+
+  /* ---------- loader ---------- */
+  const tr=$("trail");let ph="";for(let i=0;i<8;i++){const up=i%2;ph+=`<svg viewBox="0 0 24 24" style="left:${i*12.5}%;top:${up?10:56}px;--r:90deg;animation-delay:${i*.1}s"><use href="#pawI"/></svg>`;}tr.insertAdjacentHTML("afterbegin",ph);
+  const LD=$("ld");const hideLd=()=>{LD.classList.add("go");setTimeout(startToss,500)};
+  if(R){LD.style.display="none";}else{let done=false;const go=()=>{if(done)return;done=true;setTimeout(hideLd,500)};const im=document.querySelector(".blob img");if(im.complete)setTimeout(go,700);else im.addEventListener("load",()=>setTimeout(go,600));setTimeout(go,2600);}
+
+  /* ---------- nav ---------- */
+  FX.onScroll.push(y=>$("nav").classList.toggle("solid",y>30));
+
+  /* ---------- hero treat toss (canvas physics) ---------- */
+  const cv=$("toss"),cx=cv.getContext("2d"),hero=$("top");let W=0,H=0,dpr=1,bodies=[],tossed=0,run=false,heroVis=true;
+  function size(){dpr=Math.min(devicePixelRatio||1,2);const r=hero.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;}size();addEventListener("resize",size);
+  new IntersectionObserver(es=>{heroVis=es[0].isIntersecting},{}).observe(hero);
+  const rad=()=>innerWidth<600?22:32;
+  function toss(x,y,vx,vy){const t=T[Math.floor(Math.random()*T.length)];const r=rad()*(.85+Math.random()*.3);bodies.push({x,y,vx,vy,r,a:Math.random()*6,va:(Math.random()-.5)*.3,t,life:1});if(bodies.length>70)bodies.shift();tossed++;$("tcount").textContent=tossed;}
+  function startToss(){if(R||run)return;run=true;for(let i=0;i<7;i++)setTimeout(()=>toss(W*(.15+Math.random()*.7),-40,(Math.random()-.5)*4,2),i*160);requestAnimationFrame(step);}
+  hero.addEventListener("pointerdown",e=>{if(e.target.closest("a,button"))return;if(!run)startToss();const r=hero.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;toss(x,y,(Math.random()-.5)*8,-6-Math.random()*5);});
+  function drawTreat(b){const p=path2(b.t.sh);const s=b.r*2/100;cx.save();cx.translate(b.x,b.y);cx.rotate(b.a);cx.scale(s,s);cx.translate(-50,-50);cx.globalAlpha=b.life;
+    cx.save();cx.translate(5,7);cx.fillStyle="rgba(43,27,18,.85)";p.p.forEach(q=>cx.fill(q,p.ev?"evenodd":"nonzero"));cx.restore();
+    cx.fillStyle=b.t.col;cx.strokeStyle=INK;cx.lineWidth=3.4;cx.lineJoin="round";p.p.forEach(q=>{cx.fill(q,p.ev?"evenodd":"nonzero");cx.stroke(q)});
+    if(b.t.sh==="bone"){cx.fillRect(24,42,52,16);}
+    p.d.forEach(o=>{if(o.line){cx.strokeStyle=b.t.dk;cx.lineWidth=4;cx.lineCap="round";cx.stroke(o.p)}else{cx.fillStyle=b.t.dk;cx.fill(o.p)}});
+    if(b.t.sh!=="paw"&&b.t.sh!=="drop"){cx.fillStyle=b.t.dk;SPECK.slice(0,4).forEach(([x,y])=>{cx.beginPath();cx.arc(x,y,2.2,0,7);cx.fill()})}
+    cx.restore();}
+  function step(){
+    if(heroVis){
+      const g=.42,floor=H-6;
+      for(const b of bodies){b.vy+=g;b.x+=b.vx;b.y+=b.vy;b.a+=b.va;b.vx*=.995;
+        if(b.y+b.r>floor){b.y=floor-b.r;b.vy*=-.38;b.vx*=.82;b.va*=.7;if(Math.abs(b.vy)<.6)b.vy=0;}
+        if(b.x-b.r<0){b.x=b.r;b.vx*=-.6}if(b.x+b.r>W){b.x=W-b.r;b.vx*=-.6}}
+      for(let k=0;k<2;k++)for(let i=0;i<bodies.length;i++)for(let j=i+1;j<bodies.length;j++){const a=bodies[i],b=bodies[j],dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy),m=(a.r+b.r)*.86;
+        if(d>0&&d<m){const o=(m-d)/2,nx=dx/d,ny=dy/d;a.x-=nx*o;a.y-=ny*o;b.x+=nx*o;b.y+=ny*o;const rv=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;if(rv<0){const imp=-rv*.6;a.vx-=imp*nx;a.vy-=imp*ny;b.vx+=imp*nx;b.vy+=imp*ny;a.va+=(Math.random()-.5)*.05;b.va+=(Math.random()-.5)*.05}}}
+      cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);bodies.forEach(drawTreat);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- ticker ---------- */
+  const bone=`<svg viewBox="0 0 100 100"><g fill="#F6C945" stroke="#FFF5E6" stroke-width="4">${SHAPES.bone.p.map(d=>`<path d="${d}"/>`).join("")}</g><path d="M24 43h52v14H24z" fill="#F6C945"/></svg>`;
+  const words=["Peanut butter","Pumpkin","Oats","Sweet potato","No xylitol","Baked in small batches","Pup cakes to order"];
+  $("tick").innerHTML=(words.map(w=>`<span>${w}</span>${bone}`).join("")).repeat(2);
+
+  /* ---------- sniff test: dog peeks up ---------- */
+  const pk=$("peek"),pimg=pk.querySelector("img");
+  FX.onScroll.push(()=>{const r=pk.getBoundingClientRect(),p=cl((innerHeight-r.top)/(r.height+innerHeight*.35),0,1);pimg.style.setProperty("--py",`${R?0:(1-p)*70}%`)});
+  $("nose").addEventListener("click",()=>{const b=$("boop");b.classList.remove("on");void b.offsetWidth;b.classList.add("on");pk.animate([{transform:"scale(1)"},{transform:"scale(1.03)"},{transform:"scale(1)"}],{duration:300});});
+
+  /* ---------- menu ---------- */
+  let filter="all";
+  $("chips").innerHTML=FIL.map(([k,l])=>`<button type="button" data-f="${k}" aria-pressed="${k==="all"}">${l}</button>`).join("");
+  $("grid").innerHTML=T.map((t,i)=>`<article class="tc" data-k="${t.k}" style="--bg:${t.bg};--rd:${i*60}" data-reveal><div class="in2">
+    <div class="fa"><div class="art">${treatSVG(t.sh,t.col,t.dk)}</div><h3>${t.n}</h3><div class="tg">${t.tags.map(g=>`<span>${TAGN[g]}</span>`).join("")}</div><div class="acts"><button type="button" class="flipb" aria-label="What's in ${t.n}">What's in it?</button><button type="button" class="add" aria-label="Add ${t.n} to your box">+ Add</button></div></div>
+    <div class="ba"><h4>${t.n}</h4><ul>${t.ing.map(x=>`<li>${x}</li>`).join("")}</ul><p class="why">${t.why}</p><div class="acts"><button type="button" class="flipb">Back</button><button type="button" class="add">+ Add</button></div></div>
+  </div></article>`).join("");
+  $("chips").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;filter=b.dataset.f;[...$("chips").children].forEach(x=>x.setAttribute("aria-pressed",x===b));
+    document.querySelectorAll(".tc").forEach(c=>{const t=TM[c.dataset.k];c.classList.toggle("off",filter!=="all"&&!t.tags.includes(filter));});});
+  $("grid").addEventListener("click",e=>{const c=e.target.closest(".tc");if(!c)return;if(e.target.closest(".flipb")){c.classList.toggle("flip");return;}
+    if(e.target.closest(".add")){addBox(c.dataset.k,e.target.closest(".add"));}});
+
+  /* ---------- treat box ---------- */
+  let cap=12,box=[];
+  function addBox(k,btn){if(box.length>=cap){flash($("copiedBox"),`Your box is full. Switch to a bigger box or remove a bag.`);return}box.push(k);drawBox(true);
+    const ct=$("navct");ct.classList.add("pop");setTimeout(()=>ct.classList.remove("pop"),300);
+    if(btn){const o=btn.textContent;btn.textContent="Added ✓";setTimeout(()=>btn.textContent=o,900);}}
+  function drawBox(anim){
+    const s=$("slots");let h="";for(let i=0;i<cap;i++){const k=box[i];if(k){const t=TM[k];h+=`<div class="slot fill">${treatSVG(t.sh,t.col,t.dk,anim&&i===box.length-1?"":'style="animation:none"')}<button type="button" data-i="${i}" aria-label="Remove ${t.n}">×</button></div>`;}else h+=`<div class="slot"></div>`;}
+    s.innerHTML=h;$("navct").textContent=box.length;
+    const counts={};box.forEach(k=>counts[k]=(counts[k]||0)+1);
+    $("blist").innerHTML=Object.entries(counts).map(([k,n])=>`<li><span>${TM[k].n}</span><span>× ${n}</span></li>`).join("");
+    $("empty").style.display=box.length?"none":"";
+    $("waBox").href=`https://wa.me/?text=${encodeURIComponent(boxMsg())}`;
+  }
+  const boxMsg=()=>{const counts={};box.forEach(k=>counts[k]=(counts[k]||0)+1);return box.length?`Hi Wag & Bake! I'd like a box of ${cap}:\n${Object.entries(counts).map(([k,n])=>`- ${TM[k].n} × ${n}`).join("\n")}${box.length<cap?`\n(${cap-box.length} spots left, surprise me!)`:""}`:`Hi Wag & Bake! I'd like to order a treat box.`};
+  $("slots").addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(!b)return;box.splice(+b.dataset.i,1);drawBox(false);});
+  $("sizes").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cap=+b.dataset.n;[...$("sizes").children].forEach(x=>x.setAttribute("aria-pressed",x===b));box=box.slice(0,cap);drawBox(false);});
+  function flash(el,m){el.textContent=m;clearTimeout(el._t);el._t=setTimeout(()=>el.textContent="",3200);}
+  async function copy(txt,el){try{await navigator.clipboard.writeText(txt);flash(el,"Copied! Paste it into an Instagram DM.");}catch(_){flash(el,"Couldn't copy automatically. Here it is: "+txt.replace(/\n/g," "));}}
+  $("dmBox").onclick=()=>copy(boxMsg(),$("copiedBox"));
+  ["pb","pump","banana"].forEach(k=>box.push(k));drawBox(false);
+
+  /* ---------- pup cake builder ---------- */
+  const OPT={
+    size:[["mini","Mini · 4 in",.84],["classic","Classic · 6 in",1]],
+    base:[["pb","Peanut butter","#D9A066"],["pumpkin","Pumpkin","#E59248"],["banana","Banana oat","#EBCB7A"],["carob","Carob","#7A4A2A"]],
+    frost:[["pink","Pink","#F6B3C6"],["blue","Blue","#9FD0F0"],["yellow","Yellow","#F6D96A"],["white","Vanilla","#FFF8EE"],["green","Mint","#B8E3B0"]],
+    top:[["bone","A bone"],["paw","Paw prints"],["candle","Candle"],["crown","Crown"]]
+  };
+  const S={size:"classic",base:"pb",frost:"pink",top:"bone"};
+  document.querySelectorAll(".sw2").forEach(g=>{const k=g.dataset.k;g.innerHTML=OPT[k].map(o=>`<button type="button" data-v="${o[0]}" aria-pressed="${S[k]===o[0]}">${(k==="base"||k==="frost")?`<i style="--c:${o[2]}"></i>`:""}${o[1]}</button>`).join("");
+    g.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;S[k]=b.dataset.v;[...g.children].forEach(x=>x.setAttribute("aria-pressed",x===b));drawCake(true);});});
+  const dots=$("dots");dots.innerHTML=[[110,226],[150,250],[200,232],[252,252],[292,226],[130,276],[272,278]].map(([x,y],i)=>`<circle cx="${x}" cy="${y}" r="5" fill="${["#E2483D","#22B0BE","#F6C945","#7DBE6A"][i%4]}" stroke="${INK}" stroke-width="2"/>`).join("");
+  const TOP={
+    bone:`<g transform="translate(140 118) rotate(-12 60 40) scale(1.2)">${SHAPES.bone.p.map(d=>`<path d="${d}" fill="#D9913F" stroke="${INK}" stroke-width="3.2"/>`).join("")}<path d="M24 42h52v16H24z" fill="#D9913F"/></g>`,
+    paw:`<g fill="${INK}"><g transform="translate(150 170) scale(1.3)"><use href="#pawI"/></g><g transform="translate(205 176) scale(1.1)"><use href="#pawI"/></g><g transform="translate(240 168) scale(1.2)"><use href="#pawI"/></g></g>`,
+    candle:`<g><rect x="190" y="120" width="20" height="74" rx="5" fill="#fff" stroke="${INK}" stroke-width="3.5"/><path d="M190 140l20-10M190 160l20-10M190 180l20-10" stroke="#E2483D" stroke-width="5"/><path class="flame" d="M200 92c10 12 12 20 0 28c-12-8-10-16 0-28z" fill="#F6C945" stroke="${INK}" stroke-width="3"/></g>`,
+    crown:`<g transform="translate(140 110)"><path d="M10 70l-6-50 30 26 26-40 26 40 30-26-6 50z" fill="#F6C945" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="60" cy="40" r="6" fill="#E2483D" stroke="${INK}" stroke-width="2.5"/></g>`
+  };
+  const fl=document.createElement("style");fl.textContent=".flame{transform-origin:200px 120px;animation:fl .6s ease-in-out infinite alternate}@keyframes fl{to{transform:scale(.9,1.08) rotate(4deg)}}";document.head.appendChild(fl);
+  const pn=$("pupName"),pd=$("pupDate");
+  const d0=new Date();d0.setDate(d0.getDate()+3);const ymd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;pd.min=ymd(d0);pd.value=ymd(d0);
+  function drawCake(bounce){
+    const f=OPT.frost.find(o=>o[0]===S.frost)[2],b=OPT.base.find(o=>o[0]===S.base)[2],sc=OPT.size.find(o=>o[0]===S.size)[2];
+    $("cTop").style.fill=f;$("cDrip").style.fill=f;$("cBase").style.fill=b;
+    const nm=(pn.value.trim()||"Your pup").slice(0,12);const t=$("cName");t.textContent=nm;t.setAttribute("font-size",nm.length>8?26:34);t.setAttribute("fill",S.base==="carob"?"#FFF5E6":INK);
+    $("topper").innerHTML=TOP[S.top];
+    const ck=$("cake");ck.style.transform=`scale(${sc})`;
+    if(bounce&&!R)ck.animate([{transform:`scale(${sc})`},{transform:`scale(${sc*1.06},${sc*.94})`},{transform:`scale(${sc})`}],{duration:380,easing:"cubic-bezier(.3,1.6,.5,1)"});
+    $("waCake").href=`https://wa.me/?text=${encodeURIComponent(cakeMsg())}`;
+  }
+  const lab=(k)=>OPT[k].find(o=>o[0]===S[k])[1];
+  const cakeMsg=()=>`Hi Wag & Bake! I'd like a pup cake:\n- Size: ${lab("size")}\n- Cake: ${lab("base")}\n- Frosting: ${lab("frost")}\n- On top: ${lab("top")}\n- Name: ${pn.value.trim()||"(no name)"}\n- Needed by: ${pd.value?new Date(pd.value+"T00:00:00").toLocaleDateString(undefined,{day:"numeric",month:"short"}):"(date)"}`;
+  pn.addEventListener("input",()=>drawCake(false));pd.addEventListener("change",()=>drawCake(false));
+  $("dmCake").onclick=()=>copy(cakeMsg(),$("copiedCake"));
+  $("waCake").addEventListener("click",()=>confetti());
+  drawCake(false);
+  // confetti
+  const cf=$("conf"),cc=cf.getContext("2d");let parts=[],cfRun=false;
+  function confetti(){if(R)return;const r=cf.getBoundingClientRect();cf.width=r.width;cf.height=r.height;for(let i=0;i<80;i++)parts.push({x:r.width/2,y:r.height*.45,vx:(Math.random()-.5)*12,vy:-Math.random()*12-4,s:6+Math.random()*6,c:["#E2483D","#22B0BE","#F6C945","#7DBE6A","#F6B3C6"][i%5],a:Math.random()*6,life:1});if(!cfRun){cfRun=true;requestAnimationFrame(cfl)}}
+  function cfl(){cc.clearRect(0,0,cf.width,cf.height);parts.forEach(p=>{p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.a+=.2;p.life-=.012;cc.save();cc.globalAlpha=Math.max(p.life,0);cc.translate(p.x,p.y);cc.rotate(p.a);cc.fillStyle=p.c;cc.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cc.restore()});parts=parts.filter(p=>p.life>0&&p.y<cf.height+20);if(parts.length)requestAnimationFrame(cfl);else cfRun=false;}
+
+  /* ---------- party deck ---------- */
+  const PARTY=[["1624976066674-ed900e3f699e","no thoughts, just cake"],["1717333407714-ed02b1f88ec9","make a wish"],["1701722579310-e033b550d55e","the whole gang"],["1616095818012-c386cf5a4c0e","party hat: on"],["1655275184566-ff2c4f08f784","one candle, zero patience"]];
+  const deck=$("deck");PARTY.forEach(([id,c])=>deck.insertAdjacentHTML("afterbegin",`<figure class="pol" style="margin:0"><img loading="lazy" src="${U(id,800)}" alt=""><span>${c}</span></figure>`));
+  let order=[...deck.querySelectorAll(".pol")].reverse();
+  function layDeck(){order.forEach((p,i)=>{p.style.zIndex=10-i;p.style.transform=`translate(${i*8}px,${i*10}px) rotate(${[-3,4,-6,2,7][i%5]*(i?1:.5)}deg)`;p.style.opacity=i>3?0:1;});}
+  layDeck();
+  deck.querySelector("button").addEventListener("click",()=>{const top=order.shift();top.style.transform="translate(-60%,-12%) rotate(-24deg)";top.style.opacity=0;setTimeout(()=>{order.push(top);layDeck();},380);});
+
+  /* ---------- ingredients bowl ---------- */
+  const ING=[["Peanut butter","xylitol-free, always","#E6A55B"],["Pumpkin","for happy tummies","#F2914A"],["Rolled oats","slow energy","#F4E2B8"],["Sweet potato","naturally sweet","#D9703B"],["Banana","a little treat inside the treat","#F6D96A"],["Free-range eggs","to hold it all together","#FFF8EE"]];
+  const POS=[[30,52,-8],[66,48,10],[46,40,4],[24,38,-14],[72,34,12],[50,28,-6]];
+  $("bowl").insertAdjacentHTML("beforeend",ING.map((g,i)=>`<span class="pill" style="--x:${POS[i][0]}%;--y:${POS[i][1]}%;--rot:${POS[i][2]}deg;--c:${g[2]}">${g[0]}</span>`).join(""));
+  $("inlist").innerHTML=ING.map(g=>`<li><b>${g[0]}</b><span>${g[1]}</span></li>`).join("");
+  const pills=[...document.querySelectorAll(".pill")],lis=[...$("inlist").children],ingS=$("inside");
+  function ingUpd(){if(innerWidth<=900||R){pills.forEach(p=>p.classList.add("in3"));lis.forEach(l=>l.classList.add("on"));const r=$("never").getBoundingClientRect();if(r.top<innerHeight*.85)$("never").classList.add("on");return;}
+    const r=ingS.getBoundingClientRect(),p=cl(-r.top/(r.height-innerHeight),0,1);const n=Math.floor(p*7.5);
+    pills.forEach((x,i)=>x.classList.toggle("in3",i<n));lis.forEach((x,i)=>x.classList.toggle("on",i<n));$("never").classList.toggle("on",n>6);}
+  FX.onScroll.push(ingUpd);addEventListener("resize",ingUpd);ingUpd();
+
+  /* ---------- oven line ---------- */
+  const LINE=[["1691371388764-963a36574ad2","tray one"],["1790884528551-6f1a32698bf3","in the oven"],["1676440150226-62a0b20105c7","the classic bone"],["1747577672101-f4cd34bcedd4","incoming!"],["1568640347023-a616a30bc3bd","cooling off"],["1564988208558-9270de7c5848","the good stuff"],["1747577672081-991640ad50ce","quality control"],["1691371388787-eab02c01be7c","ready to bag"]];
+  $("line").innerHTML=(LINE.map(([id,c],i)=>`<figure class="pc" style="margin:18px 0 0;--a:${[-3,2,-1,3,-2,1,-3,2][i]}deg"><img loading="lazy" src="${U(id,600)}" alt=""><span>${c}</span></figure>`).join("")).repeat(2);
+  let lastY=scrollY,vel=0;const pcs=[...document.querySelectorAll(".pc")];
+  FX.onScroll.push(y=>{vel=cl((y-lastY)*.6,-10,10);lastY=y;if(!R)pcs.forEach((p,i)=>p.style.transform=`rotate(${[-3,2,-1,3,-2,1,-3,2][i%8]+vel}deg)`);});
+
+  /* ---------- testers ---------- */
+  const DOGS=[["1561037404-61cd46aa615b","Pepper","#F6B3C6","Peanut Butter Bones"],["1537151608828-ea2b11777ee8","Biscuit","#F2914A","Pumpkin Paws"],["1647179924662-13b7bc73a886","Luna","#F6C945","Chicken Jerky Strips"],["1517423440428-a5a00ad493e8","Mochi","#E2483D","Salmon Bites"],["1630361102412-bd7ed8710307","Teddy","#F6C945","Yogurt Drops"]];
+  $("testers").innerHTML=DOGS.map(([id,n,bg,fav])=>`<div class="dog" style="--bg:${bg}" data-reveal><img loading="lazy" src="${U(id,600)}" alt="${n}, a taste tester"><span class="nm">${n}</span><span class="ok">Approved!</span><button type="button" aria-label="${n}'s verdict" data-fav="${fav}"></button></div>`).join("");
+  $("testers").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const d=b.parentElement;d.classList.remove("yes");void d.offsetWidth;d.classList.add("yes");d.querySelector(".ok").textContent="Loves the "+b.dataset.fav.split(" ")[0].toLowerCase()+"!";});
+
+  /* ---------- CTA paws ---------- */
+  const cp=$("ctaPaws");
+  cp.innerHTML=Array.from({length:18},(_,i)=>`<svg x="${(i*53)%96}%" y="${(i*37)%88}%" width="44" height="44" viewBox="0 0 24 24" style="color:#06363b"><g transform="rotate(${(i*47)%360} 12 12)"><use href="#pawI"/></g></svg>`).join("");
+})();
+</script>
+</body>
+</html>
