@@ -156,9 +156,9 @@ h2.h em{font-style:normal;color:var(--pb)}
 .stage{position:relative;background:var(--sky);border:3px solid var(--ink);border-radius:32px;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden;box-shadow:12px 14px 0 var(--ink)}
 .stage::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 110%,rgba(255,255,255,.7),transparent 55%)}
 .stage svg{width:86%;position:relative;z-index:1}
-#cake{transition:transform .5s cubic-bezier(.3,1.5,.5,1);transform-origin:200px 320px}
-#cake .fr{transition:fill .4s}
-#cake .bs{transition:fill .4s}
+#cakeG{transition:transform .5s cubic-bezier(.3,1.5,.5,1);transform-origin:200px 320px}
+#cakeG .fr{transition:fill .4s}
+#cakeG .bs{transition:fill .4s}
 .conf{position:absolute;inset:0;pointer-events:none;z-index:2}
 .opts{display:grid;gap:22px}
 .opt b{display:block;font:800 18px var(--display);letter-spacing:-.02em;margin-bottom:8px}
@@ -318,7 +318,7 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
     <div class="stage" data-reveal="scale">
       <svg viewBox="0 0 400 400" aria-label="Preview of your pup cake" role="img">
         <ellipse cx="200" cy="338" rx="168" ry="26" fill="#fff" stroke="#2B1B12" stroke-width="4"/>
-        <g id="cake">
+        <g id="cakeG">
           <path class="bs" id="cBase" d="M80 200v110c0 16 54 28 120 28s120-12 120-28V200" stroke="#2B1B12" stroke-width="4" fill="#D9A066"/>
           <path d="M80 262c0 14 54 26 120 26s120-12 120-26" stroke="#2B1B12" stroke-width="3" fill="none" opacity=".35"/>
           <ellipse class="fr" id="cTop" cx="200" cy="200" rx="120" ry="30" fill="#F6B3C6" stroke="#2B1B12" stroke-width="4"/>
@@ -563,7 +563,7 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
     $("cTop").style.fill=f;$("cDrip").style.fill=f;$("cBase").style.fill=b;
     const nm=(pn.value.trim()||"Your pup").slice(0,12);const t=$("cName");t.textContent=nm;t.setAttribute("font-size",nm.length>8?26:34);t.setAttribute("fill",S.base==="carob"?"#FFF5E6":INK);
     $("topper").innerHTML=TOP[S.top];
-    const ck=$("cake");ck.style.transform=`scale(${sc})`;
+    const ck=$("cakeG");ck.style.transform=`scale(${sc})`;
     if(bounce&&!R)ck.animate([{transform:`scale(${sc})`},{transform:`scale(${sc*1.06},${sc*.94})`},{transform:`scale(${sc})`}],{duration:380,easing:"cubic-bezier(.3,1.6,.5,1)"});
     $("waCake").href=`https://wa.me/?text=${encodeURIComponent(cakeMsg())}`;
   }
