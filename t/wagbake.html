@@ -60,7 +60,7 @@ h2.h em{font-style:normal;color:var(--pb)}
 /* hero */
 .hero{position:relative;min-height:100vh;min-height:100svh;padding-top:110px;padding-bottom:40px;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,60px);align-items:center;min-height:calc(100svh - 150px);position:relative;z-index:2}
-.hero h1{font:800 clamp(56px,8.6vw,138px)/.86 var(--display);letter-spacing:-.05em;margin:16px 0 0}
+.hero h1{font:800 clamp(54px,7vw,116px)/.88 var(--display);letter-spacing:-.05em;margin:16px 0 0}
 .hero h1 .sit{display:inline-block;color:var(--pb);transform-origin:50% 90%;animation:sit 2.8s cubic-bezier(.5,0,.3,1) infinite}
 @keyframes sit{0%,60%,100%{transform:none}70%{transform:scaleY(.82) scaleX(1.08)}80%{transform:scaleY(1.06) translateY(-6px)}}
 .hero .sub{font-size:clamp(17px,1.5vw,20px);max-width:38ch;margin:22px 0 0;color:#5a4334}
@@ -363,7 +363,7 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
     </div>
     <div>
       <span class="kick">What's inside</span>
-      <h2 class="h">Real food. <em>Nothing weird.</em></h2>
+      <h2 class="h" style="font-size:clamp(40px,5.2vw,80px)">Real food. <em>Nothing weird.</em></h2>
       <ul class="inlist" id="inlist"></ul>
       <div class="never" id="never"><b>Never in our kitchen:</b><s>xylitol</s><s>chocolate</s><s>raisins</s><s>onion</s><s>fake colours</s></div>
     </div>
@@ -436,9 +436,9 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
   };
   const SPECK=[[34,46],[62,40],[48,56],[70,58],[40,36],[56,62]];
   function treatSVG(k,col,dk,ex=""){
-    const s=SHAPES[k];let h=`<svg viewBox="0 0 100 100" aria-hidden="true" ${ex}>`;
-    h+=s.p.map(d=>`<path d="${d}" fill="${col}" stroke="${INK}" stroke-width="3.2" ${s.ev?'fill-rule="evenodd"':""} stroke-linejoin="round"/>`).join("");
-    if(k==="bone")h+=`<path d="M24 42h52v16H24z" fill="${col}"/>`;
+    const s=SHAPES[k];let h=`<svg viewBox="0 0 100 100" aria-hidden="true" ${ex}>`;const fr=s.ev?'fill-rule="evenodd"':"";
+    h+=s.p.map(d=>`<path d="${d}" fill="${INK}" stroke="${INK}" stroke-width="6.4" ${fr} stroke-linejoin="round"/>`).join("");
+    h+=s.p.map(d=>`<path d="${d}" fill="${col}" ${fr}/>`).join("");
     h+=s.d.map(d=>/a/.test(d)&&!/q|c/.test(d)?`<path d="${d}" fill="${dk}"/>`:`<path d="${d}" stroke="${dk}" stroke-width="4" fill="none" stroke-linecap="round"/>`).join("");
     if(k!=="paw"&&k!=="drop")h+=SPECK.slice(0,4).map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.2" fill="${dk}" opacity=".7"/>`).join("");
     h+=`<ellipse cx="38" cy="34" rx="10" ry="4" fill="#fff" opacity=".35" transform="rotate(-20 38 34)"/></svg>`;return h;
@@ -454,7 +454,7 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
     {k:"chick",n:"Chicken Jerky Strips",sh:"strip",col:"#A9542B",dk:"#5E2810",bg:"#F6D2C0",tags:["chewy","grainfree"],ing:["Chicken breast, oven-dried","Nothing added"],why:"High-protein training reward."},
     {k:"apple",n:"Apple & Oat Stars",sh:"star",col:"#E9B84C",dk:"#9A6618",bg:"#D9F0C4",tags:["crunchy","puppy","lowfat"],ing:["Apple (no seeds or core)","Rolled oats","Egg"],why:"Light, crunchy and a little bit fruity."},
     {k:"salmon",n:"Salmon Bites",sh:"fish",col:"#F39A86",dk:"#A6493A",bg:"#CDE9F6",tags:["chewy","grainfree"],ing:["Salmon","Potato","Egg","Parsley"],why:"Omega-3 for shiny coats."},
-    {k:"yog",n:"Yogurt Drops",sh:"drop",col:"#FFF4E8",dk:"#C9A88A",bg:"#F9D2DE",tags:["puppy","grainfree"],ing:["Plain yogurt","Tapioca","Coconut oil"],why:"Frozen-friendly summer treat."}
+    {k:"yog",n:"Yogurt Drops",sh:"drop",col:"#FFE6EE",dk:"#C98AA0",bg:"#F9D2DE",tags:["puppy","grainfree"],ing:["Plain yogurt","Tapioca","Coconut oil"],why:"Frozen-friendly summer treat."}
   ];
   const TM=Object.fromEntries(T.map(t=>[t.k,t]));
   const FIL=[["all","All treats"],["puppy","Puppy safe"],["grainfree","Grain-free"],["lowfat","Low-fat"],["chewy","Chewy"],["crunchy","Crunchy"]];
@@ -478,8 +478,7 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
   hero.addEventListener("pointerdown",e=>{if(e.target.closest("a,button"))return;if(!run)startToss();const r=hero.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;toss(x,y,(Math.random()-.5)*8,-6-Math.random()*5);});
   function drawTreat(b){const p=path2(b.t.sh);const s=b.r*2/100;cx.save();cx.translate(b.x,b.y);cx.rotate(b.a);cx.scale(s,s);cx.translate(-50,-50);cx.globalAlpha=b.life;
     cx.save();cx.translate(5,7);cx.fillStyle="rgba(43,27,18,.85)";p.p.forEach(q=>cx.fill(q,p.ev?"evenodd":"nonzero"));cx.restore();
-    cx.fillStyle=b.t.col;cx.strokeStyle=INK;cx.lineWidth=3.4;cx.lineJoin="round";p.p.forEach(q=>{cx.fill(q,p.ev?"evenodd":"nonzero");cx.stroke(q)});
-    if(b.t.sh==="bone"){cx.fillRect(24,42,52,16);}
+    cx.strokeStyle=INK;cx.lineWidth=6.8;cx.lineJoin="round";p.p.forEach(q=>cx.stroke(q));cx.fillStyle=b.t.col;p.p.forEach(q=>cx.fill(q,p.ev?"evenodd":"nonzero"));
     p.d.forEach(o=>{if(o.line){cx.strokeStyle=b.t.dk;cx.lineWidth=4;cx.lineCap="round";cx.stroke(o.p)}else{cx.fillStyle=b.t.dk;cx.fill(o.p)}});
     if(b.t.sh!=="paw"&&b.t.sh!=="drop"){cx.fillStyle=b.t.dk;SPECK.slice(0,4).forEach(([x,y])=>{cx.beginPath();cx.arc(x,y,2.2,0,7);cx.fill()})}
     cx.restore();}
@@ -497,7 +496,7 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
   }
 
   /* ---------- ticker ---------- */
-  const bone=`<svg viewBox="0 0 100 100"><g fill="#F6C945" stroke="#FFF5E6" stroke-width="4">${SHAPES.bone.p.map(d=>`<path d="${d}"/>`).join("")}</g><path d="M24 43h52v14H24z" fill="#F6C945"/></svg>`;
+  const bone=`<svg viewBox="0 0 100 100"><g fill="#FFF5E6" stroke="#FFF5E6" stroke-width="8" stroke-linejoin="round">${SHAPES.bone.p.map(d=>`<path d="${d}"/>`).join("")}</g><g fill="#F6C945">${SHAPES.bone.p.map(d=>`<path d="${d}"/>`).join("")}</g></svg>`;
   const words=["Peanut butter","Pumpkin","Oats","Sweet potato","No xylitol","Baked in small batches","Pup cakes to order"];
   $("tick").innerHTML=(words.map(w=>`<span>${w}</span>${bone}`).join("")).repeat(2);
 
@@ -551,7 +550,7 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
     g.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;S[k]=b.dataset.v;[...g.children].forEach(x=>x.setAttribute("aria-pressed",x===b));drawCake(true);});});
   const dots=$("dots");dots.innerHTML=[[110,226],[150,250],[200,232],[252,252],[292,226],[130,276],[272,278]].map(([x,y],i)=>`<circle cx="${x}" cy="${y}" r="5" fill="${["#E2483D","#22B0BE","#F6C945","#7DBE6A"][i%4]}" stroke="${INK}" stroke-width="2"/>`).join("");
   const TOP={
-    bone:`<g transform="translate(140 118) rotate(-12 60 40) scale(1.2)">${SHAPES.bone.p.map(d=>`<path d="${d}" fill="#D9913F" stroke="${INK}" stroke-width="3.2"/>`).join("")}<path d="M24 42h52v16H24z" fill="#D9913F"/></g>`,
+    bone:`<g transform="translate(140 118) rotate(-12 60 40) scale(1.2)">${SHAPES.bone.p.map(d=>`<path d="${d}" fill="${INK}" stroke="${INK}" stroke-width="6.4" stroke-linejoin="round"/>`).join("")}${SHAPES.bone.p.map(d=>`<path d="${d}" fill="#D9913F"/>`).join("")}</g>`,
     paw:`<g fill="${INK}"><g transform="translate(150 170) scale(1.3)"><use href="#pawI"/></g><g transform="translate(205 176) scale(1.1)"><use href="#pawI"/></g><g transform="translate(240 168) scale(1.2)"><use href="#pawI"/></g></g>`,
     candle:`<g><rect x="190" y="120" width="20" height="74" rx="5" fill="#fff" stroke="${INK}" stroke-width="3.5"/><path d="M190 140l20-10M190 160l20-10M190 180l20-10" stroke="#E2483D" stroke-width="5"/><path class="flame" d="M200 92c10 12 12 20 0 28c-12-8-10-16 0-28z" fill="#F6C945" stroke="${INK}" stroke-width="3"/></g>`,
     crown:`<g transform="translate(140 110)"><path d="M10 70l-6-50 30 26 26-40 26 40 30-26-6 50z" fill="#F6C945" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="60" cy="40" r="6" fill="#E2483D" stroke="${INK}" stroke-width="2.5"/></g>`
@@ -602,7 +601,8 @@ footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;m
   const LINE=[["1691371388764-963a36574ad2","tray one"],["1790884528551-6f1a32698bf3","in the oven"],["1676440150226-62a0b20105c7","the classic bone"],["1747577672101-f4cd34bcedd4","incoming!"],["1568640347023-a616a30bc3bd","cooling off"],["1564988208558-9270de7c5848","the good stuff"],["1747577672081-991640ad50ce","quality control"],["1691371388787-eab02c01be7c","ready to bag"]];
   $("line").innerHTML=(LINE.map(([id,c],i)=>`<figure class="pc" style="margin:18px 0 0;--a:${[-3,2,-1,3,-2,1,-3,2][i]}deg"><img loading="lazy" src="${U(id,600)}" alt=""><span>${c}</span></figure>`).join("")).repeat(2);
   let lastY=scrollY,vel=0;const pcs=[...document.querySelectorAll(".pc")];
-  FX.onScroll.push(y=>{vel=cl((y-lastY)*.6,-10,10);lastY=y;if(!R)pcs.forEach((p,i)=>p.style.transform=`rotate(${[-3,2,-1,3,-2,1,-3,2][i%8]+vel}deg)`);});
+  const tilt=v=>pcs.forEach((p,i)=>p.style.transform=`rotate(${[-3,2,-1,3,-2,1,-3,2][i%8]+v}deg)`);let tT;
+  FX.onScroll.push(y=>{if(R)return;vel=cl((y-lastY)*.12,-5,5);lastY=y;tilt(vel);clearTimeout(tT);tT=setTimeout(()=>tilt(0),140);});
 
   /* ---------- testers ---------- */
   const DOGS=[["1561037404-61cd46aa615b","Pepper","#F6B3C6","Peanut Butter Bones"],["1537151608828-ea2b11777ee8","Biscuit","#F2914A","Pumpkin Paws"],["1647179924662-13b7bc73a886","Luna","#F6C945","Chicken Jerky Strips"],["1517423440428-a5a00ad493e8","Mochi","#E2483D","Salmon Bites"],["1630361102412-bd7ed8710307","Teddy","#F6C945","Yogurt Drops"]];
