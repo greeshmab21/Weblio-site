@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>akshita bakes</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="akshita bakes: cookies, cakes, brownies and savoury bakes by an 18-year-old self-taught baker in Bangalore. DM for orders and collabs.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+:root{
+  --paper:#FBF7EE; --line:#C9D6F2; --margin:#F2A0A0; --ink:#24308A; --ink2:#1A1F4D; --tomato:#E5533D; --butter:#FFD86B; --mint:#BFE3C8; --sky:#BCD7FF; --kraft:#D9B98C;
+  --serif:"Instrument Serif",Georgia,serif; --hand:"Caveat","Segoe Print",cursive; --sans:"Space Grotesk",system-ui,sans-serif;
+  --gl:max(18px,env(safe-area-inset-left,0px)); --gr:max(18px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink2);font:16px/1.6 var(--sans);overflow-x:hidden;
+  background-image:linear-gradient(90deg,transparent calc(var(--gl) + 38px),var(--margin) calc(var(--gl) + 38px),var(--margin) calc(var(--gl) + 40px),transparent calc(var(--gl) + 40px)),repeating-linear-gradient(180deg,transparent 0 33px,var(--line) 33px 34px)}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-left:calc(var(--gl) + 56px);padding-right:var(--gr)}
+.hand{font-family:var(--hand);font-weight:700}
+.tape{position:absolute;width:110px;height:30px;background:rgba(255,216,107,.65);box-shadow:0 1px 2px rgba(0,0,0,.08);z-index:3}
+.h2{font:400 clamp(46px,7vw,104px)/.92 var(--serif);letter-spacing:-.02em;margin:0;color:var(--ink2)}
+.h2 i{color:var(--tomato)}
+.kick{font:700 30px var(--hand);color:var(--ink);transform:rotate(-2deg);display:inline-block}
+.sec{padding-block:clamp(80px,11vw,150px);position:relative}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;border:2px solid var(--ink2);font:700 15px var(--sans);text-decoration:none;cursor:pointer;background:#fff;transition:transform .25s,box-shadow .25s;box-shadow:3px 4px 0 var(--ink2)}
+.btn:hover{transform:translate(-1px,-2px);box-shadow:5px 6px 0 var(--ink2)}
+.btn:active{transform:translate(2px,3px);box-shadow:0 0 0 var(--ink2)}
+.btn.t{background:var(--tomato);color:#fff}
+.btn.b{background:var(--butter)}
+.rv{opacity:0;transform:translateY(26px) rotate(var(--r,0deg));transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:rotate(var(--r,0deg))}
+.scrib{position:relative;white-space:nowrap}
+.scrib svg{position:absolute;left:-4%;bottom:-.18em;width:108%;height:.4em;overflow:visible}
+.scrib path{fill:none;stroke:var(--tomato);stroke-width:4;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 1.2s .4s cubic-bezier(.6,0,.3,1)}
+.in .scrib path,.scrib.in path{stroke-dashoffset:0}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50;padding:14px var(--gr) 0 var(--gl);pointer-events:none}
+.nav .bar{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:10px;pointer-events:auto;background:rgba(251,247,238,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:2px solid var(--ink2);border-radius:999px;padding:6px 6px 6px 18px;box-shadow:3px 4px 0 var(--ink2)}
+.logo{font:700 30px/1 var(--hand);text-decoration:none;color:var(--ink)}
+.logo span{color:var(--tomato)}
+.nav ul{display:flex;list-style:none;margin:0;padding:0;gap:2px}
+.nav ul a{display:block;padding:8px 13px;border-radius:999px;text-decoration:none;font-weight:500;font-size:14.5px}
+.nav ul a:hover{background:var(--butter)}
+.nav .btn{min-height:42px;padding:0 16px;font-size:14px;box-shadow:none}
+
+/* hero */
+.hero{min-height:100vh;min-height:100svh;display:grid;align-items:center;padding-top:110px;padding-bottom:60px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center;width:100%}
+.hello{font:700 34px var(--hand);color:var(--tomato);transform:rotate(-3deg);display:inline-block}
+.hero h1{font:400 clamp(70px,11.5vw,170px)/.82 var(--serif);letter-spacing:-.03em;margin:8px 0 0;color:var(--ink2)}
+.hero h1 i{color:var(--ink);display:block;padding-left:.6em}
+.hero h1 .l{display:inline-block;opacity:0;transform:translateY(.4em) rotate(8deg);animation:let .7s cubic-bezier(.2,.9,.3,1.3) forwards}
+@keyframes let{to{opacity:1;transform:none}}
+.bio{margin-top:26px;font-size:18px;max-width:40ch}
+.bio b{background:linear-gradient(transparent 55%,var(--butter) 55%)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.chip{font:600 13px var(--sans);padding:6px 12px;border:1.5px solid var(--ink2);border-radius:999px;background:#fff}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.polar{position:relative;justify-self:center;width:min(440px,90%);background:#fff;padding:18px 18px 70px;box-shadow:0 20px 40px -18px rgba(26,31,77,.45);transform:rotate(4deg);transition:transform .4s}
+.polar .tape{top:-14px;left:50%;margin-left:-55px;transform:rotate(-4deg)}
+.plate{position:relative;aspect-ratio:1;background:radial-gradient(circle at 50% 45%,#fff 0 40%,#F3EEE4 41% 60%,#E9E1D2 61%);border-radius:4px;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.half{position:absolute;inset:8%;transition:transform .7s cubic-bezier(.3,1.4,.4,1)}
+.half img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 14px 16px rgba(60,30,10,.3))}
+.half.a{clip-path:polygon(0 0,52% 0,46% 22%,55% 38%,44% 55%,53% 72%,47% 100%,0 100%)}
+.half.b{clip-path:polygon(52% 0,100% 0,100% 100%,47% 100%,53% 72%,44% 55%,55% 38%,46% 22%)}
+.plate.broke .half.a{transform:translate(-9%,2%) rotate(-10deg)}
+.plate.broke .half.b{transform:translate(9%,-2%) rotate(9deg)}
+.goo{position:absolute;left:44%;top:20%;width:12%;height:60%;border-radius:40%;background:linear-gradient(#5b2e14,#3a1a0a);opacity:0;transition:opacity .4s .15s;filter:blur(1px)}
+.plate.broke .goo{opacity:.95}
+.crumbs{position:absolute;inset:0;pointer-events:none}
+.crumbs i{position:absolute;width:8px;height:7px;border-radius:40%;background:#B87A43;left:50%;top:50%;opacity:0}
+.plate.broke .crumbs i{animation:crumb .9s forwards}
+@keyframes crumb{0%{opacity:1;transform:translate(0,0)}100%{opacity:1;transform:translate(var(--x),var(--y)) rotate(200deg)}}
+.polar .cap{position:absolute;left:0;right:0;bottom:16px;text-align:center;font:700 26px var(--hand);color:var(--ink)}
+.arrow{position:absolute;font:700 26px/1 var(--hand);color:var(--tomato);pointer-events:none}
+.arrow svg{width:70px;height:46px;stroke:var(--tomato);fill:none;stroke-width:2.5;stroke-linecap:round;display:block}
+.a1{right:-30px;top:-46px;transform:rotate(6deg)}
+.sticker{position:absolute;left:-36px;bottom:30px;width:118px;height:118px;border-radius:50%;background:var(--mint);border:2px solid var(--ink2);display:grid;place-items:center;text-align:center;font:700 22px/1 var(--hand);transform:rotate(-12deg);z-index:4}
+.sticker b{display:block;font:400 30px var(--serif)}
+
+/* marquee */
+.tick{border-block:2px solid var(--ink2);background:var(--butter);overflow:hidden;transform:rotate(-1.2deg);margin:0 -20px}
+.tick .row{display:flex;gap:30px;width:max-content;padding:12px 0;font:400 34px var(--serif);font-style:italic;animation:tk 34s linear infinite;align-items:center}
+.tick .row span:nth-child(even){font:700 30px var(--hand);color:var(--tomato);font-style:normal}
+@keyframes tk{to{transform:translateX(-50%)}}
+
+/* about / stats */
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,90px);align-items:center}
+.note{position:relative;background:#FFF9C9;padding:30px 30px 34px;box-shadow:0 14px 30px -18px rgba(26,31,77,.45);transform:rotate(-2deg);font:700 clamp(26px,2.6vw,32px)/1.25 var(--hand);color:var(--ink)}
+.note .tape{top:-14px;left:30px;transform:rotate(-6deg);background:rgba(191,227,200,.8)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.stat{border:2px solid var(--ink2);border-radius:18px;background:#fff;padding:16px;box-shadow:3px 4px 0 var(--ink2)}
+.stat b{display:block;font:400 46px/1 var(--serif)}
+.stat span{font-size:13.5px}
+
+/* menu tabs (her highlights) */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.tabs button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;font:600 14px var(--sans)}
+.tabs button i{width:74px;height:74px;border-radius:50%;border:2.5px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:30px;background:#fff;transition:border-color .2s,transform .2s}
+.tabs button[aria-selected="true"] i{border-color:var(--tomato);transform:scale(1.06);box-shadow:0 0 0 3px #fff,0 0 0 5px var(--tomato)}
+.tabs button:focus-visible i{outline:3px solid var(--ink)}
+.panel{margin-top:36px;min-height:300px}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ck{position:relative;background:#fff;border:2px solid var(--ink2);border-radius:22px;padding:16px 16px 18px;box-shadow:4px 5px 0 var(--ink2);transform:rotate(var(--r));transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.ck:hover{transform:rotate(0deg) translateY(-6px)}
+.ck .im{aspect-ratio:1;display:grid;place-items:center;background:radial-gradient(circle,var(--bg) 0 62%,transparent 63%)}
+.ck .im img{width:84%;filter:drop-shadow(0 10px 10px rgba(60,30,10,.25));transition:transform .6s cubic-bezier(.3,1.5,.5,1)}
+.ck:hover .im img{transform:rotate(25deg) scale(1.05)}
+.ck h3{font:400 28px/1 var(--serif);margin:10px 0 4px}
+.ck p{margin:0;font-size:13.5px;color:#4a4f7a}
+.ck .tag{position:absolute;top:10px;right:12px;font:700 20px var(--hand);color:var(--tomato);transform:rotate(6deg)}
+.ck .add{all:unset;cursor:pointer;margin-top:12px;display:inline-block;padding:7px 14px;border-radius:999px;background:var(--ink2);color:#fff;font-weight:700;font-size:13.5px}
+.ck .add:focus-visible{outline:3px solid var(--tomato);outline-offset:2px}
+.soon{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;align-items:center}
+.soon .note{transform:rotate(1.5deg)}
+.doodle{width:100%;max-width:380px;justify-self:center}
+.doodle path,.doodle circle,.doodle rect,.doodle ellipse{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+
+/* tin builder */
+.tinsec{background:var(--sky);border-block:2px solid var(--ink2)}
+.tinwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,70px);align-items:center;margin-top:40px}
+.tin{position:relative;aspect-ratio:1;max-width:460px;width:100%;justify-self:center;border-radius:50%;background:radial-gradient(circle,#F7F1E6 0 58%,#E4D6BE 59% 62%,var(--tomato) 63% 100%);border:3px solid var(--ink2);box-shadow:8px 10px 0 var(--ink2)}
+.tin .slot{position:absolute;width:26%;aspect-ratio:1;transform:translate(-50%,-50%)}
+.tin .slot img{width:100%;filter:drop-shadow(0 6px 6px rgba(60,30,10,.3));animation:plop .55s cubic-bezier(.3,1.6,.5,1)}
+.tin .slot button{all:unset;position:absolute;inset:0;cursor:pointer}
+@keyframes plop{from{transform:translateY(-140px) rotate(-60deg);opacity:0}to{transform:none;opacity:1}}
+.tin .lbl{position:absolute;left:50%;top:-22px;transform:translateX(-50%) rotate(-3deg);background:#fff;border:2px solid var(--ink2);padding:4px 16px;font:700 24px var(--hand);white-space:nowrap}
+.sizes{display:flex;gap:8px;margin-top:18px}
+.sizes button{all:unset;cursor:pointer;padding:9px 16px;border:2px solid var(--ink2);border-radius:999px;background:#fff;font-weight:700;font-size:14px}
+.sizes button[aria-pressed="true"]{background:var(--ink2);color:#fff}
+.picks{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.picks button{all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;background:#fff;border:2px solid var(--ink2);border-radius:999px;font-weight:600;font-size:13.5px;transition:transform .2s}
+.picks button:hover{transform:translateY(-2px)}
+.picks img{width:30px;height:30px}
+.msg{margin-top:18px;background:#fff;border:2px dashed var(--ink2);border-radius:16px;padding:14px 16px;font:700 22px/1.25 var(--hand);color:var(--ink);min-height:70px;white-space:pre-line}
+.ok{font-weight:700;font-size:14px;min-height:1.4em;margin-top:8px}
+
+/* test kitchen */
+.tk{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+.vote{position:relative;background:#fff;border:2px solid var(--ink2);border-radius:20px;padding:20px;box-shadow:4px 5px 0 var(--ink2);transform:rotate(var(--r))}
+.vote h3{font:400 30px/1 var(--serif);margin:0}
+.vote p{margin:8px 0 14px;font-size:14px}
+.vote button{all:unset;cursor:pointer;padding:9px 16px;border-radius:999px;border:2px solid var(--ink2);font-weight:700;font-size:14px;background:var(--butter)}
+.vote .bar2{height:12px;border-radius:9px;background:#EEF0FA;border:1.5px solid var(--ink2);margin-top:14px;overflow:hidden}
+.vote .bar2 i{display:block;height:100%;width:var(--w,0%);background:var(--tomato);transition:width .7s cubic-bezier(.3,1.3,.5,1)}
+.vote .pc{font:700 22px var(--hand);margin-top:6px;min-height:1.2em}
+.vote.voted button{background:var(--mint)}
+
+/* feedback screenshots */
+.fb{display:flex;gap:22px;margin-top:40px;overflow-x:auto;padding:10px 4px 30px;scroll-snap-type:x mandatory}
+.ph{flex:none;width:220px;aspect-ratio:9/17;border:3px solid var(--ink2);border-radius:32px;background:#fff;padding:16px 12px;scroll-snap-align:start;transform:rotate(var(--r));box-shadow:4px 6px 0 var(--ink2);display:flex;flex-direction:column;gap:10px}
+.ph .top{width:60px;height:8px;border-radius:9px;background:var(--ink2);margin:0 auto 6px}
+.bub{background:#EEF0FA;border-radius:16px 16px 16px 4px;padding:10px 12px;font-size:13px;color:#5c6190}
+.bub.me{background:var(--sky);border-radius:16px 16px 4px 16px;align-self:flex-end}
+.bub.ghost{background:repeating-linear-gradient(90deg,#E3E6F5 0 60%,transparent 60% 100%);height:12px;padding:0;border-radius:6px;width:80%}
+
+/* classes + collabs */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}
+.card{position:relative;border:2px solid var(--ink2);border-radius:26px;padding:clamp(24px,3vw,36px);box-shadow:5px 6px 0 var(--ink2);background:#fff;overflow:hidden}
+.card.y{background:var(--butter)}.card.m{background:var(--mint)}
+.card h3{font:400 clamp(36px,4vw,54px)/.95 var(--serif);margin:0}
+.card ul{padding-left:20px;margin:16px 0 22px}
+.card .big{position:absolute;right:-10px;bottom:-30px;font-size:130px;opacity:.18;transform:rotate(-12deg)}
+
+/* footer */
+footer{border-top:2px solid var(--ink2);background:var(--ink2);color:var(--paper);padding:70px 0 calc(90px + env(safe-area-inset-bottom,0px));overflow:hidden}
+footer .wrap{padding-left:var(--gl)}
+footer .wm{font:400 clamp(70px,15vw,220px)/.8 var(--serif);font-style:italic;letter-spacing:-.03em;color:#36408f;white-space:nowrap}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;margin-top:30px;font-size:14px;color:#c6cbef}
+footer .row a{color:var(--butter)}
+.smp{font-size:12.5px;color:#8f95c7;margin-top:18px;max-width:70ch}
+.float{position:fixed;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:62px;height:62px;border-radius:50%;background:var(--tomato);border:2px solid var(--ink2);box-shadow:3px 4px 0 var(--ink2);display:grid;place-items:center;color:#fff;text-decoration:none;font:700 13px/1 var(--sans);text-align:center}
+.float span{display:block;font-size:22px}
+
+@media (max-width:960px){.nav ul{display:none}.hero .wrap,.about,.tinwrap,.soon{grid-template-columns:1fr}.cgrid{grid-template-columns:repeat(2,1fr)}.tk{grid-template-columns:1fr}.duo{grid-template-columns:1fr}.polar{margin-top:20px}.sticker{left:-10px}.a1{right:0}}
+@media (max-width:560px){body{background-image:repeating-linear-gradient(180deg,transparent 0 33px,var(--line) 33px 34px)}.wrap{padding-left:var(--gl)}.cgrid{gap:12px}.ck{padding:12px;border-radius:18px}.ck h3{font-size:22px}.ck p{display:none}.ck .tag{font-size:16px}.stats{grid-template-columns:1fr 1fr 1fr;gap:8px}.stat{padding:10px}.stat b{font-size:32px}.tabs button i{width:60px;height:60px;font-size:24px}.logo{font-size:26px}.nav .btn{padding:0 12px}.sticker{width:96px;height:96px;font-size:18px}.sticker b{font-size:24px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.hero h1 .l{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="bar">
+  <a class="logo" href="#top">akshita<span>.</span>bakes</a>
+  <ul><li><a href="#menu">menu</a></li><li><a href="#tin">cookie tin</a></li><li><a href="#test">test kitchen</a></li><li><a href="#classes">classes</a></li><li><a href="#collabs">collabs</a></li></ul>
+  <a class="btn t" href="https://ig.me/m/akshita_bakes" target="_blank" rel="noopener">DM to order</a>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="hello">hi, i'm akshita 👩‍🍳</span>
+      <h1 id="ttl" aria-label="akshita bakes"><span data-w="akshita"></span><i data-w="bakes."></i></h1>
+      <p class="bio">An <b>18-year-old self-taught baker</b> in Bangalore. Cookies, cakes, brownies and the odd savoury bake, made in small batches and sold by DM.</p>
+      <div class="chips"><span class="chip">📍 Bangalore</span><span class="chip">🎓 step blr'29</span><span class="chip">🍪 orders + collabs open</span></div>
+      <div class="cta"><a class="btn t" href="#tin">Fill a cookie tin</a><a class="btn" href="https://www.instagram.com/akshita_bakes/" target="_blank" rel="noopener">@akshita_bakes ↗</a></div>
+    </div>
+    <div class="polar">
+      <div class="tape"></div>
+      <div class="arrow a1">tap to break it<svg viewBox="0 0 70 46"><path d="M8 6c26 2 44 14 50 34M58 40l-12-4M58 40l3-12"/></svg></div>
+      <button class="plate" id="plate" aria-label="Break the cookie in half" style="border:0;padding:0;display:block;width:100%">
+        
+        <div class="half a"><img src="cookies/lava.webp" alt=""></div>
+        <div class="half b"><img src="cookies/lava.webp" alt="A gooey chocolate cookie"></div>
+        <div class="crumbs" id="crumbs"></div>
+      </button>
+      <div class="cap" id="cap">fresh out the oven</div>
+      <div class="sticker"><div><b>14.6K</b>cookie<br>friends</div></div>
+    </div>
+  </div>
+</header>
+
+<div style="overflow:hidden;padding:14px 0"><div class="tick" aria-hidden="true"><div class="row" id="tick"></div></div></div>
+
+<section class="sec"><div class="wrap about">
+  <div class="rv">
+    <span class="kick">about me</span>
+    <h2 class="h2">Self-taught, <i>still</i> <span class="scrib">testing.<svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M2 14C40 4 80 18 120 8s60 4 76 2"/></svg></span></h2>
+    <p style="font-size:18px;max-width:42ch;margin-top:22px">I learned to bake from trial, error and a lot of flat cookies. Now I bake for people all over Bangalore, test new flavours every week and teach others how to do it too.</p>
+    <div class="stats">
+      <div class="stat"><b data-count="14600" data-k="1">0</b><span>followers</span></div>
+      <div class="stat"><b>18</b><span>years old</span></div>
+      <div class="stat"><b>4</b><span>things I bake</span></div>
+    </div>
+  </div>
+  <div class="note rv" style="--r:-2deg"><div class="tape"></div>how to order:<br>1. pick your bakes<br>2. send me a DM<br>3. I confirm the date + price<br>4. pickup or delivery in BLR 🛵</div>
+</div></section>
+
+<section class="sec" id="menu" style="padding-top:0"><div class="wrap">
+  <span class="kick">the menu</span>
+  <h2 class="h2 rv">What's in the <i>oven.</i></h2>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="panel" id="panel" role="tabpanel"></div>
+</div></section>
+
+<section class="sec tinsec" id="tin"><div class="wrap">
+  <span class="kick">build a box</span>
+  <h2 class="h2">Fill the <i>cookie tin.</i></h2>
+  <div class="tinwrap">
+    <div class="tin" id="tinEl"><div class="lbl" id="tinLbl">tin of 6</div></div>
+    <div>
+      <p style="font-size:17px;margin:0;max-width:40ch">Tap a cookie to drop it in. Tap one in the tin to take it out. When it looks right, copy the message and send it to me on Instagram.</p>
+      <div class="sizes" id="sizes"><button type="button" data-n="4" aria-pressed="false">tin of 4</button><button type="button" data-n="6" aria-pressed="true">tin of 6</button><button type="button" data-n="9" aria-pressed="false">tin of 9</button></div>
+      <div class="picks" id="picks"></div>
+      <div class="msg" id="msg"></div>
+      <div class="cta" style="margin-top:16px"><button class="btn t" type="button" id="copy">Copy &amp; open DMs</button><button class="btn" type="button" id="clear">Empty tin</button></div>
+      <div class="ok" id="ok" role="status"></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="test"><div class="wrap">
+  <span class="kick">the test kitchen</span>
+  <h2 class="h2 rv">Help pick the <i>next flavour.</i></h2>
+  <p style="font-size:18px;max-width:46ch;margin-top:18px">Every new bake gets tested (and re-tested) before it goes on the menu. Vote for the one you want me to try next.</p>
+  <div class="tk" id="tk"></div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <span class="kick">feedback</span>
+  <h2 class="h2 rv">The DMs that <i>keep me baking.</i></h2>
+  <p style="font-size:16px;max-width:52ch;margin-top:18px;color:#4a4f7a">This is where screenshots from the feedback highlight would go, so new customers can see what people said.</p>
+  <div class="fb" id="fb"></div>
+</div></section>
+
+<section class="sec" id="classes" style="padding-top:0"><div class="wrap">
+  <span class="kick">training + collabs</span>
+  <h2 class="h2 rv">Bake <i>with</i> me.</h2>
+  <div class="duo">
+    <div class="card y rv" style="--r:-1deg"><span class="big">🥣</span><h3>Baking classes</h3><ul><li>Small groups or one-on-one</li><li>Cookies, brownies and cakes from scratch</li><li>The mistakes I made, so you don't have to</li></ul><a class="btn" href="https://ig.me/m/akshita_bakes" target="_blank" rel="noopener">Ask about the next class</a></div>
+    <div class="card m rv" id="collabs" style="--r:1deg"><span class="big">🤝</span><h3>Collabs</h3><ul><li>Cafés and pop-ups in Bangalore</li><li>Brands, events and gifting boxes</li><li>Content and giveaways</li></ul><a class="btn" href="https://ig.me/m/akshita_bakes" target="_blank" rel="noopener">Let's work together</a></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="wm">akshita bakes</div>
+  <div class="row"><span>Baked in Bangalore · DM for orders and collabs · <a href="https://www.instagram.com/akshita_bakes/" target="_blank" rel="noopener">@akshita_bakes</a></span><span>a sample site by Weblio</span></div>
+  <p class="smp">This is a sample website made for @akshita_bakes. The menu, flavours and cookie photos are placeholders (photos from Unsplash) and would be swapped for her real bakes and prices.</p>
+</div></footer>
+<a class="float" href="https://ig.me/m/akshita_bakes" target="_blank" rel="noopener" aria-label="Send a DM on Instagram"><div><span>💬</span>DM</div></a>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id),R=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const CK=[
+    {k:"lava",n:"Double Fudge Lava",d:"cocoa dough, molten fudge middle",t:"gooey!",bg:"#F6D6CC"},
+    {k:"chunk",n:"Classic Chunk",d:"brown butter, dark chocolate chunks",t:"bestseller",bg:"#FFE9A8"},
+    {k:"fun",n:"Birthday Funfetti",d:"vanilla dough, rainbow sprinkles",t:"party one",bg:"#FAD3DE"},
+    {k:"matcha",n:"Matcha White Chip",d:"matcha dough, white chocolate",t:"new",bg:"#CFEBD6"},
+    {k:"mocha",n:"Mocha Frosted",d:"chocolate base, mocha frosting",t:"fancy",bg:"#E9D5C6"},
+    {k:"bbss",n:"Brown Butter Sea Salt",d:"toasted butter, flaky salt",t:"simple",bg:"#FFF1C7"},
+    {k:"nut",n:"Nutella Puddle",d:"golden dough, Nutella centre",t:"weekends",bg:"#F2D9C8"},
+    {k:"mid",n:"Midnight Cocoa",d:"black cocoa, espresso dust",t:"rich",bg:"#D8DEFA"}];
+  const CM=Object.fromEntries(CK.map(c=>[c.k,c]));
+  const img=k=>`cookies/${k}.webp`;
+
+  /* hero title letters */
+  let d=0;document.querySelectorAll("#ttl [data-w]").forEach(el=>{el.innerHTML=el.dataset.w.split("").map(c=>`<span class="l" style="animation-delay:${(d+=60)}ms">${c}</span>`).join("")});
+
+  /* break the cookie */
+  const pl=$("plate"),cr=$("crumbs");cr.innerHTML=Array.from({length:14},(_,i)=>{const a=i/14*6.28,r=60+Math.random()*90;return `<i style="--x:${Math.cos(a)*r}px;--y:${Math.sin(a)*r+40}px;animation-delay:${Math.random()*.1}s;width:${5+Math.random()*7}px"></i>`}).join("");
+  const caps=["fresh out the oven","look at that middle 🤤","ok, it's back together"];let bk=0;
+  pl.addEventListener("click",()=>{pl.classList.toggle("broke");bk++;$("cap").textContent=pl.classList.contains("broke")?caps[1]:caps[2];});
+
+  /* tilt polaroid with pointer */
+  const po=document.querySelector(".polar");
+  if(!R&&matchMedia("(pointer:fine)").matches)addEventListener("pointermove",e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;po.style.transform=`rotate(${4+x*6}deg) translate(${x*14}px,${y*10}px)`;});
+
+  /* ticker */
+  const W=["cookies","dm to order","cakes","made in blr","brownies","small batches","savoury","self-taught"];
+  $("tick").innerHTML=(W.map(w=>`<span>${w}</span>`).join("")).repeat(4);
+
+  /* reveal + counters */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);e.target.querySelectorAll("[data-count]").forEach(cnt)}}),{threshold:.2});
+  document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+  function cnt(el){const to=+el.dataset.count,t0=performance.now();const f=n=>{const p=Math.min((n-t0)/1400,1),v=Math.round(to*(1-Math.pow(1-p,3)));el.textContent=el.dataset.k?(v/1000).toFixed(1)+"K":v;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f);}
+
+  /* menu tabs = her highlights */
+  const TABS=[["cookies","🍪"],["cake","🎂"],["brownie","🟫"],["savoury","🥐"]];
+  const SOON={
+    cake:["Cakes for birthdays, small celebrations and just-because days.","Tell me the flavour, size and date, and I'll send you options.",`<svg class="doodle" viewBox="0 0 300 240"><rect x="60" y="120" width="180" height="80" rx="10"/><path d="M60 140c20 14 40-10 60 4s40-10 60 4 40-10 60 0"/><rect x="80" y="80" width="140" height="44" rx="8"/><path d="M150 80V50M150 50c-8-8-4-18 0-24 4 6 8 16 0 24"/><ellipse cx="150" cy="210" rx="120" ry="12"/></svg>`],
+    brownie:["Fudgy, crackly-top brownies by the box.","Ask what's on this week: classic, Biscoff, Nutella and more.",`<svg class="doodle" viewBox="0 0 300 240"><rect x="40" y="70" width="100" height="70" rx="6"/><rect x="160" y="70" width="100" height="70" rx="6"/><rect x="100" y="140" width="100" height="70" rx="6"/><path d="M50 90c20-8 40 8 60 0M170 90c20-8 40 8 60 0M110 160c20-8 40 8 60 0"/></svg>`],
+    savoury:["Savoury bakes for when you've had enough sugar.","Cheesy, herby and buttery. DM to see what's baking.",`<svg class="doodle" viewBox="0 0 300 240"><path d="M40 170c30-90 190-90 220 0z"/><path d="M90 150c10-30 30-40 60-40s50 10 60 40M150 110v60"/><ellipse cx="150" cy="190" rx="130" ry="14"/></svg>`]};
+  let tab="cookies";
+  $("tabs").innerHTML=TABS.map(([k,e])=>`<button type="button" role="tab" data-t="${k}" aria-selected="${k===tab}"><i>${e}</i>${k}!</button>`).join("");
+  function drawPanel(){
+    if(tab==="cookies"){$("panel").innerHTML=`<div class="cgrid">${CK.map((c,i)=>`<article class="ck rv" style="--r:${[-2,1.5,-1,2,1,-1.5,2,-2][i]}deg;--bg:${c.bg}"><span class="tag">${c.t}</span><div class="im"><img loading="lazy" src="${img(c.k)}" alt="${c.n} cookie"></div><h3>${c.n}</h3><p>${c.d}</p><button class="add" type="button" data-k="${c.k}">+ add to tin</button></article>`).join("")}</div>`;}
+    else{const s=SOON[tab];$("panel").innerHTML=`<div class="soon"><div class="note rv" style="--r:1.5deg"><div class="tape"></div>${s[0]}<br><br><span style="color:var(--tomato)">${s[1]}</span><div style="margin-top:20px"><a class="btn t" href="https://ig.me/m/akshita_bakes" target="_blank" rel="noopener" style="font-family:var(--sans)">DM about ${tab}</a></div></div>${s[2]}</div>`;}
+    $("panel").querySelectorAll(".rv").forEach((el,i)=>setTimeout(()=>el.classList.add("in"),i*60));
+  }
+  $("tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;tab=b.dataset.t;[...$("tabs").children].forEach(x=>x.setAttribute("aria-selected",x===b));drawPanel();});
+  $("panel").addEventListener("click",e=>{const b=e.target.closest(".add");if(!b)return;add(b.dataset.k);b.textContent="added ✓";setTimeout(()=>b.textContent="+ add to tin",900);});
+  drawPanel();
+
+  /* cookie tin */
+  let cap=6,tin=["lava","chunk","fun"];
+  const POS={4:[[35,35],[65,35],[35,65],[65,65]],6:[[50,26],[29,40],[71,40],[29,63],[71,63],[50,76]],9:[[30,30],[50,26],[70,30],[26,50],[50,50],[74,50],[30,70],[50,74],[70,70]]};
+  $("picks").innerHTML=CK.map(c=>`<button type="button" data-k="${c.k}"><img src="${img(c.k)}" alt="">${c.n}</button>`).join("");
+  $("picks").addEventListener("click",e=>{const b=e.target.closest("button");if(b)add(b.dataset.k)});
+  function add(k){if(tin.length>=cap){$("ok").textContent=`Your tin is full. Pick a bigger tin or take one out.`;return}tin.push(k);drawTin(true);$("ok").textContent="";}
+  function drawTin(anim){
+    const el=$("tinEl");el.querySelectorAll(".slot").forEach(s=>s.remove());
+    tin.forEach((k,i)=>{const [x,y]=POS[cap][i];const s=document.createElement("div");s.className="slot";s.style.left=x+"%";s.style.top=y+"%";s.style.width=cap===9?"21%":cap===4?"30%":"25%";
+      s.innerHTML=`<img src="${img(k)}" alt="${CM[k].n}" style="${anim&&i===tin.length-1?"":"animation:none"};transform:rotate(${(i*47)%40-20}deg)"><button type="button" aria-label="Remove ${CM[k].n}" data-i="${i}"></button>`;el.appendChild(s);});
+    $("tinLbl").textContent=`tin of ${cap} · ${tin.length}/${cap}`;
+    $("msg").textContent=msg();
+  }
+  const msg=()=>{if(!tin.length)return "your tin is empty, add some cookies!";const c={};tin.forEach(k=>c[k]=(c[k]||0)+1);return `hi akshita! I'd love a tin of ${cap}:\n`+Object.entries(c).map(([k,n])=>`${n} × ${CM[k].n}`).join("\n")+(tin.length<cap?`\n(+${cap-tin.length} of your choice!)`:"")};
+  $("tinEl").addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(!b)return;tin.splice(+b.dataset.i,1);drawTin(false);});
+  $("sizes").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cap=+b.dataset.n;[...$("sizes").children].forEach(x=>x.setAttribute("aria-pressed",x===b));tin=tin.slice(0,cap);drawTin(false);});
+  $("clear").onclick=()=>{tin=[];drawTin(false)};
+  $("copy").onclick=async()=>{try{await navigator.clipboard.writeText(msg());$("ok").textContent="Copied! Paste it in the DM 💌";}catch(_){$("ok").textContent="Copy the message above and paste it in the DM 💌";}window.open("https://ig.me/m/akshita_bakes","_blank","noopener");};
+  drawTin(false);
+
+  /* test kitchen votes (local only) */
+  const T=[["Pistachio Kunafa","Crunchy kunafa, pistachio cream, a bit extra.",-1.5],["Biscoff Cheesecake","Biscoff cookie with a cheesecake centre.",1],["Gulab Jamun","Cardamom dough, a whole jamun inside.",-1]];
+  const base=[38,34,28];let votes=null;try{votes=JSON.parse(localStorage.getItem("ab_vote")||"null")}catch(_){}
+  $("tk").innerHTML=T.map((t,i)=>`<div class="vote rv" style="--r:${t[2]}deg" data-i="${i}"><span class="hand" style="color:var(--tomato);font-size:22px">test #${i+1}</span><h3>${t[0]}</h3><p>${t[1]}</p><button type="button">I want this one</button><div class="bar2"><i></i></div><div class="pc"></div></div>`).join("");
+  $("tk").querySelectorAll(".rv").forEach(el=>io.observe(el));
+  function showVotes(v){const tot=base.reduce((a,b)=>a+b,0)+1;$("tk").querySelectorAll(".vote").forEach((el,i)=>{const n=base[i]+(v===i?1:0),p=Math.round(n/tot*100);el.querySelector(".bar2 i").style.setProperty("--w",p+"%");el.querySelector(".pc").textContent=p+"%";el.classList.toggle("voted",v===i);el.querySelector("button").textContent=v===i?"your pick ✓":"I want this one";});}
+  if(votes!==null)showVotes(votes);
+  $("tk").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const i=+b.closest(".vote").dataset.i;try{localStorage.setItem("ab_vote",i)}catch(_){}showVotes(i);});
+
+  /* feedback phone frames (placeholders) */
+  $("fb").innerHTML=Array.from({length:5},(_,i)=>`<div class="ph" style="--r:${[-2,1.5,-1,2,-1.5][i]}deg"><div class="top"></div><div class="bub">feedback screenshot ${i+1}</div><div class="bub ghost"></div><div class="bub ghost" style="width:60%"></div><div class="bub me">🥹🍪</div><div class="bub ghost"></div></div>`).join("");
+})();
+</script>
+</body>
+</html>
